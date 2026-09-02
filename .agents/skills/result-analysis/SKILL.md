@@ -12,7 +12,8 @@ description: >-
 # Result Analysis
 
 Thin Skill for **scientific interpretation** after artifacts exist.
-Experiment fields: [experiment-record.md](../../references/experiment-record.md).
+Experiment fields and Outcome values:
+[experiment-record.md](../../references/experiment-record.md).
 State roles and update order: [state-files.md](../../references/state-files.md).
 
 ## When to use
@@ -32,35 +33,42 @@ Answer what the evidence means for the current Story, record durable discoveries
 and set the next research move. Analysis is **strong guidance**, not a hard gate —
 but major Story changes should trigger or suggest `experiment-review`.
 
+Run success ≠ scientific success; `completed` Status does not mean hypothesis
+confirmed. Set **Outcome** per [experiment-record.md](../../references/experiment-record.md)
+§Outcome 值 (do not copy that table here).
+
 ## Default flow
 
 1. **Gather evidence** — Read `EXP-xxx` in `.research/EXPERIMENTS.md` (Results, Runs,
-   Git, Code). Inspect raw artifacts (logs, plots, metrics) when available; do not rely
-   only on executor summaries. Follow Git commit to code if method questions arise.
+   Git, Code, current Outcome). Inspect raw artifacts; do not rely only on executor
+   summaries. Follow Git commit to code if method questions arise.
 2. **Answer analysis questions** — Work through explicitly:
    - 发生了什么？（客观 Main Findings）
    - 结果是否可靠？（方差、泄漏、实现 bug、样本量）
    - 支持什么？（对 Story 哪一段有证据）
    - 不支持什么？（预期未出现、对照不利）
    - 是否存在替代解释？（混淆因素、选择偏差、度量问题）
-   - 产生了什么新的 Discovery？（正/负/null/失效路线）
+   - Outcome 应是什么？（引用 experiment-record.md §Outcome 值）
+   - 是否写入 DISCOVERY？（见下方规则，不是每次失败都写 Negative）
    - Story 是否需要改变？（小改 vs 核心机制动摇）
    - 下一实验是什么？（指向 `experiment-design` 或 supersede）
 3. **Update EXPERIMENTS** — Main Findings, Interpretation, Discovery Impact,
-   Story Impact, Next; sync Index Status (`completed` / `failed` / `abandoned`) and
-   Updated date. See [experiment-record.md](../../references/experiment-record.md).
-4. **Update DISCOVERY** — Add findings under Positive / Negative / Null /
-   Invalidated / Open Contradictions with `Evidence: EXP-xxx`. Explain why the Story
-   view shifted if it did. Do not paste full experiment text — link by EXP-ID.
-5. **Update STORY if needed** — Small edits (Evidence, Boundary, Open Gaps): follow
-   `story-maintenance`. Large edits (Problem, Key Observation, Core Idea): use
-   `story-maintenance` and **suggest** `experiment-review` on the triggering EXP.
+   Story Impact, Next, **Outcome**; sync Index Status, **Index Outcome**, and
+   Updated date.
+4. **Update DISCOVERY** — Only when the EXP is scientifically usable:
+   - `Status=failed` 且 `Outcome=not-assessed` → **不产生** Negative Discovery。
+   - `Status=completed` 且 `Outcome=contradicts` 或 `null` → 写入 DISCOVERY
+     （Negative / Null）。
+   - `completed` + `supports` → Positive；`invalid` 不可用于推断，不当 Negative Discovery。
+   Tag `Evidence: EXP-xxx`. Do not paste full experiment text.
+5. **Update STORY if needed** — Small edits: `story-maintenance`. Large edits
+   (Problem, Key Observation, Core Idea): `story-maintenance` and **suggest**
+   `experiment-review` on the triggering EXP.
 6. **Update STATE** — Current gap, active/next experiment, blockers, file pointers.
 7. **Chain** — Clear next test → `experiment-design` or `experiment-execution`;
    contested evidence → `experiment-review`; routine compaction → `research-memory`.
 
-Follow [state-files.md](../../references/state-files.md) §更新顺序; this Skill
-owns the EXPERIMENTS and DISCOVERY rings (STORY via `story-maintenance`).
+Follow [state-files.md](../../references/state-files.md) §更新顺序.
 
 ## Reads
 
@@ -75,8 +83,8 @@ owns the EXPERIMENTS and DISCOVERY rings (STORY via `story-maintenance`).
 
 | File | What to update |
 |------|----------------|
-| `.research/EXPERIMENTS.md` | Main Findings, Interpretation, Discovery Impact, Story Impact, Next, Status |
-| `.research/DISCOVERY.md` | New or revised scientific findings |
+| `.research/EXPERIMENTS.md` | Findings, Interpretation, Impacts, Next, Status, Outcome (section + Index) |
+| `.research/DISCOVERY.md` | Scientific findings only, per Default flow step 4 |
 | `.research/STORY.md` | When evidence warrants (via `story-maintenance` rules) |
 | `.research/STATE.md` | Gap, next action, blockers |
 
@@ -84,19 +92,13 @@ Do **not** write Reviewer files here — use `experiment-review`.
 
 ## Deviation allowed
 
-- Defer STORY edits if evidence is weak — note open contradiction in DISCOVERY instead.
-- Skip numeric detail in Story; keep numbers in EXPERIMENTS only
-  ([state-files.md](../../references/state-files.md) anti-duplication).
+- Defer STORY edits if evidence is weak — note open contradiction in DISCOVERY instead
+  (only when Outcome is a scientific finding, not technical failure).
+- Skip numeric detail in Story; keep numbers in EXPERIMENTS only.
 - Request `experiment-review` before large Story edits even when not mandatory.
-- Trivial exploratory runs: merge with execution in one session — still fill separate
-  Interpretation fields in the record.
+- Trivial exploratory runs: merge with execution in one session — still fill
+  Interpretation and Outcome in the record.
 - Mark EXP `superseded` when a new EXP explicitly replaces the same scientific question.
-
-## Boundaries
-
-- Run success ≠ scientific success; `completed` does not mean hypothesis confirmed.
-- Failed experiments: retain full `EXP-xxx`; add negative discovery; shrink Story claims
-  if warranted.
+- Retain every `EXP-xxx` section, including `failed` + `not-assessed`; do not delete
+  valuable `contradicts` or `null` results.
 - Core Idea overturned: record discovery, suggest Reviewer, revise Story, propose new loop.
-- Do not delete valuable negative or null results.
-- Reviewer artifacts live under `.research/reviews/` — not in this skill.

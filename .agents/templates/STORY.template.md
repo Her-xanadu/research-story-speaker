@@ -1,6 +1,6 @@
 # Story: {{STORY_TITLE}}
 
-> 从本模板创建 `.research/STORY.md`。固定六段，约一页，不含具体性能数字。
+> 从本模板创建 `.research/STORY.md`。固定六段，约一页，不含具体性能数字。六段是结构不是必填事实；缺证据写 `_Not established yet._`，禁止编造。
 
 ## Problem
 
@@ -8,7 +8,7 @@
 
 ## Key Observation
 
-{{支撑问题的关键观察或现象？}}
+{{支撑问题的关键观察或现象？在本段内标注类型：`External premise` / `Internal observation` / `Current hypothesis`。缺证据写 `_Not established yet._` 或 `Current hypothesis: ...`，不新增 section。}}
 
 ## Core Idea
 

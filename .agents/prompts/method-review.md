@@ -1,8 +1,10 @@
 # Method Review Prompt
 
-Hand this prompt to the `reviewer` subagent (or any fresh-context reviewer with no executor history).
-Independence policy and Required output headings:
+Hand this prompt to the `reviewer` subagent (or any fresh-context reviewer with no designer history).
+Independence header, Verdict, and Required output headings:
 [reviewer.md](../subagents/reviewer.md).
+**Model relation** is relative to the **method designer**.
+Write `Verdict: <per reviewer.md>` — do not recopy the Verdict list.
 
 ## Task fields
 
@@ -11,6 +13,7 @@ Main Agent fills in before dispatch. **Do not paste full state files** — the r
 ```text
 EXP-ID: <e.g. EXP-031>
 Story gap: <one sentence — which Open Gap or Boundary item>
+Review round: N
 Relevant files:
   - .research/STORY.md
   - .research/EXPERIMENTS.md → section <EXP-ID>
@@ -18,7 +21,7 @@ Relevant files:
   - <repo path> @ <commit hash>
   - <config / script paths>
   - .research/work/<design-or-executor-report>.md (if any)
-Required output: .research/reviews/<EXP-ID>/method-review.md
+Required output: .research/reviews/<EXP-ID>/method-review-r<N>.md
 ```
 
 ## Instructions for reviewer
@@ -27,8 +30,9 @@ Required output: .research/reviews/<EXP-ID>/method-review.md
 2. Determine whether the **experimental method** can answer the Story gap — not whether results look good.
 3. Inspect **direct evidence**: design doc, code diff at commit, configs, data pipeline, baseline definitions.
 4. Cross-check executor claims against implementation; note any design–implementation drift.
-5. **Write** the full review to `Required output` path.
+5. **Write** the full review to `Required output` path, starting with the header in reviewer.md.
 6. **Do not** edit `STORY.md`, `EXPERIMENTS.md`, `REVIEWS.md`, or other canonical state files.
+7. **Do not** polish this `raw` body after writing it.
 
 ## Review questions (internal checklist)
 
@@ -40,8 +44,8 @@ Required output: .research/reviews/<EXP-ID>/method-review.md
 
 ## Required review body
 
-Use [reviewer.md](../subagents/reviewer.md) Required output headings. Fill each
-heading from the **method** perspective:
+Header, then `## Verdict` (`Use reviewer.md §Verdict`), then the five sections
+in [reviewer.md](../subagents/reviewer.md), filled from the **method** perspective:
 
 - strongest evidence — what makes the method credible for this gap
 - main weakness — most serious methodological flaw or gap
@@ -51,9 +55,9 @@ heading from the **method** perspective:
 
 ## Return to caller
 
-After writing the file, return the same five sections in the response (concise summary acceptable).
+After writing the file, return Verdict plus the same five sections (concise summary acceptable).
 
 ## Escalation
 
-Recommend `result-review.md` separately once method is adequate and raw results exist.
+Recommend a separate result review once method is adequate and raw results exist.
 If method is fatally flawed, say so explicitly — do not defer to results.

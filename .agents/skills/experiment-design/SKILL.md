@@ -12,7 +12,8 @@ description: >-
 # Experiment Design
 
 Thin Skill for scientific experiment **specification** before code runs. Field
-definitions and Status values: [experiment-record.md](../../references/experiment-record.md).
+definitions, Status, and Outcome:
+[experiment-record.md](../../references/experiment-record.md).
 Git layout and traceability: [git-linking.md](../../references/git-linking.md).
 Gap priority: [story-loop.md](../../references/story-loop.md).
 
@@ -35,7 +36,7 @@ answered — not a parameter sweep. Per
 [story-loop.md](../../references/story-loop.md): prefer experiments that could
 change Problem, Core Idea, or whether to continue the route.
 
-Record in `EXPERIMENTS.md` with index row and Status `planned`.
+Record in `EXPERIMENTS.md` with index row, Status `planned`, Outcome `not-assessed`.
 
 ## Default flow
 
@@ -60,11 +61,14 @@ Record in `EXPERIMENTS.md` with index row and Status `planned`.
 
 5. **Add method and setup** — Method summary, Data/Setup, planned Runs structure
    (local labels only; no global Run IDs).
-6. **Plan traceability** — Entry `experiments/EXP-xxx/`, Results `results/EXP-xxx/`
-   per [git-linking.md](../../references/git-linking.md). Leave Git commit and
-   Results paths empty until execution.
-7. **Update EXPERIMENTS.md** — Add index row (`planned`, Story Gap phrase,
-   Updated date) and full section; leave Main Findings / Interpretation empty.
+6. **Plan traceability** — Planned Entry `experiments/EXP-xxx/` and planned Results
+   root `results/EXP-xxx/` per [git-linking.md](../../references/git-linking.md).
+   Existing baseline commits and planned result roots **may** be recorded now.
+   Do **not** invent commits or results. Formal execution confirms final Git /
+   Results values.
+7. **Update EXPERIMENTS.md** — Add index row (`planned`, Outcome `not-assessed`,
+   Story Gap phrase, Updated date) and full section; leave Main Findings /
+   Interpretation empty.
 8. **Update STATE** — Active experiment, recommended next (`experiment-execution`).
 9. **Optional review** — Suggest `experiment-review` method-review before costly
    or mechanism-changing runs.
@@ -81,7 +85,7 @@ Record in `EXPERIMENTS.md` with index row and Status `planned`.
 
 | File | What to update |
 | --- | --- |
-| `.research/EXPERIMENTS.md` | Index row + new `EXP-xxx` section (`planned`) |
+| `.research/EXPERIMENTS.md` | Index row + new `EXP-xxx` section (`planned`, Outcome `not-assessed`) |
 | `.research/STATE.md` | Active EXP, next step, blockers |
 
 Do **not** write Interpretation, `DISCOVERY.md`, or `STORY.md` here. Numbers and
@@ -96,9 +100,7 @@ metrics belong in EXPERIMENTS after runs, not in STORY
 - Pair with `literature-research` when baseline choice is uncertain.
 - Document Expected outcomes inline under Motivation when section has no dedicated field.
 - Mark low-priority sweep as explicitly secondary — still tie to one judgment-changing question.
-
-Hard boundaries:
-
-- Design ≠ execution — no commit hashes or result paths until runs exist.
 - Avoid standalone hyperparameter grids unless they test a stated mechanism.
 - High-cost designs should note Compute estimate and Review recommendation.
+- Do not fabricate Git commits or result artifacts; recording a real existing
+  baseline SHA or a planned results directory is allowed.

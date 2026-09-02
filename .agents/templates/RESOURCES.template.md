@@ -2,6 +2,9 @@
 
 > 从本模板创建 `.research/RESOURCES.md`。记录**资源身份 + 定位提示**，非绝对路径依赖。
 
+Do not store: passwords, API keys, private tokens, SSH private keys, credentials.
+Access hints like `SSH alias gpu-a` are OK.
+
 ## Codebases
 
 ### {{CODEBASE_ID}}
@@ -9,6 +12,10 @@
 **Purpose:** {{用途}}
 
 **Git:** {{remote URL}}
+
+**Recovery source:** Git remote | mirror | git bundle | archive | local-only
+
+**Portability:** portable | host-dependent | unavailable
 
 **Preferred relative location:** {{如 ../project-code}}
 

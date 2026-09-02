@@ -13,12 +13,14 @@ Relevant files:
   - <other paths the subagent must read>
 Required output:
   - .research/work/<task-slug>.md
-  - OR .research/reviews/<EXP-ID>/<review-type>.md (reviewer only)
+  - OR .research/reviews/<EXP-ID>/<method|result>-review-r<N>.md (reviewer only)
 Task slug: <short-kebab-name for work file>
 Additional context: <optional — hypotheses, constraints, deadline; keep brief>
 ```
 
 **Critical:** List paths only. Subagents must **READ workspace files from disk** — never paste full `.research/*.md` contents into the handoff.
+
+`EXP-ID: NEW` 只用于设计提案。真正开始改代码或执行前，必须由 Main Agent 在 EXPERIMENTS.md 分配/预留具体 EXP-ID 后再 dispatch experiment-agent。
 
 ## Role → typical files
 
@@ -62,5 +64,5 @@ Fill Task fields inside that prompt (EXP-ID, Story gap, Relevant files, Required
 
 - Pasting STORY or EXPERIMENTS into chat instead of path pointers
 - Multiple agents editing the same canonical file in one turn
-- Skipping `result-analyst` when executor also interpreted results
+- Skipping independent `result-analyst` on high-risk results. 对异常、高成本、核心 Story 相关、准备形成正式结论、或执行者有强烈既定解释的结果，优先独立 result-analyst；普通探索允许执行和初步分析由同一 Agent 完成。
 - Treating reviewer approve/reject as sufficient without reading review files

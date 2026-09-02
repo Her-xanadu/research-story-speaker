@@ -1,6 +1,6 @@
 # Experiment Record Reference
 
-V0.1 规范：`EXPERIMENTS.md` 的结构、索引表、Status 值与每个 Experiment section 的字段。
+V0.1 规范：`EXPERIMENTS.md` 的结构、索引表、Status 值、Outcome 值与每个 Experiment section 的字段。
 
 ## 文件结构
 
@@ -20,11 +20,11 @@ V0.1 规范：`EXPERIMENTS.md` 的结构、索引表、Status 值与每个 Exper
 
 ## Index
 
-| EXP-ID | Title | Status | Story Gap | Updated |
-|--------|-------|--------|-----------|---------|
-| EXP-001 | Baseline validation | completed | Open Gaps: mechanism unclear | 2026-09-02 |
-| EXP-002 | Ablation study | running | Open Gaps: feature contribution | 2026-09-03 |
-| EXP-003 | Control comparison | planned | Boundary: dataset scope | 2026-09-03 |
+| EXP-ID | Title | Status | Outcome | Story Gap | Updated |
+|--------|-------|--------|---------|-----------|---------|
+| EXP-001 | Baseline validation | completed | supports | Open Gaps: mechanism unclear | 2026-09-02 |
+| EXP-002 | Ablation study | running | not-assessed | Open Gaps: feature contribution | 2026-09-03 |
+| EXP-003 | Control comparison | planned | not-assessed | Boundary: dataset scope | 2026-09-03 |
 ```
 
 列说明：
@@ -33,7 +33,8 @@ V0.1 规范：`EXPERIMENTS.md` 的结构、索引表、Status 值与每个 Exper
 |----|------|
 | **EXP-ID** | `EXP-NNN`，与 section 标题一致 |
 | **Title** | 短标题；可与 section 副标题相同 |
-| **Status** | 见下表；新增或变更实验时同步更新 |
+| **Status** | 见 §Status 值；新增或变更实验时同步更新 |
+| **Outcome** | 见 §Outcome 值；每个 Experiment 必有；新建固定 `not-assessed` |
 | **Story Gap** | 指向 STORY 中 `Open Gaps` 或 `Boundary` 的具体条目（短语即可） |
 | **Updated** | 该实验记录最后实质性更新的日期（ISO `YYYY-MM-DD`） |
 
@@ -42,6 +43,7 @@ V0.1 规范：`EXPERIMENTS.md` 的结构、索引表、Status 值与每个 Exper
 - 每新建或关闭一个 Experiment，先更新索引表，再写/更新对应 section。
 - 索引表只放摘要；细节只在 section 中维护，避免双份维护长文本。
 - 老实验 Status 变为 `superseded` 或 `abandoned` 时保留行，不删历史。
+- 索引表 Outcome 列与 section 字段必须同步；不要只改一处。
 
 ## Status 值
 
@@ -66,6 +68,25 @@ completed | failed | abandoned → superseded（当新 EXP 接管同一问题时
 
 `completed` 不表示"假设被证实"；只表示实验执行完毕且结果已记录。
 
+## Outcome 值
+
+每个 Experiment **必有** Outcome；新建时固定为 `not-assessed`。索引表与 section 内 `Outcome:` 字段保持一致。
+
+**Status** = 工作生命周期；**Outcome** = 科学结果语义。二者独立，不要互相推导。technical failure ≠ negative scientific finding：`Status=failed` 时 Outcome 保持 `not-assessed`，不把它当成负向科学发现。
+
+完整枚举（只在本文件定义；其它文件引用本节，不要再抄这张表）：
+
+| Outcome | 精确定义 |
+|---------|----------|
+| `not-assessed` | 尚未形成科学判断，包括 planned/running/技术失败 |
+| `supports` | 有效证据支持该 Experiment 所测试的主要假设/预测 |
+| `contradicts` | 有效证据明确与主要假设/预测相反 |
+| `null` | 实验有效完成，目标效应/差异基本未观察到，本身是有信息量的零结果 |
+| `inconclusive` | 数据、方差、控制、样本量等不足以判断支持还是反对 |
+| `invalid` | 运行可能完成，但由于泄漏、实现错误、不公平比较等，不可用于科学推断 |
+
+科学结论如何进入 DISCOVERY 由 `result-analysis` 决定；本表只定义词义。
+
 ## ID 规则
 
 ```text
@@ -85,6 +106,7 @@ EXP-031 — Candidate Ambiguity Screening   # 可选附名
 | 字段 | 说明 |
 |------|------|
 | **Status** | 与索引表一致 |
+| **Outcome** | 与索引表一致；见 §Outcome 值 |
 | **Question** | 这个实验要回答的科学问题 |
 | **Motivation** | 与当前 Story gap 的关系 |
 | **Method** | 方法概要（非完整论文方法节） |
@@ -116,6 +138,7 @@ Run **不**建立全局编号（无 `RUN-042`）。只在 Experiment section 内
 ## EXP-031 — Feature Ablation
 
 Status: completed
+Outcome: supports
 
 Runs:
 - R1: seed 601, completed
@@ -133,14 +156,16 @@ Runs:
 
 ```text
 EXPERIMENTS.md → EXP-031 section
-.research/reviews/EXP-031/method-review.md
-.research/reviews/EXP-031/result-review.md
+.research/reviews/EXP-031/method-review-r<N>.md
+.research/reviews/EXP-031/result-review-r<N>.md
 REVIEWS.md → EXP-031 摘要
 ```
 
+命名与 Verdict 契约见 `reviewer.md`。
+
 ## 写作原则
 
-- **不要把运行成功等同于科学成功** — 只记录事实。
-- **负结果与 null 结果保留** — 写入 Main Findings，提炼到 DISCOVERY。
+- **不要把运行成功等同于科学成功** — Status 记工作生命周期，Outcome 记科学判断（§Outcome 值）。
+- **负结果与 null 结果保留** — 有效完成的科学结论写入 Main Findings；技术失败保持 `not-assessed`，不当作负向科学发现。
 - **数字留在 EXPERIMENTS** — STORY 不抄性能数字。
 - **紧凑但不删历史** — 老实验可缩短正文，不删除 section 或索引行。

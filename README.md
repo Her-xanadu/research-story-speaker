@@ -4,13 +4,13 @@ Framework base: v0.1.1 — 纯文件、纯提示词的 Story 驱动自动化科�
 
 ## Quick Start
 
-1. Use this repository as a template (clone or copy).
-2. Open the folder in any supported Agent Harness (Codex, Claude Code, Cursor, DeepSeek Harness; OpenCode documented only).
-3. Tell the Agent: “Read AGENTS.md and initialize this research project.”
-4. Provide the research goal and code/data locations.
-5. Agent populates `.research/` from UNINITIALIZED to ACTIVE and starts the first Story loop. Do not expect a fabricated Story.
+1. 以本仓库为模板（clone 或复制）。
+2. 用任一已支持的 Agent Harness 打开该文件夹（Codex、Claude Code、Cursor、DeepSeek Harness；OpenCode 仅文档）。
+3. 对 Agent 说：「Read AGENTS.md and initialize this research project.」
+4. 提供研究目标、代码/数据位置、长期约束。信息不足时 Agent 只追问缺的项。
+5. Agent 将根 `.research/` 从 `UNINITIALIZED` **materialize** 为 `ACTIVE`（八个文件已在，不是新生成），然后进入第一个 Story loop。不要期待编造完整 Story；缺证据的段保持 `_Not established yet._`。
 
-MOCK closed-loop example: [`examples/mock-flow-detection/`](examples/mock-flow-detection/). Framework review and harness evidence: [`docs/validation/`](docs/validation/).
+MOCK 闭环示例：[`examples/mock-flow-detection/`](examples/mock-flow-detection/)。框架审核与 Harness 证据：[`docs/validation/`](docs/validation/)。
 
 ## 核心设计（§1）
 
@@ -32,30 +32,36 @@ Workspace 是科研项目的**控制平面和长期记忆主体**，不等同于
 
 ## 目录结构
 
+三分：框架层 / 项目层 / 示例与验证。
+
+| 层 | 内容 |
+|----|------|
+| 框架层 | `AGENTS.md`、`CLAUDE.md`、`.agents/`、`.claude/`、`adapters/` |
+| 项目层 | `.research/`（当前真实项目；初始 `UNINITIALIZED`） |
+| 示例与验证 | `examples/mock-flow-detection/`；`docs/validation/` |
+
 ```text
 workspace/
-├── AGENTS.md
-├── CLAUDE.md
-├── README.md
-├── .research/            # 当前真实项目；初始 UNINITIALIZED
-├── .agents/
-├── .claude/skills/       # symlink → .agents/skills
-├── adapters/
+├── AGENTS.md / CLAUDE.md / README.md
+├── .agents/              # 框架层：skills、templates、references
+├── .claude/              # 框架层：Claude Code 发现入口
+├── adapters/             # 框架层：薄宿主适配
+├── .research/            # 项目层；初始 UNINITIALIZED
 ├── examples/mock-flow-detection/
 └── docs/validation/
 ```
 
-Canonical Skills（10）：`workspace-resume`、`research-loop`、`story-maintenance`、`literature-research`、`experiment-design`、`experiment-execution`、`result-analysis`、`experiment-review`、`research-memory`、`framework-maintenance`（仅维护框架时使用）。
+Canonical Skills（10）：`workspace-resume`、`research-loop`、`story-maintenance`、`literature-research`、`experiment-design`、`experiment-execution`、`result-analysis`、`experiment-review`、`research-memory`、`framework-maintenance`（仅维护框架、升级 Harness 或发布版本时使用）。
 
-## Workspace Git（§4）
+## Workspace Git（§4）与升级边界
 
-Workspace Git 与科研代码 Git 是两个概念。升级时只合并框架层（`AGENTS.md`、`CLAUDE.md`、`.agents/`、`.claude/`、`adapters/`），**永不覆盖** `.research/`。
+Workspace Git 与科研代码 Git 是两个概念。升级时**只合并框架层**（`AGENTS.md`、`CLAUDE.md`、`.agents/`、`.claude/`、`adapters/`），**永不覆盖** `.research/`。
 
 ## 跨 Harness（V0.1.1 声明占位，Gate B 用验证证据填实）
 
 - UNINITIALIZED cold-start portability: pending Wave C1
 - Initialized write/handoff portability: pending Wave C2–C4
-- Research-loop portability: partially validated
+- Research-loop portability: partially validated; full multi-harness execution remains V0.2 work
 - OpenCode: documentation-only, not tested
 
 ## 当前状态

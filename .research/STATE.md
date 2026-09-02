@@ -27,7 +27,6 @@ Run workspace-resume initialization.
 | Project | `.research/PROJECT.md` |
 | Story | `.research/STORY.md` |
 | Templates | `.agents/templates/` |
-| Example MOCK | `examples/mock-flow-detection/` |
 
 ## Story Status
 

@@ -11,6 +11,10 @@
 - method-review-r1.md
 **Status:** done
 
+## Verdict
+
+PROCEED
+
 ## strongest evidence
 
 Paired comparison on one split (seed 42, 80/20) with a feature set that matches the Story Core Idea (duration, packet_ratio, byte_asymmetry) and a consistent per-flow z-score applied before both models. Entry at the cited commit is `experiments/EXP-001/run.py` with config `experiments/EXP-001/run_config.yaml`; results at `results/EXP-001/metrics.json`.

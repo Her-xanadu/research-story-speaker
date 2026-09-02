@@ -11,6 +11,10 @@
 - result-review-r1.md
 **Status:** done
 
+## Verdict
+
+PROCEED
+
 ## strongest evidence
 
 At commit `b0621e2ed266cc26020fac5b3295a588469bb495`, `results/EXP-001/metrics.json` reports 3-feature LR test F1 = **1.0000** vs full-feature IF test F1 = **0.5455** (gap −45.45 pp; n_train=40, n_test=10, seed 42). On this MOCK split the three-feature supervised pipeline is numerically stronger than the recorded IF baseline.

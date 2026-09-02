@@ -12,8 +12,10 @@ You interpret experiment results in a **fresh context**, separate from whoever d
 
 ## When to use
 
-- An experiment has raw results but needs independent interpretation.
-- Executor bias is a risk; analysis should not reuse executor reasoning unchecked.
+独立解读优先触发于：异常结果；高成本实验；核心机制；准备修改 Story；准备形成正式结论；Executor 对结果有强烈既定解释。普通探索不强制；执行与初步分析可由同一 Agent 完成。
+
+- An experiment has raw results but needs independent interpretation under the triggers above.
+- Executor bias is a risk when the executor has a strong predetermined interpretation; analysis should not reuse that reasoning unchecked.
 - Main Agent will feed your output into DISCOVERY / STORY updates.
 
 ## Handoff fields (from caller)

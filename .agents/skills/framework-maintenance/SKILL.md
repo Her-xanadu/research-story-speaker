@@ -65,6 +65,7 @@ workspace **drifted** from the linked reference — do not copy the rule body he
 | 6 | DISCOVERY vs EXPERIMENTS | [state-files.md](../../references/state-files.md) §反重复规则 |
 | 7 | Adapter drift | `adapters/` / `CLAUDE.md` vs [state-files.md](../../references/state-files.md) §单一事实来源（§20） |
 | 8 | Unnecessary scripts | V0.1 instruction-only goal — framework `.py/.sh` against that intent |
+| 9 | Cross-file terminology consistency | 七/八 state-file count; Status vs Outcome（Outcome per experiment-record.md）; Verdict 引用 reviewer.md；文件名；template 与 reference 一致。Do not copy Outcome/Verdict enumerations into this Skill. |
 
 Also verify: `.agents/skills/` is the **only** canonical Skill root; subagent
 handoff uses `.research/work/` per

@@ -33,6 +33,8 @@
 
 ## Story Status
 
-`IN_PROGRESS` | `READY_FOR_WRITING` | {{其他}}
+`NOT_INITIALIZED` | `IN_PROGRESS` | `READY_FOR_WRITING`
+
+UNINITIALIZED 根状态用 `NOT_INITIALIZED`；Project Status 变为 `ACTIVE` 后用 `IN_PROGRESS`；Story 完成条件满足后用 `READY_FOR_WRITING`。
 
 _最后更新：{{date}}_

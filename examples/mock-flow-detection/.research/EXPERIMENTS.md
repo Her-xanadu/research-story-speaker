@@ -4,15 +4,17 @@
 
 ## Index
 
-| EXP-ID | Title | Status | Story Gap | Updated |
-|--------|-------|--------|-----------|---------|
-| EXP-001 | Three-Feature vs Full-Feature Baseline | completed | Open Gaps: 真实子集未验证 | 2026-09-02 |
+| EXP-ID | Title | Status | Outcome | Story Gap | Updated |
+|--------|-------|--------|---------|-----------|---------|
+| EXP-001 | Three-Feature vs Full-Feature Baseline | completed | supports | Open Gaps: 真实子集未验证 | 2026-09-02 |
 
 ---
 
 ## EXP-001 — Three-Feature vs Full-Feature Baseline
 
 **Status:** completed
+
+**Outcome:** supports
 
 **Question:** 仅使用 duration、packet-ratio、byte-asymmetry 三特征的检测器，F1 与 full-feature Isolation Forest 基线差距多大？
 

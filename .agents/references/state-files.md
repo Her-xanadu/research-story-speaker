@@ -92,7 +92,7 @@ ID 格式：`EXP-001`、`EXP-002` … 可附名称 `EXP-031 — Candidate Ambigu
 
 ### LITERATURE.md
 
-已进入当前科研认知的外部知识。每篇重要论文：Reference、Research Problem、Core Method、Important Finding、Relation to Our Story、Relation to Experiments、Possible Inspiration、Source。
+已进入当前科研认知的外部知识。每篇重要论文：Reference、Identifier、Access、Research Problem、Core Method、Important Finding、Relation to Our Story、Relation to Experiments、Possible Inspiration、Source。字段形状见 `LITERATURE.template.md`。
 
 不要求完整文献数据库；Zotero/Web/PDF 只是获取工具。
 
@@ -104,7 +104,7 @@ Reviewer 与 Experiment 一一关联的总览。完整 Review 在 `.research/rev
 
 ### RESOURCES.md
 
-连接 workspace 与外部环境。记录**资源身份 + 定位提示**（Codebases、Datasets、Compute、External Capabilities）。
+连接 workspace 与外部环境。记录**资源身份 + 定位提示**（Codebases、Datasets、Compute、External Capabilities）。Codebase 记录 Recovery source / Portability；不存秘密。语义见 `git-linking.md`。
 
 路径失效时 Agent 应重新定位并更新，而非认为项目失效。
 

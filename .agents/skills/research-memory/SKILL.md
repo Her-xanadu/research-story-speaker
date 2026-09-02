@@ -1,7 +1,7 @@
 ---
 name: research-memory
 description: >-
-  Maintain consistency and readability of the seven research state files.
+  Maintain consistency and readability of the 8 research state files.
   Use after long autonomous runs, when files are bloated or contradictory,
   when a new Agent cannot parse project state, when EXPERIMENTS and DISCOVERY
   duplicate, STATE is stale, or Story drifts from evidence. Triggers include
@@ -92,7 +92,7 @@ so `workspace-resume` and `research-loop` can route immediately.
 
 ## Updates
 
-May edit all seven `.research/` files. Prefer move/compress/cross-reference over delete.
+May edit all 8 `.research/` files. Prefer move/compress/cross-reference over delete.
 压缩/搬移细节，不改 Problem/Core Idea 的科学主张.
 
 **Never delete:** negatives/nulls, any `EXP-xxx` section, review artifacts,

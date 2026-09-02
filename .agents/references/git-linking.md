@@ -4,6 +4,9 @@ V0.1 规范：Experiment 与外部代码仓库、commit、入口、结果之间�
 
 ## 原则
 
+能够恢复科研认知，不代表能够重新获取实验代码、数据和结果。
+Cognitive portability does not imply artifact portability.
+
 - 实验代码**必须**使用 Git；workspace Git 与 code Git 是两套独立仓库。
 - 代码仓库可在 workspace 内、workspace 外并列、或远程服务器上（见 `RESOURCES.md`）。
 - 绑定信息写在 `EXPERIMENTS.md` 对应 section；Codebase 身份写在 `RESOURCES.md`。
@@ -78,7 +81,7 @@ Valid runs: def456
 4. **必要时询问用户** — 仅当以上均失败；说明已尝试的步骤与缺失信息。
 5. **更新 RESOURCES** — 定位成功后写回 **Last known local location**，不删除历史 Notes。
 
-路径失效**不**意味着项目状态失效；恢复路径并更新 RESOURCES 即可继续。
+路径失效**不**意味着项目状态失效——**仅当**存在稳定代码恢复源时，路径失效才只是定位问题，恢复路径并更新 RESOURCES 即可继续。若代码仓库对象丢失（无 Git remote / mirror / git bundle / archive），则只能恢复科研认知，无法恢复实验实现。
 
 ## 推荐代码布局（§15）
 
@@ -120,3 +123,13 @@ Gate 验收标准：陌生 Agent 仅凭 workspace 文件即可重建上述链路
 - **Experiment** 绑定 Codebase + 主要 commit + Entry + Results 根目录。
 - **Run** 可在同一 Experiment 下引用不同 seed、retry 或有效 commit（见 `experiment-record.md`）。
 - Results 目录可按 Run 分子目录，但 EXP-ID 级 Results 字段至少指向可发现的总入口。
+
+## Portability
+
+`RESOURCES.md` 中每个 Codebase 记录 **Recovery source** 与 **Portability**。Portability 三值：
+
+- `portable`：至少一种稳定恢复源（Git remote / mirror / git bundle / archive）
+- `host-dependent`：例如 local-only，或服务器绝对路径但无 remote
+- `unavailable`：当前已无法恢复
+
+**任何将进入 Story Evidence、Reviewer acceptance 或论文级结论的 Experiment，必须具有稳定恢复源。** exploratory 允许 `local-only`，但须标明。

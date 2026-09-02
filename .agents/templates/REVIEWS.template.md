@@ -1,6 +1,7 @@
 # Reviews
 
 > 从本模板创建 `.research/REVIEWS.md`。完整 Review 在 `.research/reviews/EXP-xxx/`。
+> Verdict: <per reviewer.md> — [reviewer.md](../subagents/reviewer.md)。本模板不复述词表。
 
 ## Review Policy
 
@@ -10,15 +11,12 @@
 
 ### EXP-001 — {{EXPERIMENT_NAME}}
 
-| Type | Status | Summary |
-|------|--------|---------|
-| method-review | {{pending/done}} | {{一行摘要}} |
-| result-review | {{pending/done}} | {{一行摘要}} |
-
+**Latest method review:** r2 — <per reviewer.md>
+**Latest result review:** r1 — <per reviewer.md>
 Files:
-
-- `.research/reviews/EXP-001/method-review.md`
-- `.research/reviews/EXP-001/result-review.md`
+- method-review-r1.md
+- method-review-r2.md
+- result-review-r1.md
 
 ---
 

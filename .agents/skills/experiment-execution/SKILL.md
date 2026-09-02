@@ -30,9 +30,10 @@ Do **not** use for: designing what to test (`experiment-design`), interpreting o
 Implement and run the experiment, preserve a recoverable code–result chain, and update
 the experiment record with mechanical facts. **Running successfully is not scientific
 success** — exit code zero or metric movement does not validate the Story; leave
-interpretation to `result-analysis`. Binding fields and stale-path recovery follow
-only [git-linking.md](../../references/git-linking.md); this Skill freezes the commit
-before runs and writes recovered paths into `EXPERIMENTS.md` afterward.
+interpretation and Outcome assessment to `result-analysis`. Binding fields and
+stale-path recovery follow only [git-linking.md](../../references/git-linking.md);
+this Skill freezes the commit before runs and writes recovered paths into
+`EXPERIMENTS.md` afterward.
 
 ## Default flow
 
@@ -43,21 +44,24 @@ before runs and writes recovered paths into `EXPERIMENTS.md` afterward.
 2. **Verify Git** — Confirm repo identity (`git remote -v`), branch, working tree.
    Workspace Git and code Git are independent repositories.
 3. **Align with record** — Read `EXP-xxx` in `.research/EXPERIMENTS.md`: Question,
-   Method, Comparisons, Data/Setup, planned Runs. Read `.research/STORY.md` for gap
-   context only — do not edit Story here.
+   Method, Comparisons, Data/Setup, planned Runs, planned Results root. Read
+   `.research/STORY.md` for gap context only — do not edit Story here.
 4. **Implement** — Prefer shared `src/`; experiment entry `experiments/EXP-xxx/`;
    results `results/EXP-xxx/`. Do not duplicate entire repos per EXP-ID
    ([git-linking.md](../../references/git-linking.md) §推荐代码布局（§15）).
 5. **Freeze commit** — Before formal runs, commit or record recoverable SHA. Bind
    the run in `EXPERIMENTS.md` using the fields in
    [git-linking.md](../../references/git-linking.md) §每个正式 Experiment 的最小绑定.
-   Multi-commit retries: document Initial / Fix / Valid runs per git-linking.
+   Confirm any design-time baseline commit / planned result root against the actual
+   run. Multi-commit retries: document Initial / Fix / Valid runs per git-linking.
 6. **Execute runs** — Distinguish Experiment (scientific unit) from Run (one execution).
    Log seeds, retries, host, and commit per run in the Runs field — no global Run ID.
 7. **Save artifacts** — Record result paths (relative, absolute, or `host:path`). Ensure
    a stranger can navigate: EXPERIMENTS → RESOURCES → repo → Entry → Results.
-8. **Update EXPERIMENTS** — Set Status (`running` / `completed` / `failed` as appropriate);
-   fill Code, Git, Runs, Results, mechanical Main Findings only. Leave Interpretation,
+8. **Update EXPERIMENTS** — Set Status (`running` / `completed` / `failed`);
+   keep **Outcome=`not-assessed`** unless `result-analysis` has already judged.
+   Technical failure: **Status=`failed`**, **Outcome=`not-assessed`** (section + Index).
+   Fill Code, Git, Runs, Results, mechanical Main Findings only. Leave Interpretation,
    Discovery Impact, Story Impact for `result-analysis`.
 9. **Update STATE** — Active experiment, blockers, recommended next (`result-analysis`
    when results exist).
@@ -77,11 +81,12 @@ before runs and writes recovered paths into `EXPERIMENTS.md` afterward.
 
 | File | What to update |
 |------|----------------|
-| `.research/EXPERIMENTS.md` | Index Status/Updated, Code, Git, Runs, Results, mechanical Main Findings |
+| `.research/EXPERIMENTS.md` | Index Status/Outcome/Updated, Code, Git, Runs, Results, mechanical Main Findings |
 | `.research/RESOURCES.md` | Last known local location after path recovery |
 | `.research/STATE.md` | Active EXP, blockers, next step (brief) |
 
-Do **not** update `DISCOVERY.md` or `STORY.md`. STORY is never touched here.
+Do **not** update `DISCOVERY.md` or `STORY.md`. Do not assign a scientific
+Outcome here — keep `not-assessed` until `result-analysis`.
 
 ## Deviation allowed
 
@@ -90,13 +95,9 @@ Do **not** update `DISCOVERY.md` or `STORY.md`. STORY is never touched here.
 - Remote compute — record host and path in Results; runs may stay `running` until synced.
 - Delegate implementation to `experiment-agent`; Main Agent (this skill) still owns
   EXPERIMENTS/STATE updates after the subagent returns.
-- Abort invalid setup — record `failed` in Status/Runs; never delete the experiment section.
+- Abort invalid setup — Status=`failed`, Outcome=`not-assessed`; never delete the section.
 - Retry after bugfix under same EXP-ID — add commit notes in Git field, not a new EXP.
-
-## Boundaries
-
-- Do not treat metric improvement as validated science or update Story claims.
-- Do not copy experiment narratives or numbers into `STORY.md`.
+- Do not treat metric improvement as validated science or copy numbers into `STORY.md`.
 - Negative, null, and failed runs stay in `EXPERIMENTS.md` — never silently delete.
 - `completed` Status means runs recorded, not hypothesis confirmed
   ([experiment-record.md](../../references/experiment-record.md)).

@@ -84,7 +84,8 @@ After evidence, follow [state-files.md](../../references/state-files.md) §更�
 
 If still advancing autonomously, return to gap judgment; skipping steps is
 allowed. Stop on user blocker, Story completion per `PROJECT.md`, or Reviewer
-`ATTENTION_REQUIRED`.
+control signal `ATTENTION_REQUIRED` (Use reviewer.md §Verdict;
+[reviewer.md](../../subagents/reviewer.md) — do not recopy the Verdict list).
 
 Stagnation signals (no move on Problem / Core Idea / main gap) →
 [story-loop.md](../../references/story-loop.md) §停滞处理.

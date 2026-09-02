@@ -1,6 +1,8 @@
 # Project: {{PROJECT_TITLE}}
 
-> 从本模板创建 `.research/PROJECT.md`。长期稳定，极少修改。
+**Project Status:** UNINITIALIZED | ACTIVE
+
+> 从本模板创建 `.research/PROJECT.md`。长期稳定，极少修改。Project Status 只取这两个值；工作状态写在 STATE，不要另增值。
 
 ## Research Goal
 

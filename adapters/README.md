@@ -2,7 +2,7 @@
 
 Thin host-specific notes. Canonical science logic lives in `AGENTS.md`, `.agents/`, and `.research/`. Adapters answer only how this host finds the workspace, loads Skills, invokes Subagents/Reviewers, and exposes MCP.
 
-Last tested: 2026-09-02 (UNINITIALIZED re-test in V0.1.1 Wave C). Evidence: [`docs/validation/harness-smoke/`](../docs/validation/harness-smoke/).
+Last tested: 2026-09-02 (V0.1 MOCK-root cold-start smoke). UNINITIALIZED re-test is Wave C. Evidence: [`docs/validation/harness-smoke/`](../docs/validation/harness-smoke/).
 
 Cold-start read order: `AGENTS.md` Start Here. Adapters do not answer research questions.
 

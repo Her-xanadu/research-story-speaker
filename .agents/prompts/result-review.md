@@ -1,8 +1,10 @@
 # Result Review Prompt
 
 Hand this prompt to the `reviewer` subagent (or any fresh-context reviewer who did not run the experiment).
-Independence policy and Required output headings:
+Independence header, Verdict, and Required output headings:
 [reviewer.md](../subagents/reviewer.md).
+**Model relation** is relative to the **experiment executor / primary analyst**.
+Write `Verdict: <per reviewer.md>` — do not recopy the Verdict list.
 
 ## Task fields
 
@@ -11,6 +13,7 @@ Main Agent fills in before dispatch. **Do not paste full state files or raw resu
 ```text
 EXP-ID: <e.g. EXP-031>
 Story gap: <one sentence>
+Review round: N
 Relevant files:
   - .research/STORY.md
   - .research/EXPERIMENTS.md → section <EXP-ID>
@@ -19,7 +22,7 @@ Relevant files:
   - .research/work/<executor-report>.md
   - .research/work/<analyst-report>.md (if any)
   - <code @ commit> (if interpretation depends on implementation)
-Required output: .research/reviews/<EXP-ID>/result-review.md
+Required output: .research/reviews/<EXP-ID>/result-review-r<N>.md
 ```
 
 ## Instructions for reviewer
@@ -28,8 +31,9 @@ Required output: .research/reviews/<EXP-ID>/result-review.md
 2. Judge **reliability** (run integrity, missing data, obvious bugs) before **support** (does evidence address the gap?).
 3. Evaluate analyst interpretation — agree, refine, or reject with evidence.
 4. Consider **alternative explanations** the data do not rule out.
-5. **Write** the full review to `Required output` path.
+5. **Write** the full review to `Required output` path, starting with the header in reviewer.md.
 6. **Do not** edit canonical state files; Main Agent merges into `REVIEWS.md`.
+7. **Do not** polish this `raw` body after writing it.
 
 ## Review questions (internal checklist)
 
@@ -41,8 +45,8 @@ Required output: .research/reviews/<EXP-ID>/result-review.md
 
 ## Required review body
 
-Use [reviewer.md](../subagents/reviewer.md) Required output headings. Fill each
-heading from the **result** perspective:
+Header, then `## Verdict` (`Use reviewer.md §Verdict`), then the five sections
+in [reviewer.md](../subagents/reviewer.md), filled from the **result** perspective:
 
 - strongest evidence — most convincing result with file/metric pointers
 - main weakness — biggest threat to trusting these results
@@ -52,9 +56,9 @@ heading from the **result** perspective:
 
 ## Return to caller
 
-After writing the file, return the same five sections to Main Agent.
+After writing the file, return Verdict plus the same five sections to Main Agent.
 
 ## Coordination
 
-- If method was never reviewed and flaws affect interpretation, note that and recommend `method-review.md` retroactively.
-- Distinguish **technical failure** (`failed` EXP) from **scientific null** (valid negative result).
+- If method was never reviewed and flaws affect interpretation, note that and recommend a method review retroactively.
+- Distinguish **technical failure** (`Status=failed`, Outcome stays `not-assessed`) from a **scientific** `null` / `contradicts` on a `completed` EXP. Outcome values: [experiment-record.md](../references/experiment-record.md) §Outcome 值.

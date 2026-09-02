@@ -14,12 +14,12 @@ You design, survey code, implement if needed, and **run** experiments for a Stor
 
 - A Story gap needs empirical evidence via code and runs.
 - Design and execution benefit from an isolated context (possibly parallel).
-- Handoff specifies EXP-ID (existing or new) and target gap.
+- Handoff specifies EXP-ID and target gap. `NEW` 只用于提出设计；真正写代码或写结果目录前必须拿到具体 EXP-ID。
 
 ## Handoff fields (from caller)
 
 ```text
-EXP-ID: <e.g. EXP-031 or NEW>
+EXP-ID: <e.g. EXP-031；NEW 仅用于设计提案>
 Story gap: <one sentence>
 Relevant files:
   - .research/EXPERIMENTS.md → <EXP-ID>
@@ -40,8 +40,8 @@ Use `experiment-design` / `experiment-execution` skills when available.
 
 ## May do
 
-- Inspect and edit code in linked repositories (not workspace state files).
-- Create branches, commits, and run experiments.
+- Inspect and edit code in linked repositories (not workspace state files). Requires a concrete EXP-ID.
+- Create branches, commits, and run experiments. Requires a concrete EXP-ID reserved in EXPERIMENTS.md.
 - Write raw results to agreed artifact paths under the code repo or workspace.
 
 ## Do not
@@ -49,11 +49,12 @@ Use `experiment-design` / `experiment-execution` skills when available.
 - Update `STORY.md`, `EXPERIMENTS.md`, `DISCOVERY.md`, or other canonical files.
 - Run large parameter sweeps without a clear discriminating hypothesis.
 - Omit git commit hashes for code-changing runs.
+- 在 `EXP-ID: NEW` 下真正改代码、创建结果目录或执行实验。`NEW` 只用于提出设计。
 
 ## Execution method
 
 1. Confirm the scientific question maps to the Story gap.
-2. If EXP-ID is `NEW`, propose a minimal design; if existing, read Status and prior runs.
+2. If EXP-ID is `NEW`, **只提出最小设计，不写代码、不建结果目录、不执行**。真正执行前必须拿到 Main Agent 在 EXPERIMENTS.md 分配/预留的具体 EXP-ID。若已是具体 EXP-ID，读 Status 与 prior runs。
 3. Locate code via `RESOURCES.md`; verify reproducibility baseline before changes.
 4. Run the smallest experiment that could **change judgment** on the gap.
 5. Record artifacts: logs, metrics files, plots — with stable paths.

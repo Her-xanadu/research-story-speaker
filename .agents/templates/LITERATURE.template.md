@@ -8,6 +8,10 @@
 
 **Reference:** {{完整引用}}
 
+**Identifier:** DOI | arXiv | Zotero key | URL
+
+**Access:** full-text-checked | abstract-only | metadata-only
+
 **Research Problem:** {{论文解决的问题}}
 
 **Core Method:** {{核心方法}}
