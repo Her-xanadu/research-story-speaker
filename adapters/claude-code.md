@@ -26,7 +26,7 @@ Thin harness notes for Anthropic Claude Code CLI.
 ## MCP
 
 - Claude Code MCP servers from user config (`~/.claude.json` or project config).
-- Optional for MOCK EXP-001.
+- Optional for cold start.
 
 ## Cold start
 

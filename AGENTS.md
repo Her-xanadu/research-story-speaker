@@ -1,16 +1,22 @@
 # Story-Driven Research Workspace
 
+Framework base: v0.1.1
+
 这是一个 **Story 驱动、文件即记忆** 的自主科研工作区。科研事实保存在 `.research/`，工作流在 `.agents/skills/`。
 
 ## Workspace Identity
 
-本工作区是当前科研项目的控制平面与长期记忆。当前 `.research/` 为 **MOCK** 实例（流特征轻量异常检测），可替换为真实项目。
+本工作区是当前科研项目的控制平面与长期记忆。
+
+若 `.research/PROJECT.md` 的 **Project Status** 为 `UNINITIALIZED`，先走 `workspace-resume` 初始化，不要编造 Story 或实验。
+
+若为 `ACTIVE`，按 Start Here 冷启动后继续科研。
 
 ## Start Here
 
 **默认读取顺序**（冷启动）：
 
-1. `.research/PROJECT.md` — 长期目标
+1. `.research/PROJECT.md` — 长期目标与 Project Status
 2. `.research/STORY.md` — 当前相信什么
 3. `.research/STATE.md` — 现在做到哪里
 
@@ -34,7 +40,7 @@
 
 | 场景 | Skill |
 |------|-------|
-| 新 Session / 陌生 Agent | `workspace-resume` |
+| 新 Session / 陌生 Agent / 未初始化 | `workspace-resume` |
 | 决定下一步科研 | `research-loop` |
 | 维护文件一致性 | `research-memory` |
 | 更新 Story | `story-maintenance` |
@@ -43,7 +49,7 @@
 | 执行实验 | `experiment-execution` |
 | 分析结果 | `result-analysis` |
 | 独立 Review | `experiment-review` |
-| 维护框架本身 | `framework-maintenance` |
+| 维护框架、升级 Harness 或发布版本 | `framework-maintenance`（日常 Story loop 不要用） |
 
 复杂任务优先找对应 Skill，不要重复发明流程。细节见各 `SKILL.md` 与 `.agents/references/`。
 
@@ -66,3 +72,4 @@
 - 状态模板：`.agents/templates/`
 - 跨 Harness 适配：`adapters/`
 - 不静默删除负结果或历史 Experiment section
+- 升级框架层（`AGENTS.md`、`.agents/`、`.claude/`、`adapters/`）时**永不覆盖** `.research/`

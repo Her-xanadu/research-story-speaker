@@ -27,7 +27,7 @@ Thin harness notes for OpenAI Codex / Codex CLI in this workspace.
 ## MCP
 
 - Codex plugin MCP (Gmail, Drive, browser, etc.) as configured in user environment.
-- Not required for V0.1 MOCK loop.
+- Optional; not required for cold start.
 
 ## Cold start
 
@@ -41,4 +41,4 @@ codex exec "Follow AGENTS.md. Run workspace-resume: answer Current Story, Gap, E
 ## Limitations
 
 - `codex exec` may not load all MCP plugins.
-- Absolute paths in `RESOURCES.md` may be stale — use relative `../story-research-code`.
+- Absolute paths in `RESOURCES.md` may be stale — use Preferred relative location and `git-linking.md`.

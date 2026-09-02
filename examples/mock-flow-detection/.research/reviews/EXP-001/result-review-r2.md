@@ -1,9 +1,14 @@
 # EXP-001 Result Review
 
-**Reviewer:** Grok 4.6 (fresh context, Gate 3 fix round; rewritten from the Codex MOCK subagent review)
-**independence:** different-model-family, fresh-context
+**Reviewer:** Grok 4.6
+**Model relation:** different-family
+**Context relation:** fresh-context
 **Date:** 2026-09-02
-**Code commit:** `b0621e2ed266cc26020fac5b3295a588469bb495`
+**Reviewed code commit:** `b0621e2ed266cc26020fac5b3295a588469bb495`
+**Review round:** 2
+**Provenance:** synthesis
+**Source reviews:**
+- result-review-r1.md
 **Status:** done
 
 ## strongest evidence
