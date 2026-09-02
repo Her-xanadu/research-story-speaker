@@ -12,12 +12,12 @@
 
 | Type | Status | Summary |
 |------|--------|---------|
-| method-review | done | 设计合理，合成数据局限已标注；批准 MOCK V0.1 |
-| result-review | done | 3-feature F1=1.0 优于 IF 0.5455；接受为 Story Evidence |
+| method-review | done | 方法可接受，合成数据局限已标注 |
+| result-review | done | MOCK 结果接受为 MOCK-tier Story Evidence，不可外推真实数据 |
 
 Files:
 
 - `.research/reviews/EXP-001/method-review.md`
 - `.research/reviews/EXP-001/result-review.md`
 
----
+_Date: 2026-09-02_

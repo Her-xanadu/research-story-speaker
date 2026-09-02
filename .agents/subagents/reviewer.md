@@ -16,7 +16,34 @@ You provide **independent critical review** of an experiment's method and/or res
 - Story core (Problem / Key Observation / Core Idea) may change based on EXP.
 - Main Agent dispatches with `.agents/prompts/method-review.md` and/or `result-review.md`.
 
-Prefer a different model, fresh context, or external Reviewer MCP when possible.
+## Independence policy
+
+This file is the **only** full definition. The `experiment-review` Skill and
+review prompts link here; do not copy this policy elsewhere.
+
+Priority (high → low):
+
+1. Different **model family**
+2. Different **model** (same family allowed)
+3. External Reviewer MCP
+
+**Minimum independence:** the same model is allowed only in a **fresh context**
+with no executor chat history. Record at the top of the review file:
+
+```text
+independence: same-model-fresh-context
+```
+
+(or an equivalent field). If a stronger option was used, record that too
+(e.g. `independence: different-model-family`).
+
+**Forbidden:** reviewing in the same session / same context that executed or
+analyzed the experiment (self-review).
+
+If the host has **no subagent mechanism**, Main Agent may still run
+[method-review.md](../prompts/method-review.md) or
+[result-review.md](../prompts/result-review.md) in a **new session**, and must
+still record the independence limitation in the review header.
 
 ## Handoff fields (from caller)
 
@@ -66,7 +93,7 @@ Write formal review to path specified in handoff, typically:
 `.research/reviews/<EXP-ID>/method-review.md`
 `.research/reviews/<EXP-ID>/result-review.md`
 
-Body structure (both types):
+Body structure (both types) — **Required output headings**:
 
 ```text
 ## strongest evidence
@@ -85,7 +112,8 @@ Body structure (both types):
 <specific experiment, fix, or review — not vague "more work">
 ```
 
-Return the same five sections to the caller.
+Return the same five sections to the caller. Task prompts keep method/result
+fill-in questions but must use these headings.
 
 ## Quality bar
 

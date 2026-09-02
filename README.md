@@ -25,54 +25,9 @@ V0.1 — 纯文件、纯提示词的 Story 驱动自动化科研框架。
 
 ## 核心设计（§1）
 
-整个框架围绕唯一的当前 `STORY.md` 运转。
+整个框架围绕唯一的当前 `STORY.md` 运转。循环见 `.agents/references/story-loop.md` §核心循环。
 
-科研循环：
-
-```text
-STORY
-  ↓
-识别当前 Story 最薄弱的环节
-  ↓
-提出最有价值的科学问题
-  ↓
-Literature / Experiment / Review
-  ↓
-获得新证据
-  ↓
-更新 EXPERIMENTS
-  ↓
-提炼 DISCOVERY
-  ↓
-必要时修改 STORY
-  ↓
-更新 STATE
-  ↓
-进入下一轮
-```
-
-认知分层：
-
-```text
-PROJECT      = 我们最终想解决什么
-STORY        = 我们现在相信什么
-STATE        = 我们现在做到哪里
-DISCOVERY    = 我们一路学到了什么
-EXPERIMENTS  = 我们实际上做过什么
-LITERATURE   = 外部研究告诉了我们什么
-REVIEWS      = 独立 Reviewer 如何评价关键实验
-RESOURCES    = 代码、数据、算力等外部资源在哪里
-```
-
-三层核心关系：
-
-```text
-EXPERIMENTS  = What happened?
-DISCOVERY    = What did we learn?
-STORY        = What do we currently believe?
-```
-
-三个文件不互相复制内容。
+八个状态文件的职责与认知分层见 `.agents/references/state-files.md`。EXPERIMENTS 记录发生了什么；DISCOVERY 记录学到了什么；STORY 记录当前信念（不含具体性能数字）；STATE 只回答现在在哪、下一步做什么。三层不互相复制数字。
 
 ## Workspace 定位（§2）
 
@@ -146,4 +101,4 @@ Workspace Git **不承担**大型实验结果保存。实验代码须使用独�
 
 ## 当前状态
 
-V0.1 freeze: 10 canonical Skills、8 状态文件、subagents/prompts、5 harness adapters、MOCK 科研实例与 `story-research-code` EXP-001 追溯链。见 git tag `v0.1`。
+Gate 1–3 审核已完成并进入修复。Harness smoke 产物待重跑（拟存放 `.research/work/framework-dev/harness-smoke/`）。Test F/G/J（失败实验、推翻 Core Idea、大量历史压缩）在 V0.1 明确未执行。

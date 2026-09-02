@@ -60,10 +60,11 @@ important paper, not search logs or abstract dumps.
    Suggests / Novelty) for the session; use it to decide what merits a permanent
    entry.
 5. **Write LITERATURE.md** — For each important source, append or update one
-   section: Reference, Research Problem, Core Method, Important Finding,
-   Relation to Our Story, Relation to Experiments, Possible Inspiration, Source
-   (template: `.agents/templates/LITERATURE.template.md`). Do **not** paste into
-   STORY or DISCOVERY unless explicitly requested.
+   section per [LITERATURE.template.md](../../templates/LITERATURE.template.md)
+   and [state-files.md](../../references/state-files.md) §LITERATURE.md. This
+   Skill only ensures the five lenses map into Relation fields (Relation to Our
+   Story / Relation to Experiments). Do **not** paste into STORY or DISCOVERY
+   unless explicitly requested.
 6. **Update STATE** — Brief next step if literature changes experiment priority
    or closes a novelty blocker.
 7. **Hand off** — If empirical test is now obvious → `experiment-design`; if

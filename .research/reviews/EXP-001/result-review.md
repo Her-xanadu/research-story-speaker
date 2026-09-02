@@ -1,31 +1,27 @@
 # EXP-001 Result Review
 
-**Reviewer:** MOCK independent reviewer (Codex subagent)
-**Date:** 2025-09-02
-**Status:** done
+**Reviewer:** Grok 4.6 (fresh context, Gate 3 fix round; rewritten from the Codex MOCK subagent review)
+**independence:** different-model-family, fresh-context
+**Date:** 2026-09-02
 **Code commit:** `b0621e2ed266cc26020fac5b3295a588469bb495`
+**Status:** done
 
-## Results Summary
+## strongest evidence
 
-| Model | Test F1 |
-|-------|---------|
-| 3-feature LR | 1.0000 |
-| Full-feature IF | 0.5455 |
-| Gap (IF − LR, pp) | −45.45 |
+At commit `b0621e2ed266cc26020fac5b3295a588469bb495`, `results/EXP-001/metrics.json` reports 3-feature LR test F1 = **1.0000** vs full-feature IF test F1 = **0.5455** (gap −45.45 pp; n_train=40, n_test=10, seed 42). On this MOCK split the three-feature supervised pipeline is numerically stronger than the recorded IF baseline.
 
-Train/test: 40 / 10 flows; seed 42.
+## main weakness
 
-## Assessment
+n_test=10 with a perfect F1 is too small to support generalization. The IF threshold calibrated on 40 training points can be unstable. Results are bound to a synthetic 50-row table, not CICIDS2017.
 
-- **3-feature LR** achieves perfect test F1 on the MOCK subset — strong support for Core Idea on synthetic data.
-- **Full-feature IF** underperforms substantially; extra features do not rescue the toy baseline at this sample size.
-- Negative gap (−45.45 pp) means 3-feature is *better* than full-feature IF, well inside the <5% tolerance from EXPERIMENTS Next criteria.
+## alternative explanation
 
-## Anomalies / Caveats
+Perfect LR F1 may come from **linear separability of the synthetic generator** rather than from “three features suffice” as a scientific claim: if labels were planted on duration / packet-ratio / byte-asymmetry, a linear model will look complete by construction. The weak IF (0.5455) may come from the **toy implementation and parameters** (tree count, depth, threshold rule) rather than from full-feature representations being invalid; a stronger full-feature baseline could reverse the gap.
 
-- Perfect F1 on n_test=10 is plausible given deliberate synthetic separability but should not be over-interpreted.
-- IF threshold calibrated on train may be unstable with 40 training points.
+## story impact
 
-## Verdict
+Accept as **MOCK-tier Story Evidence** only. Core Idea gains internal support on the toy distribution; IF-as-strong-baseline is not established; real-subset conclusions stay open. Do not copy these F1 numbers into STORY or DISCOVERY.
 
-**Accept results for Story Evidence (MOCK tier).** Update STORY Evidence and DISCOVERY with positive finding. Proceed to attack-family ablation (EXP-002 candidate) before claiming generalization.
+## recommended next move
+
+Do not promote Story Status on this run. Replicate the protocol on a real CICIDS subset with a stronger full-feature control; keep EXP-001 section and this review as the MOCK SoT.

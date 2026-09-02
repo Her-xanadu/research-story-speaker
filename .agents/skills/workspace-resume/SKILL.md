@@ -38,8 +38,9 @@ Active Experiment
 Recommended Next Action
 ```
 
-Chat history is not research memory — workspace files are (`AGENTS.md`).
-`PROJECT + STORY + STATE` should let a stranger grasp position in minutes.
+Chat history vs durable memory: see `AGENTS.md` Research Memory and
+[state-files.md](../../references/state-files.md). `PROJECT + STORY + STATE`
+should let a stranger grasp position in minutes.
 
 ## Default flow
 
@@ -61,7 +62,7 @@ No full-scan of `LITERATURE.md` or all experiments at startup.
 
 | Answer | Sources |
 | --- | --- |
-| Current Story | `STORY.md` six sections |
+| Current Story | `STORY.md`（六段见 `STORY.md` / `story-maintenance`） |
 | Current Gap | Open Gaps, Boundary, `STATE` focus |
 | Latest Relevant Evidence | `DISCOVERY`, EXP in STATE/STORY |
 | Active Experiment | `STATE`, `running`/`planned` EXP |
@@ -95,11 +96,8 @@ Read-mostly. Update only when:
 - `RESOURCES.md` stale after successful re-location;
 - `STATE.md` clearly wrong (non-trivial fixes → `research-memory`).
 
-After substantive work, chain per [state-files.md](../../references/state-files.md):
-
-```text
-EXPERIMENTS → DISCOVERY → STORY (if needed) → STATE
-```
+After substantive work, follow
+[state-files.md](../../references/state-files.md) §更新顺序.
 
 ## Deviation allowed
 

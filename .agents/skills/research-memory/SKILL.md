@@ -54,8 +54,9 @@ Write a short edit plan before touching files. No science by compression.
 **STATE** — dozens of lines: focus, active `EXP-xxx`, recent completions
 (pointers), next action, blockers, file pointers. No history log.
 
-**STORY** — six sections, ~one page, no numbers. Move detail to DISCOVERY or
-EXPERIMENTS. Problem / Core Idea changes → `story-maintenance` + Reviewer.
+**STORY** — 六段见 `STORY.md` / `story-maintenance`; ~one page, no numbers.
+Move detail to DISCOVERY or EXPERIMENTS. Problem / Core Idea changes →
+`story-maintenance` + Reviewer.
 
 ### 3. Organize DISCOVERY
 
@@ -92,6 +93,7 @@ so `workspace-resume` and `research-loop` can route immediately.
 ## Updates
 
 May edit all seven `.research/` files. Prefer move/compress/cross-reference over delete.
+压缩/搬移细节，不改 Problem/Core Idea 的科学主张.
 
 **Never delete:** negatives/nulls, any `EXP-xxx` section, review artifacts,
 invalidated findings (mark in DISCOVERY).
@@ -99,11 +101,8 @@ invalidated findings (mark in DISCOVERY).
 **Defer:** Story mechanism → `story-maintenance`; interpretation →
 `result-analysis`; new runs → `experiment-execution`.
 
-If new facts emerged during cleanup:
-
-```text
-EXPERIMENTS → DISCOVERY → STORY (if needed) → STATE
-```
+If new facts emerged during cleanup, follow
+[state-files.md](../../references/state-files.md) §更新顺序.
 
 ## Deviation allowed
 

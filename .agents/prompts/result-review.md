@@ -1,6 +1,8 @@
 # Result Review Prompt
 
 Hand this prompt to the `reviewer` subagent (or any fresh-context reviewer who did not run the experiment).
+Independence policy and Required output headings:
+[reviewer.md](../subagents/reviewer.md).
 
 ## Task fields
 
@@ -39,22 +41,14 @@ Required output: .research/reviews/<EXP-ID>/result-review.md
 
 ## Required review body
 
-```text
-## strongest evidence
-<most convincing result with file/metric pointers>
+Use [reviewer.md](../subagents/reviewer.md) Required output headings. Fill each
+heading from the **result** perspective:
 
-## main weakness
-<biggest threat to trusting these results>
-
-## alternative explanation
-<best rival reading of the same outputs>
-
-## story impact
-<specific STORY segments affected; avoid rewriting full Story>
-
-## recommended next move
-<follow-up EXP, replication, abandon route, or accept and update DISCOVERY>
-```
+- strongest evidence — most convincing result with file/metric pointers
+- main weakness — biggest threat to trusting these results
+- alternative explanation — best rival reading of the same outputs
+- story impact — specific STORY segments affected; avoid rewriting full Story
+- recommended next move — follow-up EXP, replication, abandon route, or accept and update DISCOVERY
 
 ## Return to caller
 

@@ -9,7 +9,7 @@ Thin harness notes for Anthropic Claude Code CLI.
 
 ## Skills
 
-- Read `.agents/skills/<name>/SKILL.md` on demand (no project `.claude/skills` mirror required for V0.1).
+- Canonical: `.agents/skills/<name>/SKILL.md`. Claude Code 另经 `.claude/skills/<name>` 目录 symlink（相对路径 `../../.agents/skills/<name>`）访问。
 - Skill names match directory names (`name` frontmatter = dirname).
 
 ## Subagents
@@ -39,5 +39,5 @@ First message: "Follow AGENTS.md cold-start order; workspace-resume from PROJECT
 
 ## Limitations
 
-- Claude Code does not auto-index all Skills — cite path when routing.
+- Claude Code 只自动读 `CLAUDE.md` 与 `.claude/skills/`，不自动读 `AGENTS.md` 与 `.agents/skills/`；因此 `CLAUDE.md` 是 boot 指针，`.claude/skills/` 为目录 symlink。
 - Long `EXPERIMENTS.md` — read targeted EXP sections only.

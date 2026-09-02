@@ -13,6 +13,7 @@ description: >-
 Thin Skill for **independent critique** of one `EXP-xxx` at a time.
 Traceability chain: [git-linking.md](../../references/git-linking.md).
 Review index: [state-files.md](../../references/state-files.md) (REVIEWS section).
+Independence and five-section output: [reviewer.md](../../subagents/reviewer.md).
 
 ## When to use
 
@@ -44,8 +45,8 @@ traceable evidence and actionable critique — not merely approve/reject.
 3. **Read direct evidence** — Code at recorded commit, configs, logs, plots, metrics.
    Navigate RESOURCES → repo → Entry per [git-linking.md](../../references/git-linking.md).
    Do not rely only on executor or analyst narrative.
-4. **Invoke Reviewer** — Prefer: different model, different model family, fresh context,
-   or `reviewer` subagent. Use prompts:
+4. **Invoke Reviewer** — Independence policy (only definition):
+   [reviewer.md](../../subagents/reviewer.md) §Independence policy. Use prompts:
    - [method-review.md](../../prompts/method-review.md)
    - [result-review.md](../../prompts/result-review.md)
    Cite EXP-ID, Story gap, file paths — do not paste full state files.
@@ -54,20 +55,14 @@ traceable evidence and actionable critique — not merely approve/reject.
    .research/reviews/EXP-xxx/method-review.md
    .research/reviews/EXP-xxx/result-review.md
    ```
+   Output structure follows the active prompt; minimum five sections: see
+   [reviewer.md](../../subagents/reviewer.md) Required output headings.
 6. **Write summary** — Add entry to `.research/REVIEWS.md` (verdict summary, key
    weakness, Story impact pointer). Template: [REVIEWS.template.md](../../templates/REVIEWS.template.md).
+   Decision matrix and synthesis template:
+   [experiment-review.md](../../prompts/experiment-review.md).
 7. **Link back** — Set Review field in `EXPERIMENTS.md` for that `EXP-xxx` to point
    at review files and REVIEWS summary.
-
-## Reviewer output must include
-
-At minimum address (see prompt templates):
-
-- Strongest evidence
-- Main weakness
-- Alternative explanation
-- Story impact
-- Recommended next move
 
 ## Reads
 
@@ -91,17 +86,8 @@ Do not rewrite Interpretation or Story here — recommend changes; owner skills 
 
 ## Traceability
 
-Any agent seeing `EXP-xxx` should follow:
-
-```text
-EXPERIMENTS.md → EXP-xxx
-  → .research/reviews/EXP-xxx/method-review.md
-  → .research/reviews/EXP-xxx/result-review.md
-  → REVIEWS.md → EXP-xxx summary
-  → Discovery / Story Impact (via result-analysis / story-maintenance)
-```
-
-Gate: stranger Agent rebuilds chain without chat history ([git-linking.md](../../references/git-linking.md)).
+Any agent seeing `EXP-xxx` should rebuild the chain in
+[git-linking.md](../../references/git-linking.md) §完整追溯链 without chat history.
 
 ## Deviation allowed
 
@@ -113,7 +99,8 @@ Gate: stranger Agent rebuilds chain without chat history ([git-linking.md](../..
 
 ## Boundaries
 
-- Reviewer should be as independent as practical from the executing agent.
+- Reviewer independence: follow [reviewer.md](../../subagents/reviewer.md)
+  §Independence policy — do not restate it here.
 - Do not paste entire state files into prompts — point to paths.
 - When both review types were required, both files must exist or omission documented.
 - This skill does not update DISCOVERY or STORY directly.

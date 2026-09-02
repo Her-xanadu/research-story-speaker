@@ -1,6 +1,10 @@
 # Experiment Review Prompt
 
-Main Agent orchestrates **independent review** for one experiment. Use the `experiment-review` skill when available.
+Main Agent: when to review and how to dispatch — see the
+[experiment-review](../skills/experiment-review/SKILL.md) Skill. This file only
+provides the decision matrix and the `REVIEWS.md` synthesis template.
+Independence and five-section headings:
+[reviewer.md](../subagents/reviewer.md).
 
 ## Task fields
 
@@ -23,27 +27,6 @@ Required output:
 
 Subagents **read** these paths from disk; do not paste contents into dispatch messages.
 
-## When to review
-
-Prioritize review when any apply:
-
-- High-cost or long-running experiment before scaling up
-- New core method or pipeline change
-- Anomalous or Story-threatening results
-- Closing an important route (completed / abandoned)
-- Story change to Problem, Key Observation, or Core Idea
-
-## Orchestration steps
-
-1. Read EXP section and Story gap; decide **method**, **result**, or **both**.
-2. Dispatch `reviewer` subagent with:
-   - `.agents/subagents/reviewer.md` as role definition
-   - `.agents/prompts/method-review.md` and/or `result-review.md` as task prompt
-   - filled Task fields (EXP-ID, Story gap, Relevant files, Required output)
-3. Ensure each reviewer inspects **direct evidence**, not only work reports.
-4. Collect outputs from `.research/reviews/<EXP-ID>/`.
-5. **Main Agent** synthesizes a short entry into `REVIEWS.md` — subagents do not edit it.
-
 ## Review decision matrix
 
 | Situation | Dispatch |
@@ -64,6 +47,8 @@ Prioritize review when any apply:
 - Next: <recommended move>
 - Full reviews: .research/reviews/<EXP-ID>/
 ```
+
+Subagents do **not** write `REVIEWS.md` — Main Agent synthesizes the summary.
 
 ## Quality bar
 

@@ -1,5 +1,7 @@
 # MOCK Test Scenarios (T3 — Tests F, G, J)
 
+这是 instruction-only 场景说明，不构成 Test F/G/J 的执行证据。
+
 > Instruction-only fixtures for maintenance verification. Not real experiments.
 
 ## Test F — Negative Experiment (pattern)

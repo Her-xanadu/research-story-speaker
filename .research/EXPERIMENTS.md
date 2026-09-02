@@ -2,9 +2,17 @@
 
 > **MOCK** — 单文件总账。字段规范：`.agents/references/experiment-record.md`
 
+## Index
+
+| EXP-ID | Title | Status | Story Gap | Updated |
+|--------|-------|--------|-----------|---------|
+| EXP-001 | Three-Feature vs Full-Feature Baseline | completed | Open Gaps: 真实子集未验证 | 2026-09-02 |
+
 ---
 
 ## EXP-001 — Three-Feature vs Full-Feature Baseline
+
+**Status:** completed
 
 **Question:** 仅使用 duration、packet-ratio、byte-asymmetry 三特征的检测器，F1 与 full-feature Isolation Forest 基线差距多大？
 
@@ -21,7 +29,7 @@
 
 **Runs:**
 
-- R1: seed 42, completed 2025-09-02
+- R1: seed 42, completed 2026-09-02
 
 **Code:** flow-detector
 
@@ -29,7 +37,8 @@
 
 - Repository: `../story-research-code`
 - Commit: `b0621e2ed266cc26020fac5b3295a588469bb495`
-- Entry: `experiments/EXP-001/run_config.yaml`
+- Entry: `experiments/EXP-001/run.py`
+- Config: `experiments/EXP-001/run_config.yaml`
 
 **Results:** `../story-research-code/results/EXP-001/metrics.json`
 
@@ -41,12 +50,12 @@
 
 **Interpretation:** 在 MOCK 合成流上，额外特征未改善 IF 基线；三特征 + 简单 LR 已捕获全部可分信号。差距远小于 5% 阈值（方向相反：三特征更强）。
 
-**Discovery Impact:** 正向发现 — 写入 DISCOVERY Positive Discoveries #1
+**Discovery Impact:** 正向发现 — 写入 DISCOVERY Positive Discoveries；弱 IF 对照 — 写入 Negative Discoveries
 
-**Story Impact:** STORY Evidence 已加入 EXP-001 内部证据；Open Gap #1 在 MOCK 层面临时闭合
+**Story Impact:** MOCK 层有证据、真实层仍开放
 
 **Review:** done — `.research/reviews/EXP-001/`
 
-**Next:** 攻击族 ablation（EXP-002 候选）；若仍 <5% 差距则考虑真实 CICIDS 子集扩展
+**Next:** 真实 CICIDS 子集复跑 EXP-001 协议（Open Gap #1）；攻击族 ablation（EXP-002 候选）
 
 ---

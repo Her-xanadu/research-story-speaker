@@ -1,10 +1,18 @@
 # Experiments
 
-> 从本模板创建 `.research/EXPERIMENTS.md`。**所有实验的单文件总账**。字段规范见 `.agents/references/experiment-record.md`。
+> 从本模板创建 `.research/EXPERIMENTS.md`。**所有实验的单文件总账**。字段规范见 `.agents/references/experiment-record.md`。Status 值见 `experiment-record.md`，不要把定义表抄进本模板。
+
+## Index
+
+| EXP-ID | Title | Status | Story Gap | Updated |
+|--------|-------|--------|-----------|---------|
+| EXP-001 | {{短标题}} | {{planned\|running\|completed\|failed\|abandoned\|superseded}} | {{Open Gaps / Boundary 短语}} | {{YYYY-MM-DD}} |
 
 ---
 
 ## EXP-001 — {{EXPERIMENT_NAME}}
+
+**Status:** {{planned|running|completed|failed|abandoned|superseded}}
 
 **Question:** {{科学问题}}
 
@@ -26,7 +34,8 @@
 
 - Repository: {{path or remote}}
 - Commit: {{hash}}
-- Entry: {{experiments/EXP-001/...}}
+- Entry: {{experiments/EXP-001/run.py}}
+- Config: {{experiments/EXP-001/run_config.yaml}}
 
 **Results:** {{results location}}
 

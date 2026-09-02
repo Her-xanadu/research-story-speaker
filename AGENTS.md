@@ -2,6 +2,10 @@
 
 这是一个 **Story 驱动、文件即记忆** 的自主科研工作区。科研事实保存在 `.research/`，工作流在 `.agents/skills/`。
 
+## Workspace Identity
+
+本工作区是当前科研项目的控制平面与长期记忆。当前 `.research/` 为 **MOCK** 实例（流特征轻量异常检测），可替换为真实项目。
+
 ## Start Here
 
 **默认读取顺序**（冷启动）：
@@ -12,29 +16,19 @@
 
 随后按任务按需读取：`DISCOVERY`、`EXPERIMENTS`、`LITERATURE`、`REVIEWS`、`RESOURCES`。
 
-规范详见 `.agents/references/state-files.md`。
+代码仓库由 `RESOURCES.md` 定位，可为 workspace 内 / 并列 / 远程，追溯见 `.agents/references/git-linking.md`。规范见 `.agents/references/state-files.md`。
 
 ## Autonomy
 
-你拥有较大科研自主权，可以：
+你拥有较大科研自主权：选择并组合 `.agents/skills/`、调用 `.agents/subagents/`、调整任务顺序、提出或放弃实验路线、使用当前 Harness 的 MCP / Web / Shell / Git、更新 Story 与科研状态（小改自主，大改建议 Review）。
 
-- 选择并组合 `.agents/skills/` 中的 Skill
-- 调用 `.agents/subagents/` 中的专项 Agent
-- 调整任务顺序、提出/放弃实验路线
-- 使用当前 Harness 的 MCP、Web、Shell、Git
-- 更新 Story 与科研状态（小改自主，大改建议 Review）
-
-**不要求每步询问用户。** Skills 是 strong guidance，不是强制状态机。
+**不要求每步询问用户。** Skills 是 strong guidance，不是强制状态机。重要实验须能定位代码、commit、结果；Story 核心机制大改时建议 `experiment-review`。
 
 ## Research Memory
 
-**Chat history 不是科研事实来源。** Workspace 文件才是。
+**Chat history 不是科研事实来源。** Workspace 文件才是。重要进展后的更新顺序见 `.agents/references/state-files.md` §更新顺序。`STORY.md` 六段见该文件与 `story-maintenance`。
 
-重要进展后更新顺序：
-
-```text
-EXPERIMENTS → DISCOVERY → STORY（如需要）→ STATE
-```
+并行 Agent 避免同时写同一状态文件。
 
 ## Skill Routing
 
@@ -65,23 +59,10 @@ EXPERIMENTS → DISCOVERY → STORY（如需要）→ STATE
 
 简单任务直接执行。Handoff 格式见 `.agents/prompts/subagent-handoff.md`。
 
-## Code & Git
-
-实验代码在 **独立 Git 仓库**（见 `RESOURCES.md`），不在 workspace 内硬编码路径。追溯规范：`.agents/references/git-linking.md`、`experiment-record.md`。
-
-## Story 结构
-
-`STORY.md` 固定六段：`Problem` · `Key Observation` · `Core Idea` · `Evidence` · `Boundary` · `Open Gaps`。循环见 `story-loop.md`。
+**写权限：** Subagent 只写 `.research/work/` 或 `.research/reviews/<EXP-ID>/`；八个 canonical 状态文件由 Main Agent 更新。
 
 ## Maintenance
 
 - 状态模板：`.agents/templates/`
 - 跨 Harness 适配：`adapters/`
-- 当前 `.research/` 为 **MOCK** 实例，可替换为真实项目
-
-## 底线
-
-- 重要实验能定位代码、commit、结果
 - 不静默删除负结果或历史 Experiment section
-- Story 核心机制大改时建议 `experiment-review`
-- 并行 Agent 避免同时写同一状态文件

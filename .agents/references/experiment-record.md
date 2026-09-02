@@ -127,17 +127,7 @@ Runs:
 
 ## Git 绑定（正式实验必填）
 
-每个正式 Experiment 至少能定位：
-
-```text
-Codebase ID     → RESOURCES.md
-Git repository  → remote 或本地路径
-Git commit      → 冻结的代码版本
-Entry           → 实验入口脚本/配置
-Results         → 结果目录
-```
-
-详见 `git-linking.md`。
+正式实验的 Git 字段与路径恢复见 `git-linking.md`。本节不重复五元组定义。
 
 ## 与 Review 的链接
 

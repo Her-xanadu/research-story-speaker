@@ -4,24 +4,24 @@
 
 ## Current Focus
 
-EXP-001 已完成；评估是否在更大或真实 CICIDS 子集上复验 Core Idea，并规划攻击族 ablation（EXP-002）。
+Open Gap #1：真实 CICIDS 子集尚未验证 Core Idea。EXP-001 仅提供 MOCK 内部证据。
 
 ## Active Experiment
 
-none — EXP-001 已 closed（MOCK tier）
+none — EXP-001 completed (MOCK)
 
 ## Recently Completed
 
-- **EXP-001** 执行与 metrics 产出（3-feature F1=1.0 vs IF F1=0.5455）
-- Git 记录 commit `b0621e2ed266cc26020fac5b3295a588469bb495` 于 `story-research-code`
-- method-review 与 result-review 完成
-- DISCOVERY、STORY Evidence、EXPERIMENTS 总账已同步
+- EXP-001 completed (MOCK) — 见 EXPERIMENTS.md
+- method-review 与 result-review — 见 REVIEWS.md
 
 ## Recommended Next Action
 
-1. 设计 EXP-002：攻击族 ablation（哪些攻击依赖额外特征）
-2. 可选：将 `mock_flows.csv` 扩展或替换为真实 CICIDS 子集，复跑 EXP-001 协议
-3. 若复验仍支持 Core Idea，将 Story Status 从 `IN_PROGRESS` 推进为 `SUPPORTED_MOCK`
+本轮按 STORY Open Gaps 顺序：优先 Gap #1。
+
+1. 将合成流替换为真实 CICIDS 子集，复跑 EXP-001 协议（Open Gap #1）
+2. 设计 EXP-002：攻击族 ablation（Open Gap #3）
+3. 视复验结果再评估三特征归一化策略（Open Gap #2）
 
 ## Blockers
 
@@ -40,6 +40,6 @@ none — EXP-001 已 closed（MOCK tier）
 
 ## Story Status
 
-`IN_PROGRESS` — MOCK 层有正向证据，待复验
+`IN_PROGRESS`
 
-_最后更新：EXP-001 闭环（Worker F, 2025-09-02）_
+_最后更新：2026-09-02_

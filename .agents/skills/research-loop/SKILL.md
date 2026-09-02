@@ -19,10 +19,9 @@ References: [story-loop.md](../../references/story-loop.md),
 
 ## When to use
 
-- Autonomous research should advance one iteration.
-- `workspace-resume` done and route remains open.
-- User asks next step, gap closure, or to keep going.
-- New evidence arrived; cycle should continue.
+- Autonomous research should advance one iteration, or `workspace-resume` left
+  the route open.
+- User asks next step, gap closure, or to keep going; new evidence arrived.
 - Parallel Literature + Experiment + Review fits one gap.
 
 Not for cold start (`workspace-resume`), compaction (`research-memory`), or
@@ -44,80 +43,66 @@ not parameter sweeps ([story-loop.md](../../references/story-loop.md)).
 
 ### 1. Anchor on Story
 
-Read `STORY.md` (six sections) and `STATE.md`. Unreadable or contradictory →
-`research-memory` first.
+Read `STORY.md` (六段见 `STORY.md` / `story-maintenance`) and `STATE.md`.
+Unreadable or contradictory → `research-memory` first.
 
 ### 2. Anti-duplication check
 
-Scan: Open Gaps, STATE Next/active EXP, EXPERIMENTS index + sections,
-DISCOVERY Negative/Invalidated/Contradictions. No redo of invalidated routes
-without new mechanism. Merge duplicate parallel EXP when found.
+Judge per [story-loop.md](../../references/story-loop.md) §反重复. This Skill
+only routes.
 
 ### 3. Largest Story gap
 
-Priority ([story-loop.md](../../references/story-loop.md)):
-
-1. Would change Problem, Core Idea, or route viability.
-2. Blocks Story completion (PROJECT + Boundary).
-3. Verifiable with current RESOURCES.
-4. Low-cost, high-information over sweeps.
-
-One focal gap per iteration unless parallel subagents warranted.
+Judge per [story-loop.md](../../references/story-loop.md) §Gap 优先级. One focal
+gap per iteration unless parallel subagents warranted.
 
 ### 4. Choose route
 
 | Gap nature | Route | Delegate |
 | --- | --- | --- |
 | Prior work, novelty, lit conflict | Literature | `literature-research` / scout |
-| Untested mechanism, empirical answer | Experiment | design → execution → analysis |
+| Untested mechanism, empirical answer | Experiment | `experiment-design` → `experiment-execution` → `result-analysis` |
 | High-stakes method, anomaly, big Story change | Review | `experiment-review` / reviewer |
 | Wording only | Story | `story-maintenance` |
 
-Combinations allowed — see story-loop reference.
+Parallel Experiment work: use `experiment-agent` / `result-analyst`; handoff via
+[subagent-handoff.md](../../prompts/subagent-handoff.md). Do not expand those
+Skills' flows here. Combinations allowed — see story-loop reference.
 
 ### 5. Invoke and integrate
 
-- Simple: run Skill in context.
-- Parallel/heavy: Subagent per `AGENTS.md`; handoff via
-  `.agents/prompts/subagent-handoff.md`.
+- Simple: run Skill in context. Parallel/heavy: Subagent per `AGENTS.md`;
+  handoff via [subagent-handoff.md](../../prompts/subagent-handoff.md).
+- Independent next-step judgment: dispatch `research-lead` (reads STORY / STATE /
+  DISCOVERY, writes `.research/work/` only).
 - Executors use [experiment-record.md](../../references/experiment-record.md)
   and [git-linking.md](../../references/git-linking.md).
 
-After evidence:
-
-```text
-EXPERIMENTS → DISCOVERY → STORY (story-maintenance) → STATE
-```
-
-Run success ≠ scientific success ([state-files.md](../../references/state-files.md)).
+After evidence, follow [state-files.md](../../references/state-files.md) §更新顺序.
 
 ### 6. Continue, stagnate, or stop
 
-Default: loop to step 1 if autonomy continues. Stop on user blocker, Story
-completion per `PROJECT.md`, or Reviewer `ATTENTION_REQUIRED`.
+If still advancing autonomously, return to gap judgment; skipping steps is
+allowed. Stop on user blocker, Story completion per `PROJECT.md`, or Reviewer
+`ATTENTION_REQUIRED`.
 
-Stagnation (no move on Problem/Core Idea/main gap): re-rank gap, abandon
-low-value EXP, literature, Reviewer, `research-memory` — see story-loop reference.
+Stagnation signals (no move on Problem / Core Idea / main gap) →
+[story-loop.md](../../references/story-loop.md) §停滞处理.
 
 ## Reads
 
 **Minimum each iteration:** `STORY.md`, `STATE.md`.
 
 **As needed:** `PROJECT.md`, `DISCOVERY.md`, `EXPERIMENTS.md` (sections),
-`LITERATURE.md`, `REVIEWS.md`, `RESOURCES.md`.
-
-Load delegated Skill bodies at delegation time, not here.
+`LITERATURE.md`, `REVIEWS.md`, `RESOURCES.md`. Load delegated Skill bodies at
+delegation time, not here.
 
 ## Updates
 
-Does not own formats. Ensure executors updated:
-
-```text
-EXPERIMENTS, DISCOVERY, STORY (if needed), STATE
-LITERATURE / REVIEWS when those routes ran
-```
-
-May lightly touch `STATE` (next focus) only before any executor runs.
+Does not own formats. Ensure executors updated per
+[state-files.md](../../references/state-files.md) §更新顺序, plus
+`LITERATURE` / `REVIEWS` when those routes ran. May lightly touch `STATE` (next
+focus) only before any executor runs.
 
 ## Deviation allowed
 
@@ -125,8 +110,9 @@ May lightly touch `STATE` (next focus) only before any executor runs.
 - Parallel scout + experiment + reviewer for one gap.
 - Defer Literature when cheap decisive experiment exists.
 - Skip iteration after small Story tweak without new evidence.
-- Pause for `research-memory` when routing blocked.
+- Pause for `research-memory` when routing blocked; or dispatch `research-lead`
+  (read STORY / STATE / DISCOVERY; write `.research/work/` only).
 - Create/stop/reorder experiments; MCP; skip inapplicable steps.
 
-Do **not** fixed state machine, hard-code EXP IDs, duplicate sub-Skill prose,
-silently delete history, or advance Story without evidence.
+Do **not** use a fixed state machine, hard-code EXP IDs, duplicate sub-Skill
+prose, silently delete history, or advance Story without evidence.

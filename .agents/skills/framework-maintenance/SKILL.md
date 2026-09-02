@@ -16,38 +16,24 @@ Loop semantics stay in [story-loop.md](../../references/story-loop.md).
 
 ## When to use
 
-- Editing or adding `.agents/skills/` content.
-- Adding or changing `adapters/` or host-specific thin wrappers.
-- Periodic hygiene before a release or `v0.1` tag.
-- Suspected duplication across Skills, references, or adapters.
-- `AGENTS.md`, Skills, or state files growing beyond useful size.
+- Editing `.agents/skills/`, adding `adapters/`, or a release / `v0.1` audit.
+- Suspected duplication, adapter drift, or files growing beyond useful size.
 - User asks to audit framework, check skill duplication, or fix adapter drift.
 
-Do **not** use for: conducting research, experiments, Story updates, or day-to-day
-experiment records — use scientific Skills (`experiment-execution`, `result-analysis`, etc.).
+Do **not** use for research, experiments, Story updates, or day-to-day experiment
+records — use scientific Skills instead.
 
 ## Goal
 
-Keep **one canonical framework** easy to migrate across harnesses: logic in `.agents/`
-and `.research/` protocols, not duplicated in adapters or monolithic Skills.
+Keep **one canonical framework** easy to migrate across harnesses: logic in
+`.agents/` and `.research/` protocols, not duplicated in adapters or monoliths.
 
 ## Core principles
 
-```text
-canonical first
-adapter thin
-no duplicated workflow
-no unnecessary abstraction
-```
-
-| Concern | Canonical owner |
-|---------|-----------------|
-| Story semantics | `story-maintenance` |
-| Experiment record fields | [experiment-record.md](../../references/experiment-record.md) |
-| Git experiment linking | [git-linking.md](../../references/git-linking.md) |
-| State file roles | [state-files.md](../../references/state-files.md) |
-| Research loop | [story-loop.md](../../references/story-loop.md) |
-| Host invocation | `adapters/*.md` only |
+`canonical first` / `adapter thin` / `no duplicated workflow` / `no unnecessary
+abstraction`. Check drift against [state-files.md](../../references/state-files.md)
+§单一事实来源（§20） (owners + host invocation) and §尺寸建议. Adapter six-question
+boundary lives in `adapters/` — this Skill does not restate it.
 
 **Never** copy the same rule into five Skills — link to references instead.
 
@@ -58,33 +44,31 @@ no unnecessary abstraction
 1. Identify which canonical file or Skill owns the behavior.
 2. Change **one** canonical location; update cross-links elsewhere.
 3. If a harness needs awareness, touch only the relevant thin `adapters/xxx.md`.
+   Confirm adapters still answer only host-invocation questions and do **not**
+   copy research / experiment / Story logic (see §单一事实来源（§20）).
 4. Run maintenance checklist (below) before tagging a release.
-5. Output a **modification suggestion list** for file owners — do not silently rewrite
-   others' canonical research files during audit.
-
-### Adapter rules
-
-Each `adapters/xxx.md` may only answer: how host finds `AGENTS.md` and Skills; how to
-create/invoke Subagent and Reviewer; MCP exposure; host limitations. Adapters must
-**not** define how research, experiments, or Story changes work.
+5. Output a **modification suggestion list** for file owners — do not silently
+   rewrite others' canonical research files during audit.
 
 ### Maintenance audit checklist
 
-Record **pass / fail / note** and concrete fix per item:
+Record **pass / fail / note** and a concrete fix. Each row asks whether the
+workspace **drifted** from the linked reference — do not copy the rule body here.
 
-| # | Check | What to look for |
+| # | Check | Contrast against |
 |---|-------|------------------|
-| 1 | Duplicate rules | Same workflow or field defs repeated across Skills or references |
+| 1 | Duplicate rules | Skills/prompts restating workflows already in `.agents/references/` |
 | 2 | Skill overlap | Multiple Skills defining the same behavior — merge or link |
-| 3 | AGENTS size | `AGENTS.md` bloated with skill-level detail — route to Skills |
-| 4 | STATE size | `STATE.md` carrying history or experiment logs |
-| 5 | STORY as log | `STORY.md` accumulating run details or numbers |
-| 6 | DISCOVERY vs EXPERIMENTS | Redundant narratives; experiments duplicated in Discovery |
-| 7 | Adapter drift | `adapters/` or `CLAUDE.md` copying canonical science logic |
-| 8 | Unnecessary scripts | Framework scripts against V0.1 instruction-only goal |
+| 3 | AGENTS size | [state-files.md](../../references/state-files.md) §尺寸建议 vs `AGENTS.md` |
+| 4 | STATE size | same §尺寸建议 vs `STATE.md` carrying history or experiment logs |
+| 5 | STORY as log | [state-files.md](../../references/state-files.md) §STORY.md vs run details/numbers |
+| 6 | DISCOVERY vs EXPERIMENTS | [state-files.md](../../references/state-files.md) §反重复规则 |
+| 7 | Adapter drift | `adapters/` / `CLAUDE.md` vs [state-files.md](../../references/state-files.md) §单一事实来源（§20） |
+| 8 | Unnecessary scripts | V0.1 instruction-only goal — framework `.py/.sh` against that intent |
 
-Also verify: `.agents/skills/` is the **only** canonical Skill root; subagent handoff uses
-`.research/work/` per [subagent-handoff.md](../../prompts/subagent-handoff.md).
+Also verify: `.agents/skills/` is the **only** canonical Skill root; subagent
+handoff uses `.research/work/` per
+[subagent-handoff.md](../../prompts/subagent-handoff.md).
 
 ### Audit output format
 
@@ -101,7 +85,8 @@ Also verify: `.agents/skills/` is the **only** canonical Skill root; subagent ha
 freeze | fix-first
 ```
 
-Audit produces suggestions; Lead assigns fixes — do not rewrite `.research/` science content.
+Audit produces suggestions; Lead assigns fixes — do not rewrite `.research/`
+science content.
 
 ## Reads
 
@@ -120,7 +105,7 @@ Audit produces suggestions; Lead assigns fixes — do not rewrite `.research/` s
 
 ## Deviation allowed
 
-- Helper scripts only when instruction-only is insufficient — document why in finding #8.
+- Helper scripts only when instruction-only is insufficient — document in #8.
 - Temporarily exceed line targets if splitting harms clarity — note in audit.
 - Skip adapter files for harnesses not yet tested.
 - Progressive disclosure: default read set PROJECT + STORY + STATE per state-files.
@@ -130,6 +115,6 @@ Audit produces suggestions; Lead assigns fixes — do not rewrite `.research/` s
 - This skill does **not** do science.
 - Canonical content lives in workspace repo; code repos stay separate
   ([git-linking.md](../../references/git-linking.md)).
-- Size targets (guidance): `AGENTS.md` < ~150 lines; `STATE.md` tens of lines;
-  `STORY.md` ~one page; Skills modular (~100–130 lines), not 500-line monoliths.
+- Size / owner / adapter rules: check against
+  [state-files.md](../../references/state-files.md) §尺寸建议 and §单一事实来源（§20）.
 - Do not delete valuable negative results in `.research/` during cleanup.

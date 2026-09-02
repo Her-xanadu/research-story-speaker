@@ -4,6 +4,8 @@ V0.1 规范：八个 `.research/` 状态文件的职责、边界与反重复规�
 
 ## 认知分层
 
+循环见 `story-loop.md` §核心循环。
+
 ```text
 PROJECT      = 我们最终想解决什么
 STORY        = 我们现在相信什么
@@ -32,6 +34,8 @@ Chat history 不是科研事实来源；workspace 文件才是。
 长期稳定的科研定义。极少修改。
 
 包含：research goal、primary scientific problem、target performance direction、key datasets、evaluation principles、persistent constraints、Story 完成条件。
+
+完成条件中的阈值是预设目标，实测数字只写 EXPERIMENTS。
 
 不包含：当前 Story 细节、实验数字、临时 blocker、Discovery 历史。
 

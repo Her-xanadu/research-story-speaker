@@ -62,11 +62,8 @@ Classify every edit:
 7. **Hand off** — If new `Open Gaps` imply work, continue via `research-loop`,
    `literature-research`, or `experiment-design`.
 
-Default memory chain when Story follows new evidence:
-
-```text
-EXPERIMENTS → DISCOVERY → STORY (this skill) → STATE
-```
+Follow [state-files.md](../../references/state-files.md) §更新顺序; this Skill
+owns the STORY ring.
 
 ## Reads
 
@@ -90,7 +87,7 @@ Do **not** update `EXPERIMENTS.md`, `DISCOVERY.md`, or `LITERATURE.md` here —
 those are upstream or sibling Skills.
 
 Anti-duplication rules: [state-files.md](../../references/state-files.md) §
-反重复. Story completion criteria: same file § Story 完成条件.
+反重复规则. Story completion criteria: same file § Story 完成条件.
 
 ## Deviation allowed
 
@@ -109,4 +106,4 @@ Hard boundaries (not deviations):
 - **No experiment dumps** — cite `EXP-xxx`; do not copy Method, Runs, or Results.
 - **No multi-Story** — one current belief state per project.
 - **Large mechanism changes** — reframing `Problem` or `Core Idea` should trigger
-  or suggest Review; see [story-loop.md](../../references/story-loop.md) § Review.
+  or suggest Review; see [story-loop.md](../../references/story-loop.md) §停滞处理.

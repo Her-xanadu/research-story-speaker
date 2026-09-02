@@ -59,11 +59,8 @@ but major Story changes should trigger or suggest `experiment-review`.
 7. **Chain** — Clear next test → `experiment-design` or `experiment-execution`;
    contested evidence → `experiment-review`; routine compaction → `research-memory`.
 
-Default update order ([state-files.md](../../references/state-files.md)):
-
-```text
-EXPERIMENTS → DISCOVERY → STORY (if needed) → STATE
-```
+Follow [state-files.md](../../references/state-files.md) §更新顺序; this Skill
+owns the EXPERIMENTS and DISCOVERY rings (STORY via `story-maintenance`).
 
 ## Reads
 

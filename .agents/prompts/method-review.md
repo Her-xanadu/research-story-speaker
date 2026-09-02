@@ -1,6 +1,8 @@
 # Method Review Prompt
 
 Hand this prompt to the `reviewer` subagent (or any fresh-context reviewer with no executor history).
+Independence policy and Required output headings:
+[reviewer.md](../subagents/reviewer.md).
 
 ## Task fields
 
@@ -38,24 +40,14 @@ Required output: .research/reviews/<EXP-ID>/method-review.md
 
 ## Required review body
 
-Use these headings in the output file:
+Use [reviewer.md](../subagents/reviewer.md) Required output headings. Fill each
+heading from the **method** perspective:
 
-```text
-## strongest evidence
-<what makes the method credible for this gap>
-
-## main weakness
-<most serious methodological flaw or gap>
-
-## alternative explanation
-<if method succeeds, could it measure the wrong thing?>
-
-## story impact
-<how method quality affects trust in Evidence / Boundary / Open Gaps>
-
-## recommended next move
-<fix design, add control, rerun, or proceed to result review>
-```
+- strongest evidence — what makes the method credible for this gap
+- main weakness — most serious methodological flaw or gap
+- alternative explanation — if method succeeds, could it measure the wrong thing?
+- story impact — how method quality affects trust in Evidence / Boundary / Open Gaps
+- recommended next move — fix design, add control, rerun, or proceed to result review
 
 ## Return to caller
 

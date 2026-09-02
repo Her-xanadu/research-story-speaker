@@ -53,9 +53,9 @@ Fill Task fields inside that prompt (EXP-ID, Story gap, Relevant files, Required
 
 1. Read the work file or review file from disk.
 2. Integrate findings into the research loop (`research-loop` skill).
-3. Update canonical state via appropriate skills:
-   - EXPERIMENTS → DISCOVERY → STORY (if needed) → STATE
-   - LITERATURE / REVIEWS updated by Main Agent from scout/reviewer output
+3. Update canonical state via appropriate skills, following
+   [state-files.md](../references/state-files.md) §更新顺序.
+   LITERATURE / REVIEWS are updated by Main Agent from scout/reviewer output.
 4. Do not ask the subagent to patch state files retroactively.
 
 ## Anti-patterns
