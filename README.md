@@ -57,15 +57,15 @@ Canonical Skills（10）：`workspace-resume`、`research-loop`、`story-mainten
 
 Workspace Git 与科研代码 Git 是两个概念。升级时**只合并框架层**（`AGENTS.md`、`CLAUDE.md`、`.agents/`、`.claude/`、`adapters/`），**永不覆盖** `.research/`。
 
-## 跨 Harness（V0.1.1 声明占位，Gate B 用验证证据填实）
+## 跨 Harness
 
-- UNINITIALIZED cold-start portability: pending Wave C1
-- Initialized write/handoff portability: pending Wave C2–C4
-- Research-loop portability: partially validated; full multi-harness execution remains V0.2 work
-- OpenCode: documentation-only, not tested
+- UNINITIALIZED cold-start portability: validated on Codex, Claude Code, Cursor, and DeepSeek Harness.
+- Initialized write/handoff portability: validated on Codex → Claude Code.
+- Research-loop portability: partially validated; full multi-harness execution remains V0.2 work.
+- OpenCode: documentation-only, not tested.
 
 ## 当前状态
 
-V0.1（tag `v0.1`，对象不变）已通过 Gate 1–3。V0.1.1 将根 `.research/` 改为干净 UNINITIALIZED 模板；MOCK 闭环移至 `examples/mock-flow-detection/`；验证证据在 `docs/validation/`。
+V0.1（tag `v0.1` → `8db3b30`）对象不变。V0.1.1 根 `.research/` 为干净 UNINITIALIZED 模板；MOCK 闭环在 `examples/mock-flow-detection/`；验证证据在 `docs/validation/`。
 
 已知债务（V0.2）：Test F/G/J；Subagent 狗食落盘；四 Harness 全写闭环；OpenCode 实测。

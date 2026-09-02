@@ -41,4 +41,5 @@ codex exec "Follow AGENTS.md. Run workspace-resume: answer Current Story, Gap, E
 ## Limitations
 
 - `codex exec` may not load all MCP plugins.
+- `codex exec --sandbox workspace-write` cannot create `.git/index.lock`, so it cannot `git commit`. Use full-access (`--dangerously-bypass-approvals-and-sandbox`) or let an outer process commit. Observed in C2/C4.
 - Absolute paths in `RESOURCES.md` may be stale — use Preferred relative location and `git-linking.md`.
