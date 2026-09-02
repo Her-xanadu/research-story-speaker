@@ -5,7 +5,7 @@ Thin harness notes for Cursor IDE Agent / `cursor-agent` CLI.
 ## Entry
 
 - Workspace rules: `AGENTS.md` (user rules or `.cursor/rules` may reference it).
-- Open folder: `story-research-workspace`.
+- Open folder: `research-story-speaker`.
 
 ## Skills
 
@@ -29,7 +29,7 @@ Thin harness notes for Cursor IDE Agent / `cursor-agent` CLI.
 ## Cold start
 
 ```bash
-cd /path/to/story-research-workspace
+cd /path/to/research-story-speaker
 cursor-agent -p --trust --mode ask "AGENTS.md cold-start; 7-line resume from workspace files only."
 ```
 

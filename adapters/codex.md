@@ -10,7 +10,7 @@ Thin harness notes for OpenAI Codex / Codex CLI in this workspace.
 ## Skills
 
 - Canonical root: `.agents/skills/<name>/SKILL.md`
-- Do not duplicate into `.codex/skills` for this project — open workspace at `story-research-workspace` root.
+- Do not duplicate into `.codex/skills` for this project — open workspace at `research-story-speaker` root.
 - Route via `AGENTS.md` Skill Routing table.
 
 ## Subagents
@@ -32,7 +32,7 @@ Thin harness notes for OpenAI Codex / Codex CLI in this workspace.
 ## Cold start
 
 ```bash
-cd /path/to/story-research-workspace
+cd /path/to/research-story-speaker
 codex
 # or non-interactive smoke:
 codex exec "Follow AGENTS.md. Run workspace-resume: answer Current Story, Gap, Evidence, Active Experiment, Next Action from PROJECT+STORY+STATE only."

@@ -1,4 +1,4 @@
-# Story-Driven Research Workspace
+# research-story-speaker
 
 Framework base: v0.1.1
 

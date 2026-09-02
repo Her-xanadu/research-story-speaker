@@ -28,7 +28,7 @@ Thin harness notes for deepseek-harness (DSH) plugin workflows.
 ## Cold start
 
 ```bash
-cd /path/to/story-research-workspace
+cd /path/to/research-story-speaker
 dsh          # or deepseek-harness CLI per local install
 ```
 

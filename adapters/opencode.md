@@ -28,7 +28,7 @@ Thin harness notes for OpenCode / oh-my-opencode style harnesses.
 ## Cold start
 
 ```bash
-cd /path/to/story-research-workspace
+cd /path/to/research-story-speaker
 opencode   # binary name may differ
 ```
 

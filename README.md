@@ -1,4 +1,4 @@
-# Story-Driven Autonomous Research Workspace
+# research-story-speaker
 
 Framework base: v0.1.1 — 纯文件、纯提示词的 Story 驱动自动化科研框架。
 

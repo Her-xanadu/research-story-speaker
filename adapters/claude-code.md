@@ -5,7 +5,7 @@ Thin harness notes for Anthropic Claude Code CLI.
 ## Entry
 
 - `CLAUDE.md` points to `AGENTS.md` and workspace conventions.
-- Open terminal in `story-research-workspace` root.
+- Open terminal in `research-story-speaker` root.
 
 ## Skills
 
@@ -31,7 +31,7 @@ Thin harness notes for Anthropic Claude Code CLI.
 ## Cold start
 
 ```bash
-cd /path/to/story-research-workspace
+cd /path/to/research-story-speaker
 claude
 ```
 
