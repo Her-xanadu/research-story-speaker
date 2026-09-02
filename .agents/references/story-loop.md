@@ -28,11 +28,7 @@ Literature / Experiment / Review
 进入下一轮
 ```
 
-默认记忆更新链：
-
-```text
-EXPERIMENTS → DISCOVERY → STORY（如需要）→ STATE
-```
+默认记忆更新链的唯一定义见 `state-files.md` §更新顺序。
 
 ## Gap 优先级
 

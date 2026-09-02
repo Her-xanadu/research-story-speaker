@@ -101,4 +101,6 @@ Workspace Git **不承担**大型实验结果保存。实验代码须使用独�
 
 ## 当前状态
 
-Gate 1–3 审核已完成并进入修复。Harness smoke 产物待重跑（拟存放 `.research/work/framework-dev/harness-smoke/`）。Test F/G/J（失败实验、推翻 Core Idea、大量历史压缩）在 V0.1 明确未执行。
+V0.1（tag `v0.1`）：Gate 1–3 经三轮独立审核、一轮分权修复、一轮独立复审后通过（报告见 `.research/work/framework-dev/`）。Codex / Claude Code / DSH / Cursor 四个 Harness 的只读冷启动 smoke 均有落盘产物（`.research/work/framework-dev/harness-smoke/`）；OpenCode 本机未安装，仅文档覆盖。
+
+已知债务（不影响使用，记入 V0.2 待办）：Test F/G/J（失败实验、推翻 Core Idea、大量历史压缩）未执行；狗食阶段 subagent 输出未落盘；`.research/` 仍为 MOCK 实例，接入真实项目时按 `.agents/templates/` 重建八个状态文件。
