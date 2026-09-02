@@ -40,5 +40,6 @@ Each adapter may **only** document host invocation. Do not duplicate experiment-
 
 - No framework Python/Shell services; instruction-only.
 - Skills are not auto-synced to global skill dirs — workspace `.agents/skills/` is canonical.
-- OpenCode CLI name and skill discovery differ by install; confirm with `opencode --help`.
+- OpenCode CLI not installed on lead integrator host (`opencode` missing); adapter documented only.
+- If `~/.gitignore` contains `/*`, child repos under home may need `git -c core.excludesfile=/dev/null` for first commit (observed on this host).
 - Remote code repos (Mode B/C) require `RESOURCES.md` path recovery per `git-linking.md`.
