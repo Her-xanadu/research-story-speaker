@@ -30,12 +30,13 @@ Thin harness notes for Cursor IDE Agent / `cursor-agent` CLI.
 
 ```bash
 cd /path/to/story-research-workspace
-cursor-agent   # if CLI installed
+cursor-agent -p --trust --mode ask "AGENTS.md cold-start; 7-line resume from workspace files only."
 ```
 
 Or: Cursor → Open project → Agent → "workspace-resume per AGENTS.md".
 
 ## Limitations
 
-- Agent may not read all skills without explicit routing — use AGENTS.md table.
-- Multitask subagents need explicit file paths to avoid STATE conflicts.
+- Non-interactive `cursor-agent -p` requires `--trust` (or `-f` / `--yolo`) for workspace trust gate
+- Agent may not read all skills without explicit routing — use AGENTS.md table
+- Multitask subagents need explicit file paths to avoid STATE conflicts
