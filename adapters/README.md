@@ -2,7 +2,7 @@
 
 Story Research Workspace V0.1 — **thin** host-specific notes. Canonical science logic lives in `AGENTS.md`, `.agents/`, and `.research/`. Adapters answer only: how this host finds the workspace, loads Skills, invokes Subagents/Reviewers, and exposes MCP.
 
-**Date:** 2026-09-02. CLI 可用性来自本机 `command -v`。Harness smoke 产物待修复轮后重跑。
+**Date:** 2026-09-02. CLI 可用性来自本机 `command -v`。Harness smoke 产物见 `.research/work/framework-dev/harness-smoke/`（2026-09-02）。
 
 冷启动读序见 `AGENTS.md` Start Here。Adapter 不回答科研问题、不提供实验数字。
 
@@ -22,11 +22,11 @@ opencode not found
 
 | Harness | 已安装 (`command -v`) | 本机 smoke 是否有落盘产物 | 产物路径 |
 |---------|------------------------|---------------------------|----------|
-| **Codex** | 已安装 (`/Users/herxanadu/bin/codex`) | 无 | smoke 产物：无（待修复轮后重跑，存放 .research/work/framework-dev/harness-smoke/） |
-| **Claude Code** | 已安装 (`/Users/herxanadu/.local/bin/claude`) | 无 | smoke 产物：无（待修复轮后重跑，存放 .research/work/framework-dev/harness-smoke/） |
-| **DeepSeek Harness** | 已安装 (`/Users/herxanadu/.nvm/versions/node/v22.22.0/bin/dsh`) | 无 | smoke 产物：无（待修复轮后重跑，存放 .research/work/framework-dev/harness-smoke/） |
-| **Cursor** | 已安装 (`/Users/herxanadu/.local/bin/cursor-agent`) | 无 | smoke 产物：无（待修复轮后重跑，存放 .research/work/framework-dev/harness-smoke/） |
-| **OpenCode** | 未安装 | 无 | smoke 产物：无（待修复轮后重跑，存放 .research/work/framework-dev/harness-smoke/） |
+| **Codex** | 已安装 (`/Users/herxanadu/bin/codex`) | 有（2026-09-02，退出码 0，七项 Y 数 6/7） | `.research/work/framework-dev/harness-smoke/codex.md` |
+| **Claude Code** | 已安装 (`/Users/herxanadu/.local/bin/claude`) | 有（2026-09-02，退出码 0，七项 Y 数 7/7） | `.research/work/framework-dev/harness-smoke/claude-code.md` |
+| **DeepSeek Harness** | 已安装 (`/Users/herxanadu/.nvm/versions/node/v22.22.0/bin/dsh`) | 有（2026-09-02，退出码 0，七项 Y 数 7/7） | `.research/work/framework-dev/harness-smoke/dsh.md` |
+| **Cursor** | 已安装 (`/Users/herxanadu/.local/bin/cursor-agent`) | 有（2026-09-02，退出码 0，七项 Y 数 7/7） | `.research/work/framework-dev/harness-smoke/cursor.md` |
+| **OpenCode** | 未安装 | 无 | 未测 |
 
 ### Entry files & skill roots
 
@@ -45,17 +45,17 @@ canonical `.agents/skills/`；Claude Code 另经 `.claude/skills/<name>` 目录 
 ```bash
 cd /Users/herxanadu/Documents/story-research-workspace
 
-# Codex
-codex exec "Follow AGENTS.md. workspace-resume from PROJECT+STORY+STATE only; list skills; summarize EXP-001 and RESOURCES; state next action."
+# Codex (`codex exec --help` 无 --ask-for-approval；用 --sandbox read-only)
+codex exec --sandbox read-only --color never --ephemeral -C /Users/herxanadu/Documents/story-research-workspace "Follow AGENTS.md. workspace-resume from PROJECT+STORY+STATE only; list skills; summarize EXP-001 and RESOURCES; state next action."
 
-# Claude Code
-claude -p "Follow AGENTS.md cold-start; answer project, story, state, skills, EXP-001, code path, next action from workspace files only."
+# Claude Code (`--allowedTools` 为 variadic，prompt 须在 -p 之后或 -- 之后)
+claude --permission-mode plan --output-format text --allowedTools Read,Glob,Grep -p -- "Follow AGENTS.md cold-start; answer project, story, state, skills, EXP-001, code path, next action from workspace files only."
 
-# DeepSeek Harness (one-shot)
+# DeepSeek Harness (one-shot; headless --help 无只读旗标)
 dsh --profile headless "Read AGENTS.md + PROJECT+STORY+STATE; 7-line resume packet; no edits."
 
 # Cursor Agent CLI
-cursor-agent -p --trust --mode ask "AGENTS.md cold-start; 7-line resume from workspace files only."
+cursor-agent -p --trust --mode ask --workspace /Users/herxanadu/Documents/story-research-workspace "AGENTS.md cold-start; 7-line resume from workspace files only."
 
 # OpenCode (when installed)
 # opencode  # interactive; CLI name varies by install — see adapters/opencode.md
@@ -72,6 +72,10 @@ cursor-agent -p --trust --mode ask "AGENTS.md cold-start; 7-line resume from wor
 - **Mode B code**: prefer `../story-research-code` and `git-linking.md`; absolute path only in RESOURCES Last known local location.
 - **Framework**: instruction-only; no Python/Shell services in workspace.
 - **Git**: if `~/.gitignore` contains `/*`, child repos under home may need `git -c core.excludesfile=/dev/null` for first commit (observed on lead host).
+- **Codex**: `codex exec --help` 不含 `-a/--ask-for-approval`（该旗标只在交互式 `codex`）；`--sandbox read-only` 时日志为 `approval: never`。2026-09-02 smoke 另见 chronicle 未稳定特性警告，以及本机 `ws://127.0.0.1:10100/v1/responses` HTTP 426（未阻断退出码 0）。
+- **Claude Code**: `--allowedTools` 为 variadic（`<tools...>`）；prompt 须紧随 `-p` 或放在 `--` 之后，否则会被当成 tool 名，`--print` 报缺少 input。
+- **DSH**: `dsh --profile headless --help` 仅有 `-h`，无只读/no-edit 旗标；只读靠 prompt 约束，须用 git porcelain 复核。
+- **Cursor**: `-p/--print` 本身「Has access to all tools, including write and shell」；只读必须叠加 `--mode ask` 或 `--mode plan`。
 
 ## Per-host files
 
