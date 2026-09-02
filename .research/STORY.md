@@ -17,7 +17,7 @@
 ## Evidence
 
 - 文献支持：流统计在传统 IDS 中长期有效（见 LITERATURE — Sharafaldin 2018）
-- 内部证据：**EXP-001** 在 MOCK 合成流上建立可复现管线；三特征模型在 toy 分布上表现极强，但对照 IF 基线在该 MOCK 中偏弱 — 真实数据集结论仍开放
+- 内部证据：**EXP-001**（commit `b0621e2`）在 MOCK 合成 50 行流上：3-feature LR test F1=**1.0000**，full-feature IF test F1=**0.5455**（gap −45.45 pp）。三特征在玩具分布上捕获全部可分信号；IF toy 基线偏弱，真实 CICIDS 子集结论仍开放
 
 ## Boundary
 

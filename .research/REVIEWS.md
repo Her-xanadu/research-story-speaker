@@ -12,10 +12,8 @@
 
 | Type | Status | Summary |
 |------|--------|---------|
-| method-review | completed | CONDITIONAL — 追溯合格；MOCK 合成 + 弱 IF 对照 |
-| result-review | completed | ATTENTION_REQUIRED — toy 结果不可外推 |
-
-**Story impact:** Boundary 收紧；Gap #1 在真实数据上仍开放。
+| method-review | done | 设计合理，合成数据局限已标注；批准 MOCK V0.1 |
+| result-review | done | 3-feature F1=1.0 优于 IF 0.5455；接受为 Story Evidence |
 
 Files:
 
