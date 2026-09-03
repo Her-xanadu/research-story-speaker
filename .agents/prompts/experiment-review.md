@@ -20,6 +20,7 @@ Relevant files:
   - <code / config / result paths>
   - .research/work/<executor>.md
   - .research/work/<analyst>.md (if any)
+  - .research/work/<EXP-ID>/evidence-verification.md (if prepended; not required)
 Required output:
   - .research/reviews/<EXP-ID>/method-review-r<N>.md (if needed)
   - .research/reviews/<EXP-ID>/result-review-r<N>.md (if needed)
@@ -36,6 +37,26 @@ Subagents **read** these paths from disk; do not paste contents into dispatch me
 | Results exist, method never checked | method-review then result-review |
 | Trusted method, questionable interpretation | result-review only |
 | Both design and results contested | both, separate fresh contexts if possible |
+| High-stakes results (optional prepend) | evidence-verification work file, then result-review |
+
+Companion prompts: [method-review.md](method-review.md),
+[result-review.md](result-review.md). High-stakes Evidence Gate:
+[evidence-verification](../skills/evidence-verification/SKILL.md) Skill
+(operators in [evidence-and-claim.md](../references/research-intelligence/evidence-and-claim.md)).
+
+## High-stakes evidence check (optional prepend)
+
+For high-stakes **result** reviews — Story Evidence candidate, main baseline
+comparison, surprising strong result, mechanism claim, Story-core change, or
+READY_FOR_WRITING — Main Agent **may** run `evidence-verification` first and
+list `.research/work/EXP-xxx/evidence-verification.md` under Relevant files.
+
+This is **not** mandatory. Ordinary exploratory or sanity results skip it.
+Do not block every review on that Skill.
+
+The Reviewer still reads **direct artifacts** (code at commit, configs, logs,
+metrics, plots). The verification work file is a hypothesis to check, not a
+substitute for those artifacts, and not a Reviewer Verdict.
 
 ## Synthesis template (Main Agent → REVIEWS.md)
 

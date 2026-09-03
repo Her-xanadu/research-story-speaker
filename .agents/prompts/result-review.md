@@ -21,9 +21,26 @@ Relevant files:
   - <log / metric / plot paths>
   - .research/work/<executor-report>.md
   - .research/work/<analyst-report>.md (if any)
+  - .research/work/<EXP-ID>/evidence-verification.md (if present)
   - <code @ commit> (if interpretation depends on implementation)
 Required output: .research/reviews/<EXP-ID>/result-review-r<N>.md
 ```
+
+## Optional Layer 2 (this task only)
+
+Load when interpreting support, mechanism, or Story impact. Skip for a crashed
+run whose integrity already fails. **Do not** load the rest of
+`research-intelligence/` for this review.
+
+- [evidence-and-claim.md](../references/research-intelligence/evidence-and-claim.md)
+  — integrity first, match, scope; §F labels are report-only, not Outcome
+- [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md)
+  — claim kinds, rivals, exploratory vs confirmatory speech
+- [idea-and-mechanism.md](../references/research-intelligence/idea-and-mechanism.md)
+  — only if the result is used to claim a mechanism identity
+
+An `evidence-verification` work file, if listed, is a hypothesis to check.
+Still read **direct artifacts**. That Skill is not mandatory for every review.
 
 ## Instructions for reviewer
 
@@ -35,13 +52,26 @@ Required output: .research/reviews/<EXP-ID>/result-review-r<N>.md
 6. **Do not** edit canonical state files; Main Agent merges into `REVIEWS.md`.
 7. **Do not** polish this `raw` body after writing it.
 
-## Review questions (internal checklist)
+## Judgment lenses (internal)
 
-- Do numbers in reports match raw artifacts?
-- Is the effect size meaningful for the Story claim (not only statistically present)?
-- Failure cases, variance, and negative subsets examined?
-- Does outcome support, narrow, or contradict Core Idea / Boundary?
-- Is a Story update justified, or are results null/inconclusive?
+Integrity first, then support. Apply the lenses that threaten **this** result.
+Do not score every row. Cite files, commits, and metrics.
+
+- **Integrity first** — artifact exists; this EXP; this commit; this split / grouping unit; missing run, crash, NaN, duplicate, leakage. If integrity fails, stop claim support. (`evidence-and-claim.md` §D)
+- **Effect size** — meaningful for the Story claim, not only statistically present.
+- **Variance** — seed / run / site spread; a single draw is not a law.
+- **Heterogeneity** — does the effect hold across the units the Story claims, or only a lucky slice?
+- **Baseline validity** — was the comparison honest (tuned, informed, capacity- and budget-matched)?
+- **Claim-to-evidence matching** — does this metric answer *this* criterion / claim kind? Adjacent numbers are a different question. (`evidence-and-claim.md` §E)
+- **Mechanism attribution** — does the comparison isolate the named process, or only show Full beat a weak default?
+- **Alternative explanations** — best rival still standing for the same outputs. (`scientific-reasoning.md` §C)
+- **Selection bias** — reported cells vs the full matrix; dropped seeds, quiet ablations, unpublished failures.
+- **Post-hoc rescue** — slices, metrics, or hypotheses named after seeing the number sold as confirmatory. (`scientific-reasoning.md` §F)
+- **Scope inflation** — dataset A + seed B + condition C upgraded to robust / general / universal. (`evidence-and-claim.md` §G)
+- **Negative subsets** — failure cases examined, not only the happy mean.
+- **What evidence would change the Verdict** — name the artifact, control, or replication that would flip it. Use reviewer.md §Verdict — do not recopy the list.
+- **Numbers vs reports** — do work-file numbers match raw artifacts?
+- **Story move** — support, narrow, or contradict Core Idea / Boundary? Is a Story update justified, or are results null / inconclusive?
 
 ## Required review body
 

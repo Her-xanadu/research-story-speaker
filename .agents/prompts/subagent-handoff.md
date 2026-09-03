@@ -32,6 +32,31 @@ Additional context: <optional — hypotheses, constraints, deadline; keep brief>
 | result-analyst | EXPERIMENTS, STORY, DISCOVERY, raw results, work reports | `.research/work/<slug>.md` |
 | reviewer | STORY, EXPERIMENTS, direct artifacts + active prompt | `.research/reviews/<EXP-ID>/` |
 
+## Layer 2 / task prompt by role
+
+Pointer only — not an orchestrator. Load `.agents/subagents/<role>.md` first,
+then **this dispatch's** task prompt. Load Layer 2 when that prompt says so.
+Do **not** load every file under `research-intelligence/` on every handoff.
+When a task prompt is attached and it disagrees with
+`.agents/subagents/<role>.md` on work-artifact **shape** (Required output
+headings), the **task prompt** wins for this dispatch. The role file still
+wins on **write permissions** (work/reviews only; Main owns the canonical
+eight).
+
+| Role | Task prompt | Layer 2 (as relevant) |
+|------|-------------|----------------------|
+| research-lead | [next-research-move.md](next-research-move.md) | [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md) |
+| literature-scout | [literature-synthesis.md](literature-synthesis.md) | [deep-literature-mode.md](../references/research-intelligence/deep-literature-mode.md) **when requested** (novelty / conflict / field convention) |
+| experiment-agent | [experiment-proposal.md](experiment-proposal.md), [failure-diagnosis.md](failure-diagnosis.md) | [experiment-thinking.md](../references/research-intelligence/experiment-thinking.md) |
+| result-analyst | [result-diagnosis.md](result-diagnosis.md) | [evidence-and-claim.md](../references/research-intelligence/evidence-and-claim.md), [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md) |
+| reviewer | [method-review.md](method-review.md) **or** [result-review.md](result-review.md) | [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md), [evidence-and-claim.md](../references/research-intelligence/evidence-and-claim.md); [idea-and-mechanism.md](../references/research-intelligence/idea-and-mechanism.md) when the claim is a mechanism |
+
+Reviewer: pick **one** active review prompt. Progressive disclosure — method
+review loads idea-and-mechanism + experiment-thinking only as that prompt
+says; result review loads evidence-and-claim + scientific-reasoning (and
+idea-and-mechanism only for a mechanism claim). Do not dump all intelligence
+files into the reviewer context.
+
 ## Write rules
 
 - Subagents deliver **only** to paths in `Required output`.
