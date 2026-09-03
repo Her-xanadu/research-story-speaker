@@ -96,6 +96,26 @@ Required output: .research/reviews/<EXP-ID>/<method|result>-review-r<N>.md
 
 Also skim `.research/DISCOVERY.md` for contradictions the review should address.
 
+## Task loads (progressive)
+
+Pick **one** active review prompt (already named above):
+[method-review.md](../prompts/method-review.md) **or**
+[result-review.md](../prompts/result-review.md).
+
+Optional Layer 2 for **this** review type only — do not recopy those lenses
+here, and do not load every file under `research-intelligence/`:
+
+- [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md)
+  and [evidence-and-claim.md](../references/research-intelligence/evidence-and-claim.md)
+  when the active prompt needs claim kinds, rivals, integrity, or match.
+- [idea-and-mechanism.md](../references/research-intelligence/idea-and-mechanism.md)
+  **only** when mechanism identity is in question.
+
+Further Layer 2, if any, is whatever the **active** prompt lists — not a boot
+set. This file remains the Protocol owner for Verdict vocabulary, the five
+body headings, independence, and review file naming. Task prompts fill those
+headings; they do not replace them.
+
 ## Do not
 
 - Output only a one-word stamp without the required body.
