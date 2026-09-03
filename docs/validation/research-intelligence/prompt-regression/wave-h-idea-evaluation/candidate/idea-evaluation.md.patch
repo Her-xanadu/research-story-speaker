@@ -1,0 +1,16 @@
+--- .agents/prompts/idea-evaluation.md	2026-09-04 04:54:41
++++ docs/validation/research-intelligence/prompt-regression/wave-h-idea-evaluation/candidate/idea-evaluation.md.candidate	2026-09-04 05:32:06
+@@ -174,7 +174,12 @@
+ 6. No falsifier / no discriminating minimum test → REVISE; not ready.
+ 7. Minimum test exceeds RESOURCES → PARK (sequencing / budget), not a fake
+    cheap invalid test sold as the Idea-gate.
+-8. Identity clear, no fatal flaw, minimum test specified → ADVANCE per §H.
++8. ADVANCE per §H only if *this gate* (not the author) finds the
++   deletion test passes: deleting the claimed component would remove
++   the named information source or decision rule. Author axis labels,
++   ADVANCE requests, and multi-seed confirmation grids do not satisfy
++   "identity clear" or "minimum test specified." Otherwise stay on
++   rows 3–7.
+ 
+ PARK or ABANDON is progress. Adding components until the Idea looks busy is
+ not. Main Agent decides whether STORY / EXPERIMENTS change.

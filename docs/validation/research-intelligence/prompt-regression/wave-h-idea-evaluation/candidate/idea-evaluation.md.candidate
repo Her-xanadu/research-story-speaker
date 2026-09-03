@@ -1,0 +1,223 @@
+# Idea Evaluation Prompt
+
+Hand this prompt with the [idea-evaluation](../skills/idea-evaluation/SKILL.md)
+Skill. Prefer a fresh context that did not invent the candidate.
+When-to-use and required headings: that Skill.
+Idea-gate actions (`ADVANCE` / `REVISE` / `PARK` / `ABANDON`):
+[idea-and-mechanism.md](../references/research-intelligence/idea-and-mechanism.md)
+§H. Write `Recommended Action: <per idea-and-mechanism.md §H>` — do not recopy
+the four-line glossary.
+Those four strings are **not** Protocol, **not** Outcome, **not** Verdict.
+
+## Task fields
+
+Main Agent fills in before dispatch. **Do not paste full state files.**
+
+```text
+Idea slug: <kebab-case>
+Trigger: <new Core Idea | route competition | mechanism replacement | major pivot | expensive experiment | high-stakes successor>
+Story gap: <one sentence — which Open Gap, Boundary, or DISCOVERY contradiction>
+Candidate (one paragraph): <named mechanism, not a slogan>
+Relevant files:
+  - .research/PROJECT.md
+  - .research/STORY.md
+  - .research/STATE.md
+  - .research/DISCOVERY.md
+  - .research/EXPERIMENTS.md → index + sections that touch this idea
+  - .research/LITERATURE.md (if novelty / closest-work is in play)
+  - .research/RESOURCES.md (if cost vs authorized budget matters)
+Required output: .research/work/idea-evaluation-<slug>.md
+```
+
+If the trigger is a routine seed, small ablation, bugfix, or simple
+replication: **stop and write nothing.** Cheap exploratory EXP stays on
+`experiment-design` → `experiment-execution` → `result-analysis`.
+
+## Scientific context to read
+
+Read listed paths from disk. Judgment operators live in Layer 2 — load, do
+not copy:
+
+- [idea-and-mechanism.md](../references/research-intelligence/idea-and-mechanism.md)
+  — Problem Anchor §A, Exact Failure Point §B, Mechanism identity §C,
+  Fatal Flaw Audit §D, Closest-work §E, Complexity budget §F, Deletion test
+  §G, Minimum decisive experiment and recommended action §H
+- [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md)
+  — objects §A, claim kinds §B, competing explanations §C, falsifiability §D
+- [experiment-thinking.md](../references/research-intelligence/experiment-thinking.md)
+  — smallest test that can change belief; controls that isolate a mechanism
+- [deep-literature-mode.md](../references/research-intelligence/deep-literature-mode.md)
+  — only if novelty / closest-work is the actual bottleneck; do not guess papers
+
+Do **not** load Outcome tables or Verdict lists. Outcome:
+[experiment-record.md](../references/experiment-record.md) §Outcome 值 (cite
+only). Verdict: [reviewer.md](../subagents/reviewer.md) §Verdict (cite only).
+
+## Research reasoning lenses
+
+Work these lenses in order. Fatal beats eloquence. Do not score dimensions
+or import venue-style accept/reject labels.
+
+### 1. Problem Anchor (idea-and-mechanism.md §A)
+
+For this gate: name the *current* Story Open Gap, Boundary, or DISCOVERY
+contradiction this candidate would have to move. If the Task's Story gap is
+only unused compute, a popular diagram, or a fuller table, PARK — that is
+not a Problem. Cite §A; do not restate its examples.
+
+### 2. Exact failure point (idea-and-mechanism.md §B)
+
+For this gate: write the **existing mechanism** and the **condition** a later
+EXP must hit (data, split, shift, rare class, site, capture, budget,
+latency — whichever is live on disk). Winning only under a different regime
+does not count as hitting this failure point. Tie the condition to
+experiment-thinking.md §A–B so a later proposal can reuse it.
+
+### 3. Mechanism identity (idea-and-mechanism.md §C, §G)
+
+Name the axis on which this candidate actually changes (use only axes that
+apply — §C owns the list). Then run the **deletion test** (§G) on this
+candidate. If identity is a costume named in §C, do not ADVANCE. Parameter
+tweaks and renames are not a passing deletion test.
+
+### 4. Fatal flaws (idea-and-mechanism.md §D)
+
+Run the audit **before** any large EXP is designed. A single §D hit blocks
+ADVANCE. Apply §D in place; do not recopy that table. A single fatal
+flaw → REVISE / PARK / ABANDON per §H, never ADVANCE.
+
+### 5. Novelty threat (idea-and-mechanism.md §E)
+
+At least: closest existing method, and the mechanism axis that differs.
+Prefer one closest method compared on a real axis over an unread pile of
+citations. If §E's threat condition holds for this candidate, REVISE
+identity or PARK; do not ADVANCE on a new dataset alone. If novelty is the
+bottleneck, escalate to deep-literature-mode.md; do not invent citations.
+
+### 6. Rival explanations (scientific-reasoning.md §C)
+
+Name the **best** rival a skeptical colleague would actually offer for the
+same predicted pattern — not a mandatory ten-item chant. Pick the rival that
+could produce the metric movement without the claimed mechanism (capacity,
+tuning budget, leakage, capture identity, measurement, shared scaffold).
+If no control or split would make that rival less tenable, the mechanism
+claim is not ready.
+
+### 7. Falsifiability (scientific-reasoning.md §D)
+
+State, in this work file, an observable EXP result that would lower belief
+in this candidate. If none is conceivable, or if both directions of the
+metric can be spun as success, rewrite or PARK as speculation. Do not
+promote it to Core Idea. Sadness and anticipated Reviewer dislike are not
+falsifiers. Outcome vocabulary for a completed EXP stays in
+experiment-record.md.
+
+### 8. Complexity budget (idea-and-mechanism.md §F)
+
+This work file must record `reuse` / `new` / `excluded` (names from §F;
+**excluded** is mandatory). If more than one gadget is listed under `new`,
+ask which one is the claim and move the rest to `excluded` or a later EXP.
+Keep the three lists in this work file only — not as a new state file.
+
+### 9. Minimum decisive test (idea-and-mechanism.md §H)
+
+For this gate: name the smallest comparison that could change judgment,
+usually an isolating control from experiment-thinking.md §D (mechanism-off
+or information-matched), hitting the §B condition at the right unit.
+More seeds on a comparison that cannot split target vs rival do not make
+this test more decisive. If that comparison cannot be run, do not send the
+Idea to expensive confirmation. Do **not** assign EXP-IDs here.
+
+## Critical questions
+
+- If this Idea died tomorrow, which Story sentence would we have to rewrite?
+- What information would disappear if we deleted the claimed component?
+- Which already-on-disk Negative / Invalidated finding covers this mechanism
+  under the same condition?
+- What result would make us *lower* belief — stated before any grid is drawn?
+- Is the closest-work threat an axis match, or only a similar diagram?
+- Does RESOURCES fund the minimum honest test, or only a cheaper invalid one?
+
+## Fatal flaws / anti-patterns
+
+- Treating a popular architecture or unused GPU as a Problem Anchor
+- Replacing Core Idea because a table “would look fuller”
+- ADVANCE on renaming, stacking, or an extra knob
+- Skipping §D because the write-up is eloquent
+- Guessing papers instead of reading LITERATURE / escalating literature
+- Jumping to a large grid before a discriminating minimum test
+- Importing external scorecards (improvement dimensions, paper-type ladders,
+  venue accept/reject) in place of the Story-anchored audit
+- Writing `Recommended Action` into EXPERIMENTS.md or a review file as if it
+  were Outcome or Verdict
+- Creating `HYPOTHESES.md` or any new canonical science file
+
+## Evidence requirements
+
+Anchor every lens in disk artifacts: named STORY gap, DISCOVERY theme,
+EXP section, LITERATURE entry, or RESOURCES limit. Executor enthusiasm in
+chat is not evidence. If closest-work cannot be named from LITERATURE, say
+so and PARK or escalate — do not fabricate a citation.
+
+Do not invent numeric novelty scores, star ratings, or “accept probability.”
+
+## Decision logic
+
+1. Trigger mismatch → write nothing.
+2. No scientific Problem Anchor → PARK (or stop with REVISE if the bottleneck
+   is real but unstated).
+3. Any §D fatal hit → do not ADVANCE; choose per §H.
+4. Deletion test fails or identity is a costume → REVISE (fixable) or ABANDON
+   (this mechanism cannot be the answer).
+5. Novelty threat with the same information flow → REVISE or PARK until an
+   axis is named; do not ADVANCE on a new dataset alone.
+6. No falsifier / no discriminating minimum test → REVISE; not ready.
+7. Minimum test exceeds RESOURCES → PARK (sequencing / budget), not a fake
+   cheap invalid test sold as the Idea-gate.
+8. ADVANCE per §H only if *this gate* (not the author) finds the
+   deletion test passes: deleting the claimed component would remove
+   the named information source or decision rule. Author axis labels,
+   ADVANCE requests, and multi-seed confirmation grids do not satisfy
+   "identity clear" or "minimum test specified." Otherwise stay on
+   rows 3–7.
+
+PARK or ABANDON is progress. Adding components until the Idea looks busy is
+not. Main Agent decides whether STORY / EXPERIMENTS change.
+
+## Required output
+
+Write only:
+
+```text
+.research/work/idea-evaluation-<slug>.md
+```
+
+Use the Skill headings exactly (Problem Anchor through Recommended Action).
+Teach the lenses above *inside* those headings; do not invent a parallel
+schema. `Recommended Action` is exactly one §H token — cite §H, do not
+recopy the glossary.
+
+Update an existing `idea-evaluation-<slug>.md` when the same candidate is
+being revised, rather than proliferating files.
+
+## Handoff / state impact
+
+- Subagent / in-session Skill writes `.research/work/` only.
+- **Do not** edit `STORY.md`, `DISCOVERY.md`, `EXPERIMENTS.md`, or other
+  canonical state. **Do not** create an EXP-ID. **Do not** rewrite Core Idea.
+- After ADVANCE, Main may route to `experiment-design` (and, if needed,
+  `.agents/prompts/experiment-proposal.md`). This prompt does not design or
+  register the EXP.
+- Reviewer contract is unchanged. Idea-gate actions are not Verdicts
+  ([reviewer.md](../subagents/reviewer.md) — do not recopy the Verdict list).
+
+Return Recommended Action plus a short note on identity, fatal hits, novelty
+threat, and the minimum test. Do not polish the work file after writing it.
+
+## Stop / escalation
+
+- Trigger does not match → stop with no file.
+- Identity or minimum test not yet honest → REVISE and stop (per §H).
+- Novelty is the bottleneck → escalate literature; do not guess.
+- After ADVANCE, stop. Main integrates. Do not skip Reviewer on a later
+  high-stakes EXP.
