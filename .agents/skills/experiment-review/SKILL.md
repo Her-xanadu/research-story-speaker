@@ -51,6 +51,12 @@ Any agent seeing `EXP-xxx` should rebuild the chain in
      alignment (before or after runs). Model relation vs **method designer**.
    - **result-review** — whether results support claims, reliability, alternatives,
      Story impact (after artifacts exist). Model relation vs **executor / primary analyst**.
+     Before result-review, **if high-stakes**: recommend
+     [evidence-verification](../evidence-verification/SKILL.md) as an **optional
+     prepend** (not every review). The Reviewer still reads **direct artifacts**;
+     the work file is not a substitute. See
+     [experiment-review.md](../../prompts/experiment-review.md) High-stakes
+     evidence check.
 3. **Read direct evidence** — Code at recorded commit, configs, logs, plots, metrics.
    Navigate RESOURCES → repo → Entry per [git-linking.md](../../references/git-linking.md).
    Do not rely only on executor or analyst narrative.
@@ -77,6 +83,7 @@ Any agent seeing `EXP-xxx` should rebuild the chain in
 | Required | `.research/EXPERIMENTS.md` (`EXP-xxx`), raw results, code at Git commit |
 | Often | `.research/STORY.md`, `.research/DISCOVERY.md`, `.research/REVIEWS.md` |
 | Prompts | [method-review.md](../../prompts/method-review.md), [result-review.md](../../prompts/result-review.md), [experiment-review.md](../../prompts/experiment-review.md) |
+| Optional prepend | [evidence-verification](../evidence-verification/SKILL.md) — high-stakes result-review only; not every review |
 | Subagent | [reviewer.md](../../subagents/reviewer.md) |
 | Reference | [experiment-record.md](../../references/experiment-record.md), [git-linking.md](../../references/git-linking.md), [state-files.md](../../references/state-files.md) |
 
@@ -98,5 +105,7 @@ This skill does not update DISCOVERY or STORY directly.
 - Lighter depth for low-cost exploratory EXP — state reduced scope in review header.
 - External human Reviewer (`Model relation: human`) — still mirror summary into `REVIEWS.md`.
 - Not every experiment needs review; skip when cost and stakes are trivial.
+- High-stakes result-review may prepend `evidence-verification`; skip that
+  prepend on ordinary reviews. Reviewer still reads direct artifacts.
 - Pre-run method review without result-review until runs exist — link planned result-review.
 - When both review types were required, both `r<N>` files must exist or omission documented.

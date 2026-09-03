@@ -11,8 +11,12 @@ description: >-
 # Experiment Execution
 
 Thin Skill for **implementation and runs** — not scientific interpretation.
-Field definitions: [experiment-record.md](../../references/experiment-record.md).
+Field definitions: [experiment-record.md](../../references/experiment-record.md)
+(cite §Status 值 / §Outcome 值; do **not** copy those tables).
 Git binding: [git-linking.md](../../references/git-linking.md).
+Engineering vs scientific failure:
+[failure-diagnosis.md](../../prompts/failure-diagnosis.md) — cite; do not
+copy its class list, Status, Outcome, or Verdict.
 
 ## When to use
 
@@ -56,6 +60,7 @@ this Skill freezes the commit before runs and writes recovered paths into
    run. Multi-commit retries: document Initial / Fix / Valid runs per git-linking.
 6. **Execute runs** — Distinguish Experiment (scientific unit) from Run (one execution).
    Log seeds, retries, host, and commit per run in the Runs field — no global Run ID.
+   On engineering failure, follow **Bounded debug** below; do not start a sweep.
 7. **Save artifacts** — Record result paths (relative, absolute, or `host:path`). Ensure
    a stranger can navigate: EXPERIMENTS → RESOURCES → repo → Entry → Results.
 8. **Update EXPERIMENTS** — Set Status (`running` / `completed` / `failed`);
@@ -68,6 +73,30 @@ this Skill freezes the commit before runs and writes recovered paths into
 10. **Hand off** — When runs finish, continue with `result-analysis` or dispatch
     `result-analyst` subagent. Suggest `experiment-review` only when stakes warrant.
 
+## Bounded debug (engineering failure)
+
+Engineering failure is not a scientific negative. Classify first via
+[failure-diagnosis.md](../../prompts/failure-diagnosis.md).
+
+When the action is bounded debug, keep the original Question / rival /
+prediction / unit and:
+
+```text
+preserve scientific contract
+  → reproduce
+  → minimize
+  → diagnose
+  → repair
+  → targeted validation
+  → resume original EXP
+```
+
+Default **1–3** effective debugging iterations, then **stop** and record the
+reason. Main may put a blocker in `STATE.md`. Do not infinite-debug until the
+scientific question has changed. If the repair would change the scientific
+contract (Question, split, metric family, or claimed mechanism), stop and
+return to `experiment-design` — that is redesign, not debug.
+
 ## Reads
 
 | Priority | Files |
@@ -75,6 +104,7 @@ this Skill freezes the commit before runs and writes recovered paths into
 | Required | `.research/EXPERIMENTS.md` (target `EXP-xxx`), `.research/RESOURCES.md` |
 | Often | `.research/STORY.md` (gap context), `.research/STATE.md`, external code repo |
 | Reference | [experiment-record.md](../../references/experiment-record.md), [git-linking.md](../../references/git-linking.md), [state-files.md](../../references/state-files.md) |
+| On failure | [failure-diagnosis.md](../../prompts/failure-diagnosis.md) |
 | Subagent | [experiment-agent.md](../../subagents/experiment-agent.md) |
 
 ## Updates
@@ -97,6 +127,8 @@ Outcome here — keep `not-assessed` until `result-analysis`.
   EXPERIMENTS/STATE updates after the subagent returns.
 - Abort invalid setup — Status=`failed`, Outcome=`not-assessed`; never delete the section.
 - Retry after bugfix under same EXP-ID — add commit notes in Git field, not a new EXP.
+- After 1–3 bounded-debug iterations without restoring the contract: stop;
+  record the reason. Do not keep going until the EXP is a different experiment.
 - Do not treat metric improvement as validated science or copy numbers into `STORY.md`.
 - Negative, null, and failed runs stay in `EXPERIMENTS.md` — never silently delete.
 - `completed` Status means runs recorded, not hypothesis confirmed

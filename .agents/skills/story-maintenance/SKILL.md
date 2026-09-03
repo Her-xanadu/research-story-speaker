@@ -14,6 +14,9 @@ description: >-
 Thin Skill for keeping `.research/STORY.md` aligned with current scientific
 belief. Authoritative semantics: [state-files.md](../../references/state-files.md)
 § STORY.md. Loop and gap context: [story-loop.md](../../references/story-loop.md).
+On large Story changes:
+[idea-and-mechanism.md](../../references/research-intelligence/idea-and-mechanism.md),
+[story-audit.md](../../prompts/story-audit.md).
 
 ## When to use
 
@@ -51,6 +54,11 @@ Classify every edit:
    Story Impact only), and any linked review under `.research/reviews/EXP-xxx/`.
 2. **Classify change size** — Use table above. If large and stakes are high,
    recommend `experiment-review` **before** rewriting core mechanism.
+   On large changes, cite
+   [idea-and-mechanism.md](../../references/research-intelligence/idea-and-mechanism.md)
+   and [story-audit.md](../../prompts/story-audit.md). Story must not grow more
+   complex merely to rescue a method. Check story creep, mechanism creep,
+   post-hoc explanation, and claim expansion.
 3. **Draft section edits** — Update only sections evidence warrants. In
    `Evidence`, cite `EXP-xxx` with mechanism-level conclusions; never paste runs,
    tables, or metrics.
@@ -72,7 +80,8 @@ owns the STORY ring.
 | Required | `.research/STORY.md` |
 | Often | `.research/DISCOVERY.md` (target sections), `.research/EXPERIMENTS.md` (`EXP-xxx` Story Impact / Interpretation), `.research/STATE.md` |
 | Sometimes | `.research/reviews/EXP-xxx/*.md`, `.research/PROJECT.md` (scope check), `.research/REVIEWS.md` (summary) |
-| Reference only | [state-files.md](../../references/state-files.md), [story-loop.md](../../references/story-loop.md) |
+| Reference only | [state-files.md](../../references/state-files.md), [story-loop.md](../../references/story-loop.md), [idea-and-mechanism.md](../../references/research-intelligence/idea-and-mechanism.md) |
+| Large-change prompt | [story-audit.md](../../prompts/story-audit.md) |
 
 Do **not** load full experiment sections or chat history as belief sources.
 
@@ -107,3 +116,6 @@ Hard boundaries (not deviations):
 - **No multi-Story** — one current belief state per project.
 - **Large mechanism changes** — reframing `Problem` or `Core Idea` should trigger
   or suggest Review; see [story-loop.md](../../references/story-loop.md) §停滞处理.
+  Story must not grow more complex merely to rescue a method
+  ([story-audit.md](../../prompts/story-audit.md);
+  [idea-and-mechanism.md](../../references/research-intelligence/idea-and-mechanism.md)).

@@ -2,11 +2,12 @@
 name: literature-research
 description: >-
   Search external literature around the current Story gap via web, Zotero, PDF,
-  or institutional access. Synthesize what is known, conflicts, supports, suggests,
-  and novelty risk; update LITERATURE.md with only valuable entries. Use when
-  Open Gaps need prior work, novelty checks, method conflicts, or baseline
-  selection. Triggers include 查文献, literature search, prior work on. Do not
-  update STORY directly (story-maintenance) or run experiments.
+  or institutional access. Default mode is light (3–10 highly relevant sources);
+  deep is optional and not default. Synthesize what is known, conflicts, supports,
+  suggests, and novelty risk; update LITERATURE.md with only valuable entries.
+  Use when Open Gaps need prior work, novelty checks, method conflicts, or
+  baseline selection. Triggers include 查文献, literature search, prior work on.
+  Do not update STORY directly (story-maintenance) or run experiments.
 ---
 
 # Literature Research
@@ -18,6 +19,20 @@ LITERATURE.md. Gap priority and Literature routing:
 
 Heavy parallel reading may delegate to `literature-scout` subagent; integrator
 writes canonical LITERATURE entries.
+
+## Mode
+
+`light` | `deep`. **Default is light.** Deep is not default.
+
+- **Light** — 3–10 highly relevant sources. If they already name a
+  discriminating test, stop searching and hand off to `experiment-design`.
+- **Deep** — only when novelty is unclear, a new core mechanism is proposed,
+  papers conflict in a way that would change Story, or the field landscape
+  (including evaluation convention) is the bottleneck. Operators:
+  [deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md).
+  Task prompt:
+  [literature-synthesis.md](../../prompts/literature-synthesis.md).
+  Main still writes `LITERATURE.md`; scouts write `.research/work/` only.
 
 ## When to use
 
@@ -52,10 +67,10 @@ important paper, not search logs or abstract dumps.
    `.research/STATE.md` focus. One focal gap per session unless parallel scouts.
 2. **Scan existing** — Read `.research/LITERATURE.md` to avoid duplicate entries;
    note Relation fields already covering the gap.
-3. **Search** — Use web / arXiv / Semantic Scholar / Zotero / PDF per
-   `.research/RESOURCES.md` External Capabilities. Prefer primary papers,
-   surveys, and benchmark papers for baselines. Zotero and PDF are acquisition
-   aids; canonical record stays in LITERATURE.md.
+3. **Search** — Per Mode (default light). Use web / arXiv / Semantic Scholar /
+   Zotero / PDF per `.research/RESOURCES.md`. Prefer primary papers, surveys,
+   and benchmark papers. Do not start deep because an Open Gap exists. Zotero
+   and PDF are acquisition aids; canonical record stays in LITERATURE.md.
 4. **Synthesize** — Draft the five-lens summary (Known / Conflicts / Supports /
    Suggests / Novelty) for the session; use it to decide what merits a permanent
    entry.
@@ -77,6 +92,7 @@ important paper, not search logs or abstract dumps.
 | Required | `.research/STORY.md`, `.research/LITERATURE.md` |
 | Often | `.research/STATE.md`, `.research/PROJECT.md`, `.research/DISCOVERY.md`, `.research/RESOURCES.md` |
 | Reference | [state-files.md](../../references/state-files.md), [story-loop.md](../../references/story-loop.md) |
+| Deep only | [deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md), [literature-synthesis.md](../../prompts/literature-synthesis.md) |
 | Subagent | `.agents/subagents/literature-scout.md`, `.agents/prompts/subagent-handoff.md` |
 
 ## Updates
@@ -95,6 +111,8 @@ Anti-duplication: no literature dumps in STORY — [state-files.md](../../refere
 - Literature-only session with no STATE change when gap and routing unchanged.
 - Delegate bulk search to `literature-scout`; integrator writes LITERATURE entries
   from scout output in `.research/work/<task-slug>.md`.
+- Stay on light when 3–10 sources already name a discriminating EXP.
+- Do not load deep-literature-mode for ordinary baseline lookup or Related Work.
 - Skip low-relevance papers — note search scope in STATE if gap remains open.
 - Compare two papers in one LITERATURE entry when they jointly address one gap.
 - Stop after synthesis memo when user asked for a report only (no LITERATURE write).

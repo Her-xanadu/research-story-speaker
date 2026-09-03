@@ -15,6 +15,13 @@ Thin Skill for **scientific interpretation** after artifacts exist.
 Experiment fields and Outcome values:
 [experiment-record.md](../../references/experiment-record.md).
 State roles and update order: [state-files.md](../../references/state-files.md).
+Judgment operators:
+[scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md),
+[evidence-and-claim.md](../../references/research-intelligence/evidence-and-claim.md).
+Diagnosis prompts:
+[result-diagnosis.md](../../prompts/result-diagnosis.md);
+[failure-diagnosis.md](../../prompts/failure-diagnosis.md) when engineering vs
+hypothesis failure is unclear.
 
 ## When to use
 
@@ -42,7 +49,10 @@ confirmed. Set **Outcome** per [experiment-record.md](../../references/experimen
 1. **Gather evidence** — Read `EXP-xxx` in `.research/EXPERIMENTS.md` (Results, Runs,
    Git, Code, current Outcome). Inspect raw artifacts; do not rely only on executor
    summaries. Follow Git commit to code if method questions arise.
-2. **Answer analysis questions** — Work through explicitly:
+2. **Answer analysis questions** — Work through explicitly
+   ([result-diagnosis.md](../../prompts/result-diagnosis.md); if engineering vs
+   hypothesis failure is unclear,
+   [failure-diagnosis.md](../../prompts/failure-diagnosis.md)):
    - 发生了什么？（客观 Main Findings）
    - 结果是否可靠？（方差、泄漏、实现 bug、样本量）
    - 支持什么？（对 Story 哪一段有证据）
@@ -59,7 +69,14 @@ confirmed. Set **Outcome** per [experiment-record.md](../../references/experimen
    - `Status=failed` 且 `Outcome=not-assessed` → **不产生** Negative Discovery。
    - `Status=completed` 且 `Outcome=contradicts` 或 `null` → 写入 DISCOVERY
      （Negative / Null）。
-   - `completed` + `supports` → Positive；`invalid` 不可用于推断，不当 Negative Discovery。
+   - `completed` + `supports` → Positive。
+   - Outcome `invalid` per [experiment-record.md](../../references/experiment-record.md)
+     §Outcome 值 (cite; do not copy that table) — unusable for inference, **not**
+     Negative Discovery.
+   - Previously trusted evidence later shown unusable → DISCOVERY **Invalidated
+     Findings**, not Negative Discovery
+     ([evidence-and-claim.md](../../references/research-intelligence/evidence-and-claim.md)
+     §G).
    Tag `Evidence: EXP-xxx`. Do not paste full experiment text.
 5. **Update STORY if needed** — Small edits: `story-maintenance`. Large edits
    (Problem, Key Observation, Core Idea): `story-maintenance` and **suggest**
@@ -76,7 +93,8 @@ Follow [state-files.md](../../references/state-files.md) §更新顺序.
 |----------|-------|
 | Required | `.research/EXPERIMENTS.md` (`EXP-xxx`), `.research/STORY.md`, raw artifacts |
 | Often | `.research/DISCOVERY.md`, `.research/STATE.md`, `.research/PROJECT.md` |
-| Reference | [experiment-record.md](../../references/experiment-record.md), [state-files.md](../../references/state-files.md), [story-loop.md](../../references/story-loop.md) |
+| Reference | [experiment-record.md](../../references/experiment-record.md), [state-files.md](../../references/state-files.md), [story-loop.md](../../references/story-loop.md), [scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md), [evidence-and-claim.md](../../references/research-intelligence/evidence-and-claim.md) |
+| Prompts | [result-diagnosis.md](../../prompts/result-diagnosis.md), [failure-diagnosis.md](../../prompts/failure-diagnosis.md) |
 | Subagent | [result-analyst.md](../../subagents/result-analyst.md) |
 
 ## Updates

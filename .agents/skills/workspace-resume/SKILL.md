@@ -44,6 +44,36 @@ Recommended Next Action
 UNINITIALIZED: **materialize** the eight `.research/` files already on disk into
 an `ACTIVE` project, then enter `research-loop`. Do not generate a new set.
 
+## Decision Frontier
+
+Ask the user **only** for:
+
+```text
+UNINITIALIZED
+Goal amendment
+major evaluation change
+resource authorization change
+```
+
+Triage:
+
+```text
+facts → Agent looks up
+scientific unknown → Experiment / Literature
+user preference / authorization → Ask user
+```
+
+When asking, batch then stop:
+
+```text
+current frontier
+recommended default
+reason
+```
+
+Stop after key decisions are known. Do **not** grill every `research-loop`
+turn. An `ACTIVE` resume with a clear STATE next is not a frontier.
+
 ## Default flow
 
 ### 0. Initialization (UNINITIALIZED only)
@@ -51,7 +81,8 @@ an `ACTIVE` project, then enter `research-loop`. Do not generate a new set.
 If `PROJECT.md` **Project Status** is `UNINITIALIZED`:
 
 1. Collect the minimum: research goal, code/data locations, constraints. Ask
-   **only** for missing items. Do not invent the rest.
+   **only** for missing items (`UNINITIALIZED` is a Decision Frontier). Do not
+   invent the rest.
 2. **Materialize** the eight files already on disk — `PROJECT.md`, `STORY.md`,
    `STATE.md`, `DISCOVERY.md`, `EXPERIMENTS.md`, `LITERATURE.md`, `REVIEWS.md`,
    `RESOURCES.md` — from user input and `.agents/templates/`. Do not create a
@@ -101,7 +132,9 @@ Report all five compactly, then **same turn**: execute `STATE` next or the
 matching Skill; route unclear → `research-loop`; files disagree →
 `research-memory` first; narrow command with a clear STATE anchor → that Skill.
 
-Never end with only “已恢复” when an actionable step exists.
+Never end with only “已恢复” when an actionable step exists. Do not open a
+questionnaire on an `ACTIVE` resume unless Goal amendment, major evaluation
+change, or resource authorization change is actually in play.
 
 ## Reads
 
@@ -132,4 +165,5 @@ After substantive work, follow
 
 Do **not** guess Story, fabricate Key Observation / Core Idea / Evidence, replay
 completed work, treat chat as evidence, load every state file “just in case,”
-or create a second set of `.research/` files.
+create a second set of `.research/` files, or grill the user every iteration
+(look up facts; route scientific unknowns).

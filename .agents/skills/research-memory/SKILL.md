@@ -26,8 +26,12 @@ References: [state-files.md](../../references/state-files.md),
 - Broken EXP paths, RESOURCES links, review index drift.
 - `workspace-resume` / `research-loop` blocked by file chaos.
 
-Not for routine post-experiment updates (`result-analysis`) or next-step
-choice (`research-loop`).
+Not for routine post-experiment updates (`result-analysis`), next-step
+choice (`research-loop`), or Skill evolution (`framework-maintenance`).
+This Skill does **not** own Skill evolution. It may identify
+`repeated agent/workflow friction`, then leave a note in
+`.research/work/` or, in the framework repo, `docs/validation/`.
+Do not mix Skill maintenance into project DISCOVERY.
 
 ## Goal
 
@@ -94,12 +98,17 @@ so `workspace-resume` and `research-loop` can route immediately.
 
 May edit all 8 `.research/` files. Prefer move/compress/cross-reference over delete.
 压缩/搬移细节，不改 Problem/Core Idea 的科学主张.
+May leave an agent/workflow-friction note in `.research/work/` (project)
+or `docs/validation/` (framework repo). Do not put Skill maintenance into
+DISCOVERY, STORY, or LITERATURE.
 
 **Never delete:** negatives/nulls, any `EXP-xxx` section, review artifacts,
 invalidated findings (mark in DISCOVERY).
 
 **Defer:** Story mechanism → `story-maintenance`; interpretation →
-`result-analysis`; new runs → `experiment-execution`.
+`result-analysis`; new runs → `experiment-execution`; Skill evolution →
+`framework-maintenance` (`session-diagnosis` / `skill-evolution` /
+`regression-eval`). Friction notes only — never edit Skills here.
 
 If new facts emerged during cleanup, follow
 [state-files.md](../../references/state-files.md) §更新顺序.
@@ -111,5 +120,6 @@ If new facts emerged during cleanup, follow
 - STORY handoff to `story-maintenance`.
 - Compress old EXPERIMENTS body while keeping index rows.
 
-Do not drop EXP sections, erase failed runs, invent evidence, or paste long
-experiment text into DISCOVERY or STORY.
+Do not drop EXP sections, erase failed runs, invent evidence, paste long
+experiment text into DISCOVERY or STORY, edit Skills, or mix Skill
+maintenance into project DISCOVERY.

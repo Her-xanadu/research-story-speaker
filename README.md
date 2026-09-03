@@ -51,7 +51,7 @@ workspace/
 └── docs/validation/
 ```
 
-Canonical Skills（10）：`workspace-resume`、`research-loop`、`story-maintenance`、`literature-research`、`experiment-design`、`experiment-execution`、`result-analysis`、`experiment-review`、`research-memory`、`framework-maintenance`（仅维护框架、升级 Harness 或发布版本时使用）。
+Canonical Skills（12）：`workspace-resume`、`research-loop`、`story-maintenance`、`idea-evaluation`、`literature-research`、`experiment-design`、`experiment-execution`、`result-analysis`、`evidence-verification`、`experiment-review`、`research-memory`、`framework-maintenance`（仅维护框架、升级 Harness 或发布版本时使用）。
 
 ## Workspace Git（§4）与升级边界
 

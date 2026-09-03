@@ -45,14 +45,16 @@ Framework base: v0.1.1
 | 决定下一步科研 | `research-loop` |
 | 维护文件一致性 | `research-memory` |
 | 更新 Story | `story-maintenance` |
+| 新 Core Idea / 换路线 / 高代价实验 | `idea-evaluation` |
 | 查文献 | `literature-research` |
 | 设计实验 | `experiment-design` |
 | 执行实验 | `experiment-execution` |
 | 分析结果 | `result-analysis` |
+| 结果拟进 Story Evidence / 高风险结果 | `evidence-verification` |
 | 独立 Review | `experiment-review` |
 | 仅维护框架、升级 Harness 或发布版本时使用 | `framework-maintenance` |
 
-复杂任务优先找对应 Skill，不要重复发明流程。细节见各 `SKILL.md` 与 `.agents/references/`。
+复杂任务优先找对应 Skill，不要重复发明流程。细节见各 `SKILL.md` 与 `.agents/references/`。`.agents/references/research-intelligence/` 与 `.agents/prompts/` 随对应 Skill 按需加载，冷启动不必通读。
 
 ## Subagents
 
