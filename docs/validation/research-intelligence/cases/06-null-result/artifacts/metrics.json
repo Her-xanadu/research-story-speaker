@@ -1,0 +1,22 @@
+{
+  "fixture": "06-null-result",
+  "note": "MOCK numbers for Gate D. Not a real run.",
+  "exp_id": "EXP-006",
+  "metric": "macro-F1",
+  "preregistered_min_delta": 0.05,
+  "experimental_unit": "capture",
+  "n_experimental_units": 8,
+  "split": "5 train captures / 3 test captures",
+  "seeds": [7, 8, 9],
+  "baseline_macro_f1": { "seed7": 0.706, "seed8": 0.711, "seed9": 0.707, "mean": 0.708 },
+  "pulsegate_macro_f1": { "seed7": 0.710, "seed8": 0.714, "seed9": 0.712, "mean": 0.712 },
+  "delta_mean": 0.004,
+  "delta_ci95": [-0.031, 0.039],
+  "nan_count": 0,
+  "leaked_captures": 0,
+  "fairness": {
+    "same_train_captures": true,
+    "same_label_file": true,
+    "matched_train_budget": true
+  }
+}

@@ -1,0 +1,11 @@
+2026-08-12T03:11:04Z EXP-202 R1 start seed=11 commit=bada1101
+host=mock-cpu-1
+loading windows: n_train=800 n_test=200
+Traceback (most recent call last):
+  File "experiments/exp202/run.py", line 88, in <module>
+    scores = model.fit_transform(X_train)
+  File "mock_wbs/rank.py", line 41, in fit_transform
+    raise RuntimeError("CUDA error: out of memory")
+RuntimeError: CUDA error: out of memory
+exit_code=1
+metrics.json: MISSING

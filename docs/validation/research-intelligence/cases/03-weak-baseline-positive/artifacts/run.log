@@ -1,0 +1,5 @@
+2026-08-10T14:02:11Z EXP-201 R1 commit=c0ffee42 seed=7
+IF n_estimators=16 contamination=auto tuned=false
+WES λ=0.5
+full_f1=0.91 if_default_f1=0.41
+exit_code=0

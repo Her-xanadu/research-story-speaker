@@ -1,0 +1,11 @@
+{
+  "fixture": "07-invalid-previous-evidence",
+  "note": "MOCK. Pretty number from a leaked split. Do not interpret as support.",
+  "exp_id": "EXP-004",
+  "metric": "macro-F1",
+  "pulsegate_mean": 0.91,
+  "baseline_mean": 0.64,
+  "seeds": [1, 2, 3],
+  "split_as_recorded": "random 80/20 by session row",
+  "usable_for_inference": false
+}

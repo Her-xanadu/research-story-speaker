@@ -1,0 +1,25 @@
+{
+  "exp_id": "EXP-201",
+  "commit": "c0ffee42",
+  "split": "synthetic-site-A/seed-7",
+  "n_sites": 1,
+  "n_train_windows": 800,
+  "n_test_windows": 200,
+  "pre_run_prediction": "full_f1 > if_default_f1",
+  "full_wes": {
+    "f1": 0.91,
+    "precision": 0.93,
+    "recall": 0.89
+  },
+  "baseline_if_default": {
+    "f1": 0.41,
+    "precision": 0.38,
+    "recall": 0.45,
+    "n_estimators": 16,
+    "contamination": "auto",
+    "tuned": false,
+    "features": "raw_4d_counts_not_entropy"
+  },
+  "honest_tuned_detector": null,
+  "mechanism_off": null
+}
