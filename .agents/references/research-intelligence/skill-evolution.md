@@ -8,8 +8,8 @@ file, or a silent rewrite of frozen core.
 lives only in `reviewer.md`. Story six segments live in `state-files.md`.
 This file must not copy those enumerations.
 
-**Not a Skill.** V0.1.1 has 10 scientific/workflow Skills; V0.2 will add
-exactly 2 later (`idea-evaluation`, `evidence-verification`). This Layer-2
+**Not a Skill.** V0.1.1 had 10 scientific/workflow Skills; V0.2 added
+exactly 2 (`idea-evaluation`, `evidence-verification`). This Layer-2
 file is none of those and is not a research-loop step. Project science
 stays in `.research/`. Evolution records stay in `docs/validation/`.
 Never mix Skill maintenance into DISCOVERY, STORY, or LITERATURE.
@@ -236,9 +236,9 @@ no science mix?  nothing written into project .research/ as maintenance
 ```
 
 Prefer merging a small hunk plus a link to Layer 2 over merging a new
-Skill. V0.1.1 keeps 10 scientific/workflow Skills; V0.2's two later
-Skills are `idea-evaluation` and `evidence-verification`. This Layer-2
-file is not a Skill and does not authorize adding any other.
+Skill. V0.2 added exactly two scientific/workflow Skills
+(`idea-evaluation`, `evidence-verification`) on top of the V0.1.1 ten.
+This Layer-2 file is not a Skill and does not authorize adding any other.
 
 Wave H may dogfood this method on one prompt (for example
 `idea-evaluation`). That dogfood still ends at “deserves review,” not

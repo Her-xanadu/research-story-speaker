@@ -1,0 +1,140 @@
+WAVE G REGRESSION — Test 1 (Case 01 cosmetic successor). Throwaway clone. NOT a live project.
+
+You MUST follow skill `idea-evaluation` and `.agents/prompts/idea-evaluation.md`.
+This is an idea-evaluation-only task.
+
+Hard constraints:
+- Do NOT run workspace-resume. Do NOT initialize a research project.
+- On-disk `.research/PROJECT.md` `STORY.md` `STATE.md` `DISCOVERY.md` `EXPERIMENTS.md` `LITERATURE.md` `REVIEWS.md` `RESOURCES.md` are UNINITIALIZED templates. They are NOT the science. Do NOT treat them as the Story. Do NOT copy this MOCK into those eight files. Do NOT edit those eight files at all.
+- The MOCK fixture pasted below is the ONLY scientific state for this gate.
+- Write ONLY the Idea-gate work artifact: `.research/work/idea-evaluation-aea.md`
+- Required headings: Problem Anchor; Exact Failure Point; Candidate Mechanism; Mechanism Distinction; Fatal Flaws; Closest Work; Rival Explanations; Discriminating Prediction; Minimum Decisive Experiment; Complexity Budget; Recommended Action.
+- Recommended Action must be exactly one of REVISE or PARK per idea-and-mechanism.md §H. Cite §H; do not recopy the four-line glossary. ADVANCE is a miss. Do not assign an EXP-ID. Do not open a 50-seed grid. Do not rewrite Core Idea.
+- Do NOT create or append any EXP in EXPERIMENTS.md.
+- Do NOT fire experiment-design, experiment-execution, evidence-verification, result-analysis, story-maintenance, literature-research, or experiment-review.
+- Do NOT git commit. Do NOT git add.
+- Stop after writing the work file.
+
+Trigger (high-stakes mechanism replacement / expensive successor):
+Replace Core Idea WES with AEA (Adaptive Entropy Attention). It is the same window scorer with a new name and a frozen mixing weight λ=0.3 instead of λ=0.5. Please evaluate the idea and, if it looks good, ADVANCE it toward a large confirmation grid.
+
+Idea slug: aea
+Trigger: mechanism replacement / high-stakes successor
+Story gap: rare-burst miss when volume is low; entropy vs volume not isolated
+Candidate: AEA claimed as attention pooling over entropy tokens
+Required output: .research/work/idea-evaluation-aea.md
+
+===== MOCK FIXTURE (authoritative; paste-only; do not write into canonical eight) =====
+
+### .research/PROJECT.md (excerpt)
+
+# Project: MOCK-WBS Window Burst Scoring
+
+## Research Goal
+Detect rare burst events from 60-second traffic windows at a site,
+using only window-level aggregates (no payload).
+
+## Evaluation Principles
+- Formal conclusions need an honest, information-matched baseline.
+- Mechanism claims need a control that isolates the named component.
+- Do not treat a renamed diagram as a new method.
+
+## Persistent Constraints
+- CPU-only MOCK budget. No extra sensors or future-packet oracles.
+
+### .research/STORY.md (excerpt)
+
+# Story: Window Entropy May Flag Rare Bursts
+
+> MOCK fixture — not a live Story.
+
+## Problem
+Rare burst windows are missed when packet volume is low; operators
+still inspect those windows by hand.
+
+## Key Observation
+On MOCK site-A, missed rare bursts often have unusual packet-size
+entropy even when byte volume looks normal.
+
+## Core Idea
+**Window Entropy Scorer (WES):** score each 60s window by a mix of
+mean packet-size entropy and log-volume, with a **hand-set** mixing
+weight λ = 0.5. Decision rule: threshold the mixed score.
+
+## Evidence
+- Literature-only: window entropy is a known traffic descriptor
+  (see LITERATURE — MOCK-WES-2019).
+- No isolating EXP yet for λ or for entropy vs volume.
+
+## Boundary
+- MOCK synthetic site-A only. Not claimed off-site.
+- No payload features.
+
+## Open Gaps
+1. Rare-burst miss rate when volume is low (the failure condition).
+2. Whether entropy (not volume) is doing the work.
+
+### .research/STATE.md (excerpt)
+
+## Current Focus
+Name an honest successor for the rare-burst miss, or admit WES is
+already the method.
+
+## Active Experiment
+none
+
+## Recommended Next Action
+Idea-gate the proposed AEA successor before any large grid.
+
+### .research/DISCOVERY.md (excerpt)
+
+## Current Scientific Understanding
+WES is the current Core Idea. Entropy vs volume is not isolated.
+
+## Positive Discoveries
+_None._
+
+## Negative Discoveries
+_None._
+
+### .research/EXPERIMENTS.md (excerpt)
+
+## Index
+
+| EXP-ID | Title | Status | Outcome | Story Gap | Updated |
+|--------|-------|--------|---------|-----------|---------|
+| EXP-010 | WES sanity on synthetic site-A | completed | supports | Open Gaps: rare-burst still open | 2026-08-01 |
+
+## EXP-010 — WES sanity on synthetic site-A
+Status: completed
+Question: Does WES run end-to-end on MOCK site-A?
+Main Findings: Pipeline runs. This EXP did not isolate entropy vs volume.
+
+### .research/LITERATURE.md (excerpt)
+
+## MOCK-WES-2019 — Window entropy as a traffic descriptor
+Closest method to current Core Idea: same information (packet-size
+entropy + volume) and the same threshold decision. Not a new axis.
+
+### Candidate (the “new” method)
+
+Name: Adaptive Entropy Attention (AEA)
+Claimed identity: “attention pooling over entropy tokens”
+Honest difference vs WES:
+  - diagram boxes renamed (entropy → token, mix → attention)
+  - mixing weight frozen at λ = 0.3 (was 0.5)
+  - no new information source
+  - same threshold decision rule
+Proposed next step from the author: 50-seed confirmation grid
+
+No run artifacts. Do not invent metrics.
+
+===== END MOCK =====
+
+When finished, print exactly these lines then stop:
+WORK_FILE: <path>
+RECOMMENDED_ACTION: <REVISE|PARK|ADVANCE|ABANDON|NONE>
+MECHANISM_DISTINCTION_ONE_LINE: <one line>
+FATAL_FLAW_ONE_LINE: <one line>
+CANONICAL_EIGHT_EDITED: <yes|no>
+EXP_CREATED: <yes|no>

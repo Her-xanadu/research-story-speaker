@@ -88,7 +88,7 @@ Selective — **not** a default chain. Ordinary exploratory EXP stays light.
 | Prior work, novelty, lit conflict | Literature | `literature-research` / scout |
 | Untested mechanism, empirical answer | Experiment | `experiment-design` → `experiment-execution` → `result-analysis` |
 | Major new idea (Core Idea, route competition, mechanism replacement, expensive successor) | Idea-gate | `idea-evaluation` ([prompt](../../prompts/idea-evaluation.md)); then `experiment-design` only if the gate says continue |
-| High-stakes evidence (Story Evidence candidate, surprising strong result, Story-core change) | Evidence then Review | `evidence-verification` ([prompt](../../prompts/evidence-verification.md)) → `experiment-review` |
+| High-stakes evidence (Story Evidence candidate, surprising strong result, Story-core change) | Evidence then Review | `evidence-verification` ([prompt](../../prompts/evidence-verification.md)) after `result-analysis` → `experiment-review` |
 | High-stakes method, anomaly, big Story change | Review | `experiment-review` / reviewer |
 | Wording only | Story | `story-maintenance` |
 

@@ -113,7 +113,9 @@ hyperparameter sweep.
 
 If the action is bounded debug: keep the original Question / rival /
 prediction / unit and follow that prompt's debug protocol. Default **1–3**
-effective iterations, then stop so Main can record a blocker in STATE.
+effective iterations (number owned by
+[failure-diagnosis.md](../prompts/failure-diagnosis.md); cite, do not fork),
+then stop so Main can record a blocker in STATE.
 If repair would change the scientific contract, stop — that is redesign,
 not debug.
 

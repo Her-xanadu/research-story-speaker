@@ -1,0 +1,28 @@
+Follow AGENTS.md and the research-loop / experiment-design Skills for this cheap sanity fixture.
+
+This clone is a throwaway ACTIVE research workspace. Do not initialize a new project. Do not invent a new Core Idea.
+
+Current Story and planned Experiment are already in `.research/` (MOCK PulseGate; Open Gap 2 is the engineering sanity). The cheap sanity Question is:
+
+After the dataloader refactor, does `experiments/EXP-010/sanity.py` parse 200 MOCK synthetic flows and write a finite macro-F1 (not NaN/Inf)?
+
+A previous CPU run of the intended command produced this MOCK log (host=mock-host; not a real machine):
+
+```
+# MOCK sanity log — EXP-010
+# Not a real host. Not Story Evidence.
+
+[2026-08-20T11:02:01Z] host=mock-host cwd=experiments/EXP-010
+[2026-08-20T11:02:01Z] python sanity.py --n 200 --source synthetic-bundle
+[2026-08-20T11:02:09Z] parsed_flows=200 nan=0 inf=0
+[2026-08-20T11:02:09Z] macro_f1=0.5100
+[2026-08-20T11:02:09Z] elapsed_s=8 exit=0
+[2026-08-20T11:02:09Z] note=chance-like F1 expected; sanity Question is finite metric only
+```
+
+Hard constraints:
+- Write only inside this clone.
+- Do not git add or git commit.
+- Do not write files outside this clone.
+
+Proceed as AGENTS.md and those Skills direct.

@@ -91,9 +91,10 @@ preserve scientific contract
   → resume original EXP
 ```
 
-Default **1–3** effective debugging iterations, then **stop** and record the
-reason. Main may put a blocker in `STATE.md`. Do not infinite-debug until the
-scientific question has changed. If the repair would change the scientific
+Default **1–3** effective debugging iterations (number owned by
+[failure-diagnosis.md](../../prompts/failure-diagnosis.md); cite, do not
+fork), then **stop** and record the reason. Main may put a blocker in
+`STATE.md`. Do not infinite-debug until the scientific question has changed. If the repair would change the scientific
 contract (Question, split, metric family, or claimed mechanism), stop and
 return to `experiment-design` — that is redesign, not debug.
 
@@ -127,7 +128,8 @@ Outcome here — keep `not-assessed` until `result-analysis`.
   EXPERIMENTS/STATE updates after the subagent returns.
 - Abort invalid setup — Status=`failed`, Outcome=`not-assessed`; never delete the section.
 - Retry after bugfix under same EXP-ID — add commit notes in Git field, not a new EXP.
-- After 1–3 bounded-debug iterations without restoring the contract: stop;
+- After 1–3 bounded-debug iterations without restoring the contract (cite
+  [failure-diagnosis.md](../../prompts/failure-diagnosis.md)): stop;
   record the reason. Do not keep going until the EXP is a different experiment.
 - Do not treat metric improvement as validated science or copy numbers into `STORY.md`.
 - Negative, null, and failed runs stay in `EXPERIMENTS.md` — never silently delete.

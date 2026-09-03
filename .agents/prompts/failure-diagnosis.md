@@ -128,7 +128,9 @@ close
 - **bounded debug** — engineering / measurement / environment, contract
   intact. Follow the protocol below. Default **1–3** effective iterations,
   then stop debugging and have Main record a blocker in STATE. Do not debug
-  until the Question mutates.
+  until the Question mutates. **This prompt owns that 1–3 default**;
+  `experiment-execution` and `experiment-agent` cite it and must not fork
+  the number.
 - **repair same EXP** — fix code/data binding, same Question, same
   Comparisons. New commit notes in Git; not a new EXP-ID.
 - **redesign same EXP** — the Question is still right; the method, unit, or
@@ -260,10 +262,10 @@ Return class + action + “why not a sweep” to the caller.
 
 ## Stop / escalation
 
-- After 1–3 bounded-debug iterations without restoring the contract: stop
-  debugging. Main records a blocker in STATE; this prompt does not invent a
-  Status token. Do not keep going until the EXP is a different
-  experiment.
+- After 1–3 bounded-debug iterations (this prompt's default, above) without
+  restoring the contract: stop debugging. Main records a blocker in STATE;
+  this prompt does not invent a Status token. Do not keep going until the
+  EXP is a different experiment.
 - If the class is scientific: stop this prompt; do not “debug the idea.”
 - If RESOURCES cannot fund even the must-run comparison: **park**, do not
   substitute an invalid cheaper test

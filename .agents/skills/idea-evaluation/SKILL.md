@@ -109,6 +109,18 @@ Must **not** write `.research/STORY.md`, `.research/DISCOVERY.md`, or
 integrates. This Skill may run in-session or as a subagent; both write only
 `.research/work/`.
 
+## Handoff / Main integration
+
+When Recommended Action is PARK or ABANDON (values owned by
+[idea-and-mechanism.md](../../references/research-intelligence/idea-and-mechanism.md)
+§H — cite; do not recopy that glossary): this Skill still must **not** write
+STORY / DISCOVERY / EXPERIMENTS itself. Main Agent should land a **one-line
+cite** so a later `workspace-resume` can see it without reading all of
+`.research/work/`: typically DISCOVERY (why parked/abandoned; `Evidence:` the
+work artifact path) and/or STORY Open Gaps / Boundary as appropriate — not a
+second idea database. ADVANCE / REVISE remain as today (Main may open
+`experiment-design` or revise the idea).
+
 ## Deviation allowed
 
 - Stop with no file when the trigger does not match (protection: cheap

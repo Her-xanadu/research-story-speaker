@@ -1,6 +1,6 @@
 # research-story-speaker
 
-Framework base: v0.1.1 — 纯文件、纯提示词的 Story 驱动自动化科研框架。
+Framework base: v0.2 — 纯文件、纯提示词的 Story 驱动自动化科研框架。
 
 ## Quick Start
 
@@ -61,11 +61,19 @@ Workspace Git 与科研代码 Git 是两个概念。升级时**只合并框架�
 
 - UNINITIALIZED cold-start portability: validated on Codex, Claude Code, Cursor, and DeepSeek Harness.
 - Initialized write/handoff portability: validated on Codex → Claude Code.
-- Research-loop portability: partially validated; full multi-harness execution remains V0.2 work.
+- Research Intelligence live: Codex and Claude Code (Wave G / E-B1 / Case 10); Cursor / DSH not re-run for V0.2 gates; OpenCode documentation-only.
 - OpenCode: documentation-only, not tested.
 
 ## 当前状态
 
-V0.1（tag `v0.1` → `8db3b30`）对象不变。V0.1.1 根 `.research/` 为干净 UNINITIALIZED 模板；MOCK 闭环在 `examples/mock-flow-detection/`；验证证据在 `docs/validation/`。
+V0.2（本 tag）在 v0.1.1 之上加 Research Intelligence Layer：6 份 Layer 2、恰好 2 个新 Skill（`idea-evaluation`、`evidence-verification`）、8 个 task prompt。FROZEN CORE 与 v0.1.1 byte-identical。根 `.research/` 仍为干净 UNINITIALIZED 模板。V0.1（`8db3b30`）与 V0.1.1（`762deb4c`）对象不变。MOCK 闭环在 `examples/mock-flow-detection/`；验证证据在 `docs/validation/`。
 
-已知债务（V0.2）：Test F/G/J；Subagent 狗食落盘；四 Harness 全写闭环；OpenCode 实测。
+行为证据边界（不要把指令层行数增长当成「更会推理」）：
+
+- Gate D：10 个 case 对 v0.1.1 的 **instruction dry-read**（不是 live）。
+- Wave G live：harness 可移植、输出形状、写纪律。2026-09-04 05:31 T1/T2 判断类 PASS 为 **contaminated**（评分规则进了 agent prompt）。
+- E-B1 去泄漏复跑：Codex / Claude Code 各 1 × Case 01 / Case 03 命中（T1 `REVISE`，T2 honest-baseline `does not address`）。fixture 仍含提问者层面的自曝；Case 02（ADVANCE）为 tag 后 held-out。
+- Wave H：`skill-evolution` dogfood **reject**。
+- Case 10：Codex live **file-level PASS**（无 Idea/Evidence/Reviewer 工作文件）。agent 仍打开了 fixture README 评分段，**不是** unleaked protection。
+
+已知债务（v0.2.1）：OpenCode 实测；Case 10 / Case 01 unleaked 夹具；Claude live 读文件轨迹；`skill-evolution` 评分者独立性；deep-lit 预算行；元规则复制收敛。
