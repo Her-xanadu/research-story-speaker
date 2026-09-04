@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/hero.jpg" alt="research-story-speaker: one Story at the center of a file-native research workspace" width="100%">
+  <img src="docs/assets/hero-banner.jpg" alt="research-story-speaker: one Story at the center of a file-native research workspace" width="100%">
 </p>
 
 <h1 align="center">research-story-speaker</h1>
@@ -37,7 +37,7 @@
 
 这是一套 **instruction-only** 的工作区模板，不是 Python 包，也不是带服务端的「科研 Agent 产品」。
 
-| | |
+| | 含义 |
 |---|---|
 | **是** | Agent 读 `AGENTS.md` 与 `.agents/`，围着**唯一当前 Story** 做科研 |
 | **记忆** | 写在 `.research/` 的八个文件里，不在聊天记录里 |
@@ -88,10 +88,6 @@ Experiment 可以有几十轮；Story 不应跟着膨胀。数字进 `EXPERIMENT
 ### 3. 两层 Workflow
 
 **不要**每个实验都重新问「现在最大 Gap 是什么」。
-
-<p align="center">
-  <img src="docs/assets/two-layer-loop.jpg" alt="Two nested loops: outer Story reframing, inner TEST LEARN DECIDE" width="100%">
-</p>
 
 <p align="center">
   <img src="docs/assets/workflow.svg" alt="W0 SETUP, W1 FRAME, inner W2-W3-W4 loop, W5 HANDOFF" width="100%">
@@ -202,4 +198,4 @@ Cold-start 证据日期 2026-09-03，见 [`docs/validation/harness-smoke/`](docs
 
 已知债务：OpenCode 未实测；compact token 软目标仍 MISS。没有可引用的论文数字或对外 benchmark。
 
-视觉资产：`docs/assets/hero.jpg`、`two-layer-loop.jpg`、`social-card.jpg` 为生成图；`banner.svg` / `architecture.svg` / `workflow.svg` 为可编辑矢量。展示手法调研：[`docs/validation/v0.2.2/github-readme-study.md`](docs/validation/v0.2.2/github-readme-study.md)。
+视觉资产：`docs/assets/hero-banner.jpg` 为首屏生成图裁切；`architecture.svg` / `workflow.svg` 为可读矢量图。完整生成图见 `hero.jpg`、`two-layer-loop.jpg`、`social-card.jpg`。展示手法调研：[`docs/validation/v0.2.2/github-readme-study.md`](docs/validation/v0.2.2/github-readme-study.md)。
