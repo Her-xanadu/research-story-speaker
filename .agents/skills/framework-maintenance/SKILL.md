@@ -30,7 +30,7 @@ Skill-change judgment:
   (`regression-eval`).
 
 Do **not** use for research, experiments, Story updates, or day-to-day experiment
-records — use scientific Skills instead. Do **not** create a 13th Skill for
+records — use scientific Skills instead. Do **not** create a 15th Skill for
 doctor / upper / experience-to-skill — those are **modes** of this Skill.
 
 ## Goal
@@ -153,15 +153,15 @@ workspace **drifted** from the linked reference — do not copy the rule body he
 | 7 | Adapter drift | `adapters/` / `CLAUDE.md` vs [state-files.md](../../references/state-files.md) §单一事实来源（§20） |
 | 8 | Unnecessary scripts | instruction-only goal — framework `.py/.sh` against that intent |
 | 9 | Cross-file terminology consistency | 七/八 state-file count; Status vs Outcome（Outcome per experiment-record.md）; Verdict 引用 reviewer.md；文件名；template 与 reference 一致。Do not copy Outcome/Verdict enumerations into this Skill. |
-| 10 | Skill count is **13** | Original 10 plus `idea-evaluation`, `evidence-verification`, and `workspace-setup` (resource personalization — not a research-loop step). Do not add a 14th scientific Skill. |
+| 10 | Skill count is **14** | Original 10 plus `idea-evaluation`, `evidence-verification`, `workspace-setup`, and `framework-extension` (maintainer/contributor — **not** a research-loop step). New Skills require `framework-extension` ladder review; do not add a 15th without audit. |
 | 11 | Intelligence refs are Layer 2, not Protocol | `.agents/references/research-intelligence/` vs Protocol owners (`state-files.md`, `experiment-record.md`, `reviewer.md`, `story-loop.md`, `git-linking.md`). Layer 2 does not redefine Outcome / Verdict / Story. |
 | 12 | Gates selective | `idea-evaluation` / `evidence-verification` / deep literature are not default on every EXP. Ordinary exploratory stays light — [skill-evolution.md](../../references/research-intelligence/skill-evolution.md) §C–E. |
 | 13 | Scorer independence | Evolution comparisons name candidate author / executor / scorer; prefer author ≠ scorer; same-model records `Model relation: same-model` and `Context relation: fresh-context` and lower assurance; passing still means `candidate deserves review`, not auto-deploy — [skill-evolution.md](../../references/research-intelligence/skill-evolution.md) §D–F. |
 | 14 | Meta-rule duplication | Same governance sentence in >3 files (Not Protocol / do not copy Outcome or Verdict / do not create state files / ordinary exploratory stays light / do not preload all RI) → keep owner, consumers cite. Owners: [scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md) (Layer-2 boundary); [research-loop](../research-loop/SKILL.md) (exploratory routing); [subagent-handoff.md](../../prompts/subagent-handoff.md) (progressive load / task prompt wins). This is **not** a 13th Skill. |
 
-Also verify: `.agents/skills/` is the **only** canonical Skill root (**13**
-Skills, including `idea-evaluation`, `evidence-verification`, and
-`workspace-setup`); subagent
+Also verify: `.agents/skills/` is the **only** canonical Skill root (**14**
+Skills, including `idea-evaluation`, `evidence-verification`,
+`workspace-setup`, and `framework-extension`); subagent
 handoff uses `.research/work/` per
 [subagent-handoff.md](../../prompts/subagent-handoff.md).
 
@@ -219,6 +219,7 @@ science content.
   [state-files.md](../../references/state-files.md) §尺寸建议 and §单一事实来源（§20）.
 - Intelligence refs are Layer 2, not Protocol.
 - Do not delete valuable negative results in `.research/` during cleanup.
-- Do not add a 14th scientific Skill. `workspace-setup` is the harness
-  personalization Skill; doctor / upper / experience-to-skill are modes of
-  this Skill.
+- Do not add a 15th Skill without `framework-extension` review.
+  `framework-extension` is the maintainer/contributor Skill for designing
+  integrations; `workspace-setup` is harness personalization; doctor / upper /
+  experience-to-skill are modes of this Skill.

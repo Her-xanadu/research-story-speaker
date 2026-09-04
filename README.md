@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/badge/canonical-8-1F3D32" alt="8 canonical research files">
   <img src="https://img.shields.io/badge/research--loop-1-1F3D32" alt="1 research-loop">
   <img src="https://img.shields.io/badge/subagents-5-1F3D32" alt="5 subagents">
-  <img src="https://img.shields.io/badge/skills-13-1F3D32" alt="13 skills">
+  <img src="https://img.shields.io/badge/skills-14-1F3D32" alt="14 skills">
   <img src="https://img.shields.io/badge/RI-6-1F3D32" alt="6 research-intelligence references">
   <img src="https://img.shields.io/badge/scripts-0-1F3D32" alt="0 runtime scripts">
 </p>
@@ -95,11 +95,11 @@ v0.2.2 冻结（与树一致，不在 README 里「大约」）：
 | Canonical `.research/` 文件 | 8 |
 | `research-loop` | 1 |
 | Subagents | 5 |
-| Skills | 13 |
+| Skills | 14 |
 | Research Intelligence 参考 | 6 |
 | 框架运行时脚本 | 0 |
 
-**Skills（13）**
+**Skills（14）**
 
 | Skill | 角色 |
 |-------|------|
@@ -115,7 +115,8 @@ v0.2.2 冻结（与树一致，不在 README 里「大约」）：
 | `evidence-verification` | 拟写入 Story Evidence 的结果 |
 | `experiment-review` | 独立 Review |
 | `research-memory` | 状态文件一致性 |
-| `framework-maintenance` | 仅维护框架、升级 Harness 或发版 |
+| `framework-maintenance` | 审计、回归、Skill Evolution、发版 |
+| `framework-extension` | 扩展设计与接入（维护者 Skill；**不进** research-loop） |
 
 **Subagents（5）**：`research-lead` · `literature-scout` · `experiment-agent` · `result-analyst` · `reviewer`。Subagent 只写 `.research/work/` 或 reviews；八个 canonical 文件由 Main Agent 更新。
 

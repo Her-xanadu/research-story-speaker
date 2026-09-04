@@ -60,8 +60,9 @@ Framework base: v0.2.2
 | 结果拟进 Story Evidence / 高风险结果 | `evidence-verification` |
 | 独立 Review | `experiment-review` |
 | 仅维护框架、升级 Harness 或发布版本时使用 | `framework-maintenance` |
+| 扩展框架 / 接入工作流、Skill、MCP、Harness、领域包或贡献能力 | `framework-extension`（维护者 Skill；**不进** research-loop） |
 
-复杂任务优先找对应 Skill，不要重复发明流程。细节见各 `SKILL.md` 与 `.agents/references/`。`.agents/references/research-intelligence/` 与 `.agents/prompts/` 随对应 Skill 按需加载，冷启动不必通读。
+复杂任务优先找对应 Skill，不要重复发明流程。细节见各 `SKILL.md` 与 `.agents/references/`。`.agents/references/research-intelligence/` 与 `.agents/prompts/` 随对应 Skill 按需加载，冷启动不必通读。`framework-extension` 仅在用户明确要求扩展/集成时加载。
 
 ## Subagents
 
