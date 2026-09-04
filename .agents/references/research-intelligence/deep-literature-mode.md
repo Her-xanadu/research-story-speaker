@@ -17,10 +17,10 @@ upstream procedures, gate tables, hedge ladders, or a MECE survey-paper
 skeleton. The deliverable is **not** a survey-paper clone.
 
 This mode is **OPTIONAL EXPENSIVE**. It is not default literature.
-Default work stays light (`literature-research` as it exists; Wave D may
-name an explicit light|deep switch). A handful of highly relevant sources
-that already name a discriminating experiment is enough to leave this file
-unread.
+Default work stays light (`literature-research` Mode `light`). Deep is
+that Skill's optional switch, not a new Skill. A handful of highly
+relevant sources that already name a discriminating experiment is
+enough to leave this file unread.
 
 Load only when: novelty is unclear, a new Core Idea is proposed, papers
 conflict in a way that would change Story, or the *field's evaluation
@@ -102,10 +102,11 @@ benchmark convention — CIC / campus traces / encrypted backbone splits
 application literature — inline latency, encrypted payloads, missing labels
 ```
 
-After a first pass, follow **names the hits revealed** (method names,
-dataset names, shared citations). That is ordinary scholarship, not a
-fixed two-round procedure. An angle that returns almost nothing may be a
-real gap *or* a bad query; try one renamed query before declaring a hole.
+After Pass 1, follow **names the hits revealed** (method names,
+dataset names, shared citations). That follow-up **is** Pass 2 of the
+search budget (§G), not an unbounded third survey. An angle that
+returns almost nothing may be a real gap *or* a bad query; try one
+renamed query **inside the current pass** before declaring a hole.
 
 ---
 
@@ -255,7 +256,23 @@ story-maintenance), not a new literature state machine.
 
 ---
 
-## Stop / cost
+## G. Search budget (soft)
+
+This is a **soft attention budget**. It is **not** a paper-count
+Protocol enum, **not** a LITERATURE field, and **not** a STATE field.
+Write it only in the work artifact or the literature-task context.
+
+Default shape:
+
+```text
+Pass 1 — broad landscape
+Pass 2 — targeted closest-work / contradiction
+```
+
+Pass 1 covers the angles that apply (§B). Pass 2 follows the names those
+hits revealed and fills the closest-work matrix (§C) and contradiction
+map (§D) for the frozen RQs. Two passes are the default ceiling, not a
+citation quota and not a duty to empty the field.
 
 If light literature already names a discriminating experiment, **do not
 enter this mode**. Deep literature is for uncertainty that would change
@@ -263,10 +280,40 @@ Core Idea, novelty, or evaluation convention — not for delaying a cheap
 must-run test, not for padding Related Work, and not for “the agent
 feels under-read.”
 
-Stop when the frozen RQs are answered well enough to choose: revise the
-Idea, park it, or design the next EXP. Unread papers go in the “still
-have not read” list; they are not a reason to postpone a cheap test that
-would change belief.
+**Stop** when the frozen RQs are **actionable**: answered well enough to
+choose revise the Idea, park it, or design the next EXP. Unread papers
+go in “still have not read”; they are not a reason to postpone a cheap
+test that would change belief. Stop at the end of Pass 1 if the RQs are
+already actionable — Pass 2 is not a ritual.
+
+### One extension
+
+After the default passes, **one** further targeted pass is allowed
+**only if** a research decision is still blocked by one of:
+
+```text
+closest work unresolved
+contradiction not localized
+evaluation convention unclear
+critical source inaccessible
+```
+
+If you extend, write in the work artifact **why the extra pass would
+change a research decision** (which frozen RQ; which choice among
+revise / park / which EXP). An extra pass that cannot change that
+choice is not allowed. After the extension, stop.
+
+Do **not** extend, and do not continue the default passes, because:
+
+```text
+more papers exist
+the agent feels under-read
+related work could be longer
+```
+
+`Pass 1` / `Pass 2` / `extension` are judgment notes in the work file.
+They are not Status, not Outcome, not Verdict, and not a new STATE
+machine.
 
 ---
 
@@ -280,6 +327,9 @@ would change belief.
 - Inventing a fourth Access enum or a `SURVEY.md` / `CLAIMS.md`.
 - Pasting the closest-work matrix into STORY.
 - Redefining Outcome or Verdict to encode “novelty pass/fail.”
+- Continuing because more papers exist, the agent feels under-read, or
+  Related Work could be longer.
+- Writing the search budget into STATE, or inventing a paper-count enum.
 
 ---
 
@@ -287,8 +337,10 @@ would change belief.
 
 Work output lives in `.research/work/` until Main writes LITERATURE.md.
 This file owns the *judgment operators* (freeze, angles, matrix, map,
-depth, novelty threat). The Skill owns search tools, template fields,
-and the prohibition on writing STORY.
+depth, novelty threat, search budget / stop / one extension). The Skill
+owns search tools, the light|deep switch, template fields, and the
+prohibition on writing STORY. Budget / stop / extend live in the work
+artifact or task context only — never as a STATE field.
 
 Load `idea-and-mechanism.md` if the matrix shows no real axis.
 Load `experiment-thinking.md` if the map names a discriminating test.
