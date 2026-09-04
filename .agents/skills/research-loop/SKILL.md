@@ -95,6 +95,7 @@ Selective — **not** a default chain. Ordinary exploratory EXP stays light.
 Ordinary exploratory EXP: `experiment-design` → `experiment-execution` →
 `result-analysis` **without** `idea-evaluation`, `evidence-verification`,
 `experiment-review` / reviewer, or `result-analyst` by default.
+Stay compact: do not default-load `experiment-proposal.md` or `result-diagnosis.md`.
 
 Parallel Experiment work: use `experiment-agent` / `result-analyst`; handoff via
 [subagent-handoff.md](../../prompts/subagent-handoff.md). Do not expand those

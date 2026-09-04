@@ -3,8 +3,11 @@ name: experiment-design
 description: >-
   Design a new EXP-xxx or refine a planned experiment from the current Story gap.
   Prioritize high-impact experiments that maximally change scientific judgment,
-  not parameter sweeps. Document Question, Why, Comparison, Expected outcomes,
-  Codebase, and Compute in EXPERIMENTS.md without running code. Use before
+  not parameter sweeps. Ordinary exploratory / sanity stays compact in-session
+  (no default experiment-proposal.md or experiment-thinking A→H). Full design
+  only for mechanism claim, new Core Idea, high compute, important ablation,
+  isolating control, publication-facing comparison, or high-risk split.
+  Document in EXPERIMENTS.md without running code. Use before
   experiment-execution or when planning EXP-002+. Triggers include 设计实验,
   design experiment, plan EXP.
 ---
@@ -18,14 +21,19 @@ definitions, Status, and Outcome:
 Git layout and traceability: [git-linking.md](../../references/git-linking.md).
 Gap priority: [story-loop.md](../../references/story-loop.md).
 
-Judgment (cite; do not recopy taxonomies or Verdict):
+`compact` / `full` are Skill-internal modes. Never write them into STATE,
+EXPERIMENTS, Status, or Outcome.
+
+Judgment and the work-file prompt are **full design only** — do **not**
+default-load them on compact:
 
 - [scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md)
 - [experiment-thinking.md](../../references/research-intelligence/experiment-thinking.md)
+  (A→H)
+- [experiment-proposal.md](../../prompts/experiment-proposal.md)
 
-Optional work-file prompt:
-[experiment-proposal.md](../../prompts/experiment-proposal.md).
-Main still writes `EXPERIMENTS.md`.
+Main still writes `EXPERIMENTS.md`. Do not delete the proposal prompt; skip
+it unless a full-design trigger matches.
 
 ## When to use
 
@@ -41,14 +49,93 @@ updating Story belief (`story-maintenance`).
 
 ## Goal
 
-Produce one experiment specification that **maximally changes current judgment** if
-answered — not a parameter sweep. Per
-[story-loop.md](../../references/story-loop.md): prefer experiments that could
-change Problem, Core Idea, or whether to continue the route.
+Produce one experiment specification. Full design should **maximally change
+current judgment** if answered — not a parameter sweep
+([story-loop.md](../../references/story-loop.md)). Compact exploratory /
+sanity may be a cheap probe; still one scientific Question, still honest
+about the baseline.
 
 Record in `EXPERIMENTS.md` with index row, Status `planned`, Outcome `not-assessed`.
 
+## Compact vs full (Skill-internal)
+
+Choose **before** loading `experiment-proposal.md` or experiment-thinking
+A→H. Default is **compact**.
+
+### Compact (default)
+
+Ordinary exploratory / sanity. Do **not** default-load
+[experiment-proposal.md](../../prompts/experiment-proposal.md) or walk all
+of [experiment-thinking.md](../../references/research-intelligence/experiment-thinking.md)
+A→H.
+
+In-session (map into existing EXP section fields; no new columns):
+
+| In-session | Maps to EXPERIMENTS section |
+| --- | --- |
+| **Question** | Question |
+| **Why this matters** | Motivation |
+| **Honest baseline/comparison** | Comparisons |
+| **What observation would change next action?** | Expected outcomes (design note; else Motivation) |
+| **Data / Setup / Codebase** | Data / Setup, Code — as needed |
+
+### Full design — load if any
+
+Load `experiment-proposal.md` and walk experiment-thinking A→H if **any**:
+
+- mechanism claim
+- new Core Idea
+- high compute
+- important ablation
+- control that isolates a mechanism
+- publication-facing comparison
+- high-risk split/grouping
+
+### Do not auto-upgrade
+
+Stay compact. Do **not** auto-upgrade to full for:
+
+- single sanity
+- basic reproduction
+- extra seed
+- logging check
+- known-question retry
+- small diagnostic probe
+
+Do not invent a Protocol flag for exploratory
+([scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md)
+§F — cite; compact does not boot Layer 2).
+
 ## Default flow
+
+### Compact flow (default)
+
+1. **Anchor gap** — `EXPERIMENTS.md` index; `STORY.md` Open Gaps / Boundary as
+   needed. STATE / DISCOVERY / PROJECT only if the Question is not already
+   on disk.
+2. **Check duplicates** — Do not redo a negated route without a new mechanism.
+   One scientific question per EXP-ID; extend an existing section when the
+   Question is already recorded (sanity / retry).
+3. **Assign EXP-ID** — Next sequential `EXP-NNN` only when creating a new
+   section; optional short title in heading.
+4. **Draft compact specification** — The five in-session items above. Map into
+   the existing EXP section. Do **not** invent new canonical files, index
+   columns, or Protocol enums.
+5. **Plan traceability if this EXP will run** — Planned Entry
+   `experiments/EXP-xxx/` and planned Results root `results/EXP-xxx/` per
+   [git-linking.md](../../references/git-linking.md). Do **not** invent
+   commits or results.
+6. **Update EXPERIMENTS.md** — Index row (`planned`, Outcome `not-assessed`,
+   Story Gap phrase, Updated date) and section; leave Main Findings /
+   Interpretation empty.
+7. **Update STATE** — Active experiment, recommended next (`experiment-execution`).
+
+### Full design flow
+
+Only after a full-design trigger matches. Load
+[experiment-proposal.md](../../prompts/experiment-proposal.md) and
+[experiment-thinking.md](../../references/research-intelligence/experiment-thinking.md)
+A→H.
 
 1. **Anchor gap** — Read `.research/STORY.md` (Open Gaps, Boundary),
    `.research/STATE.md`, relevant `DISCOVERY.md` (especially Invalidated /
@@ -98,11 +185,11 @@ Record in `EXPERIMENTS.md` with index row, Status `planned`, Outcome `not-assess
 
 | Priority | Files |
 | --- | --- |
-| Required | `.research/STORY.md`, `.research/EXPERIMENTS.md`, `.research/RESOURCES.md` |
+| Required | `.research/EXPERIMENTS.md`; `.research/STORY.md` and `.research/RESOURCES.md` as needed |
 | Often | `.research/STATE.md`, `.research/DISCOVERY.md`, `.research/LITERATURE.md` |
 | Reference | [experiment-record.md](../../references/experiment-record.md), [git-linking.md](../../references/git-linking.md), [story-loop.md](../../references/story-loop.md) |
-| Layer 2 | [scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md), [experiment-thinking.md](../../references/research-intelligence/experiment-thinking.md) |
-| Prompt | [experiment-proposal.md](../../prompts/experiment-proposal.md) (optional; Main still writes EXPERIMENTS) |
+| Layer 2 (full design only) | [scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md), [experiment-thinking.md](../../references/research-intelligence/experiment-thinking.md) |
+| Prompt (full design only) | [experiment-proposal.md](../../prompts/experiment-proposal.md) (Main still writes EXPERIMENTS) |
 
 ## Updates
 
@@ -119,13 +206,13 @@ metrics belong in EXPERIMENTS after runs, not in STORY
 
 - Extend an existing `planned` EXP instead of creating a new ID when scope matches.
 - Sketch multiple comparisons in one EXP when they share one scientific question.
-- Explicitly exploratory EXP: short Question + honest baseline is enough; do
-  not invent a Protocol flag (scientific-reasoning.md §F).
+- Ordinary exploratory / sanity: compact in-session items are enough; do not
+  auto-upgrade (list above). Do not invent a Protocol flag.
 - Defer Runs detail until execution if setup is exploratory.
 - Pair with `literature-research` when baseline choice is uncertain.
 - Document Expected outcomes inline under Motivation when section has no dedicated field.
 - Mark low-priority sweep as explicitly secondary — still tie to one judgment-changing question.
 - Avoid standalone hyperparameter grids unless they test a stated mechanism.
-- High-cost designs should note Compute estimate and Review recommendation.
+- High-cost designs are full design: note Compute estimate and Review recommendation.
 - Do not fabricate Git commits or result artifacts; recording a real existing
   baseline SHA or a planned results directory is allowed.
