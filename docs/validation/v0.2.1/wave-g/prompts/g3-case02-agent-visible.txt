@@ -1,0 +1,214 @@
+# Case 02 — agent-visible input
+
+Throwaway clone. NOT a live project. Follow skill
+`idea-evaluation` at `.agents/skills/idea-evaluation/SKILL.md` and task
+prompt `.agents/prompts/idea-evaluation.md`. Load Layer 2 files those
+two documents name. Do not load every file under
+`.agents/references/research-intelligence/`.
+This is an idea-evaluation-only task.
+
+Hard constraints:
+
+- Do NOT run workspace-resume. Do NOT initialize a research project.
+- On-disk `.research/` canonical eight are UNINITIALIZED templates.
+  They are NOT the science. Do NOT copy this MOCK into those eight
+  files. Do NOT edit those eight files at all.
+- The MOCK below is the only scientific state for this task.
+- Author-supplied method notes also exist under this case’s
+  `artifacts/` directory. Read them. Do not invent a completed EXP
+  or metrics.
+- Write ONLY `.research/work/idea-evaluation-prrw.md`
+- Required headings (from the Skill): Problem Anchor; Exact Failure
+  Point; Candidate Mechanism; Mechanism Distinction; Fatal Flaws;
+  Closest Work; Rival Explanations; Discriminating Prediction;
+  Minimum Decisive Experiment; Complexity Budget; Recommended Action.
+- Recommended Action is exactly one token as defined in
+  `idea-and-mechanism.md` §H. Cite §H; do not recopy the four-line
+  glossary. Do not assign an EXP-ID. Do not open a confirmation grid
+  from this Skill. Do not rewrite Core Idea.
+- Do NOT create or append any EXP in EXPERIMENTS.md.
+- Do NOT git commit. Do NOT git add.
+- Stop after writing the work file.
+
+Trigger (high-stakes mechanism replacement):
+
+Current WES still misses low-volume rare bursts. Candidate **PRRW**
+(Port-Rarity Rank Window) scores each window by destination-port
+rarity rank against the previous K windows at the same site, not by
+packet-size entropy. Please run idea-evaluation. If identity holds,
+the author asks to ADVANCE and name the minimum decisive test
+(keep a mechanism-off control; do not skip it).
+
+Idea slug: prrw
+Trigger: mechanism replacement / high-stakes successor
+Story gap: rare-burst misses when volume is low; whether a different
+information source (port rarity) would move that miss vs retuning WES
+Candidate: PRRW claimed as destination-port rarity rank vs previous K windows
+Required output: `.research/work/idea-evaluation-prrw.md`
+
+===== MOCK FIXTURE (authoritative; paste-only; do not write into canonical eight) =====
+
+### `.research/PROJECT.md` (excerpt)
+
+# Project: MOCK-WBS Window Burst Scoring
+
+**Project Status:** ACTIVE
+
+## Research Goal
+Detect rare burst events from 60-second traffic windows at a site.
+
+## Evaluation Principles
+- Mechanism claims need a mechanism-off or information-matched control.
+- Formal conclusions need an honest baseline.
+- CPU-only MOCK budget; no payload, no future-packet oracles.
+
+### `.research/STORY.md` (excerpt)
+
+# Story: Window Entropy May Flag Rare Bursts
+
+> MOCK fixture — not a live Story.
+
+## Problem
+Rare burst windows are missed when packet volume is low.
+
+## Key Observation
+Missed rare bursts on MOCK site-A often coincide with unusual
+destination-port mixes, not only with packet-size entropy.
+
+## Core Idea
+**WES:** mix of packet-size entropy and log-volume, λ = 0.5,
+threshold the mixed score.
+
+## Evidence
+- EXP-010: WES pipeline runs (sanity only).
+- Entropy vs volume not isolated. Port mix never used as a feature.
+
+## Boundary
+- MOCK synthetic site-A. No payload.
+
+## Open Gaps
+1. Rare-burst misses when volume is low (failure condition).
+2. Whether a **different information source** (port rarity) would
+   move that miss, vs retuning WES.
+
+### `.research/STATE.md` (excerpt)
+
+## Current Focus
+Decide whether PRRW is a real successor mechanism for Open Gap 1.
+
+## Active Experiment
+none
+
+## Recommended Next Action
+Idea-gate PRRW before any confirmation grid.
+
+### `.research/DISCOVERY.md` (excerpt)
+
+## Current Scientific Understanding
+WES is not isolated. Port mix is an observation, not yet a mechanism.
+
+## Negative Discoveries
+_None covering port-rarity under the rare-burst condition._
+
+### `.research/EXPERIMENTS.md` (excerpt)
+
+## Index
+
+| EXP-ID | Title | Status | Outcome | Story Gap | Updated |
+|--------|-------|--------|---------|-----------|---------|
+| EXP-010 | WES sanity on synthetic site-A | completed | supports | Open Gaps: rare-burst still open | 2026-08-01 |
+
+### `.research/LITERATURE.md` (excerpt)
+
+## MOCK-WES-2019 — Window entropy scorer
+Closest existing method: WES. Same decision shape (window score +
+threshold). Axis that would have to differ: information source
+(size entropy vs destination-port rarity rank). LITERATURE does not
+show a port-rarity-rank window scorer under this rare-burst condition.
+
+### `.research/RESOURCES.md` (excerpt)
+
+## Authorized compute
+One CPU host, ≤ 4h for a single-split comparison. 50-seed grids are
+out of budget until a minimum decisive test exists.
+
+### Candidate (author pitch)
+
+Name: Port-Rarity Rank Window (PRRW)
+Author-claimed identity: destination-port rarity rank vs previous K
+  windows at the same site (not packet-size entropy, not payload).
+Decision rule: threshold the rarity-rank score (volume may stay as a
+  reused covariate).
+Author prediction (before any run): on the rare-burst / low-volume
+  condition, Full PRRW F1 − Mechanism-off F1 ≥ 0.08, while WES stays
+  flat. If destination-port ranks are shuffled inside the window,
+  the rare-burst lift disappears.
+Author-named control: keep windowing, threshold, and volume covariate;
+  replace rarity ranks with a permutation of ranks in that window.
+Failure condition to hit: low-volume rare-burst windows on MOCK site-A
+  (STORY Open Gap 1).
+
+See also `artifacts/prrw-spec.md` (author method note, including the
+shuffle control and the authorized 4h budget).
+
+No result artifacts in this case. The prediction above is a pre-run
+bet, not evidence.
+
+===== END MOCK =====
+
+===== AUTHOR METHOD NOTE (path: artifacts/prrw-spec.md; also on disk in this clone) =====
+# Author method note — PRRW (MOCK)
+# Pre-run. Not evidence. Not a live host.
+
+## Information
+
+Each 60s window at MOCK site-A is scored by destination-port rarity
+rank against the previous K windows at the same site.
+
+Not used: packet-size entropy, payload, future packets, test-split
+statistics, site-ID as a feature.
+
+Volume may stay as a listed covariate (complexity-budget `reuse`).
+
+K: 12 (previous windows at the same site). Obtainable from the
+site’s own recent windows.
+
+## Decision
+
+Threshold the rarity-rank score. Same windowing scaffold as WES.
+
+## Mechanism-off (author)
+
+Keep windowing, threshold, and volume covariate.
+Replace rarity ranks with a permutation of ranks **inside that
+window** (claimed component destroyed; scaffold remains).
+
+Optional later sham: rank-shaped noise with the same histogram,
+no genuine rarity order.
+
+## Falsifier (author, pre-run)
+
+On MOCK site-A low-volume rare-burst windows (STORY Open Gap 1):
+
+- If Full PRRW F1 − Mechanism-off F1 < 0.08, the rarity-rank
+  component is not doing the claimed work.
+- If WES F1 moves as much as Full PRRW under the same split, the
+  claim “new information source, not a WES retune” fails.
+- If shuffling ranks does not remove the lift, the named mechanism
+  is not isolated.
+
+## Budget
+
+RESOURCES: one CPU host, ≤ 4h, one split.
+Author still likes a 50-seed grid later; that grid is not funded
+until the single comparison exists.
+
+===== END AUTHOR METHOD NOTE =====
+
+After writing the work file, print these lines (your judgment; no prescribed token):
+WORK_FILE: <path>
+RECOMMENDED_ACTION: <one §H token>
+MECHANISM_DISTINCTION_ONE_LINE: <one line>
+FATAL_FLAW_ONE_LINE: <none or one line>
+CANONICAL_EIGHT_EDITED: yes|no
+EXP_CREATED: yes|no
