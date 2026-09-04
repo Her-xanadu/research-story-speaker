@@ -94,7 +94,7 @@ ID 格式：`EXP-001`、`EXP-002` … 可附名称 `EXP-031 — Candidate Ambigu
 
 已进入当前科研认知的外部知识。每篇重要论文：Reference、Identifier、Access、Research Problem、Core Method、Important Finding、Relation to Our Story、Relation to Experiments、Possible Inspiration、Source。字段形状见 `LITERATURE.template.md`。
 
-不要求完整文献数据库；Zotero/Web/PDF 只是获取工具。
+不要求完整文献数据库。项目侧以 `.research/LITERATURE.md` 为科研认知；可选人级 Obsidian 库经 `paper-consult` / `paper-find` / `paper-library`（`literature-research` 编排，见该 Skill）。Web 结果不等于已入库文献记忆。
 
 ### REVIEWS.md
 

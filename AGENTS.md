@@ -53,7 +53,7 @@ Framework base: v0.2.2
 | 维护文件一致性 | `research-memory` |
 | 更新 Story | `story-maintenance` |
 | 新 Core Idea / 换路线 / 高代价实验 | `idea-evaluation` |
-| 查文献 | `literature-research` |
+| 查文献 | `literature-research`（本地库优先：`paper-consult`；补库/freshness 仅 Main 调 `paper-find` → `paper-library`；见该 Skill） |
 | 设计实验 | `experiment-design` |
 | 执行实验 | `experiment-execution` |
 | 分析结果 | `result-analysis` |
@@ -68,7 +68,7 @@ Framework base: v0.2.2
 仅当任务适合 **并行、独立上下文、独立 Reviewer、大量阅读** 时派 Subagent：
 
 - `research-lead` — 独立判断下一步
-- `literature-scout` — 大量文献检索
+- `literature-scout` — 并行文献阅读（**只读** `paper-consult`；不足返回 `NEEDS_REFRESH`；不写 Vault）
 - `experiment-agent` — 实验执行
 - `result-analyst` — 与执行分离的结果解释
 - `reviewer` — 独立批判

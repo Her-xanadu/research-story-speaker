@@ -70,6 +70,8 @@
 
 八个 canonical 文件：`PROJECT` · `STORY` · `STATE` · `DISCOVERY` · `EXPERIMENTS` · `LITERATURE` · `REVIEWS` · `RESOURCES`。职责与更新顺序见 [`.agents/references/state-files.md`](.agents/references/state-files.md)；循环规则见 [`.agents/references/story-loop.md`](.agents/references/story-loop.md)。
 
+**文献两层：** 人级 Obsidian 论文库（`paper-consult` / `paper-find` / `paper-library`，在 `~/.agents/skills/`，不进本仓库）≠ 项目 `.research/LITERATURE.md`（当前科研认知）。Web 检索结果 ≠ 文献记忆；每次联网补库应沉淀到 vault，再由 `literature-research` 写入 LITERATURE。
+
 `STORY.md` 固定六段：Problem → Key Observation → Core Idea → Evidence → Boundary → Open Gaps。
 
 ### Workspace 不是代码仓库
@@ -106,7 +108,7 @@ v0.2.2 冻结（与树一致，不在 README 里「大约」）：
 | `research-loop` | 决定下一步科研 |
 | `story-maintenance` | 维护当前 Story |
 | `idea-evaluation` | 新 Core Idea、换路线、高代价实验 |
-| `literature-research` | 文献 |
+| `literature-research` | 文献（本地库优先；补库/freshness 经 `paper-find`） |
 | `experiment-design` | 实验设计 |
 | `experiment-execution` | 实验执行 |
 | `result-analysis` | 结果解释 |
