@@ -1,0 +1,9 @@
+# MOCK sanity log — EXP-010
+# Not a real host. Not Story Evidence.
+
+[2026-08-20T11:02:01Z] host=mock-host cwd=experiments/EXP-010
+[2026-08-20T11:02:01Z] python sanity.py --n 200 --source synthetic-bundle
+[2026-08-20T11:02:09Z] parsed_flows=200 nan=0 inf=0
+[2026-08-20T11:02:09Z] macro_f1=0.5100
+[2026-08-20T11:02:09Z] elapsed_s=8 exit=0
+[2026-08-20T11:02:09Z] note=chance-like F1 expected; sanity Question is finite metric only

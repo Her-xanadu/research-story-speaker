@@ -116,6 +116,7 @@ Keep three kinds under `docs/validation/` — **never** under `.research/`:
 ```text
 docs/validation/research-intelligence/cases/
 docs/validation/research-intelligence/prompt-regression/
+docs/validation/research-intelligence/live-cases/
 ```
 
 ```text
@@ -128,13 +129,42 @@ A case is a **fixture**: input files or a prompt, the behavior to observe,
 and what must / must not be written. It is not a scientific EXP and not
 a Discovery.
 
+**Agent-visible input ≠ grader rubric.** Fixtures an agent will *run*
+split as:
+
+```text
+input.md    — MOCK state, trigger, artifacts, write discipline
+grader.md   — expected action, PASS/FAIL, must-not-trigger lists
+```
+
+`input.md` must **not** contain grader phrases, including:
+
+```text
+ADVANCE is wrong
+must output REVISE
+expected action
+PASS condition
+should not trigger
+typically does not address
+```
+
+Author pitch belongs in `input.md` (adversarial sales copy is allowed).
+Facts that let a reader see a costume or a weak baseline (rename, frozen
+weight, untuned / under-capacity) live in **artifacts**, not as
+self-revealing labels in the prompt. Historical `cases/` READMEs and
+`prompt-regression/` logs are frozen evidence — **do not rewrite** them
+to leak-clean. New unleaked live fixtures go under `live-cases/`.
+
 **Held-out** cases stay sealed until the candidate is frozen. Using them
 to retune is leaking the test into the prompt.
 
 The canonical **protection** pattern is: ordinary exploratory EXP must
 stay light; do not fire every intelligence gate on a sanity rerun.
-Fixtures for that pattern belong under
-`docs/validation/research-intelligence/cases/` (none numbered yet).
+The numbered Wave F protection fixture is
+`docs/validation/research-intelligence/cases/10-ordinary-exploratory/`.
+Unleaked live input/grader for later harness runs:
+`docs/validation/research-intelligence/live-cases/case10/`.
+Do not rewrite the historical Wave F README.
 
 Examples of the three kinds (patterns, not a quota):
 
@@ -177,6 +207,31 @@ same stop condition (do not give the candidate an extra turn budget)
 If the candidate “wins” only because it was allowed to load three more
 references, that is not an instruction improvement — it is a cost
 increase. Record cost (what was loaded) as part of the comparison.
+
+**Roles.** Keep three identities distinct on every comparison write-up:
+
+```text
+candidate author  — wrote the proposed hunk
+executor          — ran baseline vs candidate on the fixtures
+scorer            — judged failure improved AND protection intact
+```
+
+Prefer **author ≠ scorer**. Prefer **different-family** plus
+**fresh-context** (field names as in `reviewer.md` header; this file
+does not copy that Reviewer contract).
+
+**Minimum:** `fresh-context` and no candidate-author chat history.
+
+If the scorer is the **same model** as the candidate author, the
+write-up **must** record:
+
+```text
+Model relation: same-model
+Context relation: fresh-context
+```
+
+and treat assurance as **lower**. Same-model scoring still ends at
+`candidate deserves review` (§F) — **never** auto-deploy.
 
 The comparison write-up lives in `docs/validation/`, next to the cases.
 It is not an Experiment record and must not use Outcome values.
@@ -227,12 +282,17 @@ a **review request**, not a merge.
 Reviewers of evolution patches check:
 
 ```text
-atomic?          one file, one behavior
-triggered?       §A actually held
-fair compare?    §D same model / context / tools / input
-regression?      failure improved, protection intact
-no Protocol fork? Outcome / Verdict / Story shape untouched
-no science mix?  nothing written into project .research/ as maintenance
+atomic?            one file, one behavior
+triggered?         §A actually held
+fair compare?      §D same model / context / tools / input
+scorer independent? author / executor / scorer named; author ≠ scorer preferred
+same-model scored? Model relation: same-model and Context relation:
+                   fresh-context recorded; assurance treated as lower
+input ≠ grader?    agent-visible input has no grader rubric (§C)
+regression?        failure improved, protection intact
+no Protocol fork?  Outcome / Verdict / Story shape untouched
+no science mix?    nothing written into project .research/ as maintenance
+no auto-deploy?    passing still means deserves review, not a merge
 ```
 
 Prefer merging a small hunk plus a link to Layer 2 over merging a new
@@ -255,6 +315,9 @@ auto-deploy.
 - “While we are here” refactors of frozen core.
 - Fixing a failure by enabling every gate (protection regression).
 - Tuning on held-out cases in the same round.
+- Scoring a candidate in the same session that authored it.
+- Putting grader rubric (expected action, PASS condition, skip-list of
+  gates) in agent-visible input.
 - Auto-merging because the comparison “passed.”
 - Treating this file as a step inside `research-loop`.
 - Storing fixtures under `.research/` so a science project carries
@@ -273,6 +336,8 @@ Work product:
 trigger evidence
 atomic candidate (diff)
 failure / protection / held-out pointers under docs/validation/
+candidate author / executor / scorer identities
+Model relation / Context relation (vs candidate author)
 baseline vs candidate write-up
 recommendation: deserves review | reject
 ```

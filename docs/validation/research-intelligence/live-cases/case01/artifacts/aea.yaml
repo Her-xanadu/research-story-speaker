@@ -1,0 +1,17 @@
+# MOCK — author-checked-in AEA config
+# Not Story Evidence. Not a live host.
+
+name: Adaptive Entropy Attention
+claimed_aggregation: attention_pooling
+token_term: packet_size_entropy
+volume_term: log_volume
+lambda: 0.3
+lambda_frozen: true
+decision: threshold
+features:
+  - packet_size_entropy
+  - log_volume
+site: MOCK-site-A
+window_s: 60
+learned_parameters: 0
+new_sensors: 0
