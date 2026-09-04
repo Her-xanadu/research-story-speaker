@@ -69,7 +69,13 @@ Wave G claim.
 ## 当前状态
 
 V0.2.1 micro-hardening is **in progress** on this branch. Gate A and Gate B have
-**not** passed. V0.2.1 live Wave G has **not** run.
+**not** passed.
+
+V0.2.1 live Wave G: G1 compact soft target **MISS** on both harnesses;
+compact retune2 still **MISS**. Routing is lighter (no proposal/diagnosis/RI
+by default) but agents still ingest full SKILL.md. Do **not** claim compact
+token success. G2/G4 **PASS**; G3 **ADVANCE PASS**; G5 **reject** (no deploy).
+Evidence: [`docs/validation/v0.2.1/wave-g/`](docs/validation/v0.2.1/wave-g/).
 
 V0.2（tag `v0.2`）在 v0.1.1 之上加 Research Intelligence Layer：6 份 Layer 2、恰好 2 个新 Skill（`idea-evaluation`、`evidence-verification`）、8 个 task prompt。FROZEN CORE 与 v0.1.1 byte-identical。根 `.research/` 仍为干净 UNINITIALIZED 模板。V0.1（`8db3b30`）与 V0.1.1（`762deb4c`）对象不变。MOCK 闭环在 `examples/mock-flow-detection/`；验证证据在 `docs/validation/`。
 
@@ -81,4 +87,4 @@ V0.2 行为证据边界（不要把指令层行数增长当成「更会推理」
 - Wave H：`skill-evolution` dogfood **reject**。
 - Case 10：Codex live **file-level PASS**（无 Idea/Evidence/Reviewer 工作文件）。agent 仍打开了 fixture README 评分段，**不是** unleaked protection。
 
-已知债务（v0.2.1）：OpenCode 实测；Case 10 / Case 01 unleaked 夹具 live；compact-path token 测量；`skill-evolution` 独立评分者 live；Gate A/B。
+已知债务（v0.2.1）：OpenCode 实测；compact token 软目标仍 MISS（agents 仍整文件读 SKILL.md）；Gate A/B。

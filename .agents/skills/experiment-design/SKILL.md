@@ -14,26 +14,48 @@ description: >-
 
 # Experiment Design
 
-Thin Skill for scientific experiment **specification** before code runs. Field
-definitions, Status, and Outcome:
-[experiment-record.md](../../references/experiment-record.md)
-(cite §Status 值 / §Outcome 值; do **not** copy those tables).
-Git layout and traceability: [git-linking.md](../../references/git-linking.md).
-Gap priority: [story-loop.md](../../references/story-loop.md).
+Thin Skill for scientific experiment **specification** before code runs.
 
 `compact` / `full` are Skill-internal modes. Never write them into STATE,
 EXPERIMENTS, Status, or Outcome.
 
-Judgment and the work-file prompt are **full design only** — do **not**
-default-load them on compact:
+## Compact (default)
 
-- [scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md)
-- [experiment-thinking.md](../../references/research-intelligence/experiment-thinking.md)
-  (A→H)
-- [experiment-proposal.md](../../prompts/experiment-proposal.md)
+Ordinary exploratory / sanity. Do **not** open `experiment-proposal.md`,
+`experiment-thinking.md` (A→H), `scientific-reasoning.md`, `git-linking.md`,
+`story-loop.md`, or `experiment-record.md`.
 
-Main still writes `EXPERIMENTS.md`. Do not delete the proposal prompt; skip
-it unless a full-design trigger matches.
+Already-planned sanity: the five in-session items are already in the EXP
+section — verify, do not rewrite.
+
+| In-session | Maps to EXPERIMENTS section |
+| --- | --- |
+| **Question** | Question |
+| **Why this matters** | Motivation |
+| **Honest baseline/comparison** | Comparisons |
+| **What observation would change next action?** | Expected outcomes (design note; else Motivation) |
+| **Data / Setup / Codebase** | Data / Setup, Code — as needed |
+
+Do **not** auto-upgrade for: single sanity, basic reproduction, extra seed,
+logging check, known-question retry, small diagnostic probe.
+
+If this Question is already `planned` in EXPERIMENTS: skip a new EXP-ID; go to
+`experiment-execution` only if code must run, else compact `result-analysis`
+of supplied artifacts.
+
+Compact persist: map the five items into the existing EXP section; no new
+canonical files, index columns, or Protocol enums. Status `planned`, Outcome
+`not-assessed`. Update STATE recommended next (`experiment-execution` if a
+run is needed). Required reads: `.research/EXPERIMENTS.md`; `STORY.md` /
+`STATE.md` only if the Question is not already on disk.
+
+**Full design — continue past the stop line only if any:** mechanism claim,
+new Core Idea, high compute, important ablation, control that isolates a
+mechanism, publication-facing comparison, high-risk split/grouping.
+
+**Stop. Do not read the rest of this file unless full-mode triggers fire.**
+
+---
 
 ## When to use
 
@@ -51,7 +73,7 @@ updating Story belief (`story-maintenance`).
 
 Produce one experiment specification. Full design should **maximally change
 current judgment** if answered — not a parameter sweep
-([story-loop.md](../../references/story-loop.md)). Compact exploratory /
+(`story-loop.md`; full design only — do not open on compact). Compact exploratory /
 sanity may be a cheap probe; still one scientific Question, still honest
 about the baseline.
 
@@ -60,24 +82,8 @@ Record in `EXPERIMENTS.md` with index row, Status `planned`, Outcome `not-assess
 ## Compact vs full (Skill-internal)
 
 Choose **before** loading `experiment-proposal.md` or experiment-thinking
-A→H. Default is **compact**.
-
-### Compact (default)
-
-Ordinary exploratory / sanity. Do **not** default-load
-[experiment-proposal.md](../../prompts/experiment-proposal.md) or walk all
-of [experiment-thinking.md](../../references/research-intelligence/experiment-thinking.md)
-A→H.
-
-In-session (map into existing EXP section fields; no new columns):
-
-| In-session | Maps to EXPERIMENTS section |
-| --- | --- |
-| **Question** | Question |
-| **Why this matters** | Motivation |
-| **Honest baseline/comparison** | Comparisons |
-| **What observation would change next action?** | Expected outcomes (design note; else Motivation) |
-| **Data / Setup / Codebase** | Data / Setup, Code — as needed |
+A→H. Default is **compact**. Compact operators are above the stop line.
+This remainder is **full design**.
 
 ### Full design — load if any
 
@@ -102,17 +108,21 @@ Stay compact. Do **not** auto-upgrade to full for:
 - known-question retry
 - small diagnostic probe
 
-Do not invent a Protocol flag for exploratory
-([scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md)
-§F — cite; compact does not boot Layer 2).
+Do not invent a Protocol flag for exploratory (`scientific-reasoning.md`
+§F — full design / Layer 2 only; do **not** open that file on compact).
 
 ## Default flow
 
 ### Compact flow (default)
 
+See **Compact (default)** above the stop line.
+
 1. **Anchor gap** — `EXPERIMENTS.md` index; `STORY.md` Open Gaps / Boundary as
    needed. STATE / DISCOVERY / PROJECT only if the Question is not already
-   on disk.
+   on disk. If this sanity Question is already `planned` in EXPERIMENTS, skip
+   creating a new EXP; do not open Full design flow; go to
+   `experiment-execution` only if code must run, else compact `result-analysis`
+   of supplied artifacts.
 2. **Check duplicates** — Do not redo a negated route without a new mechanism.
    One scientific question per EXP-ID; extend an existing section when the
    Question is already recorded (sanity / retry).
@@ -122,9 +132,9 @@ Do not invent a Protocol flag for exploratory
    the existing EXP section. Do **not** invent new canonical files, index
    columns, or Protocol enums.
 5. **Plan traceability if this EXP will run** — Planned Entry
-   `experiments/EXP-xxx/` and planned Results root `results/EXP-xxx/` per
-   [git-linking.md](../../references/git-linking.md). Do **not** invent
-   commits or results.
+   `experiments/EXP-xxx/` and planned Results root `results/EXP-xxx/` as
+   filenames in EXPERIMENTS. Do **not** open `git-linking.md` on compact.
+   Do **not** invent commits or results.
 6. **Update EXPERIMENTS.md** — Index row (`planned`, Outcome `not-assessed`,
    Story Gap phrase, Updated date) and section; leave Main Findings /
    Interpretation empty.
@@ -133,9 +143,7 @@ Do not invent a Protocol flag for exploratory
 ### Full design flow
 
 Only after a full-design trigger matches. Load
-[experiment-proposal.md](../../prompts/experiment-proposal.md) and
-[experiment-thinking.md](../../references/research-intelligence/experiment-thinking.md)
-A→H.
+`experiment-proposal.md` and `experiment-thinking.md` A→H.
 
 1. **Anchor gap** — Read `.research/STORY.md` (Open Gaps, Boundary),
    `.research/STATE.md`, relevant `DISCOVERY.md` (especially Invalidated /
@@ -145,7 +153,7 @@ A→H.
    per EXP-ID; supersede when replaced.
 3. **Assign EXP-ID** — Next sequential `EXP-NNN`; optional short title in heading.
 4. **Draft core specification** — Fill these design fields (map to section fields
-   in [experiment-record.md](../../references/experiment-record.md)):
+   in `experiment-record.md`):
 
    | Design field | Maps to EXPERIMENTS section | Content |
    | --- | --- | --- |
@@ -170,7 +178,7 @@ A→H.
 5. **Add method and setup** — Method summary, Data/Setup, planned Runs structure
    (local labels only; no global Run IDs).
 6. **Plan traceability** — Planned Entry `experiments/EXP-xxx/` and planned Results
-   root `results/EXP-xxx/` per [git-linking.md](../../references/git-linking.md).
+   root `results/EXP-xxx/` per `git-linking.md`.
    Existing baseline commits and planned result roots **may** be recorded now.
    Do **not** invent commits or results. Formal execution confirms final Git /
    Results values.
@@ -185,11 +193,12 @@ A→H.
 
 | Priority | Files |
 | --- | --- |
-| Required | `.research/EXPERIMENTS.md`; `.research/STORY.md` and `.research/RESOURCES.md` as needed |
-| Often | `.research/STATE.md`, `.research/DISCOVERY.md`, `.research/LITERATURE.md` |
-| Reference | [experiment-record.md](../../references/experiment-record.md), [git-linking.md](../../references/git-linking.md), [story-loop.md](../../references/story-loop.md) |
-| Layer 2 (full design only) | [scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md), [experiment-thinking.md](../../references/research-intelligence/experiment-thinking.md) |
-| Prompt (full design only) | [experiment-proposal.md](../../prompts/experiment-proposal.md) (Main still writes EXPERIMENTS) |
+| Required (compact) | `.research/EXPERIMENTS.md`; `.research/STORY.md` / `.research/STATE.md` only if the Question is not already on disk |
+| Do not open (compact) | `experiment-proposal.md`, `experiment-thinking.md`, `scientific-reasoning.md`, `git-linking.md`, `story-loop.md`, `experiment-record.md`, Layer-2 folder |
+| Often (full design) | `.research/STATE.md`, `.research/DISCOVERY.md`, `.research/LITERATURE.md` |
+| Reference (full design only) | `experiment-record.md`, `git-linking.md`, `story-loop.md` |
+| Layer 2 (full design only) | `scientific-reasoning.md`, `experiment-thinking.md` |
+| Prompt (full design only) | `experiment-proposal.md` (Main still writes EXPERIMENTS) |
 
 ## Updates
 
@@ -199,8 +208,7 @@ A→H.
 | `.research/STATE.md` | Active EXP, next step, blockers |
 
 Do **not** write Interpretation, `DISCOVERY.md`, or `STORY.md` here. Numbers and
-metrics belong in EXPERIMENTS after runs, not in STORY
-([state-files.md](../../references/state-files.md)).
+metrics belong in EXPERIMENTS after runs, not in STORY.
 
 ## Deviation allowed
 

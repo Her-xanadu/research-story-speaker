@@ -1,22 +1,25 @@
 # V0.2.1 Wave G
 
-Merged evidence on `v0.2.1-micro-hardening` from `v0.2.1-wave-g-codex`, `v0.2.1-wave-g-claude`, and `v0.2.1-wave-g-g3g5`. Base Gate A: `e612f8e`.
+Merged evidence on `v0.2.1-micro-hardening` from `v0.2.1-wave-g-codex`, `v0.2.1-wave-g-claude`, `v0.2.1-wave-g-g3g5`, and `v0.2.1-compact-retune` (`ee515fe` / `a81f0ca` / `f57f34b` / `f41d9ea`). Base Gate A: `e612f8e`.
 
 | ID | Verdict |
 |----|---------|
 | G1 | both harnesses **MISS** compact soft target — do not claim success |
+| G1 retune / retune2 | still **MISS**. Routing is lighter (no proposal/diagnosis/RI by default) but agents still ingest full SKILL.md |
 | G2 | **PASS** |
 | G4 | **PASS** |
 | G3 | **ADVANCE PASS** |
 | G5 | **reject** (no deploy) |
 
-Codex compact retune lives on `v0.2.1-compact-retune` and is **not** merged here.
+Do **not** claim compact token success.
 
 ## Codex live (`v0.2.1-wave-g-codex`)
 
 | Run | File | Overall |
 |-----|------|---------|
-| G1 | [g1-case10-codex.md](g1-case10-codex.md) | **MISS** compact soft target |
+| G1 | [g1-case10-codex.md](g1-case10-codex.md) | **MISS** compact soft target (62,368) |
+| G1 retune | [g1-case10-codex-retune.md](g1-case10-codex-retune.md) | **MISS** (38,009; −30% vs 54,664) |
+| G1 retune2 | [g1-case10-codex-retune2.md](g1-case10-codex-retune2.md) | **MISS** (40,321; −26% vs 54,664). Stop-fold ignored; full SKILL.md ingested |
 | G2 | [g2-case01-codex.md](g2-case01-codex.md) | **PASS** |
 | G4 | [g4-case03-codex.md](g4-case03-codex.md) | **PASS** |
 
@@ -33,6 +36,7 @@ Codex compact retune lives on `v0.2.1-compact-retune` and is **not** merged here
 | Run | Case | File | Compact tokens vs ~54,664 | Grader / judgment | Overall |
 |-----|------|------|---------------------------|-------------------|---------|
 | G1 | 10 ordinary exploratory | [g1-case10.md](g1-case10.md) | **MISS** (`input_tokens` 50,170; −8.2%) | Protection file-level **PASS** (README scoring-visible) | **MISS** (do not claim compact success) |
+| G1 retune | 10 ordinary exploratory | [g1-case10-claude-retune.md](g1-case10-claude-retune.md) | **MISS** (44,765 uncached; −18% vs 54,664) | Protection file-level **PASS** (README not Read); stop-fold **N** | **MISS** (full SKILL.md ingested) |
 | G2 | 01 cosmetic successor | [g2-case01.md](g2-case01.md) | n/a | **PASS** (`REVISE`) | **PASS** |
 | G4 | 03 weak baseline | [g4-case03.md](g4-case03.md) | n/a | **PASS** (honest-baseline `does not address`) | **PASS** |
 

@@ -2,10 +2,13 @@
 name: workspace-resume
 description: >-
   Quickly recover project context from durable workspace files and continue
-  research without restating the project. Use when a new session starts, the
-  user says continue/resume/接着做/恢复科研, an unfamiliar Agent opens the
-  workspace, chat history is missing, cold-start after switching Harness, or
-  PROJECT.md Project Status is UNINITIALIZED (first-time materialize).
+  research without restating the project. Use when PROJECT.md Project Status
+  is UNINITIALIZED (first-time materialize), or an ACTIVE session whose STATE
+  does not already name the next EXP. Use when the user says
+  continue/resume/接着做/恢复科研 and context is unknown. Do not use when PROJECT
+  is ACTIVE and STATE Recommended Next Action is already an ordinary sanity
+  or exploratory EXP — use compact experiment-design and compact
+  result-analysis instead.
 ---
 
 # Workspace Resume
@@ -18,13 +21,17 @@ Definitions: [state-files.md](../../references/state-files.md),
 
 ## When to use
 
-- First turn in a new chat or Harness; continue / resume / initialize / 接着研究.
+- First turn in a new chat or Harness **only if** STATE does not already name
+  an ordinary sanity / exploratory next EXP; continue / resume / initialize /
+  接着研究; context unknown.
 - `.research/PROJECT.md` **Project Status** is `UNINITIALIZED`.
 - No reliable chat history, but `.research/` exists; Agent handoff; context stale.
 - Before `research-loop` when context is unknown or the project is not yet `ACTIVE`.
 
 Not for file hygiene (`research-memory`) or route choice (`research-loop`) once
-the project is `ACTIVE` and the next step is already clear.
+the project is `ACTIVE` and the next step is already clear. Not for an `ACTIVE`
+ordinary sanity / exploratory EXP — use compact `experiment-design` /
+`result-analysis`.
 
 ## Goal
 

@@ -16,28 +16,48 @@ description: >-
 # Result Analysis
 
 Thin Skill for **scientific interpretation** after artifacts exist.
-Experiment fields and Outcome values:
-[experiment-record.md](../../references/experiment-record.md).
-State roles and update order: [state-files.md](../../references/state-files.md).
 
 `compact` / `full` are Skill-internal modes. Never write them into STATE,
 EXPERIMENTS, Status, or Outcome.
 
-Do **not** default-load [result-diagnosis.md](../../prompts/result-diagnosis.md)
-on compact. Keep that prompt on disk; load it only on a full-diagnosis
-trigger. [failure-diagnosis.md](../../prompts/failure-diagnosis.md) when
-technical vs scientific failure is unclear (that trigger **is** full
-diagnosis).
+## Compact (default)
 
-Judgment operators — **full diagnosis only**:
+Ordinary exploratory / sanity. Do **not** open `result-diagnosis.md`,
+`failure-diagnosis.md`, `evidence-and-claim.md`, `scientific-reasoning.md`,
+`state-files.md`, or `experiment-record.md`. Do **not** default-dispatch
+`result-analyst`.
 
-- [scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md)
-- [evidence-and-claim.md](../../references/research-intelligence/evidence-and-claim.md)
+In-session:
 
-`result-analyst` is **not** default on ordinary exploratory. In-session
-compact analysis is enough. Dispatching
-[result-analyst.md](../../subagents/result-analyst.md) **is** a full-diagnosis
-trigger.
+- **Integrity** — is the artifact usable (crash, missing metrics, obvious leak)?
+  A supplied in-prompt or `artifacts/` log that matches the already-designed
+  smoke Question (finite metric; predicted chance-like F1) **is** usable for
+  that Question. Missing code entry without a fake re-run is honest; it is
+  **not** “technical vs scientific failure unclear”.
+- **What happened** — objective Main Findings
+- **Outcome** — for ordinary sanity, typically `supports` if the smoke
+  prediction held (finite metric / exit 0), including from that supplied log;
+  else `not-assessed` only when there is no usable artifact at all
+- **What we learned** — Interpretation; do not inflate into Story Evidence
+- **Next** — smallest next action (stop, retry same Question, or a new EXP)
+
+Chance-like F1 that the design predicted is **not** an unexpected-result
+full-diagnosis trigger.
+
+Compact persist: write Main Findings, Interpretation, Outcome into EXPERIMENTS
+(section + Index). Ordinary compact analysis does **not** write DISCOVERY or
+promote a sanity result into Story Evidence. Update STATE next action.
+Required reads: `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts or
+supplied log.
+
+**Full diagnosis — continue past the stop line only if any:** unexpected
+result, high variance, mechanism attribution, Core Idea impact, Story
+Evidence candidate, technical vs scientific failure unclear, previous trusted
+evidence invalidated, high-cost EXP, or formal `result-analyst`.
+
+**Stop. Do not read the rest of this file unless full-mode triggers fire.**
+
+---
 
 ## When to use
 
@@ -58,69 +78,60 @@ and set the next research move. Analysis is **strong guidance**, not a hard gate
 but major Story changes should trigger or suggest `experiment-review`.
 
 Run success ≠ scientific success; `completed` Status does not mean hypothesis
-confirmed. Set **Outcome** per [experiment-record.md](../../references/experiment-record.md)
-§Outcome 值 (do not copy that table here).
+confirmed. Set **Outcome** from the closed set `not-assessed` / `supports` /
+`contradicts` / `null` / `inconclusive` / `invalid` (owner:
+`experiment-record.md` §Outcome 值 — do **not** copy that table; do **not**
+open that file on compact if you already know the token).
 
 ## Compact vs full (Skill-internal)
 
 Choose **before** loading `result-diagnosis.md`. Default is **compact**.
-
-### Compact (default)
-
-Ordinary exploratory / sanity. Do **not** default-load
-[result-diagnosis.md](../../prompts/result-diagnosis.md).
-
-In-session:
-
-- **Integrity** — is the artifact usable (crash, missing metrics, obvious leak)?
-- **What happened** — objective Main Findings
-- **Outcome** — [experiment-record.md](../../references/experiment-record.md)
-  §Outcome 值
-- **What we learned** — Interpretation; do not inflate into Story Evidence
-- **Next** — smallest next action (stop, retry same Question, or a new EXP)
-
-Do **not** default-dispatch `result-analyst`.
+Compact operators are above the stop line. This remainder is **full diagnosis**.
 
 ### Full diagnosis — load if
 
-Load [result-diagnosis.md](../../prompts/result-diagnosis.md) if **any**:
+Load `result-diagnosis.md` if **any**:
 
 - unexpected result
 - high variance
 - mechanism attribution
 - Core Idea impact
 - Story Evidence candidate
-- technical vs scientific failure unclear (also load
-  [failure-diagnosis.md](../../prompts/failure-diagnosis.md))
+- technical vs scientific failure unclear (also load `failure-diagnosis.md` —
+  that trigger **is** full diagnosis; ordinary sanity missing-entry + supplied
+  smoke log is **not** this trigger)
 - previous trusted evidence invalidated
 - high-cost EXP
 - formal `result-analyst` subagent
 
-Do not recopy that prompt's headings here.
+Do not recopy that prompt's headings here. Do not open those files unless a
+trigger above matches.
 
 ## Default flow
 
 ### Compact flow (default)
+
+See **Compact (default)** above the stop line.
 
 1. **Gather evidence** — Read `EXP-xxx` in `.research/EXPERIMENTS.md` (Results,
    Runs, Git, Code, current Outcome). Inspect raw artifacts; do not rely only
    on executor summaries.
 2. **In-session** — Integrity; What happened; Outcome; What we learned; Next
    (see Compact above).
-3. **Persist** — Follow **Persist Protocol** below.
+3. **Persist** — Follow **Persist Protocol** below (ordinary sanity: EXPERIMENTS
+   + STATE only; skip DISCOVERY / Story Evidence).
 
 ### Full diagnosis flow
 
 Only after a full-diagnosis trigger matches. Load
-[result-diagnosis.md](../../prompts/result-diagnosis.md) (and
-[failure-diagnosis.md](../../prompts/failure-diagnosis.md) when technical vs
+`result-diagnosis.md` (and `failure-diagnosis.md` when technical vs
 scientific failure is unclear). Walk that prompt; do not start at Story.
 
 Then **Persist Protocol** below.
 
 ### Persist Protocol (both modes)
 
-Follow [state-files.md](../../references/state-files.md) §更新顺序.
+Follow `state-files.md` §更新顺序 (open that file on full diagnosis only).
 
 1. **Update EXPERIMENTS** — Main Findings, Interpretation, Discovery Impact,
    Story Impact, Next, **Outcome**; sync Index Status, **Index Outcome**, and
@@ -130,14 +141,13 @@ Follow [state-files.md](../../references/state-files.md) §更新顺序.
    - `Status=completed` 且 `Outcome=contradicts` 或 `null` → 写入 DISCOVERY
      （Negative / Null）。
    - `completed` + `supports` → Positive。
-   - Outcome `invalid` per [experiment-record.md](../../references/experiment-record.md)
+   - Outcome `invalid` per `experiment-record.md` §Outcome 值
      — unusable for inference, **not**
      Negative Discovery.
    - Previously trusted evidence later shown unusable → DISCOVERY **Invalidated
      Findings**, not Negative Discovery. That situation is a full-diagnosis
-     trigger; cite
-     [evidence-and-claim.md](../../references/research-intelligence/evidence-and-claim.md)
-     §G when it fires.
+     trigger; cite `evidence-and-claim.md` §G when it fires (do **not** open
+     that file on compact).
    Tag `Evidence: EXP-xxx`. Do not paste full experiment text.
 3. **Update STORY if needed** — Small edits: `story-maintenance`. Large edits
    (Problem, Key Observation, Core Idea): `story-maintenance` and **suggest**
@@ -151,12 +161,13 @@ Follow [state-files.md](../../references/state-files.md) §更新顺序.
 
 | Priority | Files |
 |----------|-------|
-| Required | `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts; `.research/STORY.md` as needed |
+| Required (compact) | `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts or supplied log; `.research/STORY.md` as needed |
+| Do not open (compact) | `result-diagnosis.md`, `failure-diagnosis.md`, `evidence-and-claim.md`, `scientific-reasoning.md`, `state-files.md`, `experiment-record.md`, Layer-2 folder, `result-analyst.md` |
 | Often | `.research/DISCOVERY.md`, `.research/STATE.md`, `.research/PROJECT.md` |
-| Reference | [experiment-record.md](../../references/experiment-record.md), [state-files.md](../../references/state-files.md), [story-loop.md](../../references/story-loop.md) |
-| Layer 2 (full diagnosis only) | [scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md), [evidence-and-claim.md](../../references/research-intelligence/evidence-and-claim.md) |
-| Prompts (full diagnosis only) | [result-diagnosis.md](../../prompts/result-diagnosis.md), [failure-diagnosis.md](../../prompts/failure-diagnosis.md) when failure class is unclear |
-| Subagent (not ordinary-exploratory default) | [result-analyst.md](../../subagents/result-analyst.md) |
+| Reference (full diagnosis only) | `experiment-record.md`, `state-files.md`, `story-loop.md` |
+| Layer 2 (full diagnosis only) | `scientific-reasoning.md`, `evidence-and-claim.md` |
+| Prompts (full diagnosis only) | `result-diagnosis.md`, `failure-diagnosis.md` when failure class is unclear |
+| Subagent (not ordinary-exploratory default) | `result-analyst.md` |
 
 ## Updates
 
