@@ -72,35 +72,34 @@ Ask *where* the method actually changes. Typical axes — use only those
 that apply; do not score all of them:
 
 ```text
-information source
-selection rule
-objective
+information
 representation
-optimization
+objective
+optimization / training dynamics
 aggregation
-architecture
-decision policy
-training dynamics
+decision process
 ```
 
-A real identity shift is a change in **what information is used or how
-decisions are made**, plus a prediction that would fail if that change
-were removed.
+A **real mechanism shift** is a non-cosmetic change in information,
+representation, objective, optimization/training dynamics, aggregation,
+or decision process, paired with a falsifiable prediction that
+distinguishes the claimed axis from the closest rival.
 
 Then check whether the “new method” is only cosmetic:
 
 | Costume | Tell |
 |---------|------|
-| **renaming** | Same information flow and decision rule; new noun in the diagram |
-| **fixed weight** | A coefficient frozen or hand-set; no new selection or information |
+| **renaming** | Same claimed axis as the rival; new noun in the diagram |
+| **fixed weight** | A coefficient frozen or hand-set; no new §C axis |
 | **extra hyperparameter** | A knob any method could grow; the claim is “we tuned” |
 | **component stacking** | Unchanged parts concatenated; neither part is the claim |
 | **post-hoc routing** | Hard cases sent elsewhere after errors are seen; the router is not the mechanism |
 | **cosmetic objective rewrite** | Algebraically equivalent loss, or a rename of the same training signal |
 
-If the only honest difference is a name, a frozen coefficient, or an extra
-knob, **mechanism identity is weak**. Do not ADVANCE a Core Idea on that
-basis. Stacking unchanged parts is still stacking.
+If the only honest difference is a **rename**, a **fixed weight**, an
+**extra knob**, or a **cosmetic objective rewrite**, **mechanism identity
+is weak**. Do not ADVANCE a Core Idea on that basis. Stacking unchanged
+parts is still stacking.
 
 Identity is not “we drew a new box.” Identity is the axis a closest-work
 paper would have to match to threaten novelty (§E).
@@ -149,10 +148,10 @@ method beats an unread bibliography. If novelty matters (new Core Idea,
 publication-facing claim, literature conflict), escalate to
 `deep-literature-mode.md` instead of guessing.
 
-If the closest work already implements the same information flow and
-decision rule, the Idea is a **novelty threat** even if the diagram looks
-new. REVISE the identity or PARK until a real axis is named. A different
-dataset with the same mechanism is usually not a new mechanism.
+If the closest work already implements the same claimed §C axis, the Idea
+is a **novelty threat** even if the diagram looks new. REVISE the identity
+or PARK until a distinguishing axis is named. A different dataset with the
+same mechanism is usually not a new mechanism.
 
 Closest-work is an axis comparison, not a survey deliverable. Do not turn
 this section into a mandatory deep literature pass.
@@ -189,8 +188,8 @@ If **yes**, the innovative mechanism has not been identified. The Idea is
 cosmetic or under-specified. Do not treat an ablation that *must* change
 nothing as evidence of contribution.
 
-If deletion would remove the information source or decision rule named in
-§C, identity is at least coherent — then design the minimum test in §H.
+If deletion would remove the claimed §C axis, identity is at least
+coherent — then design the minimum test in §H.
 
 Deletion is the identity check. Parameter sweeps are not a deletion test.
 Turning a weight from 0.7 to 0.3 is not deletion. Replacing the claimed

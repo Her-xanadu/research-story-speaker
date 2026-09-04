@@ -1,6 +1,7 @@
 # Reviews
 
-> 从本模板创建 `.research/REVIEWS.md`。完整 Review 在 `.research/reviews/EXP-xxx/`。
+> 从本模板创建 `.research/REVIEWS.md`。这是 Review **索引 + 当前摘要**，不是一份 Reviewer artifact。
+> 完整 Review 在 `.research/reviews/EXP-xxx/`。`Provenance: raw | synthesis` 只描述那些 review 文件（见 reviewer.md），不用于本索引。
 > Verdict: <per reviewer.md> — [reviewer.md](../subagents/reviewer.md)。本模板不复述词表。
 
 ## Review Policy
