@@ -1,0 +1,16 @@
+I've read the judgment owner, the candidate hunk, and all comparison artifacts. Applying §E (both conjuncts required) and §A (trigger must actually hold):
+
+```
+RECOMMENDATION: reject
+TRIGGER_HOLDS: no
+FAILURE_IMPROVED: no
+PROTECTION_INTACT: vacuous
+HELD_OUT_CASE02_REGRESSION: no
+AUTO_DEPLOY: no
+CANONICAL_SKILLS_MODIFIED: no
+MODEL_RELATION: different-family
+CONTEXT_RELATION: fresh-context
+ONE_PARAGRAPH_RATIONALE: The candidate tightens Decision-logic item 8 (ADVANCE only when the gate itself, not the author, finds the deletion test passes), but the failure run shows the baseline already emits REVISE on the VAEG costume fixture — the candidate's only observable delta is that its work file mentions item 8; Recommended Action, identity judgment, and no-EXP are identical. That means §A's deterministic reproducer does not hold (the current instruction does not produce the miss) and §E's first conjunct (improve the target failure) fails, so the change is not shippable. Protection (Case 10) passes but only vacuously, since item 8 sits after the When-to-use gate and is unreachable on the ordinary-exploratory path, so it cannot regress it nor carry weight. Held-out Case 02 (PRRW) is not regressed: the hunk text still permits ADVANCE whenever the gate finds a genuine information-source deletion test (shuffle-ranks) passes, which PRRW satisfies, so it is not rendered never-ADVANCE.
+```
+
+Roles recorded — candidate author: historical Wave H operator (Grok family), present only under `candidate/`; executor: historical Wave H comparison (same model/tools/fixture, `failure/` + `protection/`); scorer: this session (fresh context, no author chat history, different model family).
