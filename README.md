@@ -1,6 +1,6 @@
 # research-story-speaker
 
-Framework base: v0.2 — 纯文件、纯提示词的 Story 驱动自动化科研框架。
+Framework base: v0.2.1-in-progress — 纯文件、纯提示词的 Story 驱动自动化科研框架。
 
 ## Quick Start
 
@@ -59,16 +59,21 @@ Workspace Git 与科研代码 Git 是两个概念。升级时**只合并框架�
 
 ## 跨 Harness
 
+Harness matrix below is **V0.2 tag** evidence, not a V0.2.1 Gate A/B or live
+Wave G claim.
+
 - UNINITIALIZED cold-start portability: validated on Codex, Claude Code, Cursor, and DeepSeek Harness.
 - Initialized write/handoff portability: validated on Codex → Claude Code.
-- Research Intelligence live: Codex and Claude Code (Wave G / E-B1 / Case 10); Cursor / DSH not re-run for V0.2 gates.
 - OpenCode: documentation-only, not tested.
 
 ## 当前状态
 
-V0.2（本 tag）在 v0.1.1 之上加 Research Intelligence Layer：6 份 Layer 2、恰好 2 个新 Skill（`idea-evaluation`、`evidence-verification`）、8 个 task prompt。FROZEN CORE 与 v0.1.1 byte-identical。根 `.research/` 仍为干净 UNINITIALIZED 模板。V0.1（`8db3b30`）与 V0.1.1（`762deb4c`）对象不变。MOCK 闭环在 `examples/mock-flow-detection/`；验证证据在 `docs/validation/`。
+V0.2.1 micro-hardening is **in progress** on this branch. Gate A and Gate B have
+**not** passed. V0.2.1 live Wave G has **not** run.
 
-行为证据边界（不要把指令层行数增长当成「更会推理」）：
+V0.2（tag `v0.2`）在 v0.1.1 之上加 Research Intelligence Layer：6 份 Layer 2、恰好 2 个新 Skill（`idea-evaluation`、`evidence-verification`）、8 个 task prompt。FROZEN CORE 与 v0.1.1 byte-identical。根 `.research/` 仍为干净 UNINITIALIZED 模板。V0.1（`8db3b30`）与 V0.1.1（`762deb4c`）对象不变。MOCK 闭环在 `examples/mock-flow-detection/`；验证证据在 `docs/validation/`。
+
+V0.2 行为证据边界（不要把指令层行数增长当成「更会推理」；亦不要当成 V0.2.1 live）：
 
 - Gate D：10 个 case 对 v0.1.1 的 **instruction dry-read**（不是 live）。
 - Wave G live：harness 可移植、输出形状、写纪律。2026-09-04 05:31 T1/T2 判断类 PASS 为 **contaminated**（评分规则进了 agent prompt）。
@@ -76,4 +81,4 @@ V0.2（本 tag）在 v0.1.1 之上加 Research Intelligence Layer：6 份 Layer 
 - Wave H：`skill-evolution` dogfood **reject**。
 - Case 10：Codex live **file-level PASS**（无 Idea/Evidence/Reviewer 工作文件）。agent 仍打开了 fixture README 评分段，**不是** unleaked protection。
 
-已知债务（v0.2.1）：OpenCode 实测；Case 10 / Case 01 unleaked 夹具；Claude live 读文件轨迹；`skill-evolution` 评分者独立性；deep-lit 预算行；元规则复制收敛。
+已知债务（v0.2.1）：OpenCode 实测；Case 10 / Case 01 unleaked 夹具 live；compact-path token 测量；`skill-evolution` 独立评分者 live；Gate A/B。

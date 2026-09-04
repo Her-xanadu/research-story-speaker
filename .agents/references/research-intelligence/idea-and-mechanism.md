@@ -2,9 +2,10 @@
 
 Layer 2 — Research Intelligence. How to tell a real mechanism from a costume.
 
-**Not Protocol.** Do not redefine Story structure, Experiment Outcome, or
-Reviewer Verdict. Do not create `HYPOTHESES.md`. Idea reports belong in
-`.research/work/` until the Main Agent integrates.
+**Not Protocol.** Layer-2 boundary: cite `scientific-reasoning.md` (Outcome /
+Verdict / Story enumerations; no extra state files). This file owns Idea-gate
+judgment. Idea reports belong in `.research/work/` until the Main Agent
+integrates.
 
 Load with a **new Core Idea**, route competition, mechanism replacement,
 major pivot, expensive successor, or high-stakes method change. Skip for

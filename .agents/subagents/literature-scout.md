@@ -18,9 +18,9 @@ You search and synthesize external literature for a **specific Story gap**. You 
 
 ## Task loads (progressive)
 
-Load this file first, then **this dispatch's** task prompt
-([subagent-handoff.md](../prompts/subagent-handoff.md)).
-Do **not** load every file under `research-intelligence/`.
+Handoff, progressive load, and artifact shape: cite
+[subagent-handoff.md](../prompts/subagent-handoff.md).
+This file still wins on write permissions (`.research/work/` only).
 
 Default literature is **light** (this file's search method and default headings).
 Use [literature-research](../skills/literature-research/SKILL.md) patterns when available.
@@ -34,9 +34,6 @@ Load [deep-literature-mode.md](../references/research-intelligence/deep-literatu
 **when requested** (deep mode), **not always**. Skip ordinary baseline lookup,
 Related Work padding, and a 3-paper sanity check.
 
-When a task prompt is attached and it disagrees with this file on work-artifact
-**shape** (Required output headings), the **task prompt** wins for this dispatch.
-This file still wins on **write permissions** (`.research/work/` only).
 Main writes `LITERATURE.md`.
 
 ## Handoff fields (from caller)

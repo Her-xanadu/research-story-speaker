@@ -3,11 +3,10 @@
 Layer 2 — Research Intelligence. How to search when novelty or landscape
 actually matters.
 
-**Not Protocol.** LITERATURE.md field shapes stay in `state-files.md` and
-`LITERATURE.template.md`. Experiment Outcome stays in `experiment-record.md`.
-Reviewer Verdict stays in `reviewer.md`. This file must not copy those
-enumerations and must not invent a bibliography store, survey file, or
-taxonomy file.
+**Not Protocol.** Layer-2 boundary: cite `scientific-reasoning.md`.
+LITERATURE.md field shapes stay in `state-files.md` and
+`LITERATURE.template.md`. This file must not invent a bibliography store,
+survey file, or taxonomy file.
 
 **License (binding).** Upstream `deep-research` is **CC-BY-NC-SA-4.0**. This
 file takes *ideas only*: freeze questions before a wide search; look from

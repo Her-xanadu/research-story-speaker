@@ -74,8 +74,8 @@ In-session:
 
 - **Integrity** — is the artifact usable (crash, missing metrics, obvious leak)?
 - **What happened** — objective Main Findings
-- **Outcome** — cite [experiment-record.md](../../references/experiment-record.md)
-  §Outcome 值; do not copy that table
+- **Outcome** — [experiment-record.md](../../references/experiment-record.md)
+  §Outcome 值
 - **What we learned** — Interpretation; do not inflate into Story Evidence
 - **Next** — smallest next action (stop, retry same Question, or a new EXP)
 
@@ -131,7 +131,7 @@ Follow [state-files.md](../../references/state-files.md) §更新顺序.
      （Negative / Null）。
    - `completed` + `supports` → Positive。
    - Outcome `invalid` per [experiment-record.md](../../references/experiment-record.md)
-     §Outcome 值 (cite; do not copy that table) — unusable for inference, **not**
+     — unusable for inference, **not**
      Negative Discovery.
    - Previously trusted evidence later shown unusable → DISCOVERY **Invalidated
      Findings**, not Negative Discovery. That situation is a full-diagnosis

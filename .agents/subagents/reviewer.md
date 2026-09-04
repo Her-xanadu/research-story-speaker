@@ -103,7 +103,8 @@ Pick **one** active review prompt (already named above):
 [result-review.md](../prompts/result-review.md).
 
 Optional Layer 2 for **this** review type only — do not recopy those lenses
-here, and do not load every file under `research-intelligence/`:
+here. Progressive load: cite
+[subagent-handoff.md](../prompts/subagent-handoff.md) (do not preload all RI).
 
 - [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md)
   and [evidence-and-claim.md](../references/research-intelligence/evidence-and-claim.md)

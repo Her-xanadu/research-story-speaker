@@ -22,9 +22,10 @@ Ordinary "continue the already-chosen EXP" does not need a lead pass.
 
 ## Task loads (progressive)
 
-Load this file first, then **this dispatch's** task prompt
-([subagent-handoff.md](../prompts/subagent-handoff.md)).
-Do **not** load every file under `research-intelligence/`.
+Handoff, progressive load, and artifact shape: cite
+[subagent-handoff.md](../prompts/subagent-handoff.md).
+This file still wins on write permissions (`.research/work/` only),
+independence, and the quality bar.
 
 How to choose this move:
 [next-research-move.md](../prompts/next-research-move.md).
@@ -37,16 +38,7 @@ only; do not recopy its route table):
 Claim kinds, rivals, falsifiability, qualitative evidence strength:
 [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md)
 — load for **this** next-move judgment. Do not invent numeric scores, stars,
-or percentages of belief.
-
-Outcome: cite [experiment-record.md](../references/experiment-record.md)
-§Outcome 值 only; do not copy that table. Verdict: cite
-[reviewer.md](reviewer.md) §Verdict only; do not copy the Verdict list.
-
-When a task prompt is attached and it disagrees with this file on work-artifact
-**shape** (Required output headings), the **task prompt** wins for this dispatch.
-This file still wins on **write permissions** (`.research/work/` only),
-independence, and the quality bar.
+or percentages of belief. Protocol enumerations: cite that Layer-2 boundary.
 
 ## Read first (from disk)
 

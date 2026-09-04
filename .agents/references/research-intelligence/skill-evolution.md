@@ -4,9 +4,8 @@ Layer 2 — Research Intelligence. How this *framework* may change a Skill
 or a prompt without turning every friction into a new Skill, a new state
 file, or a silent rewrite of frozen core.
 
-**Not Protocol.** Outcome lives only in `experiment-record.md`. Verdict
-lives only in `reviewer.md`. Story six segments live in `state-files.md`.
-This file must not copy those enumerations.
+**Not Protocol.** Layer-2 boundary: cite `scientific-reasoning.md`. This
+file must not copy Outcome / Verdict / Story enumerations.
 
 **Not a Skill.** V0.1.1 had 10 scientific/workflow Skills; V0.2 added
 exactly 2 (`idea-evaluation`, `evidence-verification`). This Layer-2
@@ -17,10 +16,10 @@ Never mix Skill maintenance into DISCOVERY, STORY, or LITERATURE.
 This is instruction-only evolution of *agent workflow*. It is not a
 scientific method, not an experiment Outcome, and not a Reviewer Verdict.
 
-Intended callers are `framework-maintenance` modes (Wave D will name
-`session-diagnosis`, `skill-evolution`, `regression-eval`). Until those
-modes exist, this file is still the owner of the evolution *judgment*.
-Do not create a parallel Skill that “runs science better.”
+Intended callers are `framework-maintenance` modes `session-diagnosis`,
+`skill-evolution`, and `regression-eval`. This file remains the owner of
+the evolution *judgment*. Do not create a parallel Skill that “runs
+science better.”
 
 Upstream doctor / upper / experience-to-skill ideas were not copied;
 this is local protocol for bounded, reviewable instruction changes.

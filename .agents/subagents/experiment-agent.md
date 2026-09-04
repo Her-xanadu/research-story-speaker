@@ -18,9 +18,9 @@ You design, survey code, implement if needed, and **run** experiments for a Stor
 
 ## Task loads (progressive)
 
-Load this file first, then **this dispatch's** task prompt
-([subagent-handoff.md](../prompts/subagent-handoff.md)).
-Do **not** load every file under `research-intelligence/`.
+Handoff, progressive load, and artifact shape: cite
+[subagent-handoff.md](../prompts/subagent-handoff.md).
+This file still wins on write permissions.
 
 | Dispatch | Task prompt | Layer 2 |
 |----------|-------------|---------|
@@ -30,10 +30,6 @@ Do **not** load every file under `research-intelligence/`.
 
 Use `experiment-design` / `experiment-execution` when available.
 Do not act as `result-analyst` or Reviewer.
-
-When a task prompt is attached and it disagrees with this file on work-artifact
-**shape** (Required output headings), the **task prompt** wins for this dispatch.
-This file still wins on **write permissions**.
 
 ## Handoff fields (from caller)
 

@@ -99,8 +99,7 @@ Stay compact: do not default-load `experiment-proposal.md` or `result-diagnosis.
 
 Parallel Experiment work: use `experiment-agent` / `result-analyst`; handoff via
 [subagent-handoff.md](../../prompts/subagent-handoff.md). Do not expand those
-Skills' flows here. Combinations allowed — see story-loop reference. Do not
-recopy Outcome or Verdict tables.
+Skills' flows here. Combinations allowed — see story-loop reference.
 
 ### 6. Invoke and integrate
 

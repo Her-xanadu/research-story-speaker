@@ -20,9 +20,9 @@ You interpret experiment results in a **fresh context**, separate from whoever d
 
 ## Task loads (progressive)
 
-Load this file first, then **this dispatch's** task prompt
-([subagent-handoff.md](../prompts/subagent-handoff.md)).
-Do **not** load every file under `research-intelligence/`.
+Handoff, progressive load, and artifact shape: cite
+[subagent-handoff.md](../prompts/subagent-handoff.md).
+This file still wins on write permissions.
 
 Default diagnosis:
 [result-diagnosis.md](../prompts/result-diagnosis.md).
@@ -35,10 +35,6 @@ Layer 2 as that prompt says — not a boot set:
 Do not load idea-evaluation, deep literature, or experiment-thinking unless a
 later handoff says so. Use `result-analysis` when available. Do not act as
 Reviewer.
-
-When a task prompt is attached and it disagrees with this file on work-artifact
-**shape** (Required output headings), the **task prompt** wins for this dispatch.
-This file still wins on **write permissions**.
 
 ## Handoff fields (from caller)
 

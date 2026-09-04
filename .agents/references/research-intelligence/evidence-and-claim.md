@@ -3,18 +3,16 @@
 Layer 2 — Research Intelligence. How to match artifacts to claims without
 lying with files.
 
-**Not Protocol.** Experiment Outcome remains only in `experiment-record.md`.
-Reviewer Verdict remains only in `reviewer.md`. Story six segments remain in
-`state-files.md`. Do not add `RUBRIC.md`, `CLAIMS.md`, or `FINDINGS.md`.
+**Not Protocol.** Layer-2 boundary: cite `scientific-reasoning.md`. This file
+owns evidence-matching operators. §F labels are **verification-report
+labels**, not Outcome.
 
 Load when a result might enter Story Evidence, when a mechanism is claimed,
-before high-stakes result review, or at READY_FOR_WRITING. Do **not** load
-for every exploratory sanity metric. Do not load on every cold start.
+before high-stakes result review, or at READY_FOR_WRITING. Skip every
+exploratory sanity metric.
 
 Objects and claim kinds: `scientific-reasoning.md`. Units and controls used
 when asking “does this metric answer this?”: `experiment-thinking.md`.
-
-§F labels are **verification-report labels**. They are not Outcome.
 
 ---
 

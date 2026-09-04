@@ -2,20 +2,22 @@
 
 Layer 2 — Research Intelligence. How a careful researcher thinks.
 
-**Not Protocol.** This file owns scientific *objects* and *speech
-calibration*. It does not own workspace enumerations.
+**Not Protocol (Layer-2 boundary; other RI files cite this paragraph).**
+This file owns scientific *objects* and *speech calibration*. It does not
+own workspace enumerations.
 
 - Experiment Outcome values live only in `experiment-record.md` §Outcome 值.
 - Reviewer Verdict lives only in `reviewer.md` §Verdict.
 - Story's six segments live only in `state-files.md`.
-
-Do not copy those lists into this file. Do not add `HYPOTHESES.md`. Do not
-create a second Outcome table “for convenience.”
+Do not copy those lists into Layer 2. Do not add extra canonical state files
+(`HYPOTHESES.md`, `RUBRIC.md`, `CLAIMS.md`, `FINDINGS.md`, `SURVEY.md`).
+Do not create a second Outcome table “for convenience.”
 
 Load when constructing hypotheses, attributing a mechanism, splitting a
 Story into claim kinds, or calibrating how strongly to speak. Do **not**
-load on every cold start, and do not load for a one-line sanity rerun
-whose question is already on disk.
+preload this file or the rest of `research-intelligence/` on every cold
+start or loop iteration (`AGENTS.md` Skill Routing; `research-loop`).
+Skip a one-line sanity rerun whose question is already on disk.
 
 ---
 

@@ -2,14 +2,14 @@
 
 Layer 2 — Research Intelligence. How to design a test that can change belief.
 
-**Not Protocol.** Canonical EXP fields, Status, Outcome, and Experiment vs Run
-live only in `experiment-record.md`. Git binding lives in `git-linking.md`.
-This file teaches *design reasoning*. It does not add state files, columns, or
-enums.
+**Not Protocol.** Layer-2 boundary: cite `scientific-reasoning.md`. This file
+teaches *design reasoning*. Canonical EXP fields, Status, Outcome, and
+Experiment vs Run: `experiment-record.md`. Git binding: `git-linking.md`.
+It does not add state files, columns, or enums.
 
 Load when specifying a new EXP, a serious ablation, or a control that must
-isolate a mechanism. Skip for a one-line sanity rerun whose Question is already
-on disk. Do not load on every cold start.
+isolate a mechanism. Skip a one-line sanity rerun whose Question is already
+on disk.
 
 Objects and rivals: `scientific-reasoning.md`. Mechanism identity and the
 smallest Idea-level test: `idea-and-mechanism.md`. After artifacts exist:
