@@ -30,25 +30,28 @@ Ordinary exploratory / sanity. Do **not** open `result-diagnosis.md`,
 In-session:
 
 - **Integrity** — is the artifact usable (crash, missing metrics, obvious leak)?
-  A supplied in-prompt or `artifacts/` log that matches the already-designed
-  smoke Question (finite metric; predicted chance-like F1) **is** usable for
-  that Question. Missing code entry without a fake re-run is honest; it is
+  An operator-supplied log or pre-existing result file that answers the
+  already-designed sanity prediction (finite metric) **is** usable for that
+  Question. Missing code entry without a fake re-run is honest; it is
   **not** “technical vs scientific failure unclear”.
 - **What happened** — objective Main Findings
 - **Outcome** — for ordinary sanity, typically `supports` if the smoke
   prediction held (finite metric / exit 0), including from that supplied log;
-  else `not-assessed` only when there is no usable artifact at all
+  else `not-assessed` only when there is no usable artifact at all. If the
+  artifact is usable but the prediction did **not** hold, that is **not**
+  compact-`supports` — unexpected result → full diagnosis, then the Protocol
+  Outcome that path would use (do not invent a token).
 - **What we learned** — Interpretation; do not inflate into Story Evidence
 - **Next** — smallest next action (stop, retry same Question, or a new EXP)
 
-Chance-like F1 that the design predicted is **not** an unexpected-result
-full-diagnosis trigger.
+A result that matches the already-designed sanity prediction is **not** an
+unexpected-result full-diagnosis trigger.
 
 Compact persist: write Main Findings, Interpretation, Outcome into EXPERIMENTS
 (section + Index). Ordinary compact analysis does **not** write DISCOVERY or
 promote a sanity result into Story Evidence. Update STATE next action.
 Required reads: `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts or
-supplied log.
+operator-supplied log / pre-existing result file.
 
 **Full diagnosis — continue past the stop line only if any:** unexpected
 result, high variance, mechanism attribution, Core Idea impact, Story
@@ -78,10 +81,8 @@ and set the next research move. Analysis is **strong guidance**, not a hard gate
 but major Story changes should trigger or suggest `experiment-review`.
 
 Run success ≠ scientific success; `completed` Status does not mean hypothesis
-confirmed. Set **Outcome** from the closed set `not-assessed` / `supports` /
-`contradicts` / `null` / `inconclusive` / `invalid` (owner:
-`experiment-record.md` §Outcome 值 — do **not** copy that table; do **not**
-open that file on compact if you already know the token).
+confirmed. Set **Outcome** per `experiment-record.md` §Outcome 值 (do not copy
+that table).
 
 ## Compact vs full (Skill-internal)
 
@@ -104,8 +105,7 @@ Load `result-diagnosis.md` if **any**:
 - high-cost EXP
 - formal `result-analyst` subagent
 
-Do not recopy that prompt's headings here. Do not open those files unless a
-trigger above matches.
+Do not recopy that prompt's headings here.
 
 ## Default flow
 
@@ -146,13 +146,12 @@ Follow `state-files.md` §更新顺序 (open that file on full diagnosis only).
      Negative Discovery.
    - Previously trusted evidence later shown unusable → DISCOVERY **Invalidated
      Findings**, not Negative Discovery. That situation is a full-diagnosis
-     trigger; cite `evidence-and-claim.md` §G when it fires (do **not** open
-     that file on compact).
+     trigger; cite `evidence-and-claim.md` §G when it fires.
    Tag `Evidence: EXP-xxx`. Do not paste full experiment text.
 3. **Update STORY if needed** — Small edits: `story-maintenance`. Large edits
-   (Problem, Key Observation, Core Idea): `story-maintenance` and **suggest**
-   `experiment-review` on the triggering EXP. Ordinary compact analysis does
-   **not** promote a sanity result into Story Evidence.
+  (Problem, Key Observation, Core Idea): `story-maintenance` and **suggest**
+  `experiment-review` on the triggering EXP. Ordinary compact analysis does
+  **not** promote a sanity result into Story Evidence.
 4. **Update STATE** — Current gap, active/next experiment, blockers, file pointers.
 5. **Chain** — Clear next test → `experiment-design` or `experiment-execution`;
    contested evidence → `experiment-review`; routine compaction → `research-memory`.
@@ -162,7 +161,7 @@ Follow `state-files.md` §更新顺序 (open that file on full diagnosis only).
 | Priority | Files |
 |----------|-------|
 | Required (compact) | `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts or supplied log; `.research/STORY.md` as needed |
-| Do not open (compact) | `result-diagnosis.md`, `failure-diagnosis.md`, `evidence-and-claim.md`, `scientific-reasoning.md`, `state-files.md`, `experiment-record.md`, Layer-2 folder, `result-analyst.md` |
+| Do not open (compact) | See **Compact (default)** |
 | Often | `.research/DISCOVERY.md`, `.research/STATE.md`, `.research/PROJECT.md` |
 | Reference (full diagnosis only) | `experiment-record.md`, `state-files.md`, `story-loop.md` |
 | Layer 2 (full diagnosis only) | `scientific-reasoning.md`, `evidence-and-claim.md` |

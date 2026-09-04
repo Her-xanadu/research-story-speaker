@@ -20,15 +20,18 @@ EXPERIMENTS, Status, or Outcome.
 Do **not** open `failure-diagnosis.md`, `experiment-record.md`, or
 `git-linking.md`.
 
-If the designed entry is missing and a supplied MOCK / `artifacts/` log
-answers the smoke Question: record that mechanical fact (do **not** fake a
-re-run). That is **not** bounded debug. Hand off to compact `result-analysis`.
+If the designed entry is missing and an operator-supplied log or
+pre-existing result file answers the smoke Question: record that mechanical
+fact (do **not** fake a re-run). That is **not** bounded debug. Hand off to
+compact `result-analysis`.
 
 Compact persist: fill Runs / Results / mechanical Main Findings from the
-supplied log. Do **not** assign a scientific Outcome here — keep
-`not-assessed` until `result-analysis`. Do **not** update `DISCOVERY.md` or
-`STORY.md`. Required reads: `.research/EXPERIMENTS.md` (target `EXP-xxx`),
-`.research/RESOURCES.md`.
+operator-supplied log / pre-existing result file. Record provenance in Runs /
+Results: path, and that it was not this-run compute. Provenance unknown → keep
+Outcome `not-assessed` and put a STATE blocker. Do **not** assign a scientific
+Outcome here — keep `not-assessed` until `result-analysis`. Do **not** update
+`DISCOVERY.md` or `STORY.md`. Required reads: `.research/EXPERIMENTS.md`
+(target `EXP-xxx`), `.research/RESOURCES.md`.
 
 **Full / real-run path — continue past the stop line only if** you must
 implement, freeze a git commit, execute a real run, recover a stale codebase
@@ -55,16 +58,16 @@ Implement and run the experiment, preserve a recoverable code–result chain, an
 the experiment record with mechanical facts. **Running successfully is not scientific
 success** — exit code zero or metric movement does not validate the Story; leave
 interpretation and Outcome assessment to `result-analysis`. Binding fields and
-stale-path recovery follow `git-linking.md` when you actually freeze a commit
-(do **not** open it on ordinary sanity). This Skill freezes the commit before
-runs and writes recovered paths into `EXPERIMENTS.md` afterward.
+stale-path recovery follow `git-linking.md` when you actually freeze a commit.
+This Skill freezes the commit before runs and writes recovered paths into
+`EXPERIMENTS.md` afterward.
 
 ## Default flow
 
 1. **Resolve codebase** — Read `.research/RESOURCES.md` by Codebase ID from the
    `EXP-xxx` section. If the path is stale, recover it only via
    `git-linking.md` §路径恢复五步法 (open that file then). Never assume
-   CWD is the code repo. Ordinary sanity with a supplied log: do not open it.
+   CWD is the code repo.
 2. **Verify Git** — Confirm repo identity (`git remote -v`), branch, working tree.
    Workspace Git and code Git are independent repositories.
 3. **Align with record** — Read `EXP-xxx` in `.research/EXPERIMENTS.md`: Question,
@@ -72,19 +75,18 @@ runs and writes recovered paths into `EXPERIMENTS.md` afterward.
    `.research/STORY.md` for gap context only — do not edit Story here.
 4. **Implement** — Prefer shared `src/`; experiment entry `experiments/EXP-xxx/`;
    results `results/EXP-xxx/`. Do not duplicate entire repos per EXP-ID
-   (`git-linking.md` §推荐代码布局（§15） — open when implementing, not on
-   sanity log-only).
+   (`git-linking.md` §推荐代码布局（§15） — open when implementing).
 5. **Freeze commit** — Before formal runs, commit or record recoverable SHA. Bind
    the run in `EXPERIMENTS.md` using the fields in `git-linking.md`
    §每个正式 Experiment 的最小绑定 (open that file when freezing).
    Confirm any design-time baseline commit / planned result root against the actual
    run. Multi-commit retries: document Initial / Fix / Valid runs per git-linking.
-   Ordinary sanity with a supplied log and no code run: skip this step.
+   Ordinary sanity with an operator-supplied log and no code run: skip this step.
 6. **Execute runs** — Distinguish Experiment (scientific unit) from Run (one execution).
    Log seeds, retries, host, and commit per run in the Runs field — no global Run ID.
    On engineering failure of a real run, follow **Bounded debug** below; do not
-   start a sweep. Ordinary sanity missing-entry plus a supplied smoke log: skip
-   Bounded debug; hand off to compact `result-analysis`.
+   start a sweep. Ordinary sanity missing-entry plus an operator-supplied log:
+   skip Bounded debug; hand off to compact `result-analysis`.
 7. **Save artifacts** — Record result paths (relative, absolute, or `host:path`). Ensure
    a stranger can navigate: EXPERIMENTS → RESOURCES → repo → Entry → Results.
 8. **Update EXPERIMENTS** — Set Status (`running` / `completed` / `failed`);
@@ -94,16 +96,16 @@ runs and writes recovered paths into `EXPERIMENTS.md` afterward.
    Discovery Impact, Story Impact for `result-analysis`.
 9. **Update STATE** — Active experiment, blockers, recommended next (`result-analysis`
    when results exist).
-10. **Hand off** — When runs finish (or a supplied sanity log is the artifact),
-    continue with compact `result-analysis`. Do **not** default-dispatch
-    `result-analyst`. Suggest `experiment-review` only when stakes warrant.
+10. **Hand off** — When runs finish (or an operator-supplied log / pre-existing
+    result file is the artifact), continue with compact `result-analysis`. Do
+    **not** default-dispatch `result-analyst`. Suggest `experiment-review` only
+    when stakes warrant.
 
 ## Bounded debug (engineering failure)
 
 Engineering failure is not a scientific negative. Open `failure-diagnosis.md`
 **only** when a real run crashed, hung, or produced unusable metrics **and**
-you are about to loop bounded debug. Do **not** open it for ordinary sanity
-missing-entry plus a supplied smoke log.
+you are about to loop bounded debug.
 
 When the action is bounded debug, keep the original Question / rival /
 prediction / unit and:
@@ -130,7 +132,7 @@ return to `experiment-design` — that is redesign, not debug.
 | Priority | Files |
 |----------|-------|
 | Required (ordinary sanity) | `.research/EXPERIMENTS.md` (target `EXP-xxx`), `.research/RESOURCES.md` |
-| Do not open (ordinary sanity) | `failure-diagnosis.md`, `experiment-record.md`, `git-linking.md` unless you actually freeze a commit or enter bounded debug |
+| Do not open (ordinary sanity) | See **Compact / ordinary sanity (default)** |
 | Often | `.research/STORY.md` (gap context), `.research/STATE.md`, external code repo |
 | Reference (when running / binding git) | `experiment-record.md`, `git-linking.md`, `state-files.md` |
 | On bounded-debug failure | `failure-diagnosis.md` |

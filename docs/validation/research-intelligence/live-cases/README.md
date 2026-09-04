@@ -1,7 +1,8 @@
 # Live cases (unleaked input / grader split)
 
-V0.2.1 Wave C fixtures for later harness runs. **Wave G fills runs.**
-This Wave ships the tree only — do **not** run Codex / Claude live here.
+V0.2.1 Wave C fixtures (input / artifacts / grader split). Wave G live runs
+**are** filled — reports in [`../../v0.2.1/wave-g/`](../../v0.2.1/wave-g/).
+Do **not** claim compact token success or Gate B APPROVE.
 
 Not science. **Do not** copy MOCK into the framework repo `.research/`
 (that tree stays UNINITIALIZED). Historical Wave F
@@ -50,7 +51,7 @@ Host memory check:
 - Disclose any relevant hit (do not silently count the run as unleaked)
 ```
 
-Wave G: leave these fields blank until a run exists.
+Wave G: filled in [`../../v0.2.1/wave-g/`](../../v0.2.1/wave-g/) reports.
 
 ## Claude file-read trace (fill at run time)
 
@@ -71,13 +72,5 @@ say so — do not infer “did not open grader” from a missing log.
 
 ## Live runs
 
-```text
-Wave G live runs: not filled (Wave C fixtures only)
-```
-
-| Case | Harness | Session | Judgment | File-read trace | Host memory |
-|------|---------|---------|----------|-----------------|-------------|
-| 01 | — | — | — | — | — |
-| 02 | — | — | — | — | — |
-| 03 | — | — | — | — | — |
-| 10 | — | — | — | — | — |
+Filled. See [`../../v0.2.1/wave-g/README.md`](../../v0.2.1/wave-g/README.md)
+(G1–G5). Do **not** claim compact token success.

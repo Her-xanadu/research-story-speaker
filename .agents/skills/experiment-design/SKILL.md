@@ -72,8 +72,8 @@ updating Story belief (`story-maintenance`).
 ## Goal
 
 Produce one experiment specification. Full design should **maximally change
-current judgment** if answered — not a parameter sweep
-(`story-loop.md`; full design only — do not open on compact). Compact exploratory /
+current judgment** if answered — not a parameter sweep (`story-loop.md`;
+full design only). Compact exploratory /
 sanity may be a cheap probe; still one scientific Question, still honest
 about the baseline.
 
@@ -97,48 +97,14 @@ Load `experiment-proposal.md` and walk experiment-thinking A→H if **any**:
 - publication-facing comparison
 - high-risk split/grouping
 
-### Do not auto-upgrade
-
-Stay compact. Do **not** auto-upgrade to full for:
-
-- single sanity
-- basic reproduction
-- extra seed
-- logging check
-- known-question retry
-- small diagnostic probe
-
-Do not invent a Protocol flag for exploratory (`scientific-reasoning.md`
-§F — full design / Layer 2 only; do **not** open that file on compact).
+Do not auto-upgrade: see **Compact (default)**. Do not invent a Protocol
+flag for exploratory (`scientific-reasoning.md` §F on full design).
 
 ## Default flow
 
 ### Compact flow (default)
 
 See **Compact (default)** above the stop line.
-
-1. **Anchor gap** — `EXPERIMENTS.md` index; `STORY.md` Open Gaps / Boundary as
-   needed. STATE / DISCOVERY / PROJECT only if the Question is not already
-   on disk. If this sanity Question is already `planned` in EXPERIMENTS, skip
-   creating a new EXP; do not open Full design flow; go to
-   `experiment-execution` only if code must run, else compact `result-analysis`
-   of supplied artifacts.
-2. **Check duplicates** — Do not redo a negated route without a new mechanism.
-   One scientific question per EXP-ID; extend an existing section when the
-   Question is already recorded (sanity / retry).
-3. **Assign EXP-ID** — Next sequential `EXP-NNN` only when creating a new
-   section; optional short title in heading.
-4. **Draft compact specification** — The five in-session items above. Map into
-   the existing EXP section. Do **not** invent new canonical files, index
-   columns, or Protocol enums.
-5. **Plan traceability if this EXP will run** — Planned Entry
-   `experiments/EXP-xxx/` and planned Results root `results/EXP-xxx/` as
-   filenames in EXPERIMENTS. Do **not** open `git-linking.md` on compact.
-   Do **not** invent commits or results.
-6. **Update EXPERIMENTS.md** — Index row (`planned`, Outcome `not-assessed`,
-   Story Gap phrase, Updated date) and section; leave Main Findings /
-   Interpretation empty.
-7. **Update STATE** — Active experiment, recommended next (`experiment-execution`).
 
 ### Full design flow
 
@@ -194,7 +160,7 @@ Only after a full-design trigger matches. Load
 | Priority | Files |
 | --- | --- |
 | Required (compact) | `.research/EXPERIMENTS.md`; `.research/STORY.md` / `.research/STATE.md` only if the Question is not already on disk |
-| Do not open (compact) | `experiment-proposal.md`, `experiment-thinking.md`, `scientific-reasoning.md`, `git-linking.md`, `story-loop.md`, `experiment-record.md`, Layer-2 folder |
+| Do not open (compact) | See **Compact (default)** |
 | Often (full design) | `.research/STATE.md`, `.research/DISCOVERY.md`, `.research/LITERATURE.md` |
 | Reference (full design only) | `experiment-record.md`, `git-linking.md`, `story-loop.md` |
 | Layer 2 (full design only) | `scientific-reasoning.md`, `experiment-thinking.md` |
@@ -215,7 +181,7 @@ metrics belong in EXPERIMENTS after runs, not in STORY.
 - Extend an existing `planned` EXP instead of creating a new ID when scope matches.
 - Sketch multiple comparisons in one EXP when they share one scientific question.
 - Ordinary exploratory / sanity: compact in-session items are enough; do not
-  auto-upgrade (list above). Do not invent a Protocol flag.
+  auto-upgrade (see **Compact (default)**). Do not invent a Protocol flag.
 - Defer Runs detail until execution if setup is exploratory.
 - Pair with `literature-research` when baseline choice is uncertain.
 - Document Expected outcomes inline under Motivation when section has no dedicated field.

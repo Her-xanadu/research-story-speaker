@@ -23,15 +23,11 @@ Framework base: v0.2.1-in-progress
 
 随后按任务按需读取：`DISCOVERY`、`EXPERIMENTS`、`LITERATURE`、`REVIEWS`、`RESOURCES`。
 
-`ACTIVE` 且 STATE 已写明下一步是普通 sanity / exploratory EXP 时：不要加载
-`workspace-resume`，不要通读 `research-loop`。走 compact `experiment-design`
-（已有 planned Question 则只核对，不加载 `experiment-proposal.md` 或
-experiment-thinking A→H）→ 仅当需要跑代码时 `experiment-execution` →
-compact `result-analysis`。不要默认加载 `result-diagnosis.md`、
-`failure-diagnosis.md`、或 `.agents/references/research-intelligence/`。
-Protocol 文件不是 compact 必读。普通 sanity 不必读仓库 `README.md` 或 `docs/validation/`。
+`ACTIVE` 且 STATE 已指明普通 sanity / exploratory EXP 时：直接走 compact
+`experiment-design` / `result-analysis`，不经 `workspace-resume` /
+`research-loop`。各 Skill 自己声明 compact 不读什么。
 
-代码仓库由 `RESOURCES.md` 定位，可为 workspace 内 / 并列 / 远程。Git 追溯与状态规范在 `.agents/references/`；compact sanity 不要默认打开这些 Protocol 文件。
+代码仓库由 `RESOURCES.md` 定位，可为 workspace 内 / 并列 / 远程。Git 追溯与状态规范在 `.agents/references/`。
 
 ## Autonomy
 
@@ -41,7 +37,7 @@ Protocol 文件不是 compact 必读。普通 sanity 不必读仓库 `README.md`
 
 ## Research Memory
 
-**Chat history 不是科研事实来源。** Workspace 文件才是。重要进展后的更新顺序见 `state-files.md` §更新顺序（compact sanity 不必打开该 Protocol 文件）。`STORY.md` 六段见该文件与 `story-maintenance`。
+**Chat history 不是科研事实来源。** Workspace 文件才是。重要进展后的更新顺序见 `state-files.md` §更新顺序。`STORY.md` 六段见该文件与 `story-maintenance`。
 
 并行 Agent 避免同时写同一状态文件。
 
