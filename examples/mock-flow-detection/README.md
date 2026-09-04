@@ -18,7 +18,7 @@ Companion toy code (not inside this repo):
 ../../../story-research-code
 ```
 
-On the original host that is `/Users/herxanadu/Documents/story-research-code`. Recovery source is `local-only` / `host-dependent`.
+Preferred relative location of the MOCK companion repo. Recovery source is `local-only` / `host-dependent`.
 
 ## What this MOCK closed
 
