@@ -1,0 +1,15 @@
+# MOCK — current Core Idea as deployed (WES)
+# Not Story Evidence. Not a live host.
+
+name: Window Entropy Scorer
+mix: hand_mix
+entropy_term: packet_size_entropy
+volume_term: log_volume
+lambda: 0.5
+lambda_frozen: true
+decision: threshold
+features:
+  - packet_size_entropy
+  - log_volume
+site: MOCK-site-A
+window_s: 60

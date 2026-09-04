@@ -97,7 +97,9 @@ deterministic reproducer + protection case
 
 Cite [skill-evolution.md](../../references/research-intelligence/skill-evolution.md).
 Load that Layer 2 file; do not recopy operators. One Skill or one prompt,
-one behavior. Output `candidate deserves review` — not a silent merge.
+one behavior. Distinguish **candidate author**, **executor**, and
+**scorer** (cite that file §D; prefer author ≠ scorer). Output
+`candidate deserves review` — not a silent merge.
 
 ### `regression-eval`
 
@@ -129,9 +131,11 @@ Passing means:
 candidate deserves review
 ```
 
-It does **not** overwrite the canonical Skill. Cite
-[skill-evolution.md](../../references/research-intelligence/skill-evolution.md)
-§C–F.
+It does **not** overwrite the canonical Skill. When the scorer is the
+same model as the candidate author, record `Model relation: same-model`
+and `Context relation: fresh-context` and treat assurance as lower
+([skill-evolution.md](../../references/research-intelligence/skill-evolution.md)
+§D). Cite that file §C–F.
 
 ### Maintenance audit checklist
 
@@ -152,6 +156,7 @@ workspace **drifted** from the linked reference — do not copy the rule body he
 | 10 | Skill count is **12**, not 10 | Original 10 plus `idea-evaluation` and `evidence-verification`. Do not add a 13th Skill. |
 | 11 | Intelligence refs are Layer 2, not Protocol | `.agents/references/research-intelligence/` vs Protocol owners (`state-files.md`, `experiment-record.md`, `reviewer.md`, `story-loop.md`, `git-linking.md`). Layer 2 does not redefine Outcome / Verdict / Story. |
 | 12 | Gates selective | `idea-evaluation` / `evidence-verification` / deep literature are not default on every EXP. Ordinary exploratory stays light — [skill-evolution.md](../../references/research-intelligence/skill-evolution.md) §C–E. |
+| 13 | Scorer independence | Evolution comparisons name candidate author / executor / scorer; prefer author ≠ scorer; same-model records `Model relation: same-model` and `Context relation: fresh-context` and lower assurance; passing still means `candidate deserves review`, not auto-deploy — [skill-evolution.md](../../references/research-intelligence/skill-evolution.md) §D–F. |
 
 Also verify: `.agents/skills/` is the **only** canonical Skill root (**12**
 Skills, including `idea-evaluation` and `evidence-verification`); subagent
@@ -201,7 +206,7 @@ science content.
 - Skip adapter files for harnesses not yet tested.
 - Progressive disclosure: default read set PROJECT + STORY + STATE per state-files.
 - `session-diagnosis` / `skill-evolution` / `regression-eval` skip the full
-  12-row checklist when the task is one friction class or one candidate.
+  audit checklist when the task is one friction class or one candidate.
 
 ## Boundaries
 
