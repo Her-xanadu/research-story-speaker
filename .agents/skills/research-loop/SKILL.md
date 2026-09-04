@@ -13,14 +13,10 @@ description: >-
 Highest-level orchestrator. **Schedules only** — delegate literature, execution,
 and review to matching Skills or Subagents.
 
-References: [story-loop.md](../../references/story-loop.md),
-[state-files.md](../../references/state-files.md),
-[experiment-record.md](../../references/experiment-record.md).
-Route-time operators (not a boot set):
-[scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md).
-Selective gates:
-[idea-evaluation](../idea-evaluation/SKILL.md),
-[evidence-verification](../evidence-verification/SKILL.md).
+References: `story-loop.md`, `state-files.md`, `experiment-record.md`
+(open at delegation time, not as a boot set).
+Route-time operators (not a boot set): `scientific-reasoning.md`.
+Selective gates: `idea-evaluation`, `evidence-verification`.
 
 ## When to use
 
@@ -96,6 +92,8 @@ Ordinary exploratory EXP: `experiment-design` → `experiment-execution` →
 `result-analysis` **without** `idea-evaluation`, `evidence-verification`,
 `experiment-review` / reviewer, or `result-analyst` by default.
 Stay compact: do not default-load `experiment-proposal.md` or `result-diagnosis.md`.
+Ordinary sanity with STATE already naming the cheap EXP: do **not** load this
+Skill — use compact `experiment-design` / `result-analysis`.
 
 Parallel Experiment work: use `experiment-agent` / `result-analyst`; handoff via
 [subagent-handoff.md](../../prompts/subagent-handoff.md). Do not expand those
