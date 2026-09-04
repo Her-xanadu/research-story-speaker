@@ -1,6 +1,6 @@
 # research-story-speaker
 
-Framework base: v0.2.1
+Framework base: v0.2.2
 
 这是一个 **Story 驱动、文件即记忆** 的自主科研工作区。科研事实保存在 `.research/`，工作流在 `.agents/skills/`。
 
@@ -8,12 +8,12 @@ Framework base: v0.2.1
 
 本工作区是当前科研项目的控制平面与长期记忆。先读 `.research/PROJECT.md` 的 **Project Status**（仅 `UNINITIALIZED` | `ACTIVE`）。
 
-- `UNINITIALIZED`：走 `workspace-resume` **初始化**。收集最低必要信息（研究目标、代码/数据位置、约束），**materialize** 已经存在的八个 `.research/` 文件为 `ACTIVE` 项目状态（不是新生成八文件），STATE Story Status → `IN_PROGRESS`。不要编造 Story 或实验。
+- `UNINITIALIZED`：先 `workspace-setup`（实验在本地还是服务器、代码 Git 放哪），再 `workspace-resume` **初始化**。收集研究目标与剩余约束后 **materialize** 已经存在的八个 `.research/` 文件为 `ACTIVE`（不是新生成八文件），STATE Story Status → `IN_PROGRESS`。不要编造 Story 或实验。
 - `ACTIVE`：按 Start Here 冷启动后继续科研。
 
 ## Start Here
 
-未初始化时不要直接进 `research-loop`。初始化协议见 `workspace-resume`。
+未初始化时不要直接进 `research-loop`。先 `workspace-setup`，再 `workspace-resume` materialize。
 
 **默认读取顺序**（冷启动，`ACTIVE` 之后）：
 
@@ -45,7 +45,8 @@ Framework base: v0.2.1
 
 | 场景 | Skill |
 |------|-------|
-| 未初始化（PROJECT Status = `UNINITIALIZED`） | `workspace-resume` |
+| 安装 / 新建项目 / 未初始化 / 换算力或代码路径 | `workspace-setup` |
+| 未初始化（PROJECT Status = `UNINITIALIZED`） | `workspace-setup` → `workspace-resume` |
 | ACTIVE 且 STATE 下一步已是普通 sanity / exploratory | compact `experiment-design` →（跑代码才）`experiment-execution` → compact `result-analysis`；不要 `workspace-resume` / `research-loop` |
 | 新 Session / 陌生 Agent（ACTIVE 但下一步不清） | `workspace-resume` 后按 STATE 或 `research-loop` |
 | 决定下一步科研 | `research-loop` |

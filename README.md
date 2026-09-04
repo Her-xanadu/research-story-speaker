@@ -1,14 +1,14 @@
 # research-story-speaker
 
-Framework base: v0.2.1 — 纯文件、纯提示词的 Story 驱动自动化科研框架。
+Framework base: v0.2.2 — 纯文件、纯提示词的 Story 驱动自动化科研框架。
 
 ## Quick Start
 
 1. 以本仓库为模板（clone 或复制）。
 2. 用任一已支持的 Agent Harness 打开该文件夹（Codex、Claude Code、Cursor、DeepSeek Harness；OpenCode 仅文档）。
 3. 对 Agent 说：「Read AGENTS.md and initialize this research project.」
-4. 提供研究目标、代码/数据位置、长期约束。信息不足时 Agent 只追问缺的项。
-5. Agent 将根 `.research/` 从 `UNINITIALIZED` **materialize** 为 `ACTIVE`（八个文件已在，不是新生成），然后进入第一个 Story loop。不要期待编造完整 Story；缺证据的段保持 `_Not established yet._`。
+4. Agent 会先走 `workspace-setup`：**实验在本地还是服务器**（有服务器先配服务器）、**实验代码 Git 放哪**（workspace 内 / 并列 / 主要在服务器）。答案写入 `.research/RESOURCES.md`。
+5. 再提供研究目标与剩余约束；`workspace-resume` 将根 `.research/` 从 `UNINITIALIZED` **materialize** 为 `ACTIVE`（八个文件已在，不是新生成），然后进入第一个 Story loop。不要期待编造完整 Story；缺证据的段保持 `_Not established yet._`。
 
 MOCK 闭环示例：[`examples/mock-flow-detection/`](examples/mock-flow-detection/)。框架审核与 Harness 证据：[`docs/validation/`](docs/validation/)。
 
@@ -51,7 +51,7 @@ workspace/
 └── docs/validation/
 ```
 
-Canonical Skills（12）：`workspace-resume`、`research-loop`、`story-maintenance`、`idea-evaluation`、`literature-research`、`experiment-design`、`experiment-execution`、`result-analysis`、`evidence-verification`、`experiment-review`、`research-memory`、`framework-maintenance`（仅维护框架、升级 Harness 或发布版本时使用）。
+Canonical Skills（13）：`workspace-setup`（安装与资源个性化，不进 research-loop）、`workspace-resume`、`research-loop`、`story-maintenance`、`idea-evaluation`、`literature-research`、`experiment-design`、`experiment-execution`、`result-analysis`、`evidence-verification`、`experiment-review`、`research-memory`、`framework-maintenance`（仅维护框架、升级 Harness 或发布版本时使用）。
 
 ## Workspace Git（§4）与升级边界
 
@@ -67,6 +67,8 @@ Wave G claim.
 - OpenCode: documentation-only, not tested.
 
 ## 当前状态
+
+V0.2.2 增加 `workspace-setup`（第 13 个 Skill：Compute + 代码 Git 落点，不进 research-loop）。冻结计数 **8 / 1 / 5 / 13 / 6 / 0**。静态验收：[`docs/validation/v0.2.2/workspace-setup-checklist.md`](docs/validation/v0.2.2/workspace-setup-checklist.md)。未跑独立 live Gate。
 
 V0.2.1 micro-hardening. Gate A **APPROVE**
 (`e612f8e`; [`gate-a-review.md`](docs/validation/v0.2.1/gate-a-review.md)).

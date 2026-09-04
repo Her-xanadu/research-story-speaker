@@ -56,10 +56,10 @@ an `ACTIVE` project, then enter `research-loop`. Do not generate a new set.
 Ask the user **only** for:
 
 ```text
-UNINITIALIZED
+UNINITIALIZED (research goal — after workspace-setup)
 Goal amendment
 major evaluation change
-resource authorization change
+resource authorization change → workspace-setup
 ```
 
 Triage:
@@ -87,9 +87,14 @@ turn. An `ACTIVE` resume with a clear STATE next is not a frontier.
 
 If `PROJECT.md` **Project Status** is `UNINITIALIZED`:
 
-1. Collect the minimum: research goal, code/data locations, constraints. Ask
-   **only** for missing items (`UNINITIALIZED` is a Decision Frontier). Do not
-   invent the rest.
+0. **Resource setup first.** Run [workspace-setup](../workspace-setup/SKILL.md)
+   unless `.research/RESOURCES.md` already passes its **Ready check** (Compute +
+   primary Codebase + External Capabilities). If Compute or code Git layout is
+   missing, stop after `workspace-setup`; do **not** materialize `ACTIVE`.
+1. Collect the minimum: research goal, remaining data/constraints. Ask **only**
+   for missing items (`UNINITIALIZED` is a Decision Frontier). Code/compute
+   layout is **not** repeated here — `workspace-setup` owns RESOURCES fields.
+   Do not invent the rest.
 2. **Materialize** the eight files already on disk — `PROJECT.md`, `STORY.md`,
    `STATE.md`, `DISCOVERY.md`, `EXPERIMENTS.md`, `LITERATURE.md`, `REVIEWS.md`,
    `RESOURCES.md` — from user input and `.agents/templates/`. Do not create a
@@ -141,7 +146,9 @@ matching Skill; route unclear → `research-loop`; files disagree →
 
 Never end with only “已恢复” when an actionable step exists. Do not open a
 questionnaire on an `ACTIVE` resume unless Goal amendment, major evaluation
-change, or resource authorization change is actually in play.
+change, or resource authorization change is actually in play — for the last,
+run [workspace-setup](../workspace-setup/SKILL.md) instead of re-asking compute
+and Git layout inside this Skill.
 
 ## Reads
 
@@ -157,7 +164,8 @@ change, or resource authorization change is actually in play.
 Read-mostly after `ACTIVE`. During initialization, edit the eight existing
 `.research/` files in place. EXPERIMENTS and REVIEWS stay empty. Otherwise:
 
-- `RESOURCES.md` stale after successful re-location;
+- `RESOURCES.md` stale after successful re-location → prefer `workspace-setup`
+  or `research-memory` as appropriate;
 - `STATE.md` clearly wrong (non-trivial fixes → `research-memory`).
 
 After substantive work, follow

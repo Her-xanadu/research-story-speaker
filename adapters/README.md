@@ -4,7 +4,9 @@ Thin host-specific notes. Canonical science logic lives in `AGENTS.md`, `.agents
 
 Last tested: 2026-09-03 (UNINITIALIZED cold-start on four harnesses). Evidence: [`docs/validation/harness-smoke/uninitialized-README.md`](../docs/validation/harness-smoke/uninitialized-README.md). V0.1 MOCK-root smoke remains under the same directory without the `uninitialized-` prefix.
 
-Cold-start read order: `AGENTS.md` Start Here. Adapters do not answer research questions.
+Cold-start read order: `AGENTS.md` Start Here. **UNINITIALIZED** projects run
+`workspace-setup` first (compute + code Git layout → `.research/RESOURCES.md`),
+then `workspace-resume`. Adapters do not answer research questions.
 
 ## Mapping
 
