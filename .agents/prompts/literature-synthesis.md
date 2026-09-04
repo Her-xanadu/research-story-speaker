@@ -44,6 +44,8 @@ Relevant files:
   - .research/DISCOVERY.md
   - .research/PROJECT.md
 Required output: .research/work/<task-slug>.md
+Search budget: work file / this task only — not a STATE field
+  (owner: deep-literature-mode.md §G)
 ```
 
 ## Scientific context to read
@@ -55,8 +57,8 @@ Required output: .research/work/<task-slug>.md
 3. DISCOVERY Invalidated / Negative — do not “rediscover” a killed route
    from abstracts.
 4. [deep-literature-mode.md](../references/research-intelligence/deep-literature-mode.md)
-   §A–F (RQ freeze, angles, closest-work matrix, contradiction map, citation
-   depths, novelty threat).
+   §A–G (RQ freeze, angles, closest-work matrix, contradiction map, citation
+   depths, novelty threat, search budget).
 
 ## Research reasoning lenses
 
@@ -75,6 +77,14 @@ Required output: .research/work/<task-slug>.md
    Novelty threats need **methods checked** on the closest paper. Do not put
    abstract-only sources into Story Evidence or into “closest work already
    does this.”
+6. Search budget is **soft** and lives in this work file / task only
+   ([deep-literature-mode.md](../references/research-intelligence/deep-literature-mode.md)
+   §G). Default: Pass 1 landscape, Pass 2 targeted closest-work /
+   contradiction, then **stop when frozen RQs are actionable**. One further
+   targeted pass only if §G allows it, and only if you write why that
+   extension changes a research decision. Do not continue because more
+   papers exist, the agent feels under-read, or Related Work could be
+   longer. Not a paper-count enum; not a STATE field.
 
 Citation depth labels (owned by
 [deep-literature-mode.md](../references/research-intelligence/deep-literature-mode.md)
@@ -106,6 +116,9 @@ entry; follow §E, do not recopy that mapping table here.
 - Promoting metadata/abstract depth to closest-work identity.
 - Searching only for papers that flatter Core Idea.
 - MECE survey outline, citation quota, or padding Related Work.
+- Continuing because more papers exist, the agent feels under-read, or
+  Related Work could be longer.
+- Writing the search budget into STATE or inventing a paper-count enum.
 - Pasting a closest-work matrix into STORY.
 - Inventing `SURVEY.md` / `CLAIMS.md` or a new Access value.
 - Redefining Outcome or Verdict as “novelty pass/fail.”
@@ -137,10 +150,18 @@ cannot honestly distinguish
   → novelty threat; recommend REVISE/PARK at Idea-gate (cite
     idea-and-mechanism.md §H; do not recopy that glossary) — not an Outcome
 
-Frozen RQs answered well enough to choose: revise Idea, park, or design
-the next EXP
+Frozen RQs actionable after Pass 1 or Pass 2
   → stop; unread papers go in “still have not read,” not a delay of a cheap
     discriminating test
+
+A research decision is still blocked by closest work unresolved,
+contradiction not localized, evaluation convention unclear, or critical
+source inaccessible — and one extra pass would change revise / park /
+next EXP
+  → one targeted extension; record why under Search budget; then stop
+
+More papers exist / feel under-read / Related Work could be longer
+  → not an extension reason; stop
 ```
 
 ## Required output
@@ -181,6 +202,11 @@ Write `.research/work/<task-slug>.md` with **all** of the following headings
 
 ## Experiment implications
 <what would discriminate; must-run vs nice vs cut in prose — no new EXP-ID>
+
+## Search budget
+<Pass 1 landscape done? Pass 2 targeted done? RQs actionable?>
+<if extending: which §G reason, and why the extra pass changes
+revise / park / next EXP — not “more papers exist”>
 ```
 
 Also include:
@@ -209,8 +235,12 @@ caller.
 
 ## Stop / escalation
 
-- Stop when RQs are answered well enough to revise, park, or design the
-  next EXP.
+- Stop when frozen RQs are actionable (usually after Pass 2; earlier if
+  already decidable). One targeted extension only per
+  [deep-literature-mode.md](../references/research-intelligence/deep-literature-mode.md)
+  §G, and only with a written reason that the extra pass changes a
+  research decision. Do not continue because more papers exist, the
+  agent feels under-read, or Related Work could be longer.
 - If the matrix shows no real mechanism/information axis → load
   `idea-and-mechanism.md`; do not invent a cosmetic difference.
 - If the contradiction map names a discriminating test →

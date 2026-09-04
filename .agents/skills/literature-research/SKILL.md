@@ -29,7 +29,11 @@ writes canonical LITERATURE entries.
 - **Deep** — only when novelty is unclear, a new core mechanism is proposed,
   papers conflict in a way that would change Story, or the field landscape
   (including evaluation convention) is the bottleneck. Operators:
-  [deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md).
+  [deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md)
+  (including §G **soft search budget**: Pass 1 landscape, Pass 2 targeted
+  closest-work / contradiction, stop when RQs are actionable, at most one
+  justified extension). The budget is not a paper-count Protocol enum and
+  not a STATE field; write it in `.research/work/` or the task context.
   Task prompt:
   [literature-synthesis.md](../../prompts/literature-synthesis.md).
   Main still writes `LITERATURE.md`; scouts write `.research/work/` only.
@@ -69,8 +73,11 @@ important paper, not search logs or abstract dumps.
    note Relation fields already covering the gap.
 3. **Search** — Per Mode (default light). Use web / arXiv / Semantic Scholar /
    Zotero / PDF per `.research/RESOURCES.md`. Prefer primary papers, surveys,
-   and benchmark papers. Do not start deep because an Open Gap exists. Zotero
-   and PDF are acquisition aids; canonical record stays in LITERATURE.md.
+   and benchmark papers. Do not start deep because an Open Gap exists. In
+   **deep**, follow the §G budget on the operator file: two default passes,
+   stop when frozen RQs are actionable; do not keep searching because more
+   papers exist. Zotero and PDF are acquisition aids; canonical record stays
+   in LITERATURE.md.
 4. **Synthesize** — Draft the five-lens summary (Known / Conflicts / Supports /
    Suggests / Novelty) for the session; use it to decide what merits a permanent
    entry.
@@ -113,6 +120,11 @@ Anti-duplication: no literature dumps in STORY — [state-files.md](../../refere
   from scout output in `.research/work/<task-slug>.md`.
 - Stay on light when 3–10 sources already name a discriminating EXP.
 - Do not load deep-literature-mode for ordinary baseline lookup or Related Work.
+- Deep mode: stop after two passes once RQs are actionable; one extra
+  targeted pass only when
+  [deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md)
+  §G allows it and the work file says why it changes a research decision.
+  Do not invent a paper quota or a STATE budget field.
 - Skip low-relevance papers — note search scope in STATE if gap remains open.
 - Compare two papers in one LITERATURE entry when they jointly address one gap.
 - Stop after synthesis memo when user asked for a report only (no LITERATURE write).
