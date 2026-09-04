@@ -12,11 +12,31 @@ description: >-
 
 Thin Skill for **implementation and runs** — not scientific interpretation.
 
-On ordinary sanity / exploratory: do **not** open `failure-diagnosis.md`,
-`experiment-record.md`, or `git-linking.md`. If the designed entry is missing
-and a supplied MOCK / `artifacts/` log answers the smoke Question, record that
-mechanical fact and hand off to compact `result-analysis`. That is **not**
-bounded debug.
+`compact` / `full` are Skill-internal modes. Never write them into STATE,
+EXPERIMENTS, Status, or Outcome.
+
+## Compact / ordinary sanity (default)
+
+Do **not** open `failure-diagnosis.md`, `experiment-record.md`, or
+`git-linking.md`.
+
+If the designed entry is missing and a supplied MOCK / `artifacts/` log
+answers the smoke Question: record that mechanical fact (do **not** fake a
+re-run). That is **not** bounded debug. Hand off to compact `result-analysis`.
+
+Compact persist: fill Runs / Results / mechanical Main Findings from the
+supplied log. Do **not** assign a scientific Outcome here — keep
+`not-assessed` until `result-analysis`. Do **not** update `DISCOVERY.md` or
+`STORY.md`. Required reads: `.research/EXPERIMENTS.md` (target `EXP-xxx`),
+`.research/RESOURCES.md`.
+
+**Full / real-run path — continue past the stop line only if** you must
+implement, freeze a git commit, execute a real run, recover a stale codebase
+path, or enter bounded debug after a real crash / hang / unusable metrics.
+
+**Stop. Do not read the rest of this file unless full-mode triggers fire.**
+
+---
 
 ## When to use
 

@@ -20,15 +20,44 @@ Thin Skill for **scientific interpretation** after artifacts exist.
 `compact` / `full` are Skill-internal modes. Never write them into STATE,
 EXPERIMENTS, Status, or Outcome.
 
-**Compact default — stop here unless a full-diagnosis trigger matches.** Do
-**not** open `result-diagnosis.md`, `failure-diagnosis.md`,
-`evidence-and-claim.md`, `scientific-reasoning.md`, `state-files.md`, or
-`experiment-record.md`. Keep those prompts on disk; load them only on a
+## Compact (default)
+
+Ordinary exploratory / sanity. Do **not** open `result-diagnosis.md`,
+`failure-diagnosis.md`, `evidence-and-claim.md`, `scientific-reasoning.md`,
+`state-files.md`, or `experiment-record.md`. Do **not** default-dispatch
+`result-analyst`.
+
+In-session:
+
+- **Integrity** — is the artifact usable (crash, missing metrics, obvious leak)?
+  A supplied in-prompt or `artifacts/` log that matches the already-designed
+  smoke Question (finite metric; predicted chance-like F1) **is** usable for
+  that Question. Missing code entry without a fake re-run is honest; it is
+  **not** “technical vs scientific failure unclear”.
+- **What happened** — objective Main Findings
+- **Outcome** — for ordinary sanity, typically `supports` if the smoke
+  prediction held (finite metric / exit 0), including from that supplied log;
+  else `not-assessed` only when there is no usable artifact at all
+- **What we learned** — Interpretation; do not inflate into Story Evidence
+- **Next** — smallest next action (stop, retry same Question, or a new EXP)
+
+Chance-like F1 that the design predicted is **not** an unexpected-result
 full-diagnosis trigger.
 
-`result-analyst` is **not** default on ordinary exploratory. In-session
-compact analysis is enough. Dispatching `result-analyst.md` **is** a
-full-diagnosis trigger.
+Compact persist: write Main Findings, Interpretation, Outcome into EXPERIMENTS
+(section + Index). Ordinary compact analysis does **not** write DISCOVERY or
+promote a sanity result into Story Evidence. Update STATE next action.
+Required reads: `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts or
+supplied log.
+
+**Full diagnosis — continue past the stop line only if any:** unexpected
+result, high variance, mechanism attribution, Core Idea impact, Story
+Evidence candidate, technical vs scientific failure unclear, previous trusted
+evidence invalidated, high-cost EXP, or formal `result-analyst`.
+
+**Stop. Do not read the rest of this file unless full-mode triggers fire.**
+
+---
 
 ## When to use
 
@@ -57,28 +86,7 @@ open that file on compact if you already know the token).
 ## Compact vs full (Skill-internal)
 
 Choose **before** loading `result-diagnosis.md`. Default is **compact**.
-
-### Compact (default)
-
-Ordinary exploratory / sanity. Do **not** default-load
-`result-diagnosis.md` or `failure-diagnosis.md`.
-
-In-session:
-
-- **Integrity** — is the artifact usable (crash, missing metrics, obvious leak)?
-  A supplied in-prompt or `artifacts/` log that matches the already-designed
-  smoke Question (finite metric; predicted chance-like F1) **is** usable for
-  that Question. Missing code entry without a fake re-run is honest; it is
-  **not** “technical vs scientific failure unclear”.
-- **What happened** — objective Main Findings
-- **Outcome** — for ordinary sanity, typically `supports` if the smoke
-  prediction held (finite metric / exit 0), including from that supplied log;
-  else `not-assessed` only when there is no usable artifact at all
-- **What we learned** — Interpretation; do not inflate into Story Evidence
-- **Next** — smallest next action (stop, retry same Question, or a new EXP)
-
-Do **not** default-dispatch `result-analyst`. Chance-like F1 that the design
-predicted is **not** an unexpected-result full-diagnosis trigger.
+Compact operators are above the stop line. This remainder is **full diagnosis**.
 
 ### Full diagnosis — load if
 
@@ -103,12 +111,15 @@ trigger above matches.
 
 ### Compact flow (default)
 
+See **Compact (default)** above the stop line.
+
 1. **Gather evidence** — Read `EXP-xxx` in `.research/EXPERIMENTS.md` (Results,
    Runs, Git, Code, current Outcome). Inspect raw artifacts; do not rely only
    on executor summaries.
 2. **In-session** — Integrity; What happened; Outcome; What we learned; Next
    (see Compact above).
-3. **Persist** — Follow **Persist Protocol** below.
+3. **Persist** — Follow **Persist Protocol** below (ordinary sanity: EXPERIMENTS
+   + STATE only; skip DISCOVERY / Story Evidence).
 
 ### Full diagnosis flow
 

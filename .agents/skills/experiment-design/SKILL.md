@@ -19,17 +19,43 @@ Thin Skill for scientific experiment **specification** before code runs.
 `compact` / `full` are Skill-internal modes. Never write them into STATE,
 EXPERIMENTS, Status, or Outcome.
 
-**Compact default — stop here unless a full-design trigger matches.** Do **not**
-open `experiment-proposal.md`, `experiment-thinking.md` (A→H),
-`scientific-reasoning.md`, `git-linking.md`, `story-loop.md`, or
-`experiment-record.md`. Already-planned sanity: the five in-session items are
-already in the EXP section — verify, do not rewrite, do not load Full design
-flow below.
+## Compact (default)
 
-Judgment and the work-file prompt stay on disk for **full design only**.
+Ordinary exploratory / sanity. Do **not** open `experiment-proposal.md`,
+`experiment-thinking.md` (A→H), `scientific-reasoning.md`, `git-linking.md`,
+`story-loop.md`, or `experiment-record.md`.
 
-Main still writes `EXPERIMENTS.md`. Do not delete the proposal prompt; skip
-it unless a full-design trigger matches.
+Already-planned sanity: the five in-session items are already in the EXP
+section — verify, do not rewrite.
+
+| In-session | Maps to EXPERIMENTS section |
+| --- | --- |
+| **Question** | Question |
+| **Why this matters** | Motivation |
+| **Honest baseline/comparison** | Comparisons |
+| **What observation would change next action?** | Expected outcomes (design note; else Motivation) |
+| **Data / Setup / Codebase** | Data / Setup, Code — as needed |
+
+Do **not** auto-upgrade for: single sanity, basic reproduction, extra seed,
+logging check, known-question retry, small diagnostic probe.
+
+If this Question is already `planned` in EXPERIMENTS: skip a new EXP-ID; go to
+`experiment-execution` only if code must run, else compact `result-analysis`
+of supplied artifacts.
+
+Compact persist: map the five items into the existing EXP section; no new
+canonical files, index columns, or Protocol enums. Status `planned`, Outcome
+`not-assessed`. Update STATE recommended next (`experiment-execution` if a
+run is needed). Required reads: `.research/EXPERIMENTS.md`; `STORY.md` /
+`STATE.md` only if the Question is not already on disk.
+
+**Full design — continue past the stop line only if any:** mechanism claim,
+new Core Idea, high compute, important ablation, control that isolates a
+mechanism, publication-facing comparison, high-risk split/grouping.
+
+**Stop. Do not read the rest of this file unless full-mode triggers fire.**
+
+---
 
 ## When to use
 
@@ -56,23 +82,8 @@ Record in `EXPERIMENTS.md` with index row, Status `planned`, Outcome `not-assess
 ## Compact vs full (Skill-internal)
 
 Choose **before** loading `experiment-proposal.md` or experiment-thinking
-A→H. Default is **compact**.
-
-### Compact (default)
-
-Ordinary exploratory / sanity. Do **not** default-load
-`experiment-proposal.md` or walk all of `experiment-thinking.md` A→H.
-Do **not** open those files, and do **not** open Protocol or Layer-2 files.
-
-In-session (map into existing EXP section fields; no new columns):
-
-| In-session | Maps to EXPERIMENTS section |
-| --- | --- |
-| **Question** | Question |
-| **Why this matters** | Motivation |
-| **Honest baseline/comparison** | Comparisons |
-| **What observation would change next action?** | Expected outcomes (design note; else Motivation) |
-| **Data / Setup / Codebase** | Data / Setup, Code — as needed |
+A→H. Default is **compact**. Compact operators are above the stop line.
+This remainder is **full design**.
 
 ### Full design — load if any
 
@@ -103,6 +114,8 @@ Do not invent a Protocol flag for exploratory (`scientific-reasoning.md`
 ## Default flow
 
 ### Compact flow (default)
+
+See **Compact (default)** above the stop line.
 
 1. **Anchor gap** — `EXPERIMENTS.md` index; `STORY.md` Open Gaps / Boundary as
    needed. STATE / DISCOVERY / PROJECT only if the Question is not already

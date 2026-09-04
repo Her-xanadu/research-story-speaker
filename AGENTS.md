@@ -29,7 +29,7 @@ Framework base: v0.2.1-in-progress
 experiment-thinking A→H）→ 仅当需要跑代码时 `experiment-execution` →
 compact `result-analysis`。不要默认加载 `result-diagnosis.md`、
 `failure-diagnosis.md`、或 `.agents/references/research-intelligence/`。
-Protocol 文件不是 compact 必读。不要从 `README.md` 或 `docs/validation/` 启动。
+Protocol 文件不是 compact 必读。普通 sanity 不必读仓库 `README.md` 或 `docs/validation/`。
 
 代码仓库由 `RESOURCES.md` 定位，可为 workspace 内 / 并列 / 远程。Git 追溯与状态规范在 `.agents/references/`；compact sanity 不要默认打开这些 Protocol 文件。
 
