@@ -131,7 +131,7 @@ Idea to expensive confirmation. Do **not** assign EXP-IDs here.
 ## Critical questions
 
 - If this Idea died tomorrow, which Story sentence would we have to rewrite?
-- What information would disappear if we deleted the claimed component?
+- What claimed §C axis would disappear if we deleted the claimed component?
 - Which already-on-disk Negative / Invalidated finding covers this mechanism
   under the same condition?
 - What result would make us *lower* belief — stated before any grid is drawn?
@@ -142,7 +142,8 @@ Idea to expensive confirmation. Do **not** assign EXP-IDs here.
 
 - Treating a popular architecture or unused GPU as a Problem Anchor
 - Replacing Core Idea because a table “would look fuller”
-- ADVANCE on renaming, stacking, or an extra knob
+- ADVANCE on renaming, a fixed weight, an extra knob, or a cosmetic
+  objective rewrite
 - Skipping §D because the write-up is eloquent
 - Guessing papers instead of reading LITERATURE / escalating literature
 - Jumping to a large grid before a discriminating minimum test
@@ -169,8 +170,9 @@ Do not invent numeric novelty scores, star ratings, or “accept probability.”
 3. Any §D fatal hit → do not ADVANCE; choose per §H.
 4. Deletion test fails or identity is a costume → REVISE (fixable) or ABANDON
    (this mechanism cannot be the answer).
-5. Novelty threat with the same information flow → REVISE or PARK until an
-   axis is named; do not ADVANCE on a new dataset alone.
+5. Novelty threat with the same claimed §C axis as closest work → REVISE or
+   PARK until a distinguishing axis is named; do not ADVANCE on a new
+   dataset alone.
 6. No falsifier / no discriminating minimum test → REVISE; not ready.
 7. Minimum test exceeds RESOURCES → PARK (sequencing / budget), not a fake
    cheap invalid test sold as the Idea-gate.
@@ -198,11 +200,18 @@ being revised, rather than proliferating files.
 ## Handoff / state impact
 
 - Subagent / in-session Skill writes `.research/work/` only.
-- **Do not** edit `STORY.md`, `DISCOVERY.md`, `EXPERIMENTS.md`, or other
-  canonical state. **Do not** create an EXP-ID. **Do not** rewrite Core Idea.
-- After ADVANCE, Main may route to `experiment-design` (and, if needed,
+- **Do not** edit any of the eight canonical `.research/` files. **Do not**
+  create an EXP-ID. **Do not** rewrite Core Idea.
+- **ADVANCE** — Main → `experiment-design` (and, if needed,
   `.agents/prompts/experiment-proposal.md`). This prompt does not design or
   register the EXP.
+- **REVISE** — Main writes one line in `STATE.md` Recommended Next Action:
+  `Revise <idea> before experiment registration.`
+- **PARK / ABANDON** — If there is no Experiment, Main writes prose in
+  `DISCOVERY.md` Current Scientific Understanding or Research Evolution,
+  plus `Memo: .research/work/idea-evaluation-<slug>.md`. Do **not** use
+  `Evidence: work/...`. Do **not** write Positive / Negative Discoveries
+  unless there is already direct Experiment evidence.
 - Reviewer contract is unchanged. Idea-gate actions are not Verdicts
   ([reviewer.md](../subagents/reviewer.md) — do not recopy the Verdict list).
 

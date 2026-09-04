@@ -3,9 +3,9 @@ name: idea-evaluation
 description: >-
   Gate a new Core Idea, route competition, mechanism replacement, major pivot,
   expensive experiment, or high-stakes successor. Write an Idea-gate work
-  artifact under `.research/work/`; do not edit STORY, DISCOVERY, or
-  EXPERIMENTS. Do not use for routine seeds, small ablations, bugfixes, or
-  simple replications. Triggers include evaluate idea, idea-evaluation,
+  artifact under `.research/work/`; do not edit the eight canonical files.
+  Do not use for routine seeds, small ablations, bugfixes, or simple
+  replications. Triggers include evaluate idea, idea-evaluation,
   Core Idea gate, mechanism replacement, major pivot.
 ---
 
@@ -104,22 +104,29 @@ Recommended Action
 | --- | --- |
 | `.research/work/idea-evaluation-<slug>.md` | Full Idea-gate artifact (required headings) |
 
-Must **not** write `.research/STORY.md`, `.research/DISCOVERY.md`, or
-`.research/EXPERIMENTS.md`. Must **not** add canonical state files. Main Agent
-integrates. This Skill may run in-session or as a subagent; both write only
-`.research/work/`.
+Must **not** write any of the eight canonical files (`PROJECT.md`,
+`STORY.md`, `STATE.md`, `DISCOVERY.md`, `EXPERIMENTS.md`, `LITERATURE.md`,
+`REVIEWS.md`, `RESOURCES.md`). Must **not** add canonical state files. Main
+Agent integrates. This Skill may run in-session or as a subagent; both write
+only `.research/work/`.
 
 ## Handoff / Main integration
 
-When Recommended Action is PARK or ABANDON (values owned by
+Idea-gate actions are owned by
 [idea-and-mechanism.md](../../references/research-intelligence/idea-and-mechanism.md)
-§H — cite; do not recopy that glossary): this Skill still must **not** write
-STORY / DISCOVERY / EXPERIMENTS itself. Main Agent should land a **one-line
-cite** so a later `workspace-resume` can see it without reading all of
-`.research/work/`: typically DISCOVERY (why parked/abandoned; `Evidence:` the
-work artifact path) and/or STORY Open Gaps / Boundary as appropriate — not a
-second idea database. ADVANCE / REVISE remain as today (Main may open
-`experiment-design` or revise the idea).
+§H — cite; do not recopy that glossary. This Skill still must **not** write
+the eight canonical files. Main Agent lands:
+
+- **ADVANCE** — Main → `experiment-design`. This Skill does not register the
+  EXP.
+- **REVISE** — Main writes one line in `STATE.md` **Recommended Next Action**:
+  `Revise <idea> before experiment registration.`
+- **PARK / ABANDON** — If there is no Experiment, Main writes ordinary prose
+  in `DISCOVERY.md` **Current Scientific Understanding** or **Research
+  Evolution**, plus `Memo: .research/work/idea-evaluation-<slug>.md`. Do
+  **not** use `Evidence: work/...` (`Evidence:` is for EXP). Do **not** write
+  Positive Discoveries or Negative Discoveries unless there is already direct
+  Experiment evidence.
 
 ## Deviation allowed
 

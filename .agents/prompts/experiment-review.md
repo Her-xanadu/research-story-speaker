@@ -69,13 +69,31 @@ Files:
 - result-review-r1.md
 ```
 
-A REVIEWS.md synthesis is Provenance `synthesis`: attach `Source reviews:` and
-do not count it as extra independent Reviewer (see reviewer.md). Subagents do
-**not** write `REVIEWS.md` — Main Agent synthesizes the summary.
+`REVIEWS.md` is the review **index + current summary**. It is **not** a
+Reviewer artifact and does not count as an additional review.
+`Provenance: raw | synthesis` describes review artifacts under
+`.research/reviews/` only ([reviewer.md](../subagents/reviewer.md)). Keep
+Latest method review, Latest result review, and pointers to source review
+files. Subagents do **not** write `REVIEWS.md` — Main Agent writes the
+index/summary.
+
+## Next-action sync (Main)
+
+If the Reviewer Verdict is `REVISE`, `REJECT`, or `ATTENTION_REQUIRED` (per
+reviewer.md §Verdict; do not recopy the list) **and** that changes the next
+action, Main must sync both existing fields:
+
+```text
+EXPERIMENTS.md → Next
+STATE.md → Recommended Next Action
+```
+
+Do not leave STATE saying revise while EXPERIMENTS still says execute. No
+new fields.
 
 ## Quality bar
 
 - One EXP-ID per review folder; do not mix experiments.
 - If reviews disagree with analyst, document why in REVIEWS summary.
 - Review does not replace updating EXPERIMENTS / DISCOVERY — it informs those updates.
-- Do not polish `raw` review bodies when writing the synthesis.
+- Do not polish `raw` review bodies when writing the index/summary.

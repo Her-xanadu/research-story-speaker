@@ -71,17 +71,27 @@ Any agent seeing `EXP-xxx` should rebuild the chain in
 6. **Write summary** — Add entry to `.research/REVIEWS.md`. Template:
    [REVIEWS.template.md](../../templates/REVIEWS.template.md). Decision matrix
    and synthesis template: [experiment-review.md](../../prompts/experiment-review.md).
-   A REVIEWS.md entry is Provenance `synthesis`: attach `Source reviews:`; it
-   does not add independent Reviewer count.
+   `REVIEWS.md` is the review **index + current summary**. It is **not** a
+   Reviewer artifact and does not count as an additional review.
+   `Provenance: raw | synthesis` describes review artifacts under
+   `.research/reviews/` only ([reviewer.md](../../subagents/reviewer.md)).
+   Keep Latest method review, Latest result review, and pointers to source
+   review files.
 7. **Link back** — Set Review field in `EXPERIMENTS.md` for that `EXP-xxx` to point
    at `r<N>` files and REVIEWS summary.
+8. **Sync next action (Main)** — If the Reviewer Verdict is `REVISE`,
+   `REJECT`, or `ATTENTION_REQUIRED` (per reviewer.md §Verdict; do not recopy
+   the list) **and** that changes the next action, Main must update both
+   `EXPERIMENTS.md` **Next** for this EXP and `STATE.md` **Recommended Next
+   Action**. Do not leave STATE saying revise while EXPERIMENTS still says
+   execute. No new fields.
 
 ## Reads
 
 | Priority | Files |
 |----------|-------|
 | Required | `.research/EXPERIMENTS.md` (`EXP-xxx`), raw results, code at Git commit |
-| Often | `.research/STORY.md`, `.research/DISCOVERY.md`, `.research/REVIEWS.md` |
+| Often | `.research/STORY.md`, `.research/DISCOVERY.md`, `.research/REVIEWS.md`, `.research/STATE.md` |
 | Prompts | [method-review.md](../../prompts/method-review.md), [result-review.md](../../prompts/result-review.md), [experiment-review.md](../../prompts/experiment-review.md) |
 | Optional prepend | [evidence-verification](../evidence-verification/SKILL.md) — high-stakes result-review only; not every review |
 | Subagent | [reviewer.md](../../subagents/reviewer.md) |
@@ -92,8 +102,9 @@ Any agent seeing `EXP-xxx` should rebuild the chain in
 | File | What to update |
 |------|----------------|
 | `.research/reviews/EXP-xxx/*-review-r<N>.md` | Full review content |
-| `.research/REVIEWS.md` | Summary index per EXP-ID |
-| `.research/EXPERIMENTS.md` | Review cross-links only |
+| `.research/REVIEWS.md` | Index + current summary (not a Reviewer artifact) |
+| `.research/EXPERIMENTS.md` | Review cross-links; **Next** when Verdict changes the next action |
+| `.research/STATE.md` | **Recommended Next Action** when that Verdict changes the next action |
 
 Do not rewrite Interpretation or Story here — recommend changes; owner skills apply them.
 Do not paste entire state files into prompts — point to paths.
