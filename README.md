@@ -1,6 +1,6 @@
 # research-story-speaker
 
-Framework base: v0.2.1-in-progress — 纯文件、纯提示词的 Story 驱动自动化科研框架。
+Framework base: v0.2.1 — 纯文件、纯提示词的 Story 驱动自动化科研框架。
 
 ## Quick Start
 
@@ -68,11 +68,10 @@ Wave G claim.
 
 ## 当前状态
 
-V0.2.1 micro-hardening is **in progress** on this branch. Gate A **APPROVE**
+V0.2.1 micro-hardening. Gate A **APPROVE**
 (`e612f8e`; [`gate-a-review.md`](docs/validation/v0.2.1/gate-a-review.md)).
-Gate B is **TARGETED_REVISION** in progress
-([`gate-b-review.md`](docs/validation/v0.2.1/gate-b-review.md)). Do **not**
-claim Gate B APPROVE.
+Gate B **APPROVE_V0_2_1**
+([`gate-b-rereview.md`](docs/validation/v0.2.1/gate-b-rereview.md)).
 
 V0.2.1 live Wave G: G1 compact soft target **MISS** on both harnesses;
 compact retune2 still **MISS**. Routing is lighter (no proposal/diagnosis/RI
@@ -90,4 +89,4 @@ V0.2 行为证据边界（不要把指令层行数增长当成「更会推理」
 - Wave H：`skill-evolution` dogfood **reject**。
 - Case 10：Codex live **file-level PASS**（无 Idea/Evidence/Reviewer 工作文件）。agent 仍打开了 fixture README 评分段，**不是** unleaked protection。
 
-已知债务（v0.2.1）：OpenCode 实测；compact token 软目标仍 MISS（agents 仍整文件读 SKILL.md）；Gate B TARGETED_REVISION。
+已知债务（v0.2.1）：OpenCode 实测；compact token 软目标仍 MISS（agents 仍整文件读 SKILL.md）。
