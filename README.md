@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/hero-banner.jpg" alt="research-story-speaker: one Story at the center of a file-native research workspace" width="100%">
+  <img src="docs/assets/hero-banner.jpg" alt="Decorative still life of archival paper and notebooks on a research desk" width="100%">
 </p>
 
 <h1 align="center">research-story-speaker</h1>
@@ -10,11 +10,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Her-xanadu/research-story-speaker/releases/tag/v0.2.2"><img src="https://img.shields.io/badge/release-v0.2.2-2F5D50" alt="release v0.2.2"></a>
+  <a href="https://github.com/Her-xanadu/research-story-speaker/releases/tag/v0.2.2"><img src="https://img.shields.io/badge/release-v0.2.2-3B5B8A" alt="release v0.2.2"></a>
   <img src="https://img.shields.io/badge/visibility-private-6B7280" alt="private repository">
-  <img src="https://img.shields.io/badge/canonical-8-1F3D32" alt="8 canonical research files">
-  <img src="https://img.shields.io/badge/skills-14-1F3D32" alt="14 skills">
-  <img src="https://img.shields.io/badge/scripts-0-1F3D32" alt="0 runtime scripts">
+  <img src="https://img.shields.io/badge/canonical-8-1B2430" alt="8 canonical research files">
+  <img src="https://img.shields.io/badge/skills-14-1B2430" alt="14 skills">
+  <img src="https://img.shields.io/badge/scripts-0-1B2430" alt="0 runtime scripts">
 </p>
 
 <p align="center">
