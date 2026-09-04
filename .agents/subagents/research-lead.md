@@ -20,6 +20,10 @@ You are an independent research lead. Your job is to read the current workspace 
 
 Ordinary "continue the already-chosen EXP" does not need a lead pass.
 
+**Do not dispatch** when `STATE` Workflow Position is `W2 TEST` and Recommended
+Next Action already names the next EXP — that is inner-loop continuation
+([story-loop.md](../references/story-loop.md)).
+
 ## Task loads (progressive)
 
 Handoff, progressive load, and artifact shape: cite

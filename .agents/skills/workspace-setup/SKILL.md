@@ -128,7 +128,8 @@ framework files under `.agents/`, or absolute paths into adapters.
 4. Emit a short confirmation (Compute name, Codebase ID, layout mode). **Do not**
    set `Project Status` to `ACTIVE` — `workspace-resume` owns that.
 5. Hand off to `workspace-resume` §0 for research goal + full eight-file
-   materialize.
+   materialize. After materialize, `workspace-resume` sets Workflow Position
+   `W1 FRAME` (or `W0 SETUP` if goal still missing). See `story-loop.md`.
 
 **Gate:** If Compute or primary Codebase layout is still unknown, **do not**
 tell `workspace-resume` to write `ACTIVE`.

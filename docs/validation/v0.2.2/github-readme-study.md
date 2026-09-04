@@ -133,4 +133,6 @@
 | 社交/营销徽章 | 否 | 科研工具气质 |
 | 独立 homepage URL | 否 | 不编造 |
 
-冻结计数（须与树一致）：canonical 8 · research-loop 1 · subagents 5 · Skills 13 · RI 6 · scripts 0。
+冻结计数（须与树一致）：canonical 8 · research-loop 1 · subagents 5 · Skills 14 · RI 6 · scripts 0。
+
+v0.2.2 README 二次展示（2026-09-05）：生成图 `hero.jpg` / `two-layer-loop.jpg` / `social-card.jpg` 作首屏与循环气质；可读标签仍用自绘 SVG（`architecture.svg`、`workflow.svg`），避免把生成图里的英文当 Protocol。

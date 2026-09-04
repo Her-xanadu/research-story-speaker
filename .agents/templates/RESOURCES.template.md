@@ -56,7 +56,7 @@ Access hints like `SSH alias gpu-a` are OK.
 
 | Capability | Available via |
 |------------|---------------|
-| Literature | Web / PDF / {{Zotero}} |
+| Literature | Local vault: `paper-consult` (`~/.agents/skills/`); refresh: Main → `paper-find` → `paper-library ingest` |
 | Independent reviewer | {{Codex / Claude / MCP}} |
 | Git | native |
 | Remote compute | {{SSH or equivalent}} |

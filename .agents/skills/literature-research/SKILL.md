@@ -1,96 +1,105 @@
 ---
 name: literature-research
 description: >-
-  Search external literature around the current Story gap via web, Zotero, PDF,
-  or institutional access. Default mode is light (3–10 highly relevant sources);
-  deep is optional and not default. Synthesize what is known, conflicts, supports,
-  suggests, and novelty risk; update LITERATURE.md with only valuable entries.
-  Use when Open Gaps need prior work, novelty checks, method conflicts, or
-  baseline selection. Triggers include 查文献, literature search, prior work on.
-  Do not update STORY directly (story-maintenance) or run experiments.
+  Local-first literature for the focal Story gap: paper-consult on Obsidian
+  vault, four-dimension adequacy (coverage, access depth, closest-work,
+  freshness), paper-find only when inadequate or freshness required, bounded
+  NEW ingest via paper-library, enrich Gap-relevant subset, optional
+  paper-nutrients, Main writes LITERATURE.md. Light default; deep optional.
+  Use for 查文献, prior work, novelty checks. No independent web/arXiv/S2
+  search in this Skill. Do not update STORY directly.
 ---
 
 # Literature Research
 
-Thin Skill for turning external knowledge into durable `.research/LITERATURE.md`
-entries. Entry format: [state-files.md](../../references/state-files.md) §
-LITERATURE.md. Gap priority and Literature routing:
-[story-loop.md](../../references/story-loop.md).
+**本地库优先；联网只为补库和 freshness。** 联网唯一入口：`paper-find`（`~/.agents/skills/paper-find/`）。稳态读库：`paper-consult`。沉淀：`paper-library mode: ingest`（bounded NEW 全量）；精读：`mode: enrich`（Gap subset）。可选 `paper-nutrients`（非阻塞）。
 
-Heavy parallel reading may delegate to `literature-scout` subagent; integrator
-writes canonical LITERATURE entries.
+交棒合同：[`paper-nutrients/references/consumers.md`](/Users/herxanadu/.agents/skills/paper-nutrients/references/consumers.md)
+
+Thin Skill：把文献证据写入 `.research/LITERATURE.md`。格式见 [state-files.md](../../references/state-files.md) § LITERATURE.md。Gap 路由见 [story-loop.md](../../references/story-loop.md)。
+
+**Vault 单写者：** 仅 Main 跑 `paper-find` / `paper-library`。`literature-scout` 只 `paper-consult` 只读；不足时返回 `NEEDS_REFRESH`，不写 Vault。
 
 ## Mode
 
-`light` | `deep`. **Default is light.** Deep is not default.
+`light` | `deep`. **Default is light.**
 
-- **Light** — 3–10 highly relevant sources. If they already name a
-  discriminating test, stop searching and hand off to `experiment-design`.
-- **Deep** — only when novelty is unclear, a new core mechanism is proposed,
-  papers conflict in a way that would change Story, or the field landscape
-  (including evaluation convention) is the bottleneck. Operators:
-  [deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md)
-  (including §G **soft search budget**: Pass 1 landscape, Pass 2 targeted
-  closest-work / contradiction, stop when RQs are actionable, at most one
-  justified extension). The budget is not a paper-count Protocol enum and
-  not a STATE field; write it in `.research/work/` or the task context.
-  Task prompt:
-  [literature-synthesis.md](../../prompts/literature-synthesis.md).
-  Main still writes `LITERATURE.md`; scouts write `.research/work/` only.
+- **Light** — 3–10 highly relevant sources **after** local consult + optional find pass. If they already name a discriminating test, stop and hand off to `experiment-design`.
+- **Deep** — novelty unclear, new core mechanism, Story-changing conflict, or evaluation convention bottleneck. Operators: [deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md) §G：**Pass 1 / Pass 2 = 是否再开 `paper-find` bounded 队列**，不是本 Skill 内自建 arXiv/S2/web 步骤。Main 仍写 `LITERATURE.md`；scout 只写 `.research/work/`。
+
+## Four-dimension adequacy (all must hold to skip find)
+
+Not a score — four booleans:
+
+| Dimension | Question |
+| --- | --- |
+| **coverage** | Does the local vault answer the current scientific question? |
+| **access depth** | Are key claims blocking the Gap readable at sufficient depth? |
+| **closest-work** | When novelty/baseline matters, is the nearest line covered? |
+| **freshness** | When time-sensitive, is the vault fresh enough? |
+
+**local-first ≠ permanently local-only.** Re-run `paper-find` when freshness is a scientific requirement (novelty audit, new Core Idea, user asks latest, READY_FOR_WRITING prior-art, field may have moved) even if other dimensions pass.
 
 ## When to use
 
-- An Open Gap is blocked by unknown prior work or novelty risk.
-- Story cites a method conflict (e.g. transductive vs inductive calibration).
-- Baseline or comparison selection needs literature grounding.
-- `research-loop` routed to Literature for the current gap.
-- `experiment-design` needs baseline papers before drafting Comparisons.
+- Open Gap blocked by prior work or novelty risk.
+- Method conflict needs literature grounding.
+- `research-loop` routed to Literature.
+- `experiment-design` needs baseline papers.
 
-Do **not** use for: running code (`experiment-execution`), first-pass result
-interpretation (`result-analysis`), Story edits (`story-maintenance`), or
-compressing state files (`research-memory`).
+Do **not** use for: `experiment-execution`, `result-analysis`, `story-maintenance`, `research-memory`.
 
-## Goal
-
-For the **focal Story gap**, produce a structured synthesis answering:
+## Five lenses (synthesis)
 
 | Lens | Question |
 | --- | --- |
-| **Known** | What does the field already establish? |
-| **Conflicts** | Where do papers disagree or contradict our Story? |
-| **Supports** | What evidence backs (or partially backs) our direction? |
-| **Suggests** | What methods, baselines, or experiments do papers imply? |
-| **Novelty** | What appears already done; what gap remains for us? |
+| **Known** | What does the field establish? |
+| **Conflicts** | Where do papers disagree with our Story? |
+| **Supports** | What backs our direction? |
+| **Suggests** | What methods/baselines/experiments do papers imply? |
+| **Novelty** | What appears done; what gap remains? |
 
-Persist only **valuable** findings in `LITERATURE.md` — one section per
-important paper, not search logs or abstract dumps.
+Persist only **valuable** entries in `LITERATURE.md` — not search logs.
 
 ## Default flow
 
-1. **Anchor gap** — Read `.research/STORY.md` (Open Gaps, Boundary) and
-   `.research/STATE.md` focus. One focal gap per session unless parallel scouts.
-2. **Scan existing** — Read `.research/LITERATURE.md` to avoid duplicate entries;
-   note Relation fields already covering the gap.
-3. **Search** — Per Mode (default light). Use web / arXiv / Semantic Scholar /
-   Zotero / PDF per `.research/RESOURCES.md`. Prefer primary papers, surveys,
-   and benchmark papers. Do not start deep because an Open Gap exists. In
-   **deep**, follow the §G budget on the operator file: two default passes,
-   stop when frozen RQs are actionable; do not keep searching because more
-   papers exist. Zotero and PDF are acquisition aids; canonical record stays
-   in LITERATURE.md.
-4. **Synthesize** — Draft the five-lens summary (Known / Conflicts / Supports /
-   Suggests / Novelty) for the session; use it to decide what merits a permanent
-   entry.
-5. **Write LITERATURE.md** — For each important source, append or update one
-   section per [LITERATURE.template.md](../../templates/LITERATURE.template.md)
-   and [state-files.md](../../references/state-files.md) §LITERATURE.md. This
-   Skill only ensures the five lenses map into Relation fields (Relation to Our
-   Story / Relation to Experiments). Do **not** paste into STORY or DISCOVERY
-   unless explicitly requested.
-6. **Update STATE** — Brief next step if literature changes experiment priority
-   or closes a novelty blocker.
-7. **Hand off** — If empirical test is now obvious → `experiment-design`; if
-   Story wording only → `story-maintenance`; else `research-loop`.
+1. **Anchor gap** — `.research/STORY.md`, `.research/STATE.md` focus.
+2. **Scan project memory** — `.research/LITERATURE.md` for duplicates.
+3. **paper-consult** — four-part query; read `consult_status` (`hits` | `no_hits` | `unavailable`).
+4. **Adequacy** — four dimensions + freshness triggers (above). If adequate **and** not freshness-forced → **0** `search.sh` calls; synthesize from vault cards.
+5. **If inadequate or freshness** — `paper-find` (`search.sh` + bounded ALL NEW acquire) → `paper-library ingest` for every NEW → `paper-consult` again.
+6. **Rank** — relevance to Gap; subset for enrich only.
+7. **paper-library enrich** — closest-work / novelty / mechanism subset (not entire queue).
+8. **Optional paper-nutrients** — `--trigger-kind literature_research`; catch non-zero exits; do not treat generator crash as empty.
+9. **Write LITERATURE.md** — per [LITERATURE.template.md](../../templates/LITERATURE.template.md); include **paper_id**, **vault path**, Identifier, Access when local object exists.
+10. **STATE** — brief next step if routing changed.
+11. **Hand off** — `experiment-design` | `story-maintenance` | `research-loop`.
+
+### Degraded mode (no Obsidian vault)
+
+`consult_status: unavailable` → `paper-find` candidates only; LITERATURE entries `abstract-only` + STATE notes not ingested. **Do not** treat abstract-only as methods-checked or close novelty from metadata alone.
+
+### Pending institutional PDFs
+
+Do not block `research-loop`. If pending item is closest-work / novelty-killer → keep Gap open; lower claim confidence.
+
+### Ingest vs enrich
+
+```text
+Acquisition: ALL NEW in bounded queue → ingest
+Understanding: Gap-relevant subset → enrich
+```
+
+## Deep flow (§G → find passes)
+
+1. RQ freeze ([deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md) §A).
+2. `paper-consult` + adequacy.
+3. **Find Pass 1** (landscape) if needed → ingest all NEW → consult.
+4. Closest-work / contradiction still open? **Find Pass 2** (targeted) → ingest → consult.
+5. Stop when RQs actionable; at most one justified extension pass ([§G](../../references/research-intelligence/deep-literature-mode.md)).
+6. Enrich subset; optional nutrients; Main → LITERATURE.
+
+**No** independent web / arXiv / Semantic Scholar / Zotero search steps in this Skill or scout.
 
 ## Reads
 
@@ -98,40 +107,29 @@ important paper, not search logs or abstract dumps.
 | --- | --- |
 | Required | `.research/STORY.md`, `.research/LITERATURE.md` |
 | Often | `.research/STATE.md`, `.research/PROJECT.md`, `.research/DISCOVERY.md`, `.research/RESOURCES.md` |
-| Reference | [state-files.md](../../references/state-files.md), [story-loop.md](../../references/story-loop.md) |
+| External skills | `~/.agents/skills/paper-consult`, `paper-find`, `paper-library`, `paper-nutrients` |
 | Deep only | [deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md), [literature-synthesis.md](../../prompts/literature-synthesis.md) |
-| Subagent | `.agents/subagents/literature-scout.md`, `.agents/prompts/subagent-handoff.md` |
+| Subagent | `.agents/subagents/literature-scout.md` |
 
 ## Updates
 
-| File | What to update |
+| File | What |
 | --- | --- |
-| `.research/LITERATURE.md` | New or revised paper sections (valuable info only) |
-| `.research/STATE.md` | Next action if routing changed (brief) |
+| `.research/LITERATURE.md` | Valuable paper sections only (Main) |
+| `.research/STATE.md` | Routing change (brief) |
 
-Do **not** update `EXPERIMENTS.md`, `DISCOVERY.md`, or `STORY.md` in this Skill.
-
-Anti-duplication: no literature dumps in STORY — [state-files.md](../../references/state-files.md).
+Do **not** update `EXPERIMENTS.md`, `DISCOVERY.md`, or `STORY.md` here.
 
 ## Deviation allowed
 
-- Literature-only session with no STATE change when gap and routing unchanged.
-- Delegate bulk search to `literature-scout`; integrator writes LITERATURE entries
-  from scout output in `.research/work/<task-slug>.md`.
-- Stay on light when 3–10 sources already name a discriminating EXP.
-- Do not load deep-literature-mode for ordinary baseline lookup or Related Work.
-- Deep mode: stop after two passes once RQs are actionable; one extra
-  targeted pass only when
-  [deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md)
-  §G allows it and the work file says why it changes a research decision.
-  Do not invent a paper quota or a STATE budget field.
-- Skip low-relevance papers — note search scope in STATE if gap remains open.
-- Compare two papers in one LITERATURE entry when they jointly address one gap.
-- Stop after synthesis memo when user asked for a report only (no LITERATURE write).
-- Verify methods sections before treating abstract claims as findings.
+- Delegate parallel reading to `literature-scout` (consult-only); integrator writes LITERATURE from `.research/work/`.
+- Light when 3–10 sources already name discriminating EXP.
+- Skip low-relevance papers — note scope in STATE.
+- Verify methods before treating abstract claims as findings.
+- When LITERATURE already covers gap and vault adequate+fresh → update Relation only; **0** find.
 
 Boundaries:
 
-- Do not treat abstracts as verified findings without checking methods.
-- Do not redo full literature review when LITERATURE already covers the gap —
-  update Relation fields or add one targeted paper instead.
+- No literature dumps in STORY.
+- No scout Vault writes.
+- nutrients operational failure ≠ empty packet.

@@ -47,7 +47,7 @@
 
 **Discovery Impact:** {{→ DISCOVERY 要点}}
 
-**Story Impact:** {{→ STORY 哪一段}}
+**Story Impact:** Level 0|1|2 — {{对 STORY 六段的影响}}
 
 **Review:** {{none | pending | see REVIEWS.md EXP-xxx}}
 

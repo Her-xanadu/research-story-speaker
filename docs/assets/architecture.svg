@@ -1,64 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
   <title id="title">Story loop and eight canonical files</title>
   <desc id="desc">STORY drives the research loop. Eight .research files hold project memory.</desc>
   <defs>
-    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#14281E"/>
-      <stop offset="100%" stop-color="#0E1F18"/>
-    </linearGradient>
     <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-      <path d="M0 0 L7 3.5 L0 7 Z" fill="#C9A86C"/>
+      <path d="M0 0 L7 3.5 L0 7 Z" fill="#8BA3C7"/>
     </marker>
   </defs>
-  <rect width="960" height="420" rx="10" fill="#0B1A14"/>
-  <rect x="1" y="1" width="958" height="418" rx="9" fill="none" stroke="#C9A86C" stroke-opacity="0.28"/>
+  <rect width="960" height="420" rx="10" fill="#0D1117"/>
+  <rect x="1" y="1" width="958" height="418" rx="9" fill="none" stroke="#30363D"/>
 
-  <text x="36" y="42" fill="#C9A86C" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" letter-spacing="3.2">STORY LOOP</text>
-  <text x="36" y="72" fill="#F4EEE0" font-family="Georgia, 'Times New Roman', serif" font-size="22">One current Story. Files are the memory.</text>
+  <text x="36" y="42" fill="#8BA3C7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" letter-spacing="3.2">STORY LOOP</text>
+  <text x="36" y="72" fill="#E6EDF3" font-family="Georgia, 'Times New Roman', serif" font-size="22">One current Story. Files are the memory.</text>
 
   <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">
-    <rect x="36" y="108" width="168" height="56" rx="6" fill="url(#panel)" stroke="#C9A86C" stroke-opacity="0.55"/>
-    <text x="120" y="132" text-anchor="middle" fill="#C9A86C" font-size="10" letter-spacing="1.5">CORE</text>
-    <text x="120" y="150" text-anchor="middle" fill="#F4EEE0">STORY.md</text>
+    <rect x="36" y="108" width="168" height="56" rx="6" fill="#161B22" stroke="#8BA3C7"/>
+    <text x="120" y="132" text-anchor="middle" fill="#8BA3C7" font-size="10" letter-spacing="1.5">CORE</text>
+    <text x="120" y="150" text-anchor="middle" fill="#E6EDF3">STORY.md</text>
 
-    <rect x="244" y="108" width="168" height="56" rx="6" fill="url(#panel)" stroke="#8FA08F" stroke-opacity="0.45"/>
-    <text x="328" y="132" text-anchor="middle" fill="#8FA08F" font-size="10" letter-spacing="1.5">GAP</text>
-    <text x="328" y="150" text-anchor="middle" fill="#EDE6D6">weakest claim</text>
+    <rect x="244" y="108" width="168" height="56" rx="6" fill="#161B22" stroke="#30363D"/>
+    <text x="328" y="132" text-anchor="middle" fill="#8B949E" font-size="10" letter-spacing="1.5">GAP</text>
+    <text x="328" y="150" text-anchor="middle" fill="#E6EDF3">weakest claim</text>
 
-    <rect x="452" y="108" width="220" height="56" rx="6" fill="url(#panel)" stroke="#8FA08F" stroke-opacity="0.45"/>
-    <text x="562" y="132" text-anchor="middle" fill="#8FA08F" font-size="10" letter-spacing="1.5">ACTION</text>
-    <text x="562" y="150" text-anchor="middle" fill="#EDE6D6">Literature / Experiment / Review</text>
+    <rect x="452" y="108" width="220" height="56" rx="6" fill="#161B22" stroke="#30363D"/>
+    <text x="562" y="132" text-anchor="middle" fill="#8B949E" font-size="10" letter-spacing="1.5">ACTION</text>
+    <text x="562" y="150" text-anchor="middle" fill="#E6EDF3">Literature / Experiment / Review</text>
 
-    <rect x="712" y="108" width="212" height="56" rx="6" fill="url(#panel)" stroke="#8FA08F" stroke-opacity="0.45"/>
-    <text x="818" y="132" text-anchor="middle" fill="#8FA08F" font-size="10" letter-spacing="1.5">WRITE</text>
-    <text x="818" y="150" text-anchor="middle" fill="#EDE6D6">EXPERIMENTS to DISCOVERY</text>
+    <rect x="712" y="108" width="212" height="56" rx="6" fill="#161B22" stroke="#30363D"/>
+    <text x="818" y="132" text-anchor="middle" fill="#8B949E" font-size="10" letter-spacing="1.5">WRITE</text>
+    <text x="818" y="150" text-anchor="middle" fill="#E6EDF3">EXPERIMENTS to DISCOVERY</text>
   </g>
 
-  <path d="M204 136 H236" stroke="#C9A86C" stroke-opacity="0.7" stroke-width="1.4" marker-end="url(#arr)"/>
-  <path d="M412 136 H444" stroke="#C9A86C" stroke-opacity="0.7" stroke-width="1.4" marker-end="url(#arr)"/>
-  <path d="M672 136 H704" stroke="#C9A86C" stroke-opacity="0.7" stroke-width="1.4" marker-end="url(#arr)"/>
-  <path d="M818 164 V188 H120 V164" fill="none" stroke="#C9A86C" stroke-opacity="0.45" stroke-width="1.2" stroke-dasharray="4 5"/>
+  <path d="M204 136 H236" stroke="#8BA3C7" stroke-opacity="0.85" stroke-width="1.4" marker-end="url(#arr)"/>
+  <path d="M412 136 H444" stroke="#8BA3C7" stroke-opacity="0.85" stroke-width="1.4" marker-end="url(#arr)"/>
+  <path d="M672 136 H704" stroke="#8BA3C7" stroke-opacity="0.85" stroke-width="1.4" marker-end="url(#arr)"/>
+  <path d="M818 164 V188 H120 V164" fill="none" stroke="#8BA3C7" stroke-opacity="0.4" stroke-width="1.2" stroke-dasharray="4 5"/>
 
-  <text x="36" y="228" fill="#C9A86C" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" letter-spacing="3.2">EIGHT CANONICAL FILES</text>
+  <text x="36" y="228" fill="#8BA3C7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" letter-spacing="3.2">EIGHT CANONICAL FILES</text>
 
-  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#EDE6D6">
-    <rect x="36" y="248" width="214" height="44" rx="5" fill="#14281E" stroke="#C9A86C" stroke-opacity="0.25"/>
+  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#E6EDF3">
+    <rect x="36" y="248" width="214" height="44" rx="5" fill="#161B22" stroke="#30363D"/>
     <text x="52" y="275">PROJECT - what we aim to solve</text>
-    <rect x="262" y="248" width="214" height="44" rx="5" fill="#14281E" stroke="#C9A86C" stroke-opacity="0.55"/>
+    <rect x="262" y="248" width="214" height="44" rx="5" fill="#161B22" stroke="#8BA3C7" stroke-opacity="0.85"/>
     <text x="278" y="275">STORY - what we believe now</text>
-    <rect x="488" y="248" width="214" height="44" rx="5" fill="#14281E" stroke="#C9A86C" stroke-opacity="0.25"/>
+    <rect x="488" y="248" width="214" height="44" rx="5" fill="#161B22" stroke="#30363D"/>
     <text x="504" y="275">STATE - where we are</text>
-    <rect x="714" y="248" width="210" height="44" rx="5" fill="#14281E" stroke="#C9A86C" stroke-opacity="0.25"/>
+    <rect x="714" y="248" width="210" height="44" rx="5" fill="#161B22" stroke="#30363D"/>
     <text x="730" y="275">DISCOVERY - what we learned</text>
-    <rect x="36" y="304" width="214" height="44" rx="5" fill="#14281E" stroke="#C9A86C" stroke-opacity="0.25"/>
+    <rect x="36" y="304" width="214" height="44" rx="5" fill="#161B22" stroke="#30363D"/>
     <text x="52" y="331">EXPERIMENTS - what happened</text>
-    <rect x="262" y="304" width="214" height="44" rx="5" fill="#14281E" stroke="#C9A86C" stroke-opacity="0.25"/>
+    <rect x="262" y="304" width="214" height="44" rx="5" fill="#161B22" stroke="#30363D"/>
     <text x="278" y="331">LITERATURE - external claims</text>
-    <rect x="488" y="304" width="214" height="44" rx="5" fill="#14281E" stroke="#C9A86C" stroke-opacity="0.25"/>
+    <rect x="488" y="304" width="214" height="44" rx="5" fill="#161B22" stroke="#30363D"/>
     <text x="504" y="331">REVIEWS - independent critique</text>
-    <rect x="714" y="304" width="210" height="44" rx="5" fill="#14281E" stroke="#C9A86C" stroke-opacity="0.25"/>
+    <rect x="714" y="304" width="210" height="44" rx="5" fill="#161B22" stroke="#30363D"/>
     <text x="730" y="331">RESOURCES - code / compute</text>
   </g>
 
-  <text x="36" y="384" fill="#8FA08F" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">Chat history is not a source of scientific fact. Numbers live in EXPERIMENTS, not in STORY.</text>
+  <text x="36" y="384" fill="#8B949E" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">Chat history is not a source of scientific fact. Numbers live in EXPERIMENTS, not in STORY.</text>
 </svg>

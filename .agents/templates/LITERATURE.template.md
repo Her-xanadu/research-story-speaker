@@ -10,6 +10,10 @@
 
 **Identifier:** DOI | arXiv | Zotero key | URL
 
+**Local paper_id:** {{Obsidian vault paper_id, if ingested}}
+
+**Vault path:** {{canonical 论文综述.md path, if ingested}}
+
 **Access:** full-text-checked | abstract-only | metadata-only
 
 **Research Problem:** {{论文解决的问题}}

@@ -264,14 +264,14 @@ Write it only in the work artifact or the literature-task context.
 Default shape:
 
 ```text
-Pass 1 — broad landscape
-Pass 2 — targeted closest-work / contradiction
+Pass 1 — broad landscape   → Main: paper-find bounded queue + ingest (if consult inadequate)
+Pass 2 — targeted closest-work / contradiction → second find pass only if still blocked
 ```
 
-Pass 1 covers the angles that apply (§B). Pass 2 follows the names those
-hits revealed and fills the closest-work matrix (§C) and contradiction
-map (§D) for the frozen RQs. Two passes are the default ceiling, not a
-citation quota and not a duty to empty the field.
+Pass 1 covers the angles that apply (§B) **through local consult first**, then one
+`paper-find` pass when needed. Pass 2 is a **second `paper-find` pass** (targeted
+queries), not scout-side web search. Literature-research owns transport; this file
+owns **whether** to open Pass 1, Pass 2, or one extension — not arXiv/S2 API steps.
 
 If light literature already names a discriminating experiment, **do not
 enter this mode**. Deep literature is for uncertainty that would change

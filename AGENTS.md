@@ -47,28 +47,29 @@ Framework base: v0.2.2
 |------|-------|
 | 安装 / 新建项目 / 未初始化 / 换算力或代码路径 | `workspace-setup` |
 | 未初始化（PROJECT Status = `UNINITIALIZED`） | `workspace-setup` → `workspace-resume` |
-| ACTIVE 且 STATE 下一步已是普通 sanity / exploratory | compact `experiment-design` →（跑代码才）`experiment-execution` → compact `result-analysis`；不要 `workspace-resume` / `research-loop` |
+| ACTIVE 且 STATE 下一步已是普通 sanity / exploratory | compact `experiment-design` →（跑代码才）`experiment-execution` → compact `result-analysis`（**内循环 W2–W3–W4**）；不要 `workspace-resume` / `research-loop` |
 | 新 Session / 陌生 Agent（ACTIVE 但下一步不清） | `workspace-resume` 后按 STATE 或 `research-loop` |
 | 决定下一步科研 | `research-loop` |
 | 维护文件一致性 | `research-memory` |
 | 更新 Story | `story-maintenance` |
 | 新 Core Idea / 换路线 / 高代价实验 | `idea-evaluation` |
-| 查文献 | `literature-research` |
+| 查文献 | `literature-research`（本地库优先：`paper-consult`；补库/freshness 仅 Main 调 `paper-find` → `paper-library`；见该 Skill） |
 | 设计实验 | `experiment-design` |
 | 执行实验 | `experiment-execution` |
 | 分析结果 | `result-analysis` |
 | 结果拟进 Story Evidence / 高风险结果 | `evidence-verification` |
 | 独立 Review | `experiment-review` |
 | 仅维护框架、升级 Harness 或发布版本时使用 | `framework-maintenance` |
+| 扩展框架 / 接入工作流、Skill、MCP、Harness、领域包或贡献能力 | `framework-extension`（维护者 Skill；**不进** research-loop） |
 
-复杂任务优先找对应 Skill，不要重复发明流程。细节见各 `SKILL.md` 与 `.agents/references/`。`.agents/references/research-intelligence/` 与 `.agents/prompts/` 随对应 Skill 按需加载，冷启动不必通读。
+复杂任务优先找对应 Skill，不要重复发明流程。细节见各 `SKILL.md` 与 `.agents/references/`。`.agents/references/research-intelligence/` 与 `.agents/prompts/` 随对应 Skill 按需加载，冷启动不必通读。`framework-extension` 仅在用户明确要求扩展/集成时加载。
 
 ## Subagents
 
 仅当任务适合 **并行、独立上下文、独立 Reviewer、大量阅读** 时派 Subagent：
 
 - `research-lead` — 独立判断下一步
-- `literature-scout` — 大量文献检索
+- `literature-scout` — 并行文献阅读（**只读** `paper-consult`；不足返回 `NEEDS_REFRESH`；不写 Vault）
 - `experiment-agent` — 实验执行
 - `result-analyst` — 与执行分离的结果解释
 - `reviewer` — 独立批判

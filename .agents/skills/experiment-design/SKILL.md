@@ -16,6 +16,9 @@ description: >-
 
 Thin Skill for scientific experiment **specification** before code runs.
 
+**Inner loop W2:** compact design does not re-open `story-loop` or re-frame the
+Story. Only full design (mechanism claim, new Core Idea, etc.) may need W1 context.
+
 `compact` / `full` are Skill-internal modes. Never write them into STATE,
 EXPERIMENTS, Status, or Outcome.
 
@@ -45,8 +48,8 @@ of supplied artifacts.
 
 Compact persist: map the five items into the existing EXP section; no new
 canonical files, index columns, or Protocol enums. Status `planned`, Outcome
-`not-assessed`. Update STATE recommended next (`experiment-execution` if a
-run is needed). Required reads: `.research/EXPERIMENTS.md`; `STORY.md` /
+`not-assessed`. Update STATE: Workflow Position `W2 TEST`, recommended next
+(`experiment-execution` if a run is needed). Required reads: `.research/EXPERIMENTS.md`; `STORY.md` /
 `STATE.md` only if the Question is not already on disk.
 
 **Full design — continue past the stop line only if any:** mechanism claim,
