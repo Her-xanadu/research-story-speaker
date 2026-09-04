@@ -16,7 +16,7 @@
 
 **Preferred relative location:** `../../../story-research-code`
 
-**Last known local location:** `/Users/herxanadu/Documents/story-research-code`
+**Last known local location:** (host-dependent; same as preferred relative) `../../../story-research-code`
 
 **Remote location:** N/A
 

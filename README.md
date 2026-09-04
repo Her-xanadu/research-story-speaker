@@ -61,7 +61,7 @@ Workspace Git 与科研代码 Git 是两个概念。升级时**只合并框架�
 
 - UNINITIALIZED cold-start portability: validated on Codex, Claude Code, Cursor, and DeepSeek Harness.
 - Initialized write/handoff portability: validated on Codex → Claude Code.
-- Research Intelligence live: Codex and Claude Code (Wave G / E-B1 / Case 10); Cursor / DSH not re-run for V0.2 gates; OpenCode documentation-only.
+- Research Intelligence live: Codex and Claude Code (Wave G / E-B1 / Case 10); Cursor / DSH not re-run for V0.2 gates.
 - OpenCode: documentation-only, not tested.
 
 ## 当前状态
