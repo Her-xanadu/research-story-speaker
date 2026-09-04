@@ -1,59 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 480" role="img" aria-labelledby="title desc">
   <title id="title">Two-layer research workflow</title>
   <desc id="desc">Outer W1 reframes Story. Inner W2-W3-W4 runs experiments. W4 is the shifter.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FBF9F4"/>
-      <stop offset="100%" stop-color="#F3F0EA"/>
-    </linearGradient>
     <marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#3B5B8A"/>
+      <path d="M0 0 L8 4 L0 8 Z" fill="#8BA3C7"/>
     </marker>
   </defs>
-  <rect width="1120" height="480" rx="12" fill="url(#bg)"/>
-  <rect x="1" y="1" width="1118" height="478" rx="11" fill="none" stroke="#D4CFC4"/>
+  <rect width="1120" height="480" rx="12" fill="#0D1117"/>
+  <rect x="1" y="1" width="1118" height="478" rx="11" fill="none" stroke="#30363D"/>
 
-  <text x="40" y="42" fill="#3B5B8A" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" letter-spacing="3">TWO-LAYER WORKFLOW</text>
-  <text x="40" y="72" fill="#1B2430" font-family="Georgia, 'Times New Roman', serif" font-size="22">Reframe rarely. Experiment often.</text>
+  <text x="40" y="42" fill="#8BA3C7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" letter-spacing="3">TWO-LAYER WORKFLOW</text>
+  <text x="40" y="72" fill="#E6EDF3" font-family="Georgia, 'Times New Roman', serif" font-size="22">Reframe rarely. Experiment often.</text>
 
-  <rect x="40" y="104" width="160" height="64" rx="8" fill="#FFFFFF" stroke="#C3BDB2"/>
-  <text x="120" y="130" text-anchor="middle" fill="#5E6670" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif" letter-spacing="1.4">W0</text>
-  <text x="120" y="150" text-anchor="middle" fill="#1B2430" font-size="14" font-family="Georgia, 'Times New Roman', serif">SETUP</text>
+  <rect x="40" y="104" width="160" height="64" rx="8" fill="#161B22" stroke="#30363D"/>
+  <text x="120" y="130" text-anchor="middle" fill="#8B949E" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif" letter-spacing="1.4">W0</text>
+  <text x="120" y="150" text-anchor="middle" fill="#E6EDF3" font-size="14" font-family="Georgia, 'Times New Roman', serif">SETUP</text>
 
-  <rect x="248" y="104" width="176" height="64" rx="8" fill="#FFFFFF" stroke="#3B5B8A" stroke-opacity="0.9"/>
-  <text x="336" y="130" text-anchor="middle" fill="#3B5B8A" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif" letter-spacing="1.4">OUTER</text>
-  <text x="336" y="150" text-anchor="middle" fill="#1B2430" font-size="14" font-family="Georgia, 'Times New Roman', serif">W1 FRAME</text>
+  <rect x="248" y="104" width="176" height="64" rx="8" fill="#161B22" stroke="#8BA3C7"/>
+  <text x="336" y="130" text-anchor="middle" fill="#8BA3C7" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif" letter-spacing="1.4">OUTER</text>
+  <text x="336" y="150" text-anchor="middle" fill="#E6EDF3" font-size="14" font-family="Georgia, 'Times New Roman', serif">W1 FRAME</text>
 
-  <rect x="904" y="104" width="176" height="64" rx="8" fill="#FFFFFF" stroke="#C3BDB2"/>
-  <text x="992" y="130" text-anchor="middle" fill="#5E6670" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif" letter-spacing="1.4">DONE</text>
-  <text x="992" y="150" text-anchor="middle" fill="#1B2430" font-size="14" font-family="Georgia, 'Times New Roman', serif">W5 HANDOFF</text>
+  <rect x="904" y="104" width="176" height="64" rx="8" fill="#161B22" stroke="#30363D"/>
+  <text x="992" y="130" text-anchor="middle" fill="#8B949E" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif" letter-spacing="1.4">DONE</text>
+  <text x="992" y="150" text-anchor="middle" fill="#E6EDF3" font-size="14" font-family="Georgia, 'Times New Roman', serif">W5 HANDOFF</text>
 
-  <path d="M200 136 H240" stroke="#3B5B8A" stroke-width="1.5" marker-end="url(#a)"/>
-  <path d="M424 136 H456" stroke="#3B5B8A" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M200 136 H240" stroke="#8BA3C7" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M424 136 H456" stroke="#8BA3C7" stroke-width="1.5" marker-end="url(#a)"/>
 
-  <rect x="456" y="92" width="424" height="328" rx="14" fill="#FFFFFF" stroke="#3B5B8A" stroke-opacity="0.55"/>
-  <text x="668" y="122" text-anchor="middle" fill="#3B5B8A" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif" letter-spacing="2.4">INNER LOOP</text>
+  <rect x="456" y="92" width="424" height="328" rx="14" fill="#161B22" stroke="#8BA3C7" stroke-opacity="0.55"/>
+  <text x="668" y="122" text-anchor="middle" fill="#8BA3C7" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif" letter-spacing="2.4">INNER LOOP</text>
 
-  <rect x="500" y="148" width="336" height="52" rx="8" fill="#F7F4EE" stroke="#C3BDB2"/>
-  <text x="668" y="170" text-anchor="middle" fill="#3B5B8A" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif">W2 TEST</text>
-  <text x="668" y="188" text-anchor="middle" fill="#1B2430" font-size="13" font-family="Georgia, 'Times New Roman', serif">design / run experiment</text>
+  <rect x="500" y="148" width="336" height="52" rx="8" fill="#0D1117" stroke="#30363D"/>
+  <text x="668" y="170" text-anchor="middle" fill="#8BA3C7" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif">W2 TEST</text>
+  <text x="668" y="188" text-anchor="middle" fill="#E6EDF3" font-size="13" font-family="Georgia, 'Times New Roman', serif">design / run experiment</text>
 
-  <rect x="500" y="224" width="336" height="52" rx="8" fill="#F7F4EE" stroke="#C3BDB2"/>
-  <text x="668" y="246" text-anchor="middle" fill="#3B5B8A" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif">W3 LEARN</text>
-  <text x="668" y="264" text-anchor="middle" fill="#1B2430" font-size="13" font-family="Georgia, 'Times New Roman', serif">outcome / discovery</text>
+  <rect x="500" y="224" width="336" height="52" rx="8" fill="#0D1117" stroke="#30363D"/>
+  <text x="668" y="246" text-anchor="middle" fill="#8BA3C7" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif">W3 LEARN</text>
+  <text x="668" y="264" text-anchor="middle" fill="#E6EDF3" font-size="13" font-family="Georgia, 'Times New Roman', serif">outcome / discovery</text>
 
-  <rect x="500" y="300" width="336" height="52" rx="8" fill="#F7F4EE" stroke="#8A4B3B" stroke-opacity="0.75"/>
-  <text x="668" y="322" text-anchor="middle" fill="#8A4B3B" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif">W4 DECIDE</text>
-  <text x="668" y="340" text-anchor="middle" fill="#1B2430" font-size="13" font-family="Georgia, 'Times New Roman', serif">keep Story? next test?</text>
+  <rect x="500" y="300" width="336" height="52" rx="8" fill="#0D1117" stroke="#C97C6A" stroke-opacity="0.85"/>
+  <text x="668" y="322" text-anchor="middle" fill="#C97C6A" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif">W4 DECIDE</text>
+  <text x="668" y="340" text-anchor="middle" fill="#E6EDF3" font-size="13" font-family="Georgia, 'Times New Roman', serif">keep Story? next test?</text>
 
-  <path d="M668 200 V224" stroke="#3B5B8A" stroke-width="1.4" marker-end="url(#a)"/>
-  <path d="M668 276 V300" stroke="#3B5B8A" stroke-width="1.4" marker-end="url(#a)"/>
-  <path d="M500 326 H476 V174 H500" fill="none" stroke="#3B5B8A" stroke-opacity="0.7" stroke-width="1.5" marker-end="url(#a)"/>
-  <text x="430" y="256" fill="#3B5B8A" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif">Story stable</text>
+  <path d="M668 200 V224" stroke="#8BA3C7" stroke-width="1.4" marker-end="url(#a)"/>
+  <path d="M668 276 V300" stroke="#8BA3C7" stroke-width="1.4" marker-end="url(#a)"/>
+  <path d="M500 326 H476 V174 H500" fill="none" stroke="#8BA3C7" stroke-opacity="0.75" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="430" y="256" fill="#8BA3C7" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif">Story stable</text>
 
-  <path d="M836 326 H888 V136 H904" fill="none" stroke="#5E6670" stroke-width="1.4" marker-end="url(#a)"/>
-  <text x="850" y="86" fill="#5E6670" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif">complete</text>
+  <path d="M836 326 H888 V136 H904" fill="none" stroke="#8B949E" stroke-width="1.4" marker-end="url(#a)"/>
+  <text x="850" y="86" fill="#8B949E" font-size="11" font-family="ui-sans-serif, system-ui, sans-serif">complete</text>
 
-  <path d="M668 352 V400 H336 V168" fill="none" stroke="#8A4B3B" stroke-opacity="0.8" stroke-width="1.5" marker-end="url(#a)"/>
-  <text x="390" y="430" fill="#8A4B3B" font-size="12" font-family="ui-sans-serif, system-ui, sans-serif">Story / mechanism / route changed ? back to W1</text>
+  <path d="M668 352 V400 H336 V168" fill="none" stroke="#C97C6A" stroke-opacity="0.85" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="390" y="430" fill="#C97C6A" font-size="12" font-family="ui-sans-serif, system-ui, sans-serif">Story / mechanism / route changed, back to W1</text>
 </svg>

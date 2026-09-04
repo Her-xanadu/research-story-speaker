@@ -1,50 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 280" role="img" aria-labelledby="title desc">
   <title id="title">research-story-speaker</title>
   <desc id="desc">File-native, prompt-native, Story-driven autonomous research workspace</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#FBF9F4"/>
-      <stop offset="55%" stop-color="#F3F0EA"/>
-      <stop offset="100%" stop-color="#E8E3D8"/>
-    </linearGradient>
-    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#3B5B8A"/>
-      <stop offset="100%" stop-color="#1B2430"/>
-    </linearGradient>
-    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-      <path d="M32 0H0V32" fill="none" stroke="#3B5B8A" stroke-opacity="0.06" stroke-width="1"/>
-    </pattern>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#3B5B8A" fill-opacity="0.8"/>
+      <path d="M0 0 L8 4 L0 8 Z" fill="#8BA3C7" fill-opacity="0.85"/>
     </marker>
   </defs>
 
-  <rect width="1280" height="280" fill="url(#bg)"/>
-  <rect width="1280" height="280" fill="url(#grid)"/>
-  <rect x="1.5" y="1.5" width="1277" height="277" fill="none" stroke="#D4CFC4" stroke-width="1.5"/>
-  <line x1="0" y1="278" x2="1280" y2="278" stroke="#3B5B8A" stroke-opacity="0.45" stroke-width="2"/>
+  <rect width="1280" height="280" fill="#0D1117"/>
+  <rect x="1.5" y="1.5" width="1277" height="277" fill="none" stroke="#30363D" stroke-width="1.5"/>
+  <line x1="0" y1="278" x2="1280" y2="278" stroke="#8BA3C7" stroke-opacity="0.35" stroke-width="2"/>
 
-  <g transform="translate(168 142)" fill="none" stroke="#3B5B8A">
+  <g transform="translate(168 142)" fill="none" stroke="#8BA3C7">
     <circle r="86" stroke-opacity="0.18" stroke-width="1"/>
-    <circle r="58" stroke-opacity="0.32" stroke-width="1.25" stroke-dasharray="3 7"/>
-    <circle r="22" fill="#F7F4EE" stroke-opacity="0.85" stroke-width="1.25"/>
-    <text x="0" y="5" text-anchor="middle" fill="#1B2430" stroke="none" font-family="Georgia, 'Times New Roman', serif" font-size="11" letter-spacing="2.4">STORY</text>
-    <g fill="#3B5B8A" stroke="none">
+    <circle r="58" stroke-opacity="0.35" stroke-width="1.25" stroke-dasharray="3 7"/>
+    <circle r="22" fill="#161B22" stroke-opacity="0.9" stroke-width="1.25"/>
+    <text x="0" y="5" text-anchor="middle" fill="#E6EDF3" stroke="none" font-family="Georgia, 'Times New Roman', serif" font-size="11" letter-spacing="2.4">STORY</text>
+    <g fill="#8BA3C7" stroke="none">
       <circle cx="0" cy="-86" r="5.5"/>
-      <circle cx="74.5" cy="-43" r="4.5" fill="#8A4B3B"/>
+      <circle cx="74.5" cy="-43" r="4.5" fill="#C97C6A"/>
       <circle cx="74.5" cy="43" r="4.5"/>
       <circle cx="0" cy="86" r="4.5"/>
       <circle cx="-74.5" cy="43" r="4.5"/>
       <circle cx="-74.5" cy="-43" r="4.5"/>
     </g>
-    <path d="M8 -85.6 A86 86 0 1 1 -8 -85.6" stroke-opacity="0.45" stroke-width="1.25" marker-end="url(#arrow)"/>
+    <path d="M8 -85.6 A86 86 0 1 1 -8 -85.6" stroke-opacity="0.5" stroke-width="1.25" marker-end="url(#arrow)"/>
   </g>
 
   <g transform="translate(320 88)">
-    <text x="0" y="0" fill="#3B5B8A" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="13" letter-spacing="4.2">AUTONOMOUS RESEARCH WORKSPACE</text>
-    <text x="0" y="52" fill="#1B2430" font-family="Georgia, 'Iowan Old Style', 'Times New Roman', serif" font-size="42">research-story-speaker</text>
-    <rect x="0" y="68" width="220" height="1.5" fill="url(#ink)"/>
-    <text x="0" y="104" fill="#5E6670" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="18">File-native memory / prompt-native skills / Story as the loop</text>
-    <text x="0" y="142" fill="#7A828C" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="13" letter-spacing="1.4">v0.2.2 · canonical 8 · research-loop 1 · subagents 5 · skills 14 · RI 6 · scripts 0</text>
+    <text x="0" y="0" fill="#8BA3C7" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="13" letter-spacing="4.2">AUTONOMOUS RESEARCH WORKSPACE</text>
+    <text x="0" y="52" fill="#E6EDF3" font-family="Georgia, 'Iowan Old Style', 'Times New Roman', serif" font-size="42">research-story-speaker</text>
+    <rect x="0" y="68" width="220" height="1.5" fill="#8BA3C7"/>
+    <text x="0" y="104" fill="#8B949E" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="18">File-native memory / prompt-native skills / Story as the loop</text>
+    <text x="0" y="142" fill="#6E7681" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="13" letter-spacing="1.4">v0.2.2 · canonical 8 · research-loop 1 · subagents 5 · skills 14 · RI 6 · scripts 0</text>
   </g>
 </svg>
