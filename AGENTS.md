@@ -47,7 +47,7 @@ Framework base: v0.2.2
 |------|-------|
 | 安装 / 新建项目 / 未初始化 / 换算力或代码路径 | `workspace-setup` |
 | 未初始化（PROJECT Status = `UNINITIALIZED`） | `workspace-setup` → `workspace-resume` |
-| ACTIVE 且 STATE 下一步已是普通 sanity / exploratory | compact `experiment-design` →（跑代码才）`experiment-execution` → compact `result-analysis`；不要 `workspace-resume` / `research-loop` |
+| ACTIVE 且 STATE 下一步已是普通 sanity / exploratory | compact `experiment-design` →（跑代码才）`experiment-execution` → compact `result-analysis`（**内循环 W2–W3–W4**）；不要 `workspace-resume` / `research-loop` |
 | 新 Session / 陌生 Agent（ACTIVE 但下一步不清） | `workspace-resume` 后按 STATE 或 `research-loop` |
 | 决定下一步科研 | `research-loop` |
 | 维护文件一致性 | `research-memory` |

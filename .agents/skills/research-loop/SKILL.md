@@ -3,15 +3,19 @@ name: research-loop
 description: >-
   Top-level Story-driven research orchestrator. Use when continuing autonomous
   research, deciding the next scientific move, routing Literature vs Experiment
-  vs Review, or after workspace-resume when the next action is not already
-  fixed. Triggers include 下一步研究什么, 继续科研循环, run research loop,
-  what should we do next.
+  vs Review, W1 FRAME reframing, or W4 DECIDE when next step is unclear. Skip
+  when STATE is W2 TEST with a named ordinary EXP (inner loop). Triggers include
+  下一步研究什么, 继续科研循环, run research loop, what should we do next.
 ---
 
 # Research Loop
 
 Highest-level orchestrator. **Schedules only** — delegate literature, execution,
 and review to matching Skills or Subagents.
+
+Two-layer Workflow: outer `W1` reframes Story/mechanism/route; inner
+`W2→W3→W4→W2` runs same-Story experiments. Full rules:
+[story-loop.md](../../references/story-loop.md).
 
 References: `story-loop.md`, `state-files.md`, `experiment-record.md`
 (open at delegation time, not as a boot set).
@@ -23,23 +27,27 @@ Selective gates: `idea-evaluation`, `evidence-verification`.
 - Autonomous research should advance one iteration, or `workspace-resume` left
   the route open.
 - User asks next step, gap closure, or to keep going; new evidence arrived.
+- **W1 FRAME** or **W4 DECIDE** when next step, Story route, or Level 2 change
+  is unclear.
 - Parallel Literature + Experiment + Review fits one gap.
 
 Not for cold start (`workspace-resume`), compaction (`research-memory`), or
-obvious single-Skill tasks.
+**inner loop** when STATE is `W2 TEST` and Recommended Next Action already
+names an ordinary sanity/exploratory EXP — use compact
+`experiment-design` / `experiment-execution` / `result-analysis` instead.
 
 ## Goal
 
-One iteration:
+One iteration when FRAME or full DECIDE is needed:
 
 ```text
-Read Story → largest gap → Literature / Experiment / Review
-→ invoke Skill/Subagent → new evidence → update memory → continue or stop
+Read STATE Workflow Position + Story → gap or W4 four questions
+→ Literature / Experiment / Review → invoke Skill → update memory → set next Position
 ```
 
 Single current Story in `STORY.md`. Prefer experiments that **change judgment**,
 not parameter sweeps ([story-loop.md](../../references/story-loop.md)).
-Principle (keep as a lens, not a STATE field):
+Principle (lens only, not a STATE field):
 
 ```text
 only investigate uncertainty that changes a decision
@@ -47,22 +55,37 @@ only investigate uncertainty that changes a decision
 
 ## Default flow
 
-### 1. Anchor on Story
+### 1. Read Position + Story
 
-Read `STORY.md` (六段见 `STORY.md` / `story-maintenance`) and `STATE.md`.
-Unreadable or contradictory → `research-memory` first.
+Read `STATE.md` **Workflow Position** first, then `STORY.md` (六段见
+`story-maintenance`). Unreadable or contradictory → `research-memory` first.
 
-### 2. Anti-duplication check
+### 2. Inner-loop bypass (critical)
+
+If **Workflow Position is `W2 TEST`** and **Recommended Next Action** already
+names a concrete ordinary sanity/exploratory EXP (or continues the current
+mechanism-isolation line):
+
+- **Stop this Skill.** Do not re-run「最大 gap」or full W1 FRAME.
+- Route compact `experiment-design` → `experiment-execution` →
+  `result-analysis` per [AGENTS.md](../../../AGENTS.md).
+- After `result-analysis`, let compact W4 set next Position (usually stay
+  `W2 TEST`).
+
+If Position is **`W3 LEARN`** → delegate `result-analysis` only, then stop.
+
+### 3. Anti-duplication check
 
 Judge per [story-loop.md](../../references/story-loop.md) §反重复. This Skill
 only routes.
 
-### 3. Largest Story gap
+### 4. FRAME: largest Story gap (W1)
 
-Judge per [story-loop.md](../../references/story-loop.md) §Gap 优先级. One focal
-gap per iteration unless parallel subagents warranted.
+When Position is `W1 FRAME`, `W4 DECIDE` with unclear next step, or stagnation
+→ W1 per story-loop. Judge per §Gap 优先级. One focal gap per iteration unless
+parallel subagents warranted.
 
-### 4. Internal route stage
+### 5. Internal route stage
 
 Pick **one** internally. Do **not** write these names into `STATE.md`.
 
@@ -72,10 +95,10 @@ focus   — which mechanism actually produces the effect?
 confirm — can results independently reproduce and support Story?
 ```
 
-Use the stage only to choose the next Skill. It is not Protocol, not Outcome,
-not Verdict, and not a new canonical field.
+Use only to choose the next Skill under W1 FRAME. Not Protocol, Outcome,
+Verdict, or Workflow Position.
 
-### 5. Choose route
+### 6. Choose route
 
 Selective — **not** a default chain. Ordinary exploratory EXP stays light.
 
@@ -91,67 +114,73 @@ Selective — **not** a default chain. Ordinary exploratory EXP stays light.
 Ordinary exploratory EXP: `experiment-design` → `experiment-execution` →
 `result-analysis` **without** `idea-evaluation`, `evidence-verification`,
 `experiment-review` / reviewer, or `result-analyst` by default.
-Stay compact: do not default-load `experiment-proposal.md` or `result-diagnosis.md`.
-Ordinary sanity with STATE already naming the cheap EXP: do **not** load this
-Skill — use compact `experiment-design` / `result-analysis`.
 
 Parallel Experiment work: use `experiment-agent` / `result-analyst`; handoff via
-[subagent-handoff.md](../../prompts/subagent-handoff.md). Do not expand those
-Skills' flows here. Combinations allowed — see story-loop reference.
+[subagent-handoff.md](../../prompts/subagent-handoff.md).
 
-### 6. Invoke and integrate
+### 7. Invoke and integrate
 
-- Simple: run Skill in context. Parallel/heavy: Subagent per `AGENTS.md`;
-  handoff via [subagent-handoff.md](../../prompts/subagent-handoff.md).
-- Independent next-step judgment: dispatch `research-lead` (reads STORY / STATE /
-  DISCOVERY, writes `.research/work/` only). Optional:
+- Simple: run Skill in context. Parallel/heavy: Subagent per `AGENTS.md`.
+- Independent next-step judgment: dispatch `research-lead` only when Position
+  is not `W2 TEST` with a named next EXP. Optional:
   [next-research-move.md](../../prompts/next-research-move.md).
-- Executors use [experiment-record.md](../../references/experiment-record.md)
-  and [git-linking.md](../../references/git-linking.md).
-- Load the matching Skill / prompt / Layer-2 file **at delegation time**. Do not
-  preload `.agents/references/research-intelligence/` every iteration.
+- After evidence, follow [state-files.md](../../references/state-files.md) §更新顺序.
 
-After evidence, follow [state-files.md](../../references/state-files.md) §更新顺序.
+### 8. W4 DECIDE + next Position
 
-### 7. Continue, stagnate, or stop
+When this Skill owns the shift (Level 2, A/B/C back-to-W1, completion, or
+unclear next step), answer story-loop §W4 四问:
 
-If still advancing autonomously, return to gap judgment; skipping steps is
-allowed. Stop on user blocker, Story completion per `PROJECT.md`, or Reviewer
-control signal `ATTENTION_REQUIRED` (Use reviewer.md §Verdict;
-[reviewer.md](../../subagents/reviewer.md) — do not recopy the Verdict list).
+```text
+1. 结果可靠？
+2. 改变对 Story 的相信？
+3. 下一步同一科学问题？
+4. 下一阶段？
+```
 
-Stagnation signals (no move on Problem / Core Idea / main gap) →
-[story-loop.md](../../references/story-loop.md) §停滞处理.
+Write **one** next Workflow Position in STATE:
+
+| Judgment | Position |
+| --- | --- |
+| Story stable, next EXP clear | `W2 TEST` |
+| Result unclear | `W3 LEARN` |
+| Core Idea / gap / route needs reframe (A/B/C) | `W1 FRAME` |
+| Story complete per PROJECT | `W5 HANDOFF` |
+
+Do **not** force `W1→W2→W3→W4→W1` every Experiment.
+
+Level 0/1 with clear Next may be handled by `result-analysis` / `story-maintenance`
+without loading this Skill.
+
+### 9. Continue, stagnate, or stop
+
+Stop on user blocker, Story completion (`W5 HANDOFF`), or Reviewer
+`ATTENTION_REQUIRED` ([reviewer.md](../../subagents/reviewer.md)).
+
+Stagnation (no information gain, hyperparameter-only runs) → `W1 FRAME` per
+[story-loop.md](../../references/story-loop.md) §停滞处理 / §何时回到 W1 B.
 
 ## Reads
 
-**Minimum each iteration:** `STORY.md`, `STATE.md`.
+**Minimum:** `STATE.md` (Workflow Position), `STORY.md`.
 
-**As needed:** `PROJECT.md`, `DISCOVERY.md`, `EXPERIMENTS.md` (sections),
-`LITERATURE.md`, `REVIEWS.md`, `RESOURCES.md`. Load delegated Skill bodies,
-task prompts, and research-intelligence files at delegation time, not here.
+**As needed:** `PROJECT.md`, `DISCOVERY.md`, `EXPERIMENTS.md`, `LITERATURE.md`,
+`REVIEWS.md`, `RESOURCES.md`. Load delegated Skills at delegation time.
 
 ## Updates
 
-Does not own formats. Ensure executors updated per
-[state-files.md](../../references/state-files.md) §更新顺序, plus
-`LITERATURE` / `REVIEWS` when those routes ran. May lightly touch `STATE` (next
-focus) only before any executor runs.
+Ensure executors updated per [state-files.md](../../references/state-files.md)
+§更新顺序. May set STATE Workflow Position and next focus when owning W4.
 
 ## Deviation allowed
 
 - User-specified Skill → re-enter at integrate.
 - Parallel scout + experiment + reviewer for one gap.
 - Defer Literature when cheap decisive experiment exists.
-- Skip iteration after small Story tweak without new evidence.
-- Pause for `research-memory` when routing blocked; or dispatch `research-lead`
-  (read STORY / STATE / DISCOVERY; write `.research/work/` only; optional
-  [next-research-move.md](../../prompts/next-research-move.md)).
-- Create/stop/reorder experiments; MCP; skip inapplicable steps.
-- Skip Idea-gate / Evidence-gate / Reviewer when the EXP is ordinary
-  exploratory (scientific-reasoning.md §F).
+- Skip iteration after Level 0 with no Story change.
+- Pause for `research-memory` when routing blocked.
+- Skip Idea-gate / Evidence-gate / Reviewer for ordinary exploratory EXP.
 
-Do **not** use a fixed state machine, hard-code EXP IDs, duplicate sub-Skill
-prose, silently delete history, advance Story without evidence, write
-`scout`/`focus`/`confirm` into `STATE.md`, or force every EXP through
-`idea-evaluation` → `evidence-verification` → reviewer.
+Do **not** use a fixed per-EXP state machine, hard-code EXP IDs, write
+`scout`/`focus`/`confirm` into STATE, re-frame on every inner-loop pass,
+or force every EXP through idea-eval → evidence → reviewer.

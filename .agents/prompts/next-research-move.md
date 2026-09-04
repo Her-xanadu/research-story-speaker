@@ -11,8 +11,11 @@ Judgment operators:
 - [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md)
 - [story-loop.md](../references/story-loop.md)
 
-Gap priority and anti-duplication: story-loop.md. Claim kinds, rivals,
-falsifiability, qualitative evidence strength, exploratory vs confirmatory:
+Gap priority, anti-duplication, two-layer Workflow, stagnation: story-loop.md.
+**If STATE Workflow Position is `W2 TEST` and Next already names an EXP, do not
+dispatch research-lead** — continue the inner loop instead.
+
+Claim kinds, rivals, falsifiability, qualitative evidence strength, exploratory vs confirmatory:
 scientific-reasoning.md. Do **not** invent numeric scores, stars, or
 percentages of belief.
 

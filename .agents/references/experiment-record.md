@@ -119,7 +119,7 @@ EXP-031 — Candidate Ambiguity Screening   # 可选附名
 | **Main Findings** | 客观发生了什么 |
 | **Interpretation** | 对 Story 的含义 |
 | **Discovery Impact** | 应写入 DISCOVERY 的要点 |
-| **Story Impact** | 对 STORY 六段的影响 |
+| **Story Impact** | `Level 0|1|2 — {{对 STORY 六段的影响}}`（见 `story-loop.md` §Story Impact Level；不是 Outcome） |
 | **Review** | 是否/如何 Review；链接 REVIEWS |
 | **Next** | 建议后续实验 |
 

@@ -2,6 +2,10 @@
 
 > **MOCK** — 冷启动应读本文件了解"现在做到哪里"。
 
+## Workflow Position
+
+`W2 TEST`
+
 ## Current Focus
 
 Open Gap #1：真实 CICIDS 子集尚未验证 Core Idea。EXP-001 仅提供 MOCK 内部证据。

@@ -47,9 +47,12 @@ In-session:
 A result that matches the already-designed sanity prediction is **not** an
 unexpected-result full-diagnosis trigger.
 
-Compact persist: write Main Findings, Interpretation, Outcome into EXPERIMENTS
-(section + Index). Ordinary compact analysis does **not** write DISCOVERY or
-promote a sanity result into Story Evidence. Update STATE next action.
+Compact persist: write Main Findings, Interpretation, Outcome, **Story Impact**
+as `Level 0|1|2 — …` into EXPERIMENTS (section + Index). Ordinary compact
+analysis does **not** write DISCOVERY or promote sanity into Story Evidence.
+Update STATE **Workflow Position**: Next clear → `W2 TEST`; result unclear →
+`W3 LEARN`. Level 2 or reframe needed → hand to `research-loop` / `story-maintenance`,
+Position `W1 FRAME`. See [story-loop.md](../../references/story-loop.md) §W4.
 Required reads: `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts or
 operator-supplied log / pre-existing result file.
 
@@ -134,8 +137,7 @@ Then **Persist Protocol** below.
 Follow `state-files.md` §更新顺序 (open that file on full diagnosis only).
 
 1. **Update EXPERIMENTS** — Main Findings, Interpretation, Discovery Impact,
-   Story Impact, Next, **Outcome**; sync Index Status, **Index Outcome**, and
-   Updated date.
+   Story Impact (`Level 0|1|2 — …`), Next, **Outcome**; sync Index.
 2. **Update DISCOVERY** — Only when the EXP is scientifically usable:
    - `Status=failed` 且 `Outcome=not-assessed` → **不产生** Negative Discovery。
    - `Status=completed` 且 `Outcome=contradicts` 或 `null` → 写入 DISCOVERY
@@ -152,7 +154,8 @@ Follow `state-files.md` §更新顺序 (open that file on full diagnosis only).
   (Problem, Key Observation, Core Idea): `story-maintenance` and **suggest**
   `experiment-review` on the triggering EXP. Ordinary compact analysis does
   **not** promote a sanity result into Story Evidence.
-4. **Update STATE** — Current gap, active/next experiment, blockers, file pointers.
+4. **Update STATE** — Workflow Position per story-loop §W4, gap, active/next
+   experiment, blockers (inner-loop default: `W2 TEST`).
 5. **Chain** — Clear next test → `experiment-design` or `experiment-execution`;
    contested evidence → `experiment-review`; routine compaction → `research-memory`.
 

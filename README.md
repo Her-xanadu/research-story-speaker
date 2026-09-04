@@ -74,6 +74,8 @@
 
 `STORY.md` 固定六段：Problem → Key Observation → Core Idea → Evidence → Boundary → Open Gaps。
 
+**两层 Workflow**（详见 [`.agents/references/story-loop.md`](.agents/references/story-loop.md)）：外层 **W1** 换问题/Story/机制；内层 **W2→W3→W4→W2** 在同一 Story 下连续实验。`STATE.md` 的 **Workflow Position** 是宏观游标。
+
 ### Workspace 不是代码仓库
 
 Workspace 是科研项目的**控制平面和长期记忆**。实验代码 Git 与 workspace Git 分开：

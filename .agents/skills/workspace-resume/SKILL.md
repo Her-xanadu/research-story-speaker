@@ -38,18 +38,24 @@ ordinary sanity / exploratory EXP — use compact `experiment-design` /
 Within one turn, answer then act on:
 
 ```text
+Workflow Position
 Current Story
 Current Gap
-Latest Relevant Evidence
 Active Experiment
 Recommended Next Action
 ```
+
+Two-layer Workflow: if Position is `W2 TEST` and Next names an ordinary EXP,
+continue the **inner loop** (compact design/execution/analysis) — **do not**
+load `research-loop` to re-frame. See [story-loop.md](../../references/story-loop.md).
 
 `PROJECT + STORY + STATE` should let a stranger grasp position in minutes
 (`AGENTS.md` Research Memory; [state-files.md](../../references/state-files.md)).
 
 UNINITIALIZED: **materialize** the eight `.research/` files already on disk into
-an `ACTIVE` project, then enter `research-loop`. Do not generate a new set.
+an `ACTIVE` project; set Workflow Position `W1 FRAME` (Story Status
+`IN_PROGRESS`). Then route: `W2 TEST` if Next already names an EXP, else
+`research-loop` for FRAME only — do not generate a new file set.
 
 ## Decision Frontier
 
@@ -124,13 +130,13 @@ Read: `PROJECT.md` → `STORY.md` → `STATE.md`. On demand only: targeted
 ([experiment-record.md](../../references/experiment-record.md)), `RESOURCES.md`.
 No full-scan of `LITERATURE.md` or all experiments at startup.
 
-### 3. Reconstruct the five answers
+### 3. Reconstruct the packet
 
 | Answer | Sources |
 | --- | --- |
-| Current Story | `STORY.md`（六段见 `STORY.md` / `story-maintenance`） |
+| Workflow Position | `STATE.md` §Workflow Position |
+| Current Story | `STORY.md`（六段） |
 | Current Gap | Open Gaps, Boundary, `STATE` focus |
-| Latest Relevant Evidence | `DISCOVERY`, EXP in STATE/STORY |
 | Active Experiment | `STATE`, `running`/`planned` EXP |
 | Recommended Next Action | `STATE` next or gap inference |
 
@@ -140,9 +146,9 @@ If STATE contradicts STORY or is bloated → note conflict; prefer
 
 ### 4. Emit packet and continue
 
-Report all five compactly, then **same turn**: execute `STATE` next or the
-matching Skill; route unclear → `research-loop`; files disagree →
-`research-memory` first; narrow command with a clear STATE anchor → that Skill.
+Report the packet compactly, then **same turn**: if `W2 TEST` + named ordinary
+EXP → compact inner loop; else execute `STATE` next or matching Skill; route
+unclear → `research-loop` (FRAME/W4 only); files disagree → `research-memory` first.
 
 Never end with only “已恢复” when an actionable step exists. Do not open a
 questionnaire on an `ACTIVE` resume unless Goal amendment, major evaluation

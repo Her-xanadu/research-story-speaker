@@ -40,12 +40,13 @@ performance numbers**). Reflect durable scientific belief, not experiment logs.
 Problem → Key Observation → Core Idea → Evidence → Boundary → Open Gaps
 ```
 
-Classify every edit:
+Classify every edit (**Story Impact Level**, [story-loop.md](../../references/story-loop.md)):
 
-| Change size | Sections | Agent action |
-| --- | --- | --- |
-| **Small** | Evidence, Boundary, Open Gaps, wording | Apply directly |
-| **Large** | Problem, Key Observation, Core Idea | Apply with caution; **suggest** Reviewer on triggering `EXP-xxx` |
+| Level | Sections | Agent action | Next Workflow Position |
+| --- | --- | --- | --- |
+| **0** | None — do not edit STORY | N/A (`result-analysis` only) | `W2 TEST` if Next clear |
+| **1** | Evidence, Boundary, Open Gaps, wording | Apply directly (was Small) | `W2 TEST` if Next clear |
+| **2** | Problem, Key Observation, Core Idea | Apply with caution; **suggest** Reviewer | `W1 FRAME` |
 
 ## Default flow
 
@@ -66,9 +67,10 @@ Classify every edit:
    to the weakest link the loop should attack next (per
    [story-loop.md](../../references/story-loop.md) gap priority).
 5. **Apply to STORY.md** — Single Story only; no parallel competing narratives.
-6. **Update STATE** — Brief note if focus, gap, or next action shifted.
-7. **Hand off** — If new `Open Gaps` imply work, continue via `research-loop`,
-   `literature-research`, or `experiment-design`.
+6. **Update STATE** — Focus, gap, next action, and **Workflow Position**
+   (`W2 TEST` after Level 1 with clear Next; `W1 FRAME` after Level 2).
+7. **Hand off** — Level 1 + clear Next → `experiment-design` (inner loop).
+   Level 2 or reframed gap → `research-loop`. Literature only when W1 needs it.
 
 Follow [state-files.md](../../references/state-files.md) §更新顺序; this Skill
 owns the STORY ring.

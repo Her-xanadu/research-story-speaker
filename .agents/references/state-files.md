@@ -55,6 +55,7 @@ Problem → Key Observation → Core Idea → Evidence → Boundary → Open Gap
 
 **必须很小**（几十行）。只回答：
 
+- **现在在哪个 Workflow Stage？**（`Workflow Position`）
 - 现在主要在解决什么？
 - 当前活跃实验是什么？
 - 最近完成了什么？
@@ -62,7 +63,43 @@ Problem → Key Observation → Core Idea → Evidence → Boundary → Open Gap
 - 有哪些 blocker？
 - 最相关文件在哪里？
 
-目标：陌生 Agent 读 `PROJECT + STORY + STATE` 后几分钟内理解项目位置。
+**Workflow Position**（封闭枚举，写在 `Current Focus` 之前）：
+
+`W0 SETUP` | `W1 FRAME` | `W2 TEST` | `W3 LEARN` | `W4 DECIDE` | `W5 HANDOFF`
+
+| 结束时情况 | 写入 Position |
+|------------|----------------|
+| 内循环结束、下一实验清楚 | `W2 TEST` |
+| 需重构问题/机制/路线 | `W1 FRAME` |
+| Story 完成 | `W5 HANDOFF` |
+| 结果还没解释清 | `W3 LEARN` |
+| 等人或 Reviewer | `W4 DECIDE` |
+| UNINITIALIZED / 未 setup | `W0 SETUP` |
+
+同 turn 连走 W2→W3→W4→W2 后，只记**最终**休息点。详细规则见 `story-loop.md`。
+
+长周期游标示例（非模板必填全文）：
+
+```markdown
+## Workflow Position
+`W2 TEST`
+## Current Focus
+验证 source-group balancing 是否能够解释目前的稳定正信号。
+## Active Experiment
+EXP-037
+## Recently Completed
+- EXP-036 contradicted the ambiguity-only explanation.
+## Recommended Next Action
+Run the mechanism-off balancing control under the same split.
+```
+
+并行实验仍**一个** Position；`Active Experiment` 可写 `EXP-041 (primary); EXP-042/043 parallel`。
+
+**禁止**写入 STATE：`Research Round`、`Story Revision`、`Iteration`、每条路线一套 Workflow。一个 Project 只有 **one Workflow Position**。Workflow 名、Story Impact Level、scout/focus/confirm **不是** Outcome 或 Verdict。
+
+目标：陌生 Agent 读 `PROJECT + STORY + STATE` 后几分钟内理解：在哪个 Stage、当前科学问题、当前 EXP、下一步——而不是从头想 idea 或写 Story。
+
+STORY 不随 EXP 数量膨胀；历史在 EXPERIMENTS / DISCOVERY（见 `story-loop.md` §三层记忆）。
 
 ### DISCOVERY.md
 

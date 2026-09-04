@@ -2,6 +2,12 @@
 
 > 从本模板创建 `.research/STATE.md`。**保持很小**（几十行）。
 
+## Workflow Position
+
+`W0 SETUP` | `W1 FRAME` | `W2 TEST` | `W3 LEARN` | `W4 DECIDE` | `W5 HANDOFF`
+
+内循环默认休息点：`W2 TEST`。详见 `story-loop.md` 与 `state-files.md` §STATE.md。
+
 ## Current Focus
 
 {{现在主要在解决什么？}}
