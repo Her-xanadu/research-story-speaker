@@ -21,14 +21,17 @@ availability is not a trigger.
 
 - High-cost, core-method, or anomalous experiments need external judgment.
 - Story core (Problem / Key Observation / Core Idea) may change based on EXP.
-- Support change that may alter isolation, labels, evaluation validity, or
-  previous evidence. Ordinary parser/path/logging/CLI fixes: no review.
+- Previous evidence may be invalidated (split / evaluation labels /
+  leakage: validity check + dependent-evidence reconsideration).
+  Scientific-contract change on a support path → `experiment-design`,
+  not automatic Reviewer. Ordinary parser/path/logging/CLI: no review.
 - Main Agent dispatches with `.agents/prompts/method-review.md` and/or `result-review.md`.
 
 Follow-up on the same EXP defaults to **delta review**
 ([experiment-review](../skills/experiment-review/SKILL.md) §Delta Review /
-§Reuse Completed Checks). No review-count cap. Integrity-sensitive
-changes (split, candidate labels, grouping) never reuse prior checks.
+§Reuse Completed Checks). No review-count cap. When reviewing,
+integrity-sensitive changes (split, candidate labels, grouping) never
+reuse prior checks. Method-component change ≠ automatic Reviewer.
 
 ## Review file header
 

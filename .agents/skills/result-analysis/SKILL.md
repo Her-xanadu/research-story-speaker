@@ -30,18 +30,22 @@ Ordinary exploratory / sanity. Do **not** open `result-diagnosis.md`,
 In-session:
 
 - **Integrity** — is the artifact usable (crash, missing metrics, obvious leak)?
-  An operator-supplied log or pre-existing result file that answers the
-  already-designed sanity prediction (finite metric) **is** usable for that
-  Question. Missing code entry without a fake re-run is honest; it is
-  **not** “technical vs scientific failure unclear”.
+  An operator-supplied log or pre-existing result file with execution
+  success / finite output **is** usable as an artifact for that Question.
+  Usability is not `Outcome=supports`. Missing code entry without a fake
+  re-run is honest; it is **not** “technical vs scientific failure unclear”.
 - **What happened** — objective Main Findings. Do **not** stop at
   “metric +Xpp → run more.”
-- **Outcome** — for ordinary sanity, typically `supports` if the smoke
-  prediction held (finite metric / exit 0), including from that supplied log;
-  else `not-assessed` only when there is no usable artifact at all. If the
-  artifact is usable but the prediction did **not** hold, that is **not**
-  compact-`supports` — unexpected result → full diagnosis, then the Protocol
-  Outcome that path would use (do not invent a token).
+- **Outcome** — Execution success / finite output only establishes
+  artifact usability. `Outcome=supports` only when the EXP's
+  predeclared scientific prediction is satisfied (including from a
+  supplied log). A purely mechanical smoke/support task does not
+  receive a new science EXP-ID; record its pass/fail under the parent
+  EXP support/run notes. Else `not-assessed` only when there is no
+  usable artifact at all. If the artifact is usable but the prediction
+  did **not** hold, that is **not** compact-`supports` — unexpected
+  result → full diagnosis, then the Protocol Outcome that path would
+  use (do not invent a token).
 - **What we learned** — Interpretation; do not inflate into Story Evidence.
   If this is a method comparison (not mere smoke), name **Mechanism
   Diagnosis**, **Method Consequence** (`keep` / `simplify` / `delete
@@ -50,8 +54,8 @@ In-session:
 - **Next** — smallest next discriminating action (stop, retry same Question,
   or a new EXP). Default W4 exit is `W2 TEST`, not more seeds.
 
-A result that matches the already-designed sanity prediction is **not** an
-unexpected-result full-diagnosis trigger.
+A result that matches the EXP's predeclared scientific prediction is
+**not** an unexpected-result full-diagnosis trigger.
 
 Compact persist: write Main Findings, Interpretation, Outcome, **Story Impact**
 as `Level 0|1|2 — …` into EXPERIMENTS (section + Index). Ordinary compact
@@ -59,8 +63,9 @@ analysis does **not** write DISCOVERY or promote sanity into Story Evidence.
 Update STATE **Workflow Position**: Next clear → `W2 TEST`; result unclear →
 `W3 LEARN`. Level 2 or reframe needed → hand to `research-loop` / `story-maintenance`,
 Position `W1 FRAME`. See [story-loop.md](../../references/story-loop.md) §W4.
-Required reads: `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts or
-operator-supplied log / pre-existing result file.
+Required reads: `.research/EXPERIMENTS.md` (target EXP section /
+index lookup only), raw artifacts or operator-supplied log /
+pre-existing result file.
 
 **Full diagnosis — continue past the stop line only if any:** unexpected
 result, high variance, mechanism attribution, Core Idea impact, Story
@@ -188,7 +193,7 @@ Follow `state-files.md` §更新顺序 (open that file on full diagnosis only).
 
 | Priority | Files |
 |----------|-------|
-| Required (compact) | `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts or supplied log; `.research/STORY.md` as needed |
+| Required (compact) | `.research/EXPERIMENTS.md` (target EXP section / index lookup only), raw artifacts or supplied log; `.research/STORY.md` as needed |
 | Do not open (compact) | See **Compact (default)** |
 | Often | `.research/DISCOVERY.md`, `.research/STATE.md`, `.research/PROJECT.md` |
 | Reference (full diagnosis only) | `experiment-record.md`, `state-files.md`, `story-loop.md` |

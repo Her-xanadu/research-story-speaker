@@ -28,9 +28,13 @@ Review when:
 - Story core mechanism (Problem / Key Observation / Core Idea) may change.
 - Preparing to mark Story complete (requires independent approval per `PROJECT.md`).
 - `result-analysis` or `research-loop` flagged contested or high-stakes evidence.
-- Support change that may alter data isolation, label access, evaluation
-  validity, scientific comparison, a resource hard constraint, or previous
-  evidence validity.
+- Previous evidence may be invalidated. Train/test split changed,
+  evaluation labels changed, or data leakage fixed: validity check +
+  dependent-evidence reconsideration. A support repair that would change
+  a scientific-contract element is **not** compact support — stop and
+  return to `experiment-design`. Independent review only if that
+  redesign is high-stakes under the rules above, or previous evidence
+  may be invalidated. Method-component change ≠ automatic Reviewer.
 
 Do **not** use for: running code (`experiment-execution`), primary interpretation by
 the executor (`result-analysis` first), framework hygiene (`framework-maintenance`),
@@ -74,6 +78,9 @@ voids the prior review's scope.
 
 If relevant code, data, configuration, **and** scientific claim are
 unchanged, already-completed checks remain valid. Do not redo them.
+
+This table is recheck scope **when a review is already warranted**.
+It does not auto-dispatch Reviewer.
 
 Integrity-sensitive changes **never reuse**: split, candidate labels,
 train/test grouping, or any change that can invalidate previous evidence

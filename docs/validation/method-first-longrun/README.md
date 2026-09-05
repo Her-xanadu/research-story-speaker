@@ -7,6 +7,9 @@ Read-only replay fixtures for the Method-First Long-Run Research Loop plan
 (keep that tree as the host project’s own science). Do not invent new
 Workflow Stages, Skills, or a second EXP ledger while scoring.
 
+These nine cases are a **regression specification**, not live Gate /
+behavioral evidence. They have not been run as a live Harness Gate.
+
 Anonymized MOCK. No host home paths. Cite Protocol owners; do **not**
 copy Outcome / Status / Verdict tables into work files.
 

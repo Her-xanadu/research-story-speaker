@@ -30,8 +30,8 @@ operator-supplied log / pre-existing result file. Record provenance in Runs /
 Results: path, and that it was not this-run compute. Provenance unknown → keep
 Outcome `not-assessed` and put a STATE blocker. Do **not** assign a scientific
 Outcome here — keep `not-assessed` until `result-analysis`. Do **not** update
-`DISCOVERY.md` or `STORY.md`. Required reads: `.research/EXPERIMENTS.md`
-(target `EXP-xxx`), `.research/RESOURCES.md`.
+`DISCOVERY.md` or `STORY.md`. Required reads: `.research/EXPERIMENTS.md` (target EXP section /
+index lookup only), `.research/RESOURCES.md`.
 
 **Full / real-run path — continue past the stop line only if** you must
 implement, freeze a git commit, execute a real run, recover a stale codebase
@@ -117,10 +117,24 @@ to W1. Record in current EXP Run notes or
 ([experiment-record.md](../../references/experiment-record.md)
 §Support-task rule).
 
-Changes that touch **split**, **candidate labels**, **train/test grouping**,
-or **sample selector** MUST NOT use compact support; they require
-`experiment-review` (delta or full per
-[experiment-review](../experiment-review/SKILL.md) §Reuse Completed Checks).
+If a support repair changes **split**, **candidate labels**,
+**train/test grouping**, **sample selector**, or another
+scientific-contract element: it is no longer compact support.
+Stop the repair path and return to `experiment-design` / redesign.
+
+Independent review is required only when the redesigned experiment
+is high-stakes under [experiment-review](../experiment-review/SKILL.md)
+normal scientific-stakes rules, or when previous evidence may be
+invalidated. Train/test split changed, evaluation labels changed, or
+data leakage fixed still need a validity check and dependent-evidence
+reconsideration. Method-component change ≠ automatic Reviewer.
+
+- **A** — a support repair would silently change the scientific
+  contract → stop compact support → `experiment-design` (not automatic
+  Reviewer).
+- **B** — the current EXP is itself studying a new selector → ordinary
+  method experiment; changing that selector implementation does not
+  auto-dispatch Reviewer.
 
 **Support Resume Contract** (write in STATE Next + the work artifact; no
 new STATE field):
@@ -163,7 +177,7 @@ return to `experiment-design` — that is redesign, not debug.
 
 | Priority | Files |
 |----------|-------|
-| Required (ordinary sanity) | `.research/EXPERIMENTS.md` (target `EXP-xxx`), `.research/RESOURCES.md` |
+| Required (ordinary sanity) | `.research/EXPERIMENTS.md` (target EXP section / index lookup only), `.research/RESOURCES.md` |
 | Do not open (ordinary sanity) | See **Compact / ordinary sanity (default)** |
 | Often | `.research/STORY.md` (gap context), `.research/STATE.md`, external code repo |
 | Reference (when running / binding git) | `experiment-record.md`, `git-linking.md`, `state-files.md` |

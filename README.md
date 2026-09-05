@@ -196,7 +196,7 @@ Cold-start 证据日期 2026-09-03，见 [`docs/validation/harness-smoke/`](docs
 
 最近 tagged release 仍是 **v0.2.2**（`workspace-setup`）。静态验收：[`docs/validation/v0.2.2/workspace-setup-checklist.md`](docs/validation/v0.2.2/workspace-setup-checklist.md)。**未跑**独立 live Gate。
 
-本分支 `method-first-longrun` 在不新增 Skill / Workflow Stage / canonical 文件的前提下，把长周期内循环收成 Method-First。验收：[`docs/validation/method-first-longrun/`](docs/validation/method-first-longrun/)（Cases 1–9）。**尚未**打新 tag。
+Method-First 长周期在不新增 Skill / Workflow Stage / canonical 文件的前提下，把内循环收成 Method-First。Cases 1–9 是 regression specification（[`docs/validation/method-first-longrun/`](docs/validation/method-first-longrun/)），**尚未** live Gate。**尚未**打新 tag。
 
 > [!CAUTION]
 > 根 `.research/` 仍为干净 **UNINITIALIZED** 模板。  

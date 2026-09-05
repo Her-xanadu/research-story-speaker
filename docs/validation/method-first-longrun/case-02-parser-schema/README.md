@@ -42,5 +42,7 @@ schema.
 
 - [ ] No EXP minted for the schema patch
 - [ ] Self-check + targeted tests only
-- [ ] If the patch later rebound candidate labels, escalate to Case 7
-  (never reuse; recheck candidate integrity)
+- [ ] If the patch later rebound candidate labels, stop compact support
+  and return to experiment-design (scientific-contract change). Independent
+  review only if the redesign is high-stakes or previous evidence may be
+  invalidated (then Case 7 validity/reuse rules apply).

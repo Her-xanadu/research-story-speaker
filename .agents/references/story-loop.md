@@ -103,7 +103,7 @@ W2 TEST
 
 见上文 Method-First Principle。
 
-工程、数据、环境、资格和审查任务只在直接阻塞当前科学实验时执行；完成后立即返回当前方法实验。**support work does not advance the scientific loop by itself.**
+工程、数据、环境、资格和审查任务只在直接阻塞当前科学实验时执行；完成后立即返回当前方法实验。**support work does not advance the scientific loop by itself.** If a support repair would change the scientific contract, stop compact support and return to `experiment-design` — not an automatic Reviewer. Execution success / finite output is not `Outcome=supports`.
 
 长周期默认思考：
 

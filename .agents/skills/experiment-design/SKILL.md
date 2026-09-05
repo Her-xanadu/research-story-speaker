@@ -69,7 +69,7 @@ of supplied artifacts.
 Compact persist: map the five items into the existing EXP section; no new
 canonical files, index columns, or Protocol enums. Status `planned`, Outcome
 `not-assessed`. Update STATE: Workflow Position `W2 TEST`, recommended next
-(`experiment-execution` if a run is needed). Required reads: `.research/EXPERIMENTS.md`; `STORY.md` /
+(`experiment-execution` if a run is needed). Required reads: `.research/EXPERIMENTS.md` (target EXP section / index lookup only); `STORY.md` /
 `STATE.md` only if the Question is not already on disk.
 
 **Full design — continue past the stop line only if any:** mechanism claim,
@@ -185,7 +185,7 @@ Only after a full-design trigger matches. Load
 
 | Priority | Files |
 | --- | --- |
-| Required (compact) | `.research/EXPERIMENTS.md`; `.research/STORY.md` / `.research/STATE.md` only if the Question is not already on disk |
+| Required (compact) | `.research/EXPERIMENTS.md` (target EXP section / index lookup only); `.research/STORY.md` / `.research/STATE.md` only if the Question is not already on disk |
 | Do not open (compact) | See **Compact (default)** |
 | Often (full design) | `.research/STATE.md`, `.research/DISCOVERY.md`, `.research/LITERATURE.md` |
 | Reference (full design only) | `experiment-record.md`, `git-linking.md`, `story-loop.md` |

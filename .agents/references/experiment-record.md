@@ -86,6 +86,9 @@ completed | failed | abandoned → superseded（当新 EXP 接管同一问题时
 | `invalid` | 运行可能完成，但由于泄漏、实现错误、不公平比较等，不可用于科学推断 |
 
 科学结论如何进入 DISCOVERY 由 `result-analysis` 决定；本表只定义词义。
+Execution success / finite output only establishes artifact usability.
+`supports` only when the EXP's predeclared scientific prediction is
+satisfied.
 
 ## ID 规则
 
@@ -121,6 +124,15 @@ GPU 调用 bug · 代码重构 · 单元测试补齐 · 结果文件格式
 ```
 
 记录在 current EXP Run notes、`.research/work/<current-exp>-support-*.md`、或 Git commit，然后返回当前科学 Experiment。
+
+A purely mechanical smoke/support task does not receive a new science
+EXP-ID; record its pass/fail under the parent EXP support/run notes.
+If a support repair would change the scientific contract (split,
+candidate labels, train/test grouping, sample selector, or similar):
+stop compact support and return to `experiment-design`. Independent
+review only when the redesign is high-stakes under `experiment-review`
+or previous evidence may be invalidated. Method-component change ≠
+automatic Reviewer.
 
 ### 不回写历史
 
@@ -194,7 +206,7 @@ REVIEWS.md → EXP-031 摘要
 
 ## 写作原则
 
-- **不要把运行成功等同于科学成功** — Status 记工作生命周期，Outcome 记科学判断（§Outcome 值）。
+- **不要把运行成功等同于科学成功** — Status 记工作生命周期，Outcome 记科学判断（§Outcome 值）。Execution success / finite output only establishes artifact usability. `Outcome=supports` only when the EXP's predeclared scientific prediction is satisfied.
 - **负结果与 null 结果保留** — 有效完成的科学结论写入 Main Findings；技术失败保持 `not-assessed`，不当作负向科学发现。
 - **数字留在 EXPERIMENTS** — STORY 不抄性能数字。
 - **紧凑但不删历史** — 老实验可缩短正文，不删除 section 或索引行。

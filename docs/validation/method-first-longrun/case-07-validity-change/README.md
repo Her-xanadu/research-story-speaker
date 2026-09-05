@@ -33,7 +33,13 @@ train/test grouping (`experiment-review` §Reuse Completed Checks /
 `experiment-record.md` §Outcome 值 (cite; do not copy the table).
 DISCOVERY: Invalidated Findings, not a casual “still PASS.”
 
-This is scientific-stakes review (or at least an independent check).
+This is validity check + dependent-evidence reconsideration because
+previous evidence may be invalidated — not an automatic Reviewer for
+every method-component / selector change. Independent review is
+required when the redesigned experiment is high-stakes under
+`experiment-review` normal scientific-stakes rules, or when previous
+evidence may be invalidated.
+
 Delta review may read the grouping diff + affected artifacts; it must
 **not** skip the split recheck.
 
