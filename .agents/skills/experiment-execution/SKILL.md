@@ -101,6 +101,33 @@ This Skill freezes the commit before runs and writes recovered paths into
     **not** default-dispatch `result-analyst`. Suggest `experiment-review` only
     when stakes warrant.
 
+## Compact support failure (ordinary engineering)
+
+Python/API incompatibility, missing path, serialization error, CLI typo,
+parser/schema fix, runner bug, logging:
+
+```text
+identify → minimal repair → targeted test → rerun same Run/EXP
+```
+
+Default **end**. Do **not** create a new EXP-ID, do **not** open an
+independent scientific review, do **not** update Story, do **not** reframe
+to W1. Record in current EXP Run notes or
+`.research/work/<current-exp>-support-*.md` plus Git
+([experiment-record.md](../../references/experiment-record.md)
+§Support-task rule).
+
+**Support Resume Contract** (write in STATE Next + the work artifact; no
+new STATE field):
+
+```text
+Blocked science EXP: EXP-xxx
+Scientific question: ...
+Support task: ...
+Return condition: tests pass / artifact produced / resource restored
+After return: resume EXP-xxx immediately
+```
+
 ## Bounded debug (engineering failure)
 
 Engineering failure is not a scientific negative. Open `failure-diagnosis.md`
@@ -158,6 +185,7 @@ Outcome here — keep `not-assessed` until `result-analysis`.
   EXPERIMENTS/STATE updates after the subagent returns.
 - Abort invalid setup — Status=`failed`, Outcome=`not-assessed`; never delete the section.
 - Retry after bugfix under same EXP-ID — add commit notes in Git field, not a new EXP.
+- Ordinary support failure: compact path above; resume the blocked science EXP.
 - After 1–3 bounded-debug iterations without restoring the contract (cite
   `failure-diagnosis.md`): stop;
   record the reason. Do not keep going until the EXP is a different experiment.

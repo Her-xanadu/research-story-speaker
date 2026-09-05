@@ -15,13 +15,15 @@ Framework base: v0.2.2
 
 未初始化时不要直接进 `research-loop`。先 `workspace-setup`，再 `workspace-resume` materialize。
 
-**默认读取顺序**（冷启动，`ACTIVE` 之后）：
+**默认读取顺序**（冷启动，`ACTIVE` 之后；scientific working set）：
 
 1. `.research/PROJECT.md` — 长期目标与 Project Status
 2. `.research/STORY.md` — 当前相信什么
-3. `.research/STATE.md` — 现在做到哪里
+3. `.research/STATE.md` — 现在做到哪里（科学游标）
+4. STATE 指向的当前 EXP section — 不要通读整个 `EXPERIMENTS.md`
+5. 该 EXP 指向的最新 result / work artifact — follow pointers, not directories
 
-随后按任务按需读取：`DISCOVERY`、`EXPERIMENTS`、`LITERATURE`、`REVIEWS`、`RESOURCES`。
+随后按指针按需读取：`DISCOVERY`、`LITERATURE`、`REVIEWS`、`RESOURCES`。不要扫描 `.research/work/`。W1 FRAME 才扩大历史检索。
 
 `ACTIVE` 且 STATE 已指明普通 sanity / exploratory EXP 时：直接走 compact
 `experiment-design` / `result-analysis`，不经 `workspace-resume` /

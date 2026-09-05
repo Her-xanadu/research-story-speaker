@@ -2,10 +2,11 @@
 name: research-memory
 description: >-
   Maintain consistency and readability of the 8 research state files.
-  Use after long autonomous runs, when files are bloated or contradictory,
-  when a new Agent cannot parse project state, when EXPERIMENTS and DISCOVERY
-  duplicate, STATE is stale, or Story drifts from evidence. Triggers include
-  整理科研状态, 压缩 STATE, 修复状态文件, clean up research memory.
+  Use after long autonomous runs when files are contradictory, EXPERIMENTS
+  and DISCOVERY duplicate, STATE is stale vs evidence, or a new Agent cannot
+  parse authoritative state. Not a periodic loop step and not for ordinary
+  STATE overflow (inline-compress). Triggers include 整理科研状态,
+  修复状态文件冲突, clean up research memory.
 ---
 
 # Research Memory

@@ -91,6 +91,8 @@ Key Files：≤ 8 项
 
 但必须说明它服务哪个实验，例如：`修复 EXP-704 的 candidate row binding，使已预注册的 mechanism-off comparison 可运行；修复后直接恢复该实验，不重新设计路线。` 不要写「继续修复工程资格。」
 
+科学 EXP 被工程阻塞时，把 Support Resume 写在 **Recommended Next Action** 与当前 work artifact（**不新增 STATE 字段**）：Blocked science EXP、Scientific question、Support task、Return condition、After return resume that EXP immediately。修完后不能重新开始科研规划。
+
 #### 更新使用「替换」，不是「追加」
 
 运行结束后直接替换 Next / Focus，不要把已完成动作堆进 Next。历史已经在 EXPERIMENTS / DISCOVERY / Git / work/。

@@ -150,8 +150,10 @@ true `W1 FRAME` reframe.
 | Active Experiment | `STATE`, `running`/`planned` EXP |
 | Recommended Next Action | `STATE` next or gap inference |
 
-If STATE contradicts STORY or is bloated → note conflict; prefer
-`research-memory` before large work. Just-initialized STORY may still say
+If STATE contradicts STORY or other files → note conflict; `research-memory`
+before large work. If STATE is only bloated, inline-compress it in this write
+(replace Focus/Next; drop old pointers) — do **not** call `research-memory`
+just to get under 40 lines. Just-initialized STORY may still say
 `_Not established yet._` — report that honestly and route to `research-loop`.
 
 ### 4. Emit packet and continue
@@ -183,7 +185,8 @@ Read-mostly after `ACTIVE`. During initialization, edit the eight existing
 
 - `RESOURCES.md` stale after successful re-location → prefer `workspace-setup`
   or `research-memory` as appropriate;
-- `STATE.md` clearly wrong (non-trivial fixes → `research-memory`).
+- `STATE.md` factually wrong or conflicting (non-trivial → `research-memory`);
+  size overflow alone → inline compress.
 
 After substantive work, follow
 [state-files.md](../../references/state-files.md) §更新顺序.
