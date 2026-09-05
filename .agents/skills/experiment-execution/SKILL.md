@@ -117,6 +117,11 @@ to W1. Record in current EXP Run notes or
 ([experiment-record.md](../../references/experiment-record.md)
 §Support-task rule).
 
+Changes that touch **split**, **candidate labels**, **train/test grouping**,
+or **sample selector** MUST NOT use compact support; they require
+`experiment-review` (delta or full per
+[experiment-review](../experiment-review/SKILL.md) §Reuse Completed Checks).
+
 **Support Resume Contract** (write in STATE Next + the work artifact; no
 new STATE field):
 
