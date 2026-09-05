@@ -22,6 +22,26 @@ Story. Only full design (mechanism claim, new Core Idea, etc.) may need W1 conte
 `compact` / `full` are Skill-internal modes. Never write them into STATE,
 EXPERIMENTS, Status, or Outcome.
 
+## EXP eligibility (before any new ID)
+
+Before minting a new `EXP-xxx`, the task must satisfy
+[experiment-record.md](../../references/experiment-record.md)
+§What deserves a new EXP-ID?: a scientific question that can change a
+scientific decision, with at least two result-dependent judgments.
+
+**Do not mint EXP** for parser / UUID / schema / path / runner / logging /
+serialization / CLI / ordinary refactor. Those are support work on the
+current science EXP (`experiment-record.md` §Support-task rule).
+
+**What method decision will this experiment change?** If that cannot be
+answered, **do not register** this Experiment.
+
+Do not register an EXP “to complete the matrix” (e.g. 3 seeds → 5 seeds)
+unless current variance still blocks a go/no-go judgment.
+
+When the method is growing complex, prefer a **deletion experiment**
+(`Full` vs `Full - Component A`) over `Full + B + C + D`.
+
 ## Compact (default)
 
 Ordinary exploratory / sanity. Do **not** open `experiment-proposal.md`,
@@ -120,7 +140,10 @@ Only after a full-design trigger matches. Load
 2. **Check duplicates** — Scan `EXPERIMENTS.md` index and DISCOVERY Invalidated;
    avoid redoing negated routes without new mechanism. One scientific question
    per EXP-ID; supersede when replaced.
-3. **Assign EXP-ID** — Next sequential `EXP-NNN`; optional short title in heading.
+3. **Assign EXP-ID** — Only after §What deserves a new EXP-ID? and
+   **What method decision will this experiment change?** Next sequential
+   `EXP-NNN`; optional short title in heading. Parser/UUID/schema/path
+   work does **not** get a new ID.
 4. **Draft core specification** — Fill these design fields (map to section fields
    in `experiment-record.md`):
 

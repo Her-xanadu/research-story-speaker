@@ -41,7 +41,7 @@ names an ordinary sanity/exploratory EXP — use compact
 One iteration when FRAME or full DECIDE is needed:
 
 ```text
-Read STATE Workflow Position + Story → gap or W4 four questions
+Read STATE Workflow Position + Story → Method Loop or W4 five questions
 → Literature / Experiment / Review → invoke Skill → update memory → set next Position
 ```
 
@@ -54,6 +54,28 @@ only investigate uncertainty that changes a decision
 ```
 
 ## Default flow
+
+### 0. Method First Routing
+
+If **Workflow Position is `W2 TEST` / `W3 LEARN` / `W4 DECIDE`**, ask first:
+
+```text
+当前科学问题是否仍然清楚？
+```
+
+If yes: **do not** hunt a new route. Continue the current Method Loop
+([story-loop.md](../../references/story-loop.md) §Method-First Inner Loop).
+Only return to `W1 FRAME` when the mechanism or problem itself needs
+reconstruction.
+
+W4 default exit is **`W2 TEST`** when Story has no Level 2 change, the
+scientific question still holds, and a discriminating next experiment is
+clear. Answer `What does this result imply for the method?` before picking
+the next Position.
+
+Same-mechanism `W2 → W3 → W4 → W2` does **not** redo literature. New
+literature only on W1 reframe, novelty threat, a new mechanism, a required
+new baseline, or explicit user freshness.
 
 ### 1. Read Position + Story
 
@@ -104,7 +126,7 @@ Selective — **not** a default chain. Ordinary exploratory EXP stays light.
 
 | Gap nature | Route | Delegate |
 | --- | --- | --- |
-| Prior work, novelty, lit conflict | Literature | `literature-research` / scout |
+| Prior work, novelty, lit conflict | Literature | `literature-research` / scout — **not** every few EXP; only W1 / novelty / new mechanism / new baseline / user freshness |
 | Untested mechanism, empirical answer | Experiment | `experiment-design` → `experiment-execution` → `result-analysis` |
 | Major new idea (Core Idea, route competition, mechanism replacement, expensive successor) | Idea-gate | `idea-evaluation` ([prompt](../../prompts/idea-evaluation.md)); then `experiment-design` only if the gate says continue |
 | High-stakes evidence (Story Evidence candidate, surprising strong result, Story-core change) | Evidence then Review | `evidence-verification` ([prompt](../../prompts/evidence-verification.md)) after `result-analysis` → `experiment-review` |
@@ -116,7 +138,9 @@ Ordinary exploratory EXP: `experiment-design` → `experiment-execution` →
 `experiment-review` / reviewer, or `result-analyst` by default.
 
 Parallel Experiment work: use `experiment-agent` / `result-analyst`; handoff via
-[subagent-handoff.md](../../prompts/subagent-handoff.md).
+[subagent-handoff.md](../../prompts/subagent-handoff.md). One **focal scientific
+question**; multiple EXPs serving it are allowed. No unbounded multi-route
+parallelism after W2 focus. Support may parallel but must not become the main axis.
 
 ### 7. Invoke and integrate
 
@@ -129,13 +153,15 @@ Parallel Experiment work: use `experiment-agent` / `result-analyst`; handoff via
 ### 8. W4 DECIDE + next Position
 
 When this Skill owns the shift (Level 2, A/B/C back-to-W1, completion, or
-unclear next step), answer story-loop §W4 四问:
+unclear next step), answer story-loop §W4 五问:
 
 ```text
 1. 结果可靠？
 2. 改变对 Story 的相信？
 3. 下一步同一科学问题？
-4. 下一阶段？
+4. What does this result imply for the method?
+   keep / simplify / delete component / change mechanism / change control / abandon
+5. 下一阶段？（默认 W2 TEST）
 ```
 
 Write **one** next Workflow Position in STATE:
@@ -157,15 +183,18 @@ without loading this Skill.
 Stop on user blocker, Story completion (`W5 HANDOFF`), or Reviewer
 `ATTENTION_REQUIRED` ([reviewer.md](../../subagents/reviewer.md)).
 
-Stagnation (no information gain, hyperparameter-only runs) → `W1 FRAME` per
+Stagnation (no information gain, hyperparameter-only runs, **or consecutive
+EXPs that change numbers but not any mechanism judgment**) → `W1 FRAME` per
 [story-loop.md](../../references/story-loop.md) §停滞处理 / §何时回到 W1 B.
 
 ## Reads
 
 **Minimum:** `STATE.md` (Workflow Position), `STORY.md`.
 
-**As needed:** `PROJECT.md`, `DISCOVERY.md`, `EXPERIMENTS.md`, `LITERATURE.md`,
-`REVIEWS.md`, `RESOURCES.md`. Load delegated Skills at delegation time.
+**As needed:** `PROJECT.md`, targeted `DISCOVERY.md` / `EXPERIMENTS.md`
+sections (EXP-ID or keyword lookup — **do not** load the entire ledger),
+`LITERATURE.md`, `REVIEWS.md`, `RESOURCES.md`. Load delegated Skills at
+delegation time. Expand history only on true `W1 FRAME`.
 
 ## Updates
 
