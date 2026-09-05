@@ -19,6 +19,23 @@ Workflow 是**认知阶段**，不是 Agent 调用次数。一个很小的实验
 
 Skills 是 strong guidance，不是 mandatory state machine。
 
+## Method-First Principle
+
+```text
+科研循环的默认推进单位是“科学判断的改变”，
+不是“完成了一个工程任务”。
+
+每一轮优先问：
+
+当前方法最值得验证或修改的是什么？
+
+然后设计能够改变这个判断的最小实验。
+
+工程、数据、环境、资格和审查任务
+只在直接阻塞当前科学实验时执行，
+完成后立即返回当前方法实验。
+```
+
 ## 两层 Workflow
 
 ### 最终转移
@@ -55,6 +72,59 @@ W2 → W3 → W4 → W2
 
 负责：**同一 Story 下不断实验优化。** 这是未来最常使用的循环。
 
+## Method-First Inner Loop
+
+不是新的 Workflow Stage，也不是 STATE 字段。它只是 `W2–W3–W4` 的认知主线：
+
+```text
+Current Method Hypothesis
+        ↓
+Weakest Mechanism Assumption
+        ↓
+Minimum Discriminating Experiment
+        ↓
+Observed Result
+        ↓
+Mechanism Diagnosis
+        ↓
+Method Consequence
+   ├─ keep
+   ├─ simplify
+   ├─ modify
+   ├─ replace component
+   └─ abandon mechanism
+        ↓
+Next Discriminating Experiment
+        ↓
+W2 TEST
+```
+
+不要写成 `M1` / `M2` / `M3` 进 STATE。
+
+```text
+科研循环的默认推进单位是“科学判断的改变”，
+不是“完成了一个工程任务”。
+
+每一轮优先问：当前方法最值得验证或修改的是什么？
+然后设计能够改变这个判断的最小实验。
+```
+
+工程、数据、环境、资格和审查任务只在直接阻塞当前科学实验时执行；完成后立即返回当前方法实验。**support work does not advance the scientific loop by itself.**
+
+长周期默认思考：
+
+```text
+当前 Story 的核心方法是什么？
+↓
+当前方法最脆弱的机制假设是什么？
+↓
+什么实验最能区分它和最强替代解释？
+↓
+运行 → 机制诊断 → 方法更新 → 下一判别实验
+```
+
+不要默认先问：还有什么文件没审、schema 没补、资格门没检查、对象可以 Audit。
+
 ### 长周期主链
 
 ```text
@@ -86,7 +156,7 @@ W4 + completion criteria satisfied
 | W1 FRAME | 当前科学问题；文献；换机制/路线；大改 Story | `research-loop` + `literature-research` / `idea-evaluation` / `story-maintenance` |
 | W2 TEST | 设计 / 实现 / 跑实验 | `experiment-design` → `experiment-execution` |
 | W3 LEARN | 结果 → Outcome / Discovery | `result-analysis` |
-| W4 DECIDE | 科研换挡器（四问，见下） | Level 0/1 且 Next 清楚：`result-analysis`；Level 2 / 停滞 / 完成：`research-loop` |
+| W4 DECIDE | 科研换挡器（五问，见下） | Level 0/1 且 Next 清楚：`result-analysis`；Level 2 / 停滞 / 完成：`research-loop` |
 | W5 HANDOFF | Story 完成可写 | `Story Status: READY_FOR_WRITING` |
 
 文献**不是**独立 W 阶段：属于 W1，或 W4 判定知识缺口后回 W1。
@@ -96,9 +166,22 @@ W4 + completion criteria satisfied
 ### Agent 连续性口诀
 
 ```text
+先问方法，不先问流程。
+每个新 EXP 都要改变一个科学判断。
+结果出来先诊断机制，再决定下一实验。
+同一方法还能被有效检验，就留在 W2–W3–W4。
+核心机制需要重构，才回 W1。
+工程问题只做最小修复，修完立刻回实验。
+历史按需查，STATE 只保留现在。
+Story 随证据演化，不随任务日志膨胀。
+```
+
+W 阶段口诀（同上，不另建状态机）：
+
+```text
 W2 → 当前路线还没测完，继续
-W3 → 结果出来了，别先想新 Idea
-W4 → 先判断 Story 要不要变
+W3 → 结果出来了，先诊断机制，别先想新 Idea
+W4 → 结果对方法意味着什么？Story 要不要变？默认回 W2
 W1 → 只有真正需要换问题时才重新 frame
 ```
 
@@ -141,23 +224,64 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 
 ## W4 换挡器
 
-每轮四个问题：
+每轮五个问题：
 
 ```text
 1. 这次结果是否可靠？
 2. 它是否改变了我们对 Story 的相信？
 3. 下一步还是同一个科学问题吗？
-4. 下一阶段是什么？
+4. What does this result imply for the method?
+   keep? simplify? delete component? change mechanism?
+   change control? abandon mechanism?
+5. 下一阶段是什么？
 ```
+
+长周期默认出口是 **W2 TEST**。若 Story 没有 Level 2 改变、当前科学问题仍成立、还有明确可区分的下一实验 → `W4 → W2`，而不是默认回 W1。
+
+下一动作优先是判别实验（mechanism-off、simpler replacement、rival hypothesis、remove component、matched sham）。低优先：more seeds / epochs / thresholds / 次要参数，除非 variance 本身就是当前科学问题。
 
 | W4 判断 | 下一 Workflow Position |
 |---------|-------------------------|
-| Story 稳定，下一实验清楚 | `W2 TEST` |
+| Story 稳定，下一实验清楚 | `W2 TEST`（默认） |
 | 结果还没解释清 | `W3 LEARN` |
 | Core Idea / Gap / route 需重构（A/B/C） | `W1 FRAME` |
 | Story 完成 | `W5 HANDOFF` |
 
 谁执行 W4：Level 0 且 Next 清楚 → `result-analysis` 直接写 STATE `W2`；Level 1 → `story-maintenance` 后 `W2`；Level 2 / A/B/C / Next 不清 → `research-loop`。
+
+### Method Complexity Rule
+
+实验不支持当前方法时，默认顺序：
+
+```text
+1. identify failed prediction
+2. remove unsupported component
+3. test simpler explanation
+4. only then consider adding a mechanism
+```
+
+禁止默认「结果差 → 加组件 / 加 loss / 加 gate / 加 expert」。每次新增组件必须回答：`Which failed prediction requires this component?` 若答案只是 `might improve performance`，默认不加。
+
+优先 deletion experiment：`Full` vs `Full - Component A`，而不是 `Full + B + C + D`。
+
+### Method Check（每 3–5 个有意义科学 EXP）
+
+不是 Reviewer，不是新 Workflow，不要求单独 artifact。Main 在 W4 简单问：
+
+```text
+最近这些实验是否改变了机制理解？
+当前方法是否比 5 个 EXP 前更复杂？
+是否有组件已经失去证据支持？
+当前 focal gap 还是最重要的吗？
+```
+
+有新理解 → 继续 W2。方法越来越复杂但无新理解 → W1 reframe。
+
+### 方法内循环与 Story
+
+很多正常 Experiment 只需更新 `EXPERIMENTS` + `DISCOVERY` + `STATE`。Story 可以连续 3 / 5 / 10 个 EXP 不修改——这不是遗漏，是正确分层。长周期方法演化写在 DISCOVERY（机制为什么变化），等证据成熟后再改 Story Core Idea。
+
+文献不在同一机制的 `W2 → W3 → W4 → W2` 里重做。只有 W1 reframe、novelty threat、新机制、新 baseline 必须加入、或用户明确要求 freshness 时才做新 literature work。
 
 ## Story Impact Level
 
@@ -232,6 +356,7 @@ EXPERIMENTS 索引 + 相关 section · DISCOVERY（Negative / Invalidated）
 - 反复相似超参，Interpretation 无新信息。
 - STATE 长期 `running` 无 Discovery。
 - Open Contradictions 增加但无针对实验。
+- **方法没有学到东西：** 连续实验只改变数字（lr / threshold / seed / weight / epochs），但不改变任何机制判断（Interpretation / Discovery / Core Idea 都不变）→ 就是停滞 → `W4 → W1`。
 
 ### 推荐动作（非强制）
 
@@ -268,6 +393,8 @@ Story 大改最好 Review
 | UNINITIALIZED / 未 setup | `W0 SETUP` |
 
 长周期示例见 `state-files.md` §STATE.md。并行实验：`EXP-041 (primary); EXP-042/043 parallel`，仍**一个** Position。
+
+限制的是 **one focal scientific question**，不是「只能有一个 science EXP」。同一焦点下可并行 mechanism-off / matched sham / second dataset / 多 seed。进入 W2 focus 后，不允许多路线无边界并行（Route A/B/C/D 全部深入），除非 W1 明确处于 scout。Support tasks 可并行，但不能成为主轴。
 
 **禁止**作为正式 STATE 字段：`Research Round`、`Story Revision`、`Iteration`、每条路线一套 Workflow。一个 Project 只有 **one Workflow Position**；候选 route 在 DISCOVERY / `.research/work/` / idea-evaluation。
 
