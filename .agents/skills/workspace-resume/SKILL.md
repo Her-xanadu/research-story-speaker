@@ -123,12 +123,22 @@ Verify: `AGENTS.md`, `.research/PROJECT.md`, `.research/STORY.md`,
 `.research/STATE.md`, `.agents/skills/`. Missing core files → concrete blocker;
 do not invent state.
 
-### 2. Load boot set
+### 2. Load scientific working set
 
-Read: `PROJECT.md` → `STORY.md` → `STATE.md`. On demand only: targeted
-`DISCOVERY.md`, STATE-linked EXP sections
-([experiment-record.md](../../references/experiment-record.md)), `RESOURCES.md`.
-No full-scan of `LITERATURE.md` or all experiments at startup.
+Read, then **stop** and start work:
+
+```text
+PROJECT → STORY → STATE → STATE 指向的当前 EXP section
+→ 当前 EXP 指向的最新 result/work artifact
+```
+
+On demand only: targeted `DISCOVERY.md` sections, STATE-linked EXP
+sections ([experiment-record.md](../../references/experiment-record.md)),
+`RESOURCES.md`. **Do not** load entire `EXPERIMENTS.md`. **Do not** scan
+`.research/work/`. **Do not** read all REVIEWS or historical DISCOVERY.
+Follow pointers, not directories. History uses EXP-ID / keyword /
+method-name lookup. Expand EXPERIMENTS / DISCOVERY / LITERATURE only on
+true `W1 FRAME` reframe.
 
 ### 3. Reconstruct the packet
 
@@ -160,8 +170,9 @@ and Git layout inside this Skill.
 
 **Always:** `PROJECT.md`, `STORY.md`, `STATE.md`, `AGENTS.md` (routing).
 
-**On demand:** `DISCOVERY.md`, `EXPERIMENTS.md` (index + sections),
-`RESOURCES.md`, `LITERATURE.md`, `REVIEWS.md`.
+**On demand (pointers only):** current EXP section, linked artifact,
+targeted `DISCOVERY.md` / `RESOURCES.md` / `LITERATURE.md` / `REVIEWS.md`.
+Do **not** default-load the full EXPERIMENTS ledger or scan `work/`.
 
 **Init:** `.agents/templates/` as the shape to materialize into existing files.
 
@@ -179,12 +190,13 @@ After substantive work, follow
 
 ## Deviation allowed
 
-- Skip optional reads when the boot set suffices; one EXP section instead of
-  full `EXPERIMENTS.md`; start inside the active experiment when STATE and user
-  agree; `research-loop` on explicit file-consistent tasks; init may leave STORY
-  as `_Not established yet._`.
+- Skip optional reads when the scientific working set suffices; one EXP
+  section instead of full `EXPERIMENTS.md`; start inside the active
+  experiment when STATE and user agree; `research-loop` on explicit
+  file-consistent tasks; init may leave STORY as `_Not established yet._`.
 
 Do **not** guess Story, fabricate Key Observation / Core Idea / Evidence, replay
 completed work, treat chat as evidence, load every state file “just in case,”
-create a second set of `.research/` files, or grill the user every iteration
-(look up facts; route scientific unknowns).
+`cat` the whole EXPERIMENTS ledger, scan `work/`, create a second set of
+`.research/` files, or grill the user every iteration (look up facts; route
+scientific unknowns).

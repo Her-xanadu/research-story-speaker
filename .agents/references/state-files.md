@@ -53,15 +53,51 @@ Problem → Key Observation → Core Idea → Evidence → Boundary → Open Gap
 
 ### STATE.md
 
-**必须很小**（几十行）。只回答：
+**必须很小**。STATE 是**科学游标**，不是任务日志。只回答：
 
 - **现在在哪个 Workflow Stage？**（`Workflow Position`）
-- 现在主要在解决什么？
+- 现在主要在解决什么？（科学问题，不是工程清单）
 - 当前活跃实验是什么？
-- 最近完成了什么？
+- 最近完成了什么？（科学节点）
 - 下一步最值得做什么？
 - 有哪些 blocker？
 - 最相关文件在哪里？
+
+**不增加新字段。** 现有标题保持不变。
+
+#### STATE 尺寸纪律（轻量默认预算，不是科学 Gate）
+
+```text
+全文：目标 ≤ 40 行
+Current Focus：≤ 2 句
+Active Experiment：1 行
+Recently Completed：≤ 5 项
+Recommended Next Action：1 个主动作
+Blockers：≤ 3 项
+Key Files：≤ 8 项
+```
+
+超过时：Main 在本次写 STATE 时直接就地压缩。不要「STATE 41 行 → 调 research-memory → 扫整个项目 → 才能继续实验」。
+
+#### Current Focus 必须优先描述科学问题
+
+错误：`修复 terminal release parser 和 GPU UUID gate。`
+
+推荐：`判断 candidate ambiguity 是否具有独立于 group balancing 的检测收益。`
+
+即使当前有工程 blocker，Current Focus 仍保持 scientific focus。
+
+#### Recommended Next Action 可以是 support task
+
+但必须说明它服务哪个实验，例如：`修复 EXP-704 的 candidate row binding，使已预注册的 mechanism-off comparison 可运行；修复后直接恢复该实验，不重新设计路线。` 不要写「继续修复工程资格。」
+
+#### 更新使用「替换」，不是「追加」
+
+运行结束后直接替换 Next / Focus，不要把已完成动作堆进 Next。历史已经在 EXPERIMENTS / DISCOVERY / Git / work/。
+
+#### Recently Completed 只保留科学节点
+
+优先：`EXP-705 — mechanism-off contradicted current explanation`。不要保留 `fixed argparse` / `updated parser` / `synced server` / `review r3 completed`，除非该项直接改变实验有效性。
 
 **Workflow Position**（封闭枚举，写在 `Current Focus` 之前）：
 
@@ -194,11 +230,35 @@ LITERATURE 与 REVIEWS 按任务独立更新，不插入上述链的中间替代
 | 文件 | 目标 |
 |------|------|
 | AGENTS.md | 尽量 < 150 行 |
-| STATE.md | 几十行 |
+| STATE.md | 目标 ≤ 40 行（见 §STATE.md 尺寸纪律；不是科学 Gate） |
 | STORY.md | 约一页 |
 | EXPERIMENTS.md | 可长；顶部索引表 + 各 section；老实验可压缩正文 |
 
 新 Agent 应快速理解，不应为恢复上下文而加载大量无关规则。
+
+## Scientific Working Set（冷启动）
+
+冷启动默认读取，然后开始工作：
+
+```text
+PROJECT
+↓
+STORY
+↓
+STATE
+↓
+STATE 指向的当前 EXP section
+↓
+当前 EXP 指向的最新 result/work artifact
+```
+
+默认禁止全量读取大 ledger：不要 `cat EXPERIMENTS.md`，不要读整个 REVIEWS，不要扫描所有 `work/`，不要读所有历史 DISCOVERY section。尤其长周期已有几百 EXP 时。
+
+历史检索采用 **targeted lookup**（EXP-ID / keyword / method-name / targeted section），而不是全文装入上下文。
+
+只有真正回到 **W1 FRAME**（核心机制失败、路线 pivot、跨数据集矛盾、重新选择方法）才允许扩大 DISCOVERY / EXPERIMENTS / LITERATURE 的读取范围；即使如此仍优先 `search → relevant sections`。
+
+`.research/work/` **不属于** cold-start set。默认不扫描 `work/`。只有 STATE Key Files、current EXP Results、current Review、或 Git/EXP section 指向时才读：follow pointers, not directories。
 
 ## Story 完成条件
 

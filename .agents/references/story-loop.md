@@ -405,8 +405,10 @@ W 名、Level、scout/focus/confirm **不是** Outcome 或 Verdict。
 ```text
 1. AGENTS.md
 2. PROJECT → STORY → STATE（先读 Workflow Position）
-3. 按任务 + DISCOVERY / EXPERIMENTS / LITERATURE / REVIEWS / RESOURCES
+3. STATE 指向的当前 EXP section + 该 EXP 指向的最新 artifact
 ```
+
+默认到此停止。不要全读 EXPERIMENTS / REVIEWS / 全部 DISCOVERY，不要扫描 `work/`。细节：`state-files.md` §Scientific Working Set。
 
 `workspace-resume` 应回答：Workflow Position、Current Gap、Active Experiment、Recommended Next Action，然后**继续执行**。
 
