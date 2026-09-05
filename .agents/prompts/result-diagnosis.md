@@ -70,6 +70,21 @@ Executor and analyst prose in `.research/work/` are hypotheses to check.
 
 **Analyze in this order. Do not reorder. Do not start at Story.**
 
+Method-First overlay (no new required headings; answer inside 1–10):
+
+```text
+Integrity → What happened? → Which prediction was supported?
+→ Which rival remains? → Mechanism diagnosis → Method consequence
+→ Story impact → Next discriminating experiment
+```
+
+§5 + §7 must name the mechanism diagnosis and the strongest remaining
+rival. §9 must state the method consequence (`keep` / `simplify` /
+`delete component` / `change mechanism` / `change control` /
+`abandon mechanism`). §10 must be a discriminating next experiment, not
+more seeds unless variance is the scientific question. Do not stop at
+metric movement.
+
 If a step is blocked by an earlier failure, write `n/a — <why>` and continue
 the numbering. Integrity failure **stops claim support**; it does not license
 skipping the Outcome candidate or the next action.
@@ -239,8 +254,10 @@ Write `.research/work/<task-slug>.md` with **these headings in this order**:
 Under §8: recommended Status (if changed), recommended Outcome (one token
 from §Outcome 值), DISCOVERY bucket
 (`none` | `Positive` | `Negative` | `Null` | `Invalidated`), and a one-line
-reason. Under §7: the best rival, not a list of ten. Under §10: one action
-that could change judgment.
+reason. Under §5/§7: mechanism diagnosis + the best rival, not a list of
+ten. Under §9: method consequence (`keep` / `simplify` / `delete
+component` / `change mechanism` / `abandon`). Under §10: one
+discriminating experiment that could change the method judgment.
 
 Return the same ten sections to the caller (short).
 

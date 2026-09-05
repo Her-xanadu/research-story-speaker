@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="docs/assets/hero-banner.jpg" alt="Decorative still life of archival paper and notebooks on a research desk" width="100%">
+  <img src="docs/assets/hero-banner.jpg" alt="Method-first research loop on a desk: METHOD, EXPERIMENT, DIAGNOSIS, UPDATE" width="100%">
 </p>
 
 <h1 align="center">research-story-speaker</h1>
 
 <p align="center">
-  <strong>一个 Story。一套文件记忆。一个科研循环。</strong><br>
+  <strong>一个 Story。一套文件记忆。一个 Method-First 循环。</strong><br>
   纯文件、纯提示词的自主科研工作区 —— 聊天记录不是事实来源。
 </p>
 
@@ -54,7 +54,7 @@
 ```text
 1. STORY.md = 今天还相信什么
 2. 文件 = 长期记忆（发生了什么 / 学到了什么 / 下一步）
-3. Workflow = 外层换问题，内层跑实验
+3. Workflow = 外层换问题，内层 Method-First
 ```
 
 ### 1. 一个 Story
@@ -90,7 +90,7 @@ Experiment 可以有几十轮；Story 不应跟着膨胀。数字进 `EXPERIMENT
 **不要**每个实验都重新问「现在最大 Gap 是什么」。
 
 <p align="center">
-  <img src="docs/assets/workflow.svg" alt="W0 SETUP, W1 FRAME, inner W2-W3-W4 loop, W5 HANDOFF" width="100%">
+  <img src="docs/assets/workflow.svg" alt="W0 SETUP, W1 FRAME, Method-First inner W2-W3-W4 loop, W5 HANDOFF" width="100%">
 </p>
 
 | 层 | 路径 | 何时走 |
@@ -99,7 +99,17 @@ Experiment 可以有几十轮；Story 不应跟着膨胀。数字进 `EXPERIMENT
 | **外循环（低频）** | `W4 → W1 FRAME` | Core Idea 被推翻、路线无信息增益、或出现需重新 frame 的矛盾 |
 | **完成** | `W4 → W5 HANDOFF` | Story 完成条件满足 |
 
-`STATE.md` 的 **Workflow Position** 是宏观游标。完整规则：[`.agents/references/story-loop.md`](.agents/references/story-loop.md)。
+长周期把内循环花在 **Method-First**：方法假设 → 判别实验 → 机制诊断 → 方法更新（keep / simplify / replace）。不要重画 W0–W5。
+
+| 规则 | 含义 |
+|------|------|
+| 新 EXP | 必须能改变科学判断；否则不铸新 ID |
+| Support | parser / schema / UUID / 工程修复：不铸 ID、不全量 Review、不改 Story、不回 W1 |
+| 换挡 | 问题清楚则继续 Method Loop，默认 `W4 → W2` |
+| Review | 看 scientific stakes，不是 `reviewer available` |
+| 冷启动 | 不把整本 `EXPERIMENTS.md` 当默认上下文 |
+
+`STATE.md` 的 **Workflow Position** 是宏观游标。完整规则：[`.agents/references/story-loop.md`](.agents/references/story-loop.md)。验收用例：[`docs/validation/method-first-longrun/`](docs/validation/method-first-longrun/)。
 
 ### Workspace 不是代码仓库
 
@@ -122,7 +132,7 @@ Experiment 可以有几十轮；Story 不应跟着膨胀。数字进 `EXPERIMENT
 5. 再给研究目标。**`workspace-resume`** 把根 `.research/` 从 `UNINITIALIZED` **materialize** 为 `ACTIVE`（八个文件已在树上，不是新生成）。缺证据的段落保持 `_Not established yet._`。
 
 MOCK 闭环（不是当前项目）：[`examples/mock-flow-detection/`](examples/mock-flow-detection/)。  
-审核证据：[`docs/validation/`](docs/validation/)。
+审核证据：[`docs/validation/`](docs/validation/)。Method-First 长周期：[`docs/validation/method-first-longrun/`](docs/validation/method-first-longrun/)。
 
 ---
 
@@ -184,7 +194,9 @@ Cold-start 证据日期 2026-09-03，见 [`docs/validation/harness-smoke/`](docs
 
 ## 当前状态
 
-**v0.2.2**（tag `v0.2.2`）新增 `workspace-setup`。静态验收：[`docs/validation/v0.2.2/workspace-setup-checklist.md`](docs/validation/v0.2.2/workspace-setup-checklist.md)。**未跑**独立 live Gate。
+最近 tagged release 仍是 **v0.2.2**（`workspace-setup`）。静态验收：[`docs/validation/v0.2.2/workspace-setup-checklist.md`](docs/validation/v0.2.2/workspace-setup-checklist.md)。**未跑**独立 live Gate。
+
+Method-First 长周期在不新增 Skill / Workflow Stage / canonical 文件的前提下，把内循环收成 Method-First。Cases 1–9 是 regression specification（[`docs/validation/method-first-longrun/`](docs/validation/method-first-longrun/)），**尚未** live Gate。**尚未**打新 tag。
 
 > [!CAUTION]
 > 根 `.research/` 仍为干净 **UNINITIALIZED** 模板。  
@@ -198,4 +210,4 @@ Cold-start 证据日期 2026-09-03，见 [`docs/validation/harness-smoke/`](docs
 
 已知债务：OpenCode 未实测；compact token 软目标仍 MISS。没有可引用的论文数字或对外 benchmark。
 
-视觉资产：`docs/assets/hero-banner.jpg` 为首屏生成图裁切；`architecture.svg` / `workflow.svg` 为可读矢量图。完整生成图见 `hero.jpg`、`two-layer-loop.jpg`、`social-card.jpg`。展示手法调研：[`docs/validation/v0.2.2/github-readme-study.md`](docs/validation/v0.2.2/github-readme-study.md)。
+视觉资产：`docs/assets/hero-banner.jpg` 为首屏封面（Method-First 循环）；`banner.svg` / `architecture.svg` / `workflow.svg` 为可读矢量图。完整生成图见 `hero.jpg`、`social-card.jpg`。展示手法调研：[`docs/validation/v0.2.2/github-readme-study.md`](docs/validation/v0.2.2/github-readme-study.md)。

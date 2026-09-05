@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 280" role="img" aria-labelledby="title desc">
   <title id="title">research-story-speaker</title>
-  <desc id="desc">File-native, prompt-native, Story-driven autonomous research workspace</desc>
+  <desc id="desc">Method-first inner loop, file-native memory, Story as the outer frame</desc>
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
       <path d="M0 0 L8 4 L0 8 Z" fill="#8BA3C7" fill-opacity="0.85"/>
@@ -32,7 +32,7 @@
     <text x="0" y="0" fill="#8BA3C7" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="13" letter-spacing="4.2">AUTONOMOUS RESEARCH WORKSPACE</text>
     <text x="0" y="52" fill="#E6EDF3" font-family="Georgia, 'Iowan Old Style', 'Times New Roman', serif" font-size="42">research-story-speaker</text>
     <rect x="0" y="68" width="220" height="1.5" fill="#8BA3C7"/>
-    <text x="0" y="104" fill="#8B949E" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="18">File-native memory / prompt-native skills / Story as the loop</text>
+    <text x="0" y="104" fill="#8B949E" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="18">Method-first inner loop / file-native memory / Story as the frame</text>
     <text x="0" y="142" fill="#6E7681" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="13" letter-spacing="1.4">v0.2.2 · canonical 8 · research-loop 1 · subagents 5 · skills 14 · RI 6 · scripts 0</text>
   </g>
 </svg>

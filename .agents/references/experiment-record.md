@@ -86,6 +86,9 @@ completed | failed | abandoned → superseded（当新 EXP 接管同一问题时
 | `invalid` | 运行可能完成，但由于泄漏、实现错误、不公平比较等，不可用于科学推断 |
 
 科学结论如何进入 DISCOVERY 由 `result-analysis` 决定；本表只定义词义。
+Execution success / finite output only establishes artifact usability.
+`supports` only when the EXP's predeclared scientific prediction is
+satisfied.
 
 ## ID 规则
 
@@ -96,6 +99,44 @@ EXP-031 — Candidate Ambiguity Screening   # 可选附名
 ```
 
 不使用复杂编码。老 Experiment 可写得更紧凑，但 section 永久保留。
+
+## What deserves a new EXP-ID?
+
+New EXP-ID is for a scientific question that can change a scientific decision.
+
+一个任务只有同时满足下面条件时，默认才创建新的 Experiment：
+
+1. **必须有 Scientific Question** — 例如「source deletion stability 是否真正带来独立于普通 SSL-kNN 的候选质量提升？」而不是「实现 parser / 修 UUID / 补 schema / 同步代码 / 检查目录」。
+2. **至少存在两个可能结果，并会导致不同科研判断** — 例如 `Full > matched sham` → source mechanism remains plausible；`Full ≈ matched sham` → source mechanism lacks independent value。若可能结果只是 `tests pass / tests fail` 或 `file exists / file missing`，通常不是独立科学 Experiment。
+3. **结果能够改变至少一个东西：** method design、mechanism belief、Story Boundary、Open Gap、route choice、scientific comparison。
+
+判断标准不是名字（admission / qualification / audit），而是：**结果是否改变我们对研究对象或方法有效性的科学判断？** 必要的数据有效性、共线、held-out、provenance、control 泄漏问题可以成为科学 Experiment。
+
+### Support-task rule
+
+以下工作默认作为**当前科学 EXP 的 support work**，不自动创建新 EXP-ID，不自动产生新的 Story Impact，不自动产生新的 Reviewer cycle：
+
+```text
+路径修复 · Python/version compatibility · runner bug · 日志修复
+文件同步 · schema 实现 · serialization · parser · CLI 参数
+GPU 调用 bug · 代码重构 · 单元测试补齐 · 结果文件格式
+普通数据转换 · 重复下载 · 远端传输
+```
+
+记录在 current EXP Run notes、`.research/work/<current-exp>-support-*.md`、或 Git commit，然后返回当前科学 Experiment。
+
+A purely mechanical smoke/support task does not receive a new science
+EXP-ID; record its pass/fail under the parent EXP support/run notes.
+If a support repair would change the scientific contract (split,
+candidate labels, train/test grouping, sample selector, or similar):
+stop compact support and return to `experiment-design`. Independent
+review only when the redesign is high-stakes under `experiment-review`
+or previous evidence may be invalidated. Method-component change ≠
+automatic Reviewer.
+
+### 不回写历史
+
+已有 EXP（例如 EXP-677 / EXP-678 / …）即使今天看来更像工程/资格任务：不要删除、不要重新编号、不要批量补 class、不要改写历史 Outcome。新规则只适用于以后。历史保持可追溯。
 
 ## Section 建议字段
 
@@ -165,7 +206,7 @@ REVIEWS.md → EXP-031 摘要
 
 ## 写作原则
 
-- **不要把运行成功等同于科学成功** — Status 记工作生命周期，Outcome 记科学判断（§Outcome 值）。
+- **不要把运行成功等同于科学成功** — Status 记工作生命周期，Outcome 记科学判断（§Outcome 值）。Execution success / finite output only establishes artifact usability. `Outcome=supports` only when the EXP's predeclared scientific prediction is satisfied.
 - **负结果与 null 结果保留** — 有效完成的科学结论写入 Main Findings；技术失败保持 `not-assessed`，不当作负向科学发现。
 - **数字留在 EXPERIMENTS** — STORY 不抄性能数字。
 - **紧凑但不删历史** — 老实验可缩短正文，不删除 section 或索引行。

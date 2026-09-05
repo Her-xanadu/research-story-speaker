@@ -30,22 +30,32 @@ Ordinary exploratory / sanity. Do **not** open `result-diagnosis.md`,
 In-session:
 
 - **Integrity** — is the artifact usable (crash, missing metrics, obvious leak)?
-  An operator-supplied log or pre-existing result file that answers the
-  already-designed sanity prediction (finite metric) **is** usable for that
-  Question. Missing code entry without a fake re-run is honest; it is
-  **not** “technical vs scientific failure unclear”.
-- **What happened** — objective Main Findings
-- **Outcome** — for ordinary sanity, typically `supports` if the smoke
-  prediction held (finite metric / exit 0), including from that supplied log;
-  else `not-assessed` only when there is no usable artifact at all. If the
-  artifact is usable but the prediction did **not** hold, that is **not**
-  compact-`supports` — unexpected result → full diagnosis, then the Protocol
-  Outcome that path would use (do not invent a token).
-- **What we learned** — Interpretation; do not inflate into Story Evidence
-- **Next** — smallest next action (stop, retry same Question, or a new EXP)
+  An operator-supplied log or pre-existing result file with execution
+  success / finite output **is** usable as an artifact for that Question.
+  Usability is not `Outcome=supports`. Missing code entry without a fake
+  re-run is honest; it is **not** “technical vs scientific failure unclear”.
+- **What happened** — objective Main Findings. Do **not** stop at
+  “metric +Xpp → run more.”
+- **Outcome** — Execution success / finite output only establishes
+  artifact usability. `Outcome=supports` only when the EXP's
+  predeclared scientific prediction is satisfied (including from a
+  supplied log). A purely mechanical smoke/support task does not
+  receive a new science EXP-ID; record its pass/fail under the parent
+  EXP support/run notes. Else `not-assessed` only when there is no
+  usable artifact at all. If the artifact is usable but the prediction
+  did **not** hold, that is **not** compact-`supports` — unexpected
+  result → full diagnosis, then the Protocol Outcome that path would
+  use (do not invent a token).
+- **What we learned** — Interpretation; do not inflate into Story Evidence.
+  If this is a method comparison (not mere smoke), name **Mechanism
+  Diagnosis**, **Method Consequence** (`keep` / `simplify` / `delete
+  component` / `change mechanism` / `abandon`), and the **Next
+  Discriminating Experiment**.
+- **Next** — smallest next discriminating action (stop, retry same Question,
+  or a new EXP). Default W4 exit is `W2 TEST`, not more seeds.
 
-A result that matches the already-designed sanity prediction is **not** an
-unexpected-result full-diagnosis trigger.
+A result that matches the EXP's predeclared scientific prediction is
+**not** an unexpected-result full-diagnosis trigger.
 
 Compact persist: write Main Findings, Interpretation, Outcome, **Story Impact**
 as `Level 0|1|2 — …` into EXPERIMENTS (section + Index). Ordinary compact
@@ -53,8 +63,9 @@ analysis does **not** write DISCOVERY or promote sanity into Story Evidence.
 Update STATE **Workflow Position**: Next clear → `W2 TEST`; result unclear →
 `W3 LEARN`. Level 2 or reframe needed → hand to `research-loop` / `story-maintenance`,
 Position `W1 FRAME`. See [story-loop.md](../../references/story-loop.md) §W4.
-Required reads: `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts or
-operator-supplied log / pre-existing result file.
+Required reads: `.research/EXPERIMENTS.md` (target EXP section /
+index lookup only), raw artifacts or operator-supplied log /
+pre-existing result file.
 
 **Full diagnosis — continue past the stop line only if any:** unexpected
 result, high variance, mechanism attribution, Core Idea impact, Story
@@ -79,9 +90,26 @@ review (`experiment-review`), or cross-project file compaction (`research-memory
 
 ## Goal
 
-Answer what the evidence means for the current Story, record durable discoveries,
-and set the next research move. Analysis is **strong guidance**, not a hard gate —
-but major Story changes should trigger or suggest `experiment-review`.
+Answer what the evidence means for the current **method**, record durable
+discoveries, and set the next **discriminating** experiment. Suggested
+order (full diagnosis; compact may fold later steps):
+
+```text
+1. Integrity
+2. What happened?
+3. Which prediction was supported?
+4. Which rival remains?
+5. Mechanism diagnosis
+6. Method consequence
+7. Story impact
+8. Next discriminating experiment
+```
+
+Do not stop at “指标上涨/下降 → 继续扩大实验.” A negative or null result
+must become method information (which hypothesis died; which component
+lost its reason; which method space can be deleted) and go to DISCOVERY.
+Analysis is **strong guidance**, not a hard gate — but major Story
+changes should trigger or suggest `experiment-review`.
 
 Run success ≠ scientific success; `completed` Status does not mean hypothesis
 confirmed. Set **Outcome** per `experiment-record.md` §Outcome 值 (do not copy
@@ -130,7 +158,9 @@ Only after a full-diagnosis trigger matches. Load
 `result-diagnosis.md` (and `failure-diagnosis.md` when technical vs
 scientific failure is unclear). Walk that prompt; do not start at Story.
 
-Then **Persist Protocol** below.
+Then **Persist Protocol** below. The write-up must include Mechanism
+Diagnosis, Method Consequence, and Next Discriminating Experiment — not
+only a metrics summary.
 
 ### Persist Protocol (both modes)
 
@@ -141,7 +171,7 @@ Follow `state-files.md` §更新顺序 (open that file on full diagnosis only).
 2. **Update DISCOVERY** — Only when the EXP is scientifically usable:
    - `Status=failed` 且 `Outcome=not-assessed` → **不产生** Negative Discovery。
    - `Status=completed` 且 `Outcome=contradicts` 或 `null` → 写入 DISCOVERY
-     （Negative / Null）。
+     （Negative / Null），并写清方法信息：哪个假设被否定、哪个组件失去存在理由、哪些方法空间可永久删除。
    - `completed` + `supports` → Positive。
    - Outcome `invalid` per `experiment-record.md` §Outcome 值
      — unusable for inference, **not**
@@ -163,7 +193,7 @@ Follow `state-files.md` §更新顺序 (open that file on full diagnosis only).
 
 | Priority | Files |
 |----------|-------|
-| Required (compact) | `.research/EXPERIMENTS.md` (`EXP-xxx`), raw artifacts or supplied log; `.research/STORY.md` as needed |
+| Required (compact) | `.research/EXPERIMENTS.md` (target EXP section / index lookup only), raw artifacts or supplied log; `.research/STORY.md` as needed |
 | Do not open (compact) | See **Compact (default)** |
 | Often | `.research/DISCOVERY.md`, `.research/STATE.md`, `.research/PROJECT.md` |
 | Reference (full diagnosis only) | `experiment-record.md`, `state-files.md`, `story-loop.md` |

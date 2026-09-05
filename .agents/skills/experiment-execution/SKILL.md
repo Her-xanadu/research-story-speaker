@@ -30,8 +30,8 @@ operator-supplied log / pre-existing result file. Record provenance in Runs /
 Results: path, and that it was not this-run compute. Provenance unknown → keep
 Outcome `not-assessed` and put a STATE blocker. Do **not** assign a scientific
 Outcome here — keep `not-assessed` until `result-analysis`. Do **not** update
-`DISCOVERY.md` or `STORY.md`. Required reads: `.research/EXPERIMENTS.md`
-(target `EXP-xxx`), `.research/RESOURCES.md`.
+`DISCOVERY.md` or `STORY.md`. Required reads: `.research/EXPERIMENTS.md` (target EXP section /
+index lookup only), `.research/RESOURCES.md`.
 
 **Full / real-run path — continue past the stop line only if** you must
 implement, freeze a git commit, execute a real run, recover a stale codebase
@@ -101,6 +101,52 @@ This Skill freezes the commit before runs and writes recovered paths into
     **not** default-dispatch `result-analyst`. Suggest `experiment-review` only
     when stakes warrant.
 
+## Compact support failure (ordinary engineering)
+
+Python/API incompatibility, missing path, serialization error, CLI typo,
+parser/schema fix, runner bug, logging:
+
+```text
+identify → minimal repair → targeted test → rerun same Run/EXP
+```
+
+Default **end**. Do **not** create a new EXP-ID, do **not** open an
+independent scientific review, do **not** update Story, do **not** reframe
+to W1. Record in current EXP Run notes or
+`.research/work/<current-exp>-support-*.md` plus Git
+([experiment-record.md](../../references/experiment-record.md)
+§Support-task rule).
+
+If a support repair changes **split**, **candidate labels**,
+**train/test grouping**, **sample selector**, or another
+scientific-contract element: it is no longer compact support.
+Stop the repair path and return to `experiment-design` / redesign.
+
+Independent review is required only when the redesigned experiment
+is high-stakes under [experiment-review](../experiment-review/SKILL.md)
+normal scientific-stakes rules, or when previous evidence may be
+invalidated. Train/test split changed, evaluation labels changed, or
+data leakage fixed still need a validity check and dependent-evidence
+reconsideration. Method-component change ≠ automatic Reviewer.
+
+- **A** — a support repair would silently change the scientific
+  contract → stop compact support → `experiment-design` (not automatic
+  Reviewer).
+- **B** — the current EXP is itself studying a new selector → ordinary
+  method experiment; changing that selector implementation does not
+  auto-dispatch Reviewer.
+
+**Support Resume Contract** (write in STATE Next + the work artifact; no
+new STATE field):
+
+```text
+Blocked science EXP: EXP-xxx
+Scientific question: ...
+Support task: ...
+Return condition: tests pass / artifact produced / resource restored
+After return: resume EXP-xxx immediately
+```
+
 ## Bounded debug (engineering failure)
 
 Engineering failure is not a scientific negative. Open `failure-diagnosis.md`
@@ -131,7 +177,7 @@ return to `experiment-design` — that is redesign, not debug.
 
 | Priority | Files |
 |----------|-------|
-| Required (ordinary sanity) | `.research/EXPERIMENTS.md` (target `EXP-xxx`), `.research/RESOURCES.md` |
+| Required (ordinary sanity) | `.research/EXPERIMENTS.md` (target EXP section / index lookup only), `.research/RESOURCES.md` |
 | Do not open (ordinary sanity) | See **Compact / ordinary sanity (default)** |
 | Often | `.research/STORY.md` (gap context), `.research/STATE.md`, external code repo |
 | Reference (when running / binding git) | `experiment-record.md`, `git-linking.md`, `state-files.md` |
@@ -158,6 +204,7 @@ Outcome here — keep `not-assessed` until `result-analysis`.
   EXPERIMENTS/STATE updates after the subagent returns.
 - Abort invalid setup — Status=`failed`, Outcome=`not-assessed`; never delete the section.
 - Retry after bugfix under same EXP-ID — add commit notes in Git field, not a new EXP.
+- Ordinary support failure: compact path above; resume the blocked science EXP.
 - After 1–3 bounded-debug iterations without restoring the contract (cite
   `failure-diagnosis.md`): stop;
   record the reason. Do not keep going until the EXP is a different experiment.

@@ -18,15 +18,33 @@ Use reviewer.md §Verdict — do not recopy the Verdict list.
 
 ## When to use
 
+**scientific stakes require review** — then check whether a Reviewer is
+available. `reviewer available` is **not** a reason to review.
+
+Review when:
+
 - High-cost experiment **before** final commitment (method review).
 - New core method, anomalous results, or closing an important research line.
 - Story core mechanism (Problem / Key Observation / Core Idea) may change.
 - Preparing to mark Story complete (requires independent approval per `PROJECT.md`).
 - `result-analysis` or `research-loop` flagged contested or high-stakes evidence.
-- Fresh-context, different-family, or `reviewer` subagent critique is available.
+- Previous evidence may be invalidated. Train/test split changed,
+  evaluation labels changed, or data leakage fixed: validity check +
+  dependent-evidence reconsideration. A support repair that would change
+  a scientific-contract element is **not** compact support — stop and
+  return to `experiment-design`. Independent review only if that
+  redesign is high-stakes under the rules above, or previous evidence
+  may be invalidated. Method-component change ≠ automatic Reviewer.
 
 Do **not** use for: running code (`experiment-execution`), primary interpretation by
-the executor (`result-analysis` first), or framework hygiene (`framework-maintenance`).
+the executor (`result-analysis` first), framework hygiene (`framework-maintenance`),
+or ordinary support work (parser patch, path fix, runtime compatibility,
+logging, serialization, CLI, ordinary refactor). Those use self-check +
+targeted tests only.
+
+Do **not** set a hard cap (`max 1 method review`, `max 1 result review`).
+Later reviews default to **delta review**. Full review again only if a new
+scientific question appears or a change invalidates the prior review scope.
 
 ## Goal
 
@@ -41,11 +59,52 @@ traceable evidence and actionable critique — not a one-word stamp. File names:
 Any agent seeing `EXP-xxx` should rebuild the chain in
 [git-linking.md](../../references/git-linking.md) §完整追溯链 without chat history.
 
+## Delta Review
+
+Default for a follow-up on the same EXP. Read only:
+
+```text
+previous concern
+changed diff
+targeted tests
+affected artifact
+```
+
+Do **not** re-read the entire Story, all EXPs, a full method review, or a
+full result review unless the change creates a new scientific question or
+voids the prior review's scope.
+
+## Reuse Completed Checks
+
+If relevant code, data, configuration, **and** scientific claim are
+unchanged, already-completed checks remain valid. Do not redo them.
+
+This table is recheck scope **when a review is already warranted**.
+It does not auto-dispatch Reviewer.
+
+Integrity-sensitive changes **never reuse**: split, candidate labels,
+train/test grouping, or any change that can invalidate previous evidence
+(Case 7). Recheck split validity and mark dependent results possibly
+`invalid`.
+
+| Change | Recheck |
+|---|---|
+| README 文案 | 无 |
+| logging | 无科学复核 |
+| parser | parser downstream |
+| sample selector | selection + affected scientific comparison |
+| split | split validity + dependent results |
+| candidate labels | candidate integrity + downstream result |
+| train/test grouping | split validity + dependent results (never reuse) |
+| unrelated file | 无 |
+
 ## Default flow
 
 1. **Select EXP-ID** — One experiment per review cycle. Load section in
    `.research/EXPERIMENTS.md`, linked Git commit, Results, and relevant
-   `STORY.md` / `DISCOVERY.md` context.
+   `STORY.md` / `DISCOVERY.md` context. Prefer delta review + reused
+   checks when a prior review exists and integrity-sensitive files did
+   not change.
 2. **Choose review type(s)**:
    - **method-review** — design, controls, comparability, reproducibility, Story
      alignment (before or after runs). Model relation vs **method designer**.

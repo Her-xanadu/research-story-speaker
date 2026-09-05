@@ -69,8 +69,23 @@ Skim as needed:
 
 ## Analysis method
 
-1. Identify the **single current bottleneck** — what most limits progress toward closing the top Story gap or resolving a contradiction. Name the weakest **claim kind** (scientific-reasoning.md §B) when that is the operator; do not invent claim scores.
-2. List **3–5 candidate next actions** (literature, experiment, review, story-maintenance, memory cleanup, idea-evaluation, evidence verification). Each must map to a specific Story gap or blocker.
+Do **not** primarily hunt missing checks, schema audits, or review backlog.
+Hunt:
+
+```text
+当前哪个方法假设最值得攻击？
+哪个 experiment 最可能改变 Story？
+当前方法是否越来越复杂但没有新解释力？
+```
+
+1. Identify the **single current bottleneck** — usually the weakest method
+   hypothesis or rival still standing, not a maintenance item. Name the
+   weakest **claim kind** (scientific-reasoning.md §B) when that is the
+   operator; do not invent claim scores.
+2. List **3–5 candidate next actions** (prefer discriminating experiments;
+   literature / review / story-maintenance / memory cleanup only when they
+   change a method decision). Each must map to a specific Story gap or
+   blocker and name **Decision This Task Can Change**.
 3. Pick one **recommended action** using gap priority from `story-loop.md` §Gap 优先级:
    - gaps that could change core judgment first
    - then blockers to Story completion

@@ -132,7 +132,11 @@ close
   `experiment-execution` and `experiment-agent` cite it and must not fork
   the number.
 - **repair same EXP** — fix code/data binding, same Question, same
-  Comparisons. New commit notes in Git; not a new EXP-ID.
+  Comparisons. New commit notes in Git; not a new EXP-ID. Ordinary
+  engineering (API incompatibility, missing path, serialization, CLI typo)
+  uses the compact path: identify → minimal repair → targeted test →
+  rerun same Run/EXP. Then stop. No new EXP, no independent scientific
+  review, no Story update, no W1.
 - **redesign same EXP** — the Question is still right; the method, unit, or
   controls cannot answer it. Stop execution. Return to `experiment-design`.
   Changing the scientific contract mid-debug is not “repair.”
@@ -169,7 +173,8 @@ Other bans:
 - Treating **engineering failure** as Negative Discovery or as Outcome
   `contradicts`.
 - Infinite debug that quietly changes the Question, split, or metric.
-- New EXP-ID for a bugfix under the same Question.
+- New EXP-ID for a bugfix under the same Question (parser / UUID / schema
+  / path / compatibility stay support work).
 - Pivot / close from a missing file.
 - Copying Outcome or Verdict tables into the work file.
 

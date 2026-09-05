@@ -92,6 +92,23 @@ fairness only if those are the named rival.
 Fix the **unit of analysis in the design** (experiment-thinking.md §B). Do
 not leave a leaked split to be “fixed” after a pretty number.
 
+## Method-First questions (required; no new schema)
+
+Answer these **inside the existing headings below**. Do not add canonical
+fields or index columns. If any of the five cannot be answered, **do not
+propose** this Experiment ([experiment-record.md](../references/experiment-record.md)
+§What deserves a new EXP-ID?):
+
+1. **Current method hypothesis** — 我们当前相信哪个机制？
+2. **Strongest rival** — 还有什么更简单解释？
+3. **Discriminating observation** — 哪个结果能区分两者？
+4. **Method consequence** — 各种结果分别会怎样改变方法？（keep / simplify / delete component / change mechanism / abandon）
+5. **Smallest useful experiment** — 最小做到什么程度就足以做决定？
+
+`What method decision will this experiment change?` must be answerable.
+A seed-count matrix is not a reason. Prefer deletion (`Full` vs
+`Full - Component A`) when the method is growing complex.
+
 ## Required design fields
 
 The work file **must** contain all of the following headings, filled with
