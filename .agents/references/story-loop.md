@@ -101,13 +101,7 @@ W2 TEST
 
 不要写成 `M1` / `M2` / `M3` 进 STATE。
 
-```text
-科研循环的默认推进单位是“科学判断的改变”，
-不是“完成了一个工程任务”。
-
-每一轮优先问：当前方法最值得验证或修改的是什么？
-然后设计能够改变这个判断的最小实验。
-```
+见上文 Method-First Principle。
 
 工程、数据、环境、资格和审查任务只在直接阻塞当前科学实验时执行；完成后立即返回当前方法实验。**support work does not advance the scientific loop by itself.**
 
