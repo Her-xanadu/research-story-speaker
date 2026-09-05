@@ -97,6 +97,35 @@ EXP-031 — Candidate Ambiguity Screening   # 可选附名
 
 不使用复杂编码。老 Experiment 可写得更紧凑，但 section 永久保留。
 
+## What deserves a new EXP-ID?
+
+New EXP-ID is for a scientific question that can change a scientific decision.
+
+一个任务只有同时满足下面条件时，默认才创建新的 Experiment：
+
+1. **必须有 Scientific Question** — 例如「source deletion stability 是否真正带来独立于普通 SSL-kNN 的候选质量提升？」而不是「实现 parser / 修 UUID / 补 schema / 同步代码 / 检查目录」。
+2. **至少存在两个可能结果，并会导致不同科研判断** — 例如 `Full > matched sham` → source mechanism remains plausible；`Full ≈ matched sham` → source mechanism lacks independent value。若可能结果只是 `tests pass / tests fail` 或 `file exists / file missing`，通常不是独立科学 Experiment。
+3. **结果能够改变至少一个东西：** method design、mechanism belief、Story Boundary、Open Gap、route choice、scientific comparison。
+
+判断标准不是名字（admission / qualification / audit），而是：**结果是否改变我们对研究对象或方法有效性的科学判断？** 必要的数据有效性、共线、held-out、provenance、control 泄漏问题可以成为科学 Experiment。
+
+### Support-task rule
+
+以下工作默认作为**当前科学 EXP 的 support work**，不自动创建新 EXP-ID，不自动产生新的 Story Impact，不自动产生新的 Reviewer cycle：
+
+```text
+路径修复 · Python/version compatibility · runner bug · 日志修复
+文件同步 · schema 实现 · serialization · parser · CLI 参数
+GPU 调用 bug · 代码重构 · 单元测试补齐 · 结果文件格式
+普通数据转换 · 重复下载 · 远端传输
+```
+
+记录在 current EXP Run notes、`.research/work/<current-exp>-support-*.md`、或 Git commit，然后返回当前科学 Experiment。
+
+### 不回写历史
+
+已有 EXP（例如 EXP-677 / EXP-678 / …）即使今天看来更像工程/资格任务：不要删除、不要重新编号、不要批量补 class、不要改写历史 Outcome。新规则只适用于以后。历史保持可追溯。
+
 ## Section 建议字段
 
 每个 Experiment section 标题格式：`## EXP-NNN` 或 `## EXP-NNN — Title`。
