@@ -8,6 +8,12 @@ Main Agent: use this template when dispatching any subagent. Point the subagent 
 Role: <research-lead | literature-scout | experiment-agent | result-analyst | reviewer>
 EXP-ID: <e.g. EXP-031, or N/A for research-lead / literature-scout>
 Story gap: <one sentence — STORY Open Gap or Boundary item>
+Focal Scientific Question:
+  <the one method question this task serves>
+Decision This Task Can Change:
+  <which scientific / method judgment moves if the task succeeds>
+Return Condition:
+  <when to stop and return — tests pass / artifact produced / diagnosis written>
 Relevant files:
   - .research/STORY.md
   - <other paths the subagent must read>
@@ -17,6 +23,9 @@ Required output:
 Task slug: <short-kebab-name for work file>
 Additional context: <optional — hypotheses, constraints, deadline; keep brief>
 ```
+
+If **Decision This Task Can Change** cannot be answered, **do not dispatch**
+unless the user explicitly asked for this task.
 
 **Critical:** List paths only. Subagents must **READ workspace files from disk** — never paste full `.research/*.md` contents into the handoff.
 
@@ -89,5 +98,6 @@ Fill Task fields inside that prompt (EXP-ID, Story gap, Relevant files, Required
 
 - Pasting STORY or EXPERIMENTS into chat instead of path pointers
 - Multiple agents editing the same canonical file in one turn
+- Dispatching a subagent that cannot name Decision This Task Can Change
 - Skipping independent `result-analyst` on high-risk results. 对异常、高成本、核心 Story 相关、准备形成正式结论、或执行者有强烈既定解释的结果，优先独立 result-analyst；普通探索允许执行和初步分析由同一 Agent 完成。
 - Treating reviewer approve/reject as sufficient without reading review files

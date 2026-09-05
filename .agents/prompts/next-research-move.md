@@ -59,13 +59,21 @@ replace idea-evaluation / evidence-verification. Those gates have their own
 prompts. Ordinary “continue the already-chosen EXP” does not need a lead
 pass.
 
+If Position is `W2` / `W3` / `W4` and the scientific question is still
+clear, recommend continuing the Method Loop — not a new route
+([story-loop.md](../references/story-loop.md) §Method-First Inner Loop).
+Literature is **not** a default every few EXP: only W1 reframe, novelty
+threat, a new mechanism, a required new baseline, or explicit user
+freshness. Rank **one focal scientific question**; parallel EXPs that
+serve it are allowed; unbounded multi-route after W2 focus is not.
+
 ## Scientific context to read
 
 Read first (research-lead.md): `STORY.md` (Open Gaps, Boundary), `STATE.md`
 (active experiment, blockers, recommended next), `DISCOVERY.md` (Negative,
-Invalidated, Open Contradictions). Skim EXPERIMENTS index so you do not
-recommend duplicate work; skim PROJECT for completion conditions and
-constraints.
+Invalidated, Open Contradictions). Skim EXPERIMENTS **index** so you do not
+recommend duplicate work — do **not** load the entire ledger; skim PROJECT
+for completion conditions and constraints.
 
 Identify which **claim kind** is currently weakest
 (scientific-reasoning.md §B) — Problem, Observation, Mechanism, Performance,
@@ -78,12 +86,13 @@ redefine Story.
 
 ### Current bottleneck
 
-Name the **single** thing that most limits progress toward closing the top
-Story gap or resolving a contradiction. Typical honest bottlenecks: the
+Name the **single** method hypothesis that most limits progress — not the
+next audit, schema gap, or review backlog. Typical honest bottlenecks: the
 mechanism has no falsifier; the grouping unit is leaked; novelty is untested;
 Must-run is unaffordable; a rival still explains the last positive;
 Invalidated findings are being ignored; STATE points at a running EXP that
-cannot change Core Idea.
+cannot change Core Idea; the method grew more complex without new
+explanatory power.
 
 A bottleneck is not “we should try another seed” unless the Question is
 about variance. Mixing Observation with Mechanism (scientific-reasoning.md
@@ -92,12 +101,14 @@ bottleneck is conceptual, not compute.
 
 ### Candidate actions
 
-List 3–5 concrete next actions (literature, experiment design, execution,
-review, story-maintenance, memory cleanup, idea-evaluation, evidence
-verification). Each must map to a specific Story gap, Boundary item, or
-DISCOVERY contradiction. Do not recommend redoing Invalidated / Negative
-routes without a new mechanism (story-loop.md §反重复; research-lead.md
-quality bar).
+List 3–5 concrete next actions. Prefer a discriminating experiment that
+can change a method decision. Literature / review / cleanup only when they
+unblock that decision. Each must map to a specific Story gap, Boundary
+item, or DISCOVERY contradiction, and must name **Decision This Task Can
+Change**. Do not recommend redoing Invalidated / Negative routes without a
+new mechanism (story-loop.md §反重复; research-lead.md quality bar). Do
+not rank “schema audit / review rN / GPU identity / dataset qualification”
+above a live method question.
 
 For **each** candidate, write all five qualitative fields below. No fake
 numeric scores. Compare in prose: higher / lower information, cheaper /

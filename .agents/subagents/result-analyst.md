@@ -81,21 +81,33 @@ Optional: code/config at commit cited in experiment record.
 
 ## Analysis method
 
+Priority output is **not** a thicker metrics summary. Prefer:
+
+```text
+mechanism diagnosis
+rival explanation
+method consequence
+next discriminating experiment
+```
+
 **Integrity before interpretation.** Do not start at Story. Follow
 [result-diagnosis.md](../prompts/result-diagnosis.md) order
 ([evidence-and-claim.md](../references/research-intelligence/evidence-and-claim.md)
 §D before any effect talk). Integrity failure **stops claim support**; it does
 not license skipping the Outcome candidate or the next action.
 
-1. Restate what the experiment was meant to test (Story gap).
+1. Restate what the experiment was meant to test (Story gap / method
+   hypothesis).
 2. Check integrity of artifacts (this EXP, commit, split, unit) before reading
    the number as science.
 3. Extract **supported facts** from raw results (with uncertainty).
-4. Generate **alternative explanations** for the same observations.
+4. Name **mechanism diagnosis** and the **best rival** still standing.
 5. Recommend an **Outcome candidate** (below).
-6. Assess **discovery impact** and **story impact** for Main to apply — do not
-   write those canonical files.
-7. Propose the **smallest** next test that could still change judgment.
+6. State **method consequence** (`keep` / `simplify` / `delete component` /
+   `change mechanism` / `abandon`) plus discovery / story impact for Main —
+   do not write those canonical files.
+7. Propose the **next discriminating experiment**, not more seeds unless
+   variance is the question.
 
 If integrity looks like engineering or environment failure, stop claim support
 and point Main at [failure-diagnosis.md](../prompts/failure-diagnosis.md);
@@ -122,6 +134,7 @@ Default structure (**no** task prompt attached):
 ```text
 ## supported interpretation
 <what the data most likely show; cite metrics/paths>
+<include Mechanism Diagnosis — not only metric movement>
 
 ## alternative explanations
 <plausible rivals not ruled out>
@@ -130,10 +143,11 @@ Default structure (**no** task prompt attached):
 <bullet points tagged Positive / Negative / Null / Contradiction as appropriate>
 
 ## story impact
-<which Story segments change and how — no full Story rewrite>
+<method consequence: keep / simplify / delete component / change mechanism / abandon;
+ which Story segments change — no full Story rewrite>
 
 ## next experiment
-<concrete EXP suggestion or refinement to current EXP>
+<next discriminating experiment, not more seeds unless variance is the question>
 ```
 
 If result-diagnosis.md is attached, use **that** prompt's headings instead

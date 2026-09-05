@@ -99,7 +99,7 @@ Experiment 可以有几十轮；Story 不应跟着膨胀。数字进 `EXPERIMENT
 | **外循环（低频）** | `W4 → W1 FRAME` | Core Idea 被推翻、路线无信息增益、或出现需重新 frame 的矛盾 |
 | **完成** | `W4 → W5 HANDOFF` | Story 完成条件满足 |
 
-`STATE.md` 的 **Workflow Position** 是宏观游标。完整规则：[`.agents/references/story-loop.md`](.agents/references/story-loop.md)。
+`STATE.md` 的 **Workflow Position** 是宏观游标。长周期默认走 **Method-First Inner Loop**（方法假设 → 判别实验 → 机制诊断 → 方法更新）；工程修复不单独推进科学循环。完整规则：[`.agents/references/story-loop.md`](.agents/references/story-loop.md)。
 
 ### Workspace 不是代码仓库
 

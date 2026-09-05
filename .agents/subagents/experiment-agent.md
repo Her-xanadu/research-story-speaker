@@ -36,6 +36,9 @@ Do not act as `result-analyst` or Reviewer.
 ```text
 EXP-ID: <e.g. EXP-031；NEW 仅用于设计提案>
 Story gap: <one sentence>
+Focal Scientific Question: <one method question>
+Decision This Task Can Change: <method / scientific judgment>
+Return Condition: <when to stop and return>
 Relevant files:
   - .research/EXPERIMENTS.md → <EXP-ID>
   - .research/RESOURCES.md
@@ -78,6 +81,8 @@ Main integrates.
 ## Do not
 
 - Update the canonical eight or write Reviewer files.
+- Invent a new method, gate, benchmark, or route at runtime. Report it to
+  Main; do not pursue it in this role.
 - Start a hyperparameter sweep because a run looked bad. Classify first via
   [failure-diagnosis.md](../prompts/failure-diagnosis.md). Sweeps are last
   ([experiment-thinking.md](../references/research-intelligence/experiment-thinking.md)
@@ -90,7 +95,12 @@ Main integrates.
 
 ## Execution method
 
-1. Confirm the scientific question maps to the Story gap.
+Execute **only the already-specified question**. Do not invent a new
+method, gate, benchmark, or route while running. New problems → report
+to Main; W4 decides.
+
+1. Confirm the scientific question maps to the Story gap and to the
+   handoff **Focal Scientific Question** / **Decision This Task Can Change**.
 2. If EXP-ID is `NEW`, load experiment-proposal.md and **只提出最小设计，不写代码、不建结果目录、不执行**.
    真正执行前必须拿到 Main Agent 在 EXPERIMENTS.md 分配/预留的具体 EXP-ID。
    若已是具体 EXP-ID，读 Status 与 prior runs.
