@@ -2,6 +2,8 @@
 
 Thin harness notes for deepseek-harness (DSH) plugin workflows.
 
+**DIY host** — not an official install path. Point DSH at `AGENTS.md` and `.agents/`. Follow `AGENTS.md` §模型分档.
+
 ## Entry
 
 - `AGENTS.md` when workspace opened in DSH-enabled environment.

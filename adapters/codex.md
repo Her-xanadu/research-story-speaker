@@ -10,23 +10,40 @@ Thin harness notes for OpenAI Codex / Codex CLI in this workspace.
 ## Skills
 
 - Canonical root: `.agents/skills/<name>/SKILL.md`
-- Do not duplicate into `.codex/skills` for this project — open workspace at `research-story-speaker` root.
-- Route via `AGENTS.md` Skill Routing table.
+- Do not duplicate into `.codex/skills` for this project — open workspace at the workspace root.
+- Route via `AGENTS.md` Skill table.
 
 ## Subagents
 
-- Use Codex Task tool with prompt from `.agents/subagents/<role>.md`.
-- Handoff format: `.agents/prompts/subagent-handoff.md`
-- Work artifacts: `.research/work/<role>/`
+Who gets spawned is decided by project files:
+
+```text
+.codex/agents/<role>.toml
+```
+
+Required fields: `name`, `description`, `developer_instructions`.
+Codex uses `description` to decide when to spawn that named agent.
+
+| Role | File | Default model class |
+|------|------|---------------------|
+| `experiment-agent` | `experiment-agent.toml` | workhorse (inherit parent) |
+| `literature-scout` | `literature-scout.toml` | workhorse (inherit parent) |
+| `result-analyst` | `result-analyst.toml` | strongest (`model_reasoning_effort = "xhigh"`) |
+| `research-lead` | `research-lead.toml` | strongest (`xhigh`) |
+| `reviewer` | `reviewer.toml` | strongest (`xhigh`) |
+
+Scientific body remains `.agents/subagents/<role>.md` (the TOML tells the subagent to read it). Handoff: `.agents/prompts/subagent-handoff.md`.
+
+Main decides **whether** to spawn. Do **not** use built-in generic `worker` / `explorer` as a research role.
 
 ## Reviewer
 
-- Prefer different model or fresh Task with `.agents/subagents/reviewer.md` + `.agents/prompts/method-review.md` or `result-review.md`.
+- Spawn named `reviewer` with a fresh context + `.agents/prompts/method-review.md` or `result-review.md`.
 - Write reviews to `.research/reviews/EXP-xxx/`.
 
 ## MCP
 
-- Codex plugin MCP (Gmail, Drive, browser, etc.) as configured in user environment.
+- Codex plugin MCP as configured in the user environment.
 - Optional; not required for cold start.
 
 ## Cold start
@@ -47,4 +64,4 @@ codex exec "Follow AGENTS.md. Run workspace-resume: answer Current Story, Gap, E
   and run one shell line `sleep N; <probe>` (training default `N=300`). When
   it returns, if still running, immediately run the next `sleep N; probe`.
   Do **not** end the turn after 1–2 minutes of narration. Do not start a new
-  Codex thread to "continue monitoring."
+  Codex thread to "continue monitoring." That wait is **workhorse**, Main-only.

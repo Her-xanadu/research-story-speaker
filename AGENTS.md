@@ -82,11 +82,38 @@ sleep 300; ssh <RESOURCES 里的 alias> 'tail -n 50 <log>'
 
 W1 可以换机制、换路线、改 Story 细节；**不能**把项目改成另一个研究目标。Main 在同一个 Goal 上推进。
 
+## 模型分档
+
+科研流程**不是**每一步都需要最强推理。Main **自己决定**要不要派 Subagent、具体用哪个模型；但必须先选对**档**。只有两档：
+
+| 档 | 含义 | 用在 |
+|----|------|------|
+| **workhorse**（干活） | 当前会话的默认 / 快模型即可 | 实现、发射、读日志、改文件、本地文献 consult、普通 sanity 的设计与看数 |
+| **strongest**（最强） | 当前 harness **能给的最强推理**；禁止降到 fast / composer / haiku / Instant | 会改变「我们相信什么 / 下一步科学判断」的步骤 |
+
+**必须 strongest**
+
+- 独立 Review（`experiment-review` / `reviewer`）
+- 新 Core Idea / 换路线 / 很贵的下一步（`idea-evaluation`）
+- 结果要进 Story Evidence、或执行者已有强烈既定解释（`evidence-verification`；此时才派 `result-analyst`）
+- W1，或 W4 且下一科学问题 / 机制不清（`research-loop`；此时才派 `research-lead`）
+- 可能改 Core Idea / 换机制的 W4
+
+**必须 workhorse（不要升档）**
+
+- 已发射仍在跑：`sleep N; probe`（**只 Main**，不开 Subagent）
+- 普通 1-seed sanity 的实现与发射
+- parser / 路径 / 日志 / schema 等 Support
+- `literature-scout` 读已有库
+- 状态文件对齐、模板填充、把已决定的方法写成代码
+
+Main 可在同一档里自选具体模型。禁止：用 workhorse 做 Review；用 strongest 去 sleep 或修 parser；把 Codex/Cursor 内置的 generic `worker` / `explorer` / `generalPurpose` / `explore` 当成五个科研角色。
+
 ## Autonomy
 
 你拥有较大科研自主权：选择并组合 `.agents/skills/`、调用 `.agents/subagents/`、调整任务顺序、提出或放弃实验路线、使用当前 Harness 的 MCP / Web / Shell / Git、更新 Story 与科研状态（小改自主，大改建议 Review）。
 
-**不要求每步询问用户。** Skills 是 strong guidance，不是强制状态机。重要实验须能定位代码、commit、结果；Story 核心机制大改时建议 `experiment-review`。先按本节 Workflow 走；细节再打开对应 `SKILL.md`。不要每个动作都先加载全部 Skills。
+**不要求每步询问用户。** Skills 是 strong guidance，不是强制状态机。派不派 Subagent、具体模型由你决定，但必须遵守上文 **模型分档**。重要实验须能定位代码、commit、结果；Story 核心机制大改时建议 `experiment-review`（strongest）。先按本节 Workflow 走；细节再打开对应 `SKILL.md`。不要每个动作都先加载全部 Skills。
 
 ## Research Memory
 
@@ -159,15 +186,23 @@ W2 设计一个判别实验（默认 1 seed）
 
 ## Subagents
 
-仅当任务适合 **并行、独立上下文、独立 Reviewer、大量阅读** 时派 Subagent：
+Main **自行决定**派不派。简单、已在本对话上下文里能做完的，直接做。只在需要 **并行、独立上下文、独立 Review、大量阅读** 时 spawn 命名角色。
 
-- `research-lead` — 独立判断下一步
-- `literature-scout` — 并行文献阅读（**只读** `paper-consult`；不足返回 `NEEDS_REFRESH`；不写 Vault）
-- `experiment-agent` — 实验执行
-- `result-analyst` — 与执行分离的结果解释
-- `reviewer` — 独立批判
+科学正文只在 `.agents/subagents/<role>.md`。各 harness 用自己的配置决定**调谁**（不要口头粘贴成 generic worker）：
 
-简单任务直接执行。Handoff 格式见 `.agents/prompts/subagent-handoff.md`。
+- Codex：`.codex/agents/<role>.toml`（`description` 决定何时 spawn）
+- Claude Code：`.claude/agents/<role>.md`
+- Cursor：`.cursor/agents/<role>.md`（Task `subagent_type=<role>`）
+
+| 角色 | 默认档 | 何时派 | 何时不要派 |
+|------|--------|--------|------------|
+| `experiment-agent` | workhorse | 实现/发射需要隔离上下文或并行 | 监控 running；本对话里改几行就能发射 |
+| `literature-scout` | workhorse | 并行读本地库 | 每个内循环 EXP；要上网搜（返回 `NEEDS_REFRESH`） |
+| `result-analyst` | strongest | 高风险解读、执行者有既定解释 | 普通 sanity 看产物（Main 自己 workhorse 做 `result-analysis`） |
+| `research-lead` | strongest | W1 / 卡住 / 下一步科学问题不清 | 内循环已点名下一 EXP |
+| `reviewer` | strongest | **scientific stakes** 要独立批判 | reviewer 空闲；改 selector；普通工程 |
+
+Handoff：`.agents/prompts/subagent-handoff.md`（带 `Model class`）。
 
 **写权限：** Subagent 只写 `.research/work/` 或 `.research/reviews/<EXP-ID>/`；八个 canonical 状态文件由 Main Agent 更新。
 
@@ -176,4 +211,4 @@ W2 设计一个判别实验（默认 1 seed）
 - 状态模板：`.agents/templates/`
 - 跨 Harness 适配：`adapters/`
 - 不静默删除负结果或历史 Experiment section
-- 升级框架层（`AGENTS.md`、`CLAUDE.md`、`.agents/`、`.claude/`、`adapters/`）时**永不覆盖** `.research/`
+- 升级框架层（`AGENTS.md`、`CLAUDE.md`、`.agents/`、`.claude/`、`.codex/agents/`、`.cursor/`、`adapters/`）时**永不覆盖** `.research/`

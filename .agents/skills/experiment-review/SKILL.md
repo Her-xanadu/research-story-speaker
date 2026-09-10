@@ -20,6 +20,7 @@ Use reviewer.md §Verdict — do not recopy the Verdict list.
 
 **scientific stakes require review** — then check whether a Reviewer is
 available. `reviewer available` is **not** a reason to review.
+Model class: **strongest** (`AGENTS.md` §模型分档). Spawn named `reviewer`, not a generic worker.
 
 Review when:
 

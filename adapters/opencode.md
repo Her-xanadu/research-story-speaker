@@ -2,6 +2,8 @@
 
 Thin harness notes for OpenCode / oh-my-opencode style harnesses.
 
+**DIY host** — not an official install path; documentation-only. Point OpenCode at `AGENTS.md` and `.agents/`. Follow `AGENTS.md` §模型分档.
+
 ## Entry
 
 - `AGENTS.md` at workspace root.

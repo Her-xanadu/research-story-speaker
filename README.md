@@ -119,17 +119,21 @@ Experiment 可以有几十轮；Story 不应跟着膨胀。数字进 `EXPERIMENT
 | B | 与 workspace 并列的仓库 |
 | C | 远程服务器；本机只留 workspace |
 
-升级框架时**只合并** `AGENTS.md`、`CLAUDE.md`、`.agents/`、`.claude/`、`adapters/`，**永不覆盖** `.research/`。
+升级框架时**只合并** `AGENTS.md`、`CLAUDE.md`、`.agents/`、`.claude/`、`.codex/agents/`、`.cursor/`、`adapters/`，**永不覆盖** `.research/`。
 
 ---
 
 ## 开始使用
 
+一种安装：clone 后用 Codex、Claude Code 或 Cursor **打开同一个文件夹**。三套 harness 配置已经都在仓库里，不必按框架分别安装。以后换框架，还是这个 workspace。
+
 1. Clone 或以本仓库为模板复制。
-2. 用已支持的 Harness 打开该文件夹（见下表）。
-3. 对 Agent 说：`Read AGENTS.md and initialize this research project.`
+2. 用 Codex / Claude Code / Cursor 打开该文件夹。
+3. 对 Agent 说：`Read AGENTS.md and initialize this research project.`（Claude Code 会先自动读 `CLAUDE.md`，再指向 `AGENTS.md`。）
 4. Agent 先走 **`workspace-setup`**（不进 `research-loop`）：算力在哪、代码 Git 在哪 → 写入 `.research/RESOURCES.md`。
 5. 再给研究目标。**`workspace-resume`** 把根 `.research/` 从 `UNINITIALIZED` **materialize** 为 `ACTIVE`（八个文件已在树上，不是新生成）。缺证据的段落保持 `_Not established yet._`。
+
+其它 Agent 框架（DeepSeek Harness、OpenCode、Trae 等）官方不维护安装器：把入口和 Subagent 发现路径指到 `AGENTS.md` 与 `.agents/` 即可。见 [`adapters/README.md`](adapters/README.md)。
 
 MOCK 闭环（不是当前项目）：[`examples/mock-flow-detection/`](examples/mock-flow-detection/)。  
 审核证据：[`docs/validation/`](docs/validation/)。Method-First 长周期：[`docs/validation/method-first-longrun/`](docs/validation/method-first-longrun/)。
@@ -170,23 +174,24 @@ MOCK 闭环（不是当前项目）：[`examples/mock-flow-detection/`](examples
 | `framework-maintenance` | 审计、回归、发版 |
 | `framework-extension` | 扩展设计与接入 |
 
-**Subagents（5）**：`research-lead` · `literature-scout` · `experiment-agent` · `result-analyst` · `reviewer`。只写 `.research/work/` 或 reviews；八个 canonical 文件由 Main Agent 更新。
+**Subagents（5）**：`research-lead` · `literature-scout` · `experiment-agent` · `result-analyst` · `reviewer`。只写 `.research/work/` 或 reviews；八个 canonical 文件由 Main Agent 更新。Main 自行决定派不派；模型分 **workhorse**（干活）与 **strongest**（改变信念/下一步判断）两档，见 `AGENTS.md`。
 
-目录三分：框架层（`AGENTS.md` / `.agents/` / `.claude/` / `adapters/`）· 项目层（`.research/`）· 示例与验证（`examples/` · `docs/validation/`）。
+目录三分：框架层（`AGENTS.md` / `CLAUDE.md` / `.agents/` / `.claude/` / `.codex/agents/` / `.cursor/` / `adapters/`）· 项目层（`.research/`）· 示例与验证（`examples/` · `docs/validation/`）。
 
 ---
 
 ## 跨 Harness
 
-薄适配在 [`adapters/`](adapters/README.md)。科学逻辑只住在 `AGENTS.md` 与 `.agents/`。
+薄适配在 [`adapters/`](adapters/README.md)。科学逻辑只住在 `AGENTS.md` 与 `.agents/`。同一 clone 已带上三家会读的文件。
 
-| Harness | 入口 | 状态 |
-|---------|------|------|
-| Codex | `AGENTS.md` | UNINITIALIZED cold-start 已测 |
-| Claude Code | `CLAUDE.md` → `AGENTS.md` | UNINITIALIZED cold-start 已测 |
-| Cursor | `AGENTS.md` | UNINITIALIZED cold-start 已测 |
-| DeepSeek Harness | `AGENTS.md` | UNINITIALIZED cold-start 已测 |
-| OpenCode | `AGENTS.md` | **documentation-only，未实测** |
+| Harness | 入口 | Skills 发现 | Subagent 谁被调用 | 模型档 |
+|---------|------|-------------|-------------------|--------|
+| **Codex**（官方） | `AGENTS.md` | `.agents/skills/` | `.codex/agents/<role>.toml` 的 `name` + `description` | workhorse inherit；`reviewer` / `research-lead` / `result-analyst` 为 `xhigh` |
+| **Claude Code**（官方） | `CLAUDE.md` → `AGENTS.md` | `.claude/skills/<name>` symlink | `.claude/agents/<role>.md` | workhorse `inherit`；上述三角色 `opus` |
+| **Cursor**（官方） | `AGENTS.md` | `.agents/skills/` 与 `.cursor/skills/<name>` symlink | Task `subagent_type=<role>` ← `.cursor/agents/<role>.md` | inherit；strongest 角色禁止降到 fast Composer。内置 explore/generalPurpose **不是** 五个科研角色 |
+| 其它 | 自己把入口指到 `AGENTS.md` | 指到 `.agents/skills/` | 指到 `.agents/subagents/` 或等价配置 | 遵守 `AGENTS.md` 两档，不要每步都开最强 |
+
+DeepSeek Harness / OpenCode 等：**DIY**，不是官方安装路径。笔记仍在 `adapters/`，不保证跟随升级。
 
 Cold-start 证据日期 2026-09-03，见 [`docs/validation/harness-smoke/`](docs/validation/harness-smoke/)。上表**不是** v0.2.2 的独立 live Gate。
 
@@ -208,6 +213,6 @@ Method-First 长周期不新增 Workflow Stage / canonical 文件。之后增加
 - **v0.2** — Research Intelligence Layer。FROZEN CORE 相对 v0.1.1 byte-identical。
 - **v0.1 / v0.1.1** — 基线闭环与对象冻结。
 
-已知债务：OpenCode 未实测；compact token 软目标仍 MISS。没有可引用的论文数字或对外 benchmark。
+已知债务：OpenCode / DeepSeek 等为 DIY、官方不跟装；compact token 软目标仍 MISS。没有可引用的论文数字或对外 benchmark。
 
 视觉资产：`docs/assets/hero-banner.jpg` 为首屏封面（Method-First 循环）；`banner.svg` / `architecture.svg` / `workflow.svg` 为可读矢量图。完整生成图见 `hero.jpg`、`social-card.jpg`。展示手法调研：[`docs/validation/v0.2.2/github-readme-study.md`](docs/validation/v0.2.2/github-readme-study.md)。

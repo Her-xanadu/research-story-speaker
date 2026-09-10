@@ -6,6 +6,7 @@ Main Agent: use this template when dispatching any subagent. Point the subagent 
 
 ```text
 Role: <research-lead | literature-scout | experiment-agent | result-analyst | reviewer>
+Model class: <workhorse | strongest>
 EXP-ID: <e.g. EXP-031, or N/A for research-lead / literature-scout>
 Story gap: <one sentence — STORY Open Gap or Boundary item>
 Focal Scientific Question:
@@ -23,6 +24,8 @@ Required output:
 Task slug: <short-kebab-name for work file>
 Additional context: <optional — hypotheses, constraints, deadline; keep brief>
 ```
+
+`Model class` 必须与 `AGENTS.md` §模型分档一致：`reviewer` / `research-lead` / 高风险 `result-analyst` → `strongest`；`experiment-agent` / `literature-scout` → `workhorse`。Main 自选具体模型，不得把 strongest 工作交给 fast 模型。
 
 If **Decision This Task Can Change** cannot be answered, **do not dispatch**
 unless the user explicitly asked for this task.

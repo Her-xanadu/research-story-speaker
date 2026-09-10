@@ -148,9 +148,11 @@ parallelism after W2 focus. Support may parallel but must not become the main ax
 
 ### 7. Invoke and integrate
 
-- Simple: run Skill in context. Parallel/heavy: Subagent per `AGENTS.md`.
-- Independent next-step judgment: dispatch `research-lead` only when Position
-  is not `W2 TEST` with a named next EXP. Optional:
+- Simple: run Skill in context (workhorse unless `AGENTS.md` §模型分档 says
+  strongest). Parallel/heavy: named Subagent per `AGENTS.md` — not generic
+  worker/explore.
+- Independent next-step judgment: dispatch `research-lead` (**strongest**)
+  only when Position is not `W2 TEST` with a named next EXP. Optional:
   [next-research-move.md](../../prompts/next-research-move.md).
 - After evidence, follow [state-files.md](../../references/state-files.md) §更新顺序.
 

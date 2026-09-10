@@ -4,26 +4,46 @@ Thin harness notes for Cursor IDE Agent / `cursor-agent` CLI.
 
 ## Entry
 
-- Workspace rules: `AGENTS.md` (user rules or `.cursor/rules` may reference it).
-- Open folder: `research-story-speaker`.
+- Workspace rules: `AGENTS.md`.
+- Open folder: this workspace root.
 
 ## Skills
 
 - Canonical: `.agents/skills/<name>/SKILL.md`
-- User may symlink to `~/.cursor/skills-cursor/` for discovery — **workspace copy remains canonical**.
+- Native discovery: `.cursor/skills/<name>` directory symlink → `../../.agents/skills/<name>`
+- Workspace copy remains canonical. Do not copy into `~/.cursor/skills-cursor/`.
 
 ## Subagents
 
-- Cursor Task tool with subagent types or custom prompts from `.agents/subagents/`.
-- Handoff: `.agents/prompts/subagent-handoff.md`
+Who gets spawned is decided by:
+
+```text
+.cursor/agents/<role>.md
+```
+
+Task tool: `subagent_type` = the YAML `name` (`research-lead`, `literature-scout`, `experiment-agent`, `result-analyst`, `reviewer`).
+
+Cursor built-ins (`explore`, `generalPurpose`, `bash`, `browser`, …) are **not** the five research roles. Do not substitute them.
+
+| Role | Wrapper `model` | Default class |
+|------|-----------------|---------------|
+| `experiment-agent` | `inherit` | workhorse |
+| `literature-scout` | `inherit` | workhorse |
+| `result-analyst` | `inherit` (must not pick fast Composer) | strongest |
+| `research-lead` | `inherit` (must not pick fast Composer) | strongest |
+| `reviewer` | `inherit` (must not pick fast Composer) | strongest |
+
+Main chooses the concrete Cursor model slug; the class is mandatory.
+
+Handoff: `.agents/prompts/subagent-handoff.md`.
 
 ## Reviewer
 
-- Separate Agent chat or `reviewer` subagent; prompts in `.agents/prompts/`.
+- Named `reviewer` Task or a separate Agent chat; prompts in `.agents/prompts/`.
 
 ## MCP
 
-- Cursor MCP plugins (browser, GitHub, Gmail, etc.) per user enablement.
+- Cursor MCP plugins per user enablement.
 - `cursor-ide-browser` for literature search when Web tool unavailable.
 
 ## Cold start
@@ -42,4 +62,4 @@ Or: Cursor → Open project → Agent → "workspace-resume per AGENTS.md".
 - Multitask subagents need explicit file paths to avoid STATE conflicts
 - `monitor-experiment`: one blocking wait covering `sleep_seconds` (host wait
   / `AwaitShell` / equivalent), then one probe. Do not poll a sleeping
-  command every 30s or narrate the countdown.
+  command every 30s or narrate the countdown. Workhorse, Main-only.
