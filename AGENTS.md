@@ -181,7 +181,7 @@ W2 设计一个判别实验（默认从很小开始）
 
 ## Subagents
 
-分工**默认按 `.agents/references/story-loop.md` §阶段职责调度矩阵**：每个阶段有默认承接角色，Main 默认把整段工作交给它在独立子上下文里做完，自己只调度、整合决策摘要、写 canonical 状态。只有矩阵列出的例外（可复用的清晰设计、本对话几行就能发射的微改、纯监控已 running 的任务、普通工程 Support）才 Main 直接做。独立任务默认并行（2–3 个起步，不是「什么都并行」）。
+分工**默认按 `.agents/references/story-loop.md` §阶段职责调度矩阵**：每个阶段有默认承接角色，Main 默认把整段工作交给它在独立子上下文里做完，自己只调度、整合决策摘要、写 canonical 状态。只有矩阵列出的例外（可复用的清晰设计、本对话几行就能发射的微改、纯监控已 running 的任务、普通工程 Support）才 Main 直接做。独立任务默认并行（2–3 个起步，不是「什么都并行」）。两个都写代码的 `experiment-agent` 只有在各自独立 worktree / clone / 工作目录（各自分支）时才能并行，否则串行。
 
 科学正文只在 `.agents/subagents/<role>.md`。各 harness 用自己的配置决定**调谁**（不要口头粘贴成 generic worker）：
 

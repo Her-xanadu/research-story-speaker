@@ -146,7 +146,7 @@ W4 + completion criteria satisfied
 
 这张表是「Workflow 阶段 → 默认承接角色 → Main 动作 → 交付 → 下一步」的**唯一定义处**。`AGENTS.md` 只放指针指向这里；不要在别处复制第二张调度表。
 
-默认规则：**每个阶段有一个默认承接角色，Main 默认把整段工作交给它在独立子上下文里做完**，自己只调度、整合它返回的决策摘要、写 canonical 状态。只有「例外」列成立时 Main 才自己做。独立任务默认并行（2–3 个起步，不是「什么都并行」）。角色科学正文见 `.agents/subagents/<role>.md`；handoff 模板见 `.agents/prompts/subagent-handoff.md`。
+默认规则：**每个阶段有一个默认承接角色，Main 默认把整段工作交给它在独立子上下文里做完**，自己只调度、整合它返回的决策摘要、写 canonical 状态。只有「例外」列成立时 Main 才自己做。独立任务默认并行（2–3 个起步，不是「什么都并行」）；两个都写代码的 `experiment-agent` 只有在各自独立 worktree / clone / 工作目录（各自分支）时才能并行，否则串行。角色科学正文见 `.agents/subagents/<role>.md`；handoff 模板见 `.agents/prompts/subagent-handoff.md`。
 
 | 阶段 | 默认承接角色 | 触发 Skill | Main 动作 | 交付/返回 | 默认下一步 | 例外（Main 自己做） |
 |------|--------------|-----------|-----------|-----------|-----------|---------------------|

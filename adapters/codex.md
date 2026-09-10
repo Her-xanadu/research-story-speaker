@@ -28,9 +28,9 @@ Codex uses `description` to decide when to spawn that named agent.
 |------|------|---------------------|-----------------|
 | `experiment-agent` | `experiment-agent.toml` | workhorse (inherit parent) | W2 执行（持有整段运行） |
 | `literature-scout` | `literature-scout.toml` | workhorse (inherit parent) | W1 Gap 文献（并行） |
-| `result-analyst` | `result-analyst.toml` | dual: compact→workhorse (inherit) / full→strongest (`model_reasoning_effort = "xhigh"`) | W3 结果解读（默认承接） |
-| `research-lead` | `research-lead.toml` | strongest (`xhigh`) | W1 / 判别设计（默认承接） |
-| `reviewer` | `reviewer.toml` | strongest (`xhigh`) | 高 stakes 独立批判（gated） |
+| `result-analyst` | `result-analyst.toml` | dual: compact→workhorse (inherit) / full→strongest (bind `model` + `xhigh` for full) | W3 结果解读（默认承接） |
+| `research-lead` | `research-lead.toml` | strongest — ships `xhigh`, `model` **inherit until bound** (see Host model binding) | W1 / 判别设计（默认承接） |
+| `reviewer` | `reviewer.toml` | strongest — ships `xhigh`, `model` **inherit until bound** | 高 stakes 独立批判（gated） |
 
 Required fields per role file: `name`, `description`, `developer_instructions`;
 optional `model`, `model_reasoning_effort`, `sandbox_mode`, `mcp_servers`,
@@ -51,15 +51,44 @@ Codex reads session-global agent settings from `[agents]` in
 [agents]
 enabled = true
 max_concurrent_threads_per_session = 3   # 2–3 concurrent as a starting habit
-max_depth = 1                            # one-level dispatch: science roles do not spawn science roles
 default_subagent_model = "<your workhorse slug>"
 ```
 
 `.codex/config.toml` is **git-ignored** in this repo (host-local), so these
 globals are **not** committed — set them in your own Codex config. Only the
-per-role `.codex/agents/<role>.toml` files are versioned. Keep `max_depth = 1`
-(Main is the only orchestrator) and `max_concurrent_threads_per_session` around
-2–3 as a starting habit, not a science gate.
+per-role `.codex/agents/<role>.toml` files are versioned. Keep
+`max_concurrent_threads_per_session` around 2–3 as a starting habit, not a
+science gate.
+
+One-level dispatch (Main is the only orchestrator; science roles do not spawn
+science roles) is enforced by **instruction** — the role files and
+`subagent-handoff.md` — not by a config key. Do **not** add a `max_depth` key;
+it is not part of the current Codex `[agents]` schema.
+
+**Parallel code-writing `experiment-agent`s must not share a working directory.**
+Two `experiment-agent` runs that both edit the linked code repo may run in
+parallel **only** when each has its own git worktree / clone / working directory
+(and its own branch); otherwise their edits, commits, and results collide —
+serialize them instead. Read-only or `.research/work/`-only tasks can share.
+
+## Host model binding (one-time, per install)
+
+Model **class** is fixed by role; the **concrete slug is host-specific**, so it
+is bound **once** per install, not shipped in the template. As committed, the
+strongest Codex roles carry `model_reasoning_effort` but **no `model`**, so
+their model still **inherits** the session until you bind it. To make
+"strongest" real, set `model` once for the strongest roles (or a global
+`default_subagent_model` for the workhorse default):
+
+```toml
+# .codex/agents/research-lead.toml  (also reviewer.toml; result-analyst only for full)
+model = "<your strongest Codex slug>"
+model_reasoning_effort = "xhigh"
+```
+
+Until this binding is done, treat strongest roles as `inherit` and only invoke
+them from a strong parent. `result-analyst` stays dual: bind the strong slug
+only for full/high-stakes dispatch; compact ordinary inherits.
 
 Known CLI caveat: some Codex CLI versions have had bugs loading custom agents
 or spawning a second agent of the same type (upstream #26868 / #27061). Verify

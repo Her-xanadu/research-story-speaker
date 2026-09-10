@@ -40,13 +40,26 @@ subagent_type = <name>` dispatches it.
 
 `result-analyst` is dual-tier: `inherit` for compact ordinary results; full/high-stakes must run on a strong slug, never a fast Composer model.
 
-**`inherit` cannot guarantee "strongest."** Cursor `inherit` takes the parent's
-model, which may be a fast Composer. For the three strongest roles either (a)
-invoke them only from a strong parent, or (b) pin a concrete strong slug at
-install, e.g. `model: <your-strong-slug>[effort=high]`. The role body already
-guards "do not run this role from a fast/Composer parent." Do **not** set
-`readonly: true` on any of these roles — they must write `.research/work/` or
-`.research/reviews/`, and `readonly` blocks file edits and state-changing shell.
+**`inherit` cannot guarantee "strongest."** As committed, all five Cursor role
+files ship `model: inherit`, so a strongest role inherits the parent's model —
+which may be a fast Composer. The model **class** is fixed by role; the
+**concrete slug is host-specific** and is bound **once** per install.
+
+### Host model binding (one-time, per install)
+
+For the three strongest roles (`research-lead`, `reviewer`, and `result-analyst`
+in full mode), do the one-time binding in the wrapper frontmatter:
+
+```yaml
+model: <your-strongest-Cursor-slug>[effort=high]
+```
+
+Until you bind it, treat these roles as `inherit` and invoke them only from a
+strong parent (the role body already guards "do not run this role from a
+fast/Composer parent"). `result-analyst` stays dual — bind the strong slug for
+full/high-stakes; compact ordinary inherits. Do **not** set `readonly: true` on
+any of these roles — they must write `.research/work/` or `.research/reviews/`,
+and `readonly` blocks file edits and state-changing shell.
 
 Main chooses the concrete Cursor model slug; the class is mandatory.
 
@@ -58,6 +71,11 @@ Default dispatch is the story-loop §阶段职责 matrix; Main decides only whet
   opt-in and, when enabled, covers the **workspace** repo, not a separate linked
   code repo. Multitask subagents need distinct `task-slug` file paths to avoid
   `.research/` write conflicts.
+- **Parallel code-writing `experiment-agent`s must not share a working directory.**
+  Because the checkout is shared by default, two `experiment-agent` runs that
+  both edit the linked code repo may run in parallel **only** when each has its
+  own worktree / clone / working directory (and its own branch); otherwise
+  serialize them. Read-only or `.research/work/`-only tasks may share the checkout.
 - One-level dispatch: Main is the only orchestrator; science roles do not spawn
   science roles. 2–3 concurrent subagents is a starting habit, not a science gate.
 - Genuine parallelism is for **independent** tasks only. Serial specialist

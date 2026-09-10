@@ -37,7 +37,11 @@ Frontmatter fields available per official docs: `description`, `model`,
 compact ordinary results, and Main dispatches it with `opus` + `effort: xhigh`
 for full/high-stakes.
 
-If the account cannot spawn Opus, inherit the parent; **do not** pick Haiku. Main still follows `AGENTS.md` §模型分档.
+Claude wrappers ship a **concrete** `model: opus` for the strongest roles, which
+Claude resolves to the account's Opus — this is the one-time host binding for
+this harness. If the account cannot spawn Opus, bind your strongest available
+model once in those wrappers; **do not** silently fall back to Haiku. Main still
+follows `AGENTS.md` §模型分档.
 
 Default dispatch is the story-loop §阶段职责 matrix; Main decides only whether an **exception** applies. `context: fork` / `context: agent` are **skill** fields (run a skill inside a subagent), not agent frontmatter — do not present them as a cross-harness agent setting.
 
@@ -52,6 +56,11 @@ Default dispatch is the story-loop §阶段职责 matrix; Main decides only whet
   it is **off by default**. Turn it on only when you also arrange to surface the
   work file back to Main. Code-repo isolation comes from `git-linking.md`
   branches/commits, not from `isolation`.
+- **Parallel code-writing `experiment-agent`s must not share a working directory.**
+  Two `experiment-agent` runs that both edit the linked code repo may run in
+  parallel **only** when each has its own worktree / clone / working directory
+  (and its own branch) — e.g. `isolation: worktree` plus a per-run code checkout;
+  otherwise serialize them. Read-only or `.research/work/`-only tasks may share.
 - Read-only enforcement: every science role must still write its `.research/work/`
   or `.research/reviews/` report, so do **not** blanket-remove Write via
   `disallowedTools`. Canonical-file protection is by instruction (Main owns the
