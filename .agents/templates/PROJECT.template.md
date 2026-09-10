@@ -6,7 +6,7 @@
 
 ## Research Goal
 
-{{一句话描述最终科研目标}}
+{{一句话描述最终科研目标。冻结：没有用户授权不要改成另一个课题。}}
 
 ## Primary Scientific Problem
 

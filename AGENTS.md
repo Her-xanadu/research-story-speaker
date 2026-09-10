@@ -27,15 +27,66 @@ Framework base: v0.2.2
 
 `ACTIVE` 且 STATE 已指明普通 sanity / exploratory EXP 时：直接走 compact
 `experiment-design` / `result-analysis`，不经 `workspace-resume` /
-`research-loop`。各 Skill 自己声明 compact 不读什么。
+`research-loop`。发射后任务仍在跑：走下面的 **sleep 监控**，不要空转思考。
+各 Skill 自己声明 compact 不读什么。
 
 代码仓库由 `RESOURCES.md` 定位，可为 workspace 内 / 并列 / 远程。Git 追溯与状态规范在 `.agents/references/`。
+
+## Main 三条常驻规则
+
+这三条写在本文件里，不依赖是否加载了某个 Skill。**Main 自己执行。**
+
+### 1. 已发射仍在跑 → 本对话里 `sleep`，不要短轮次
+
+禁止：思考 1–2 分钟、报一次进度、结束本轮、等用户再开下一轮。那会浪费 token，也不是监控。
+
+**立刻**在本对话发**一条**阻塞 shell（`sleep` 与探测写在同一条命令里），等它跑完：
+
+```bash
+sleep 300; <一条最小探测>
+```
+
+探测只做一件事，例如：
+
+```bash
+sleep 300; tail -n 50 <log>
+# 或远程：
+sleep 300; ssh <RESOURCES 里的 alias> 'tail -n 50 <log>'
+```
+
+规则：
+
+- 真实训练 / 远程 GPU / 预计 >10 分钟：第一次 `sleep 300`（5 分钟），无变化则 `600` → `900`（封顶 15 分钟）。
+- 很短的 smoke / 刚崩溃：可用 `sleep 60`，然后 `120` → `180` → `300` → `600` → `900`。
+- `sleep` 返回后：**只**做这一次探测。仍在跑 → **同一对话**再发下一条 `sleep N; probe`。不要停下来等用户。
+- 终态产物齐了 → `result-analysis`。崩了 → 同一 EXP 的 support，不新开 EXP。
+- 不要为监控开 subagent。不要倒计时解说。细节见 `monitor-experiment`。
+
+### 2. 普通实验默认 1 个 seed
+
+普通 sanity / exploratory / 机制探测：**一次 run、一个 seed。**  
+禁止一上来就跑 3/5 个 seed 或 seed 矩阵。那是在烧算力，不是在推进判断。
+
+只有已经出现**明确正向结果**（当前假设方向被支持，需要确认不是一次运气）时，才加 multi-seed 验证。  
+「补成常见 seed 数」「把矩阵填满」本身不能成为新 EXP。variance 本身成为科学问题之前，不要加 seed。
+
+### 3. 研究目标冻结，方法可以改
+
+`PROJECT.md` 的 **Research Goal**（针对什么、要完成一类什么研究 / 提出一类方法）**冻结**。没有用户明确改目标，不准换成另一个课题。
+
+| 冻结（不能换题） | 可以随证据改 |
+|------------------|--------------|
+| 研究目标 / 要完成的那类工作 | Key Observation（发现了什么） |
+| `PROJECT.md` Research Goal | Core Idea（用什么方法、怎么组合） |
+| STORY `Problem` 里与 Goal 对齐的那句目标 | Evidence / Boundary / Open Gaps |
+
+W1 可以换机制、换路线、改 Story 细节；**不能**把项目改成另一个研究目标。Main 在同一个 Goal 上推进。
 
 ## Autonomy
 
 你拥有较大科研自主权：选择并组合 `.agents/skills/`、调用 `.agents/subagents/`、调整任务顺序、提出或放弃实验路线、使用当前 Harness 的 MCP / Web / Shell / Git、更新 Story 与科研状态（小改自主，大改建议 Review）。
 
-**不要求每步询问用户。** Skills 是 strong guidance，不是强制状态机。重要实验须能定位代码、commit、结果；Story 核心机制大改时建议 `experiment-review`。
+**不要求每步询问用户。** Skills 是 strong guidance，不是强制状态机。重要实验须能定位代码、commit、结果；Story 核心机制大改时建议 `experiment-review`。先按本节 Workflow 走；细节再打开对应 `SKILL.md`。不要每个动作都先加载全部 Skills。
 
 ## Research Memory
 
@@ -43,28 +94,68 @@ Framework base: v0.2.2
 
 并行 Agent 避免同时写同一状态文件。
 
-## Skill Routing
+## Workflow（Main 每一步）
 
-| 场景 | Skill |
-|------|-------|
-| 安装 / 新建项目 / 未初始化 / 换算力或代码路径 | `workspace-setup` |
-| 未初始化（PROJECT Status = `UNINITIALIZED`） | `workspace-setup` → `workspace-resume` |
-| ACTIVE 且 STATE 下一步已是普通 sanity / exploratory | compact `experiment-design` →（跑代码才）`experiment-execution` → compact `result-analysis`（**内循环 W2–W3–W4**）；不要 `workspace-resume` / `research-loop` |
-| 新 Session / 陌生 Agent（ACTIVE 但下一步不清） | `workspace-resume` 后按 STATE 或 `research-loop` |
-| 决定下一步科研 | `research-loop` |
-| 维护文件一致性 | `research-memory` |
-| 更新 Story | `story-maintenance` |
-| 新 Core Idea / 换路线 / 高代价实验 | `idea-evaluation` |
-| 查文献 | `literature-research`（本地库优先：`paper-consult`；补库/freshness 仅 Main 调 `paper-find` → `paper-library`；见该 Skill） |
-| 设计实验 | `experiment-design` |
-| 执行实验 | `experiment-execution` |
-| 分析结果 | `result-analysis` |
-| 结果拟进 Story Evidence / 高风险结果 | `evidence-verification` |
-| 独立 Review | `experiment-review` |
-| 仅维护框架、升级 Harness 或发布版本时使用 | `framework-maintenance` |
-| 扩展框架 / 接入工作流、Skill、MCP、Harness、领域包或贡献能力 | `framework-extension`（维护者 Skill；**不进** research-loop） |
+先读 `STATE.md` 的 **Workflow Position**。两层循环，不是每个实验都回 W1。
 
-复杂任务优先找对应 Skill，不要重复发明流程。细节见各 `SKILL.md` 与 `.agents/references/`。`.agents/references/research-intelligence/` 与 `.agents/prompts/` 随对应 Skill 按需加载，冷启动不必通读。`framework-extension` 仅在用户明确要求扩展/集成时加载。
+```text
+W0 SETUP → W1 FRAME → ╔ W2 TEST → W3 LEARN → W4 DECIDE ╗
+                      ║     ↑                    │     ║
+                      ║     └──── 同一方法 / 同一题 ───┘     ║
+                      ╚══════════════════════════════╝
+                         机制/问题真要重构 → W1
+                         Story 完成 → W5
+```
+
+内循环（默认，同一 Goal、同一方法还能测）：
+
+```text
+W2 设计一个判别实验（默认 1 seed）
+ → W2 发射
+ → 仍在跑：本对话 sleep N; probe（不要结束 turn）
+ → W3 机制诊断（exit 0 ≠ 科学成功）
+ → W4 问：对方法意味着什么？默认回 W2
+```
+
+外循环（低频）：只有 Core Idea / 路线要重构，或下一科学问题不清，才 `W4 → W1`。**不能**借 W1 换掉 PROJECT Research Goal。
+
+| Position / 情况 | 这一步干什么 | 调用 | 不要调用 |
+|-----------------|--------------|------|----------|
+| `UNINITIALIZED` / `W0` | 先算力+代码 Git，再 materialize | `workspace-setup` → `workspace-resume` | `research-loop`、任何实验 Skill |
+| 新会话且 Next 已点名普通 EXP | 直接继续内循环 | 下表 W2–W3 | `workspace-resume`、`research-loop` |
+| 新会话且 Next 不清 | 读 working set，再路由 | `workspace-resume` | 不要扫整本 `EXPERIMENTS.md` |
+| `W1 FRAME` | 问当前科学问题；文献/换机制 | `research-loop`；按需 `literature-research` / `idea-evaluation` / `story-maintenance` | 每个 EXP 都回 W1；换课题 |
+| `W2` 还没有可跑的 EXP | 写最小判别实验 | `experiment-design` | `idea-evaluation`；一上来多 seed |
+| `W2` 有 EXP 要跑代码 | 实现并发射 | `experiment-execution` | 边跑边解读；未发射就 `sleep` |
+| `W2` Status=`running` | 同一对话阻塞等待 | **Main** `sleep N; probe`（`monitor-experiment`） | 结束 turn；开 subagent；`research-loop`；空转思考 |
+| `W3` 终态产物已在 | 机制诊断 + Outcome | `result-analysis` | `experiment-execution`；`exit 0`→`supports` |
+| `W4` 方法后果清楚、下一实验清楚 | 写 Next，Position=`W2` | `result-analysis`（可顺手 Level 1 Story） | `research-loop`；无正向结果就 multi-seed |
+| `W4` Next 不清 / Level 2 换方法 | 换挡，不换 Goal | `research-loop` | 把 Goal 改成另一个课题 |
+| `W5` 完成条件满足 | 可写 | STATE `READY_FOR_WRITING` | 继续堆工程 EXP |
+
+## Skill 何时用 / 何时不用
+
+只开**当前这一步**的 Skill。不要因为「Skill 存在」就调用。
+
+| Skill | 何时用 | 何时不要用 | 这一步干什么 |
+|-------|--------|------------|--------------|
+| `workspace-setup` | 未初始化；换服务器/代码路径 | 每个 EXP；已经 ACTIVE 且算力没变 | 只写 `RESOURCES.md` |
+| `workspace-resume` | 陌生会话且 Next 不清；UNINITIALIZED materialize | Next 已点名普通 EXP；只是实验还在跑 | 读 5 件 working set，立刻开干 |
+| `research-loop` | W1；W4 且下一科学问题不清 | 内循环已清楚（W2 有 EXP / running / W3 有产物） | **只调度**，自己不跑实验、不解读 |
+| `experiment-design` | 需要新的判别问题 | 只是修 parser；只是再跑一个 seed | 登记 EXP；默认 1 seed；答不出「改变什么判断」就不要登记 |
+| `experiment-execution` | 设计已在、要跑代码 | 已经 running；只解读结果 | 发射；记下 probe；仍在跑立刻 `sleep` |
+| `monitor-experiment` | 已发射、无终态 | 同步 smoke 已结束；用户只要解读 | Main：`sleep N; probe`，同一对话循环 |
+| `result-analysis` | 终态产物在 | 还在训练；只看到 epoch | 机制诊断 → 方法后果 → 下一判别实验 |
+| `story-maintenance` | Evidence/Gaps 真变了；或 Core Idea 要改方法 | 每个 EXP 后改 Story；改 Goal | 小改 Gaps；方法可变；Goal 冻结 |
+| `idea-evaluation` | 新 Core Idea / 换路线 / 很贵的下一步 | 普通 sanity；再加一个 seed | 决定这条方法值不值得做 |
+| `literature-research` | W1、新颖性、新机制、用户要 freshness | 每个内循环 EXP | 本地库优先；scout 只 consult |
+| `evidence-verification` | 结果要进 Story Evidence；高风险声称 | 普通 sanity 数字 | 核范围，不替代 Review |
+| `experiment-review` | **scientific stakes** 需要独立批判 | reviewer 空闲；改 selector；普通工程 | 独立 Review；delta/reuse |
+| `research-memory` | STORY/EXP/STATE **冲突**、找不到真相 | STATE 只是略超 40 行（就地压缩） | 对齐文件，不改科学结论 |
+| `framework-maintenance` | 改框架、发版、审计 | 科研循环里 | 框架卫生 |
+| `framework-extension` | 用户明确要求扩展/接入 | 日常科研 | 设计怎么接，不进 loop |
+
+复杂任务优先找对应 Skill，不要重复发明流程。打开某个 Skill 之后，以该 `SKILL.md` 的 When to use / Do not use 为准。`.agents/references/` 与 prompts 随该 Skill 按需加载，冷启动不必通读。`framework-extension` 仅在用户明确要求扩展/集成时加载。
 
 ## Subagents
 

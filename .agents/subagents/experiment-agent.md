@@ -29,7 +29,10 @@ This file still wins on write permissions.
 | Ordinary execution with a reserved EXP-ID and no failure | none required | skip experiment-thinking.md for a one-line sanity rerun whose Question is already on disk |
 
 Use `experiment-design` / `experiment-execution` when available.
-Do not act as `result-analyst` or Reviewer.
+After launch, if the job is still running: return launch facts (host, job/pid,
+probe command, log, results path) and **stop**. Main runs
+`monitor-experiment`. Do not stay as a wait-loop agent. Do not act as
+`result-analyst` or Reviewer.
 
 ## Handoff fields (from caller)
 

@@ -10,7 +10,8 @@ description: >-
   dispatch. Updates EXPERIMENTS, DISCOVERY, STORY when warranted, and STATE.
   Use after runs complete, when analyzing EXP-xxx outcomes, or separating
   interpretation from execution. Do not use for running code
-  (experiment-execution) or independent review (experiment-review).
+  (experiment-execution), waiting on a live job (monitor-experiment), or
+  independent review (experiment-review).
 ---
 
 # Result Analysis
@@ -78,14 +79,16 @@ evidence invalidated, high-cost EXP, or formal `result-analyst`.
 
 ## When to use
 
-- `experiment-execution` finished and raw results exist for an `EXP-xxx`.
+- `experiment-execution` finished, or `monitor-experiment` reported
+  `terminal_unprocessed`, and raw results exist for an `EXP-xxx`.
 - You need interpretation separate from whoever ran the code (fresh judgment).
 - Experiment failed, was null, or contradicted expectations — still analyze.
 - `research-loop` integrated an experiment and needs DISCOVERY / Story updates.
 - `result-analyst` subagent dispatched for supported interpretation and Story impact
   (full diagnosis; not the ordinary-exploratory default).
 
-Do **not** use for: implementing or re-running (`experiment-execution`), adversarial
+Do **not** use for: implementing or re-running (`experiment-execution`), waiting
+on a live job (`monitor-experiment`), adversarial
 review (`experiment-review`), or cross-project file compaction (`research-memory`).
 
 ## Goal

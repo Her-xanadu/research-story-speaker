@@ -34,7 +34,8 @@ Selective gates: `idea-evaluation`, `evidence-verification`.
 Not for cold start (`workspace-resume`), compaction (`research-memory`), or
 **inner loop** when STATE is `W2 TEST` and Recommended Next Action already
 names an ordinary sanity/exploratory EXP — use compact
-`experiment-design` / `experiment-execution` / `result-analysis` instead.
+`experiment-design` / `experiment-execution` /
+`monitor-experiment` (if still running) / `result-analysis` instead.
 
 ## Goal
 
@@ -90,7 +91,9 @@ mechanism-isolation line):
 
 - **Stop this Skill.** Do not re-run「最大 gap」or full W1 FRAME.
 - Route compact `experiment-design` → `experiment-execution` →
+  (`monitor-experiment` while Status=`running`) →
   `result-analysis` per [AGENTS.md](../../../AGENTS.md).
+  Do not keep `research-loop` thinking during a live run.
 - After `result-analysis`, let compact W4 set next Position (usually stay
   `W2 TEST`).
 
@@ -105,7 +108,7 @@ only routes.
 
 When Position is `W1 FRAME`, `W4 DECIDE` with unclear next step, or stagnation
 → W1 per story-loop. Judge per §Gap 优先级. One focal gap per iteration unless
-parallel subagents warranted.
+parallel subagents warranted. **Do not** rewrite `PROJECT.md` Research Goal.
 
 ### 5. Internal route stage
 
@@ -127,13 +130,14 @@ Selective — **not** a default chain. Ordinary exploratory EXP stays light.
 | Gap nature | Route | Delegate |
 | --- | --- | --- |
 | Prior work, novelty, lit conflict | Literature | `literature-research` / scout — **not** every few EXP; only W1 / novelty / new mechanism / new baseline / user freshness |
-| Untested mechanism, empirical answer | Experiment | `experiment-design` → `experiment-execution` → `result-analysis` |
+| Untested mechanism, empirical answer | Experiment | `experiment-design` → `experiment-execution` → (`monitor-experiment` if still running) → `result-analysis` |
 | Major new idea (Core Idea, route competition, mechanism replacement, expensive successor) | Idea-gate | `idea-evaluation` ([prompt](../../prompts/idea-evaluation.md)); then `experiment-design` only if the gate says continue |
 | High-stakes evidence (Story Evidence candidate, surprising strong result, Story-core change) | Evidence then Review | `evidence-verification` ([prompt](../../prompts/evidence-verification.md)) after `result-analysis` → `experiment-review` |
 | High-stakes method, anomaly, big Story change | Review | `experiment-review` / reviewer |
 | Wording only | Story | `story-maintenance` |
 
 Ordinary exploratory EXP: `experiment-design` → `experiment-execution` →
+(`monitor-experiment` if still running) →
 `result-analysis` **without** `idea-evaluation`, `evidence-verification`,
 `experiment-review` / reviewer, or `result-analyst` by default.
 

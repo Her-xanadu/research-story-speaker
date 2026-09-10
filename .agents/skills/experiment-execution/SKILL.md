@@ -4,8 +4,10 @@ description: >-
   Locate codebases from RESOURCES, verify Git state, implement and run
   experiments, record commits and result locations, and update EXPERIMENTS.md.
   Use when executing EXP-xxx, running code, freezing git commit, or
-  implementing an experiment design. Do not use for result interpretation
-  (result-analysis) or independent review (experiment-review).
+  implementing an experiment design. After a launch that is still running,
+  hand off to monitor-experiment — do not keep thinking. Do not use for
+  result interpretation (result-analysis) or independent review
+  (experiment-review).
 ---
 
 # Experiment Execution
@@ -24,6 +26,9 @@ If the designed entry is missing and an operator-supplied log or
 pre-existing result file answers the smoke Question: record that mechanical
 fact (do **not** fake a re-run). That is **not** bounded debug. Hand off to
 compact `result-analysis`.
+
+If compact execute leaves a **live job still running**: do not sit in this
+Skill thinking. Enter [monitor-experiment](../monitor-experiment/SKILL.md).
 
 Compact persist: fill Runs / Results / mechanical Main Findings from the
 operator-supplied log / pre-existing result file. Record provenance in Runs /
@@ -49,7 +54,8 @@ path, or enter bounded debug after a real crash / hang / unusable metrics.
 - `research-loop` routed to Experiment execution, or `experiment-agent` subagent dispatched.
 - User asks to run, implement, or execute a specific `EXP-xxx`.
 
-Do **not** use for: designing what to test (`experiment-design`), interpreting outcomes
+Do **not** use for: designing what to test (`experiment-design`), waiting on
+an already-launched job (`monitor-experiment`), interpreting outcomes
 (`result-analysis`), adversarial critique (`experiment-review`), or Story edits.
 
 ## Goal
@@ -84,9 +90,19 @@ This Skill freezes the commit before runs and writes recovered paths into
    Ordinary sanity with an operator-supplied log and no code run: skip this step.
 6. **Execute runs** — Distinguish Experiment (scientific unit) from Run (one execution).
    Log seeds, retries, host, and commit per run in the Runs field — no global Run ID.
+   Record the probe recipe in Runs (host, job/pid/screen, log, results path).
+   If the job is **still running** after launch: Status=`running`,
+   Outcome=`not-assessed`. Main immediately runs one shell line
+   `sleep 300; <one probe>` (or `sleep 60` only for short smoke) in **this**
+   conversation — [AGENTS.md](../../../AGENTS.md) §Main 三条常驻规则 and
+   [monitor-experiment](../monitor-experiment/SKILL.md). Do not dispatch a
+   subagent to wait. Do not end the turn after 1–2 minutes of narration.
+   If the run **finished in this turn** (sync smoke) or an operator-supplied
+   log / pre-existing result file is the artifact: skip monitor; compact
+   `result-analysis`.
    On engineering failure of a real run, follow **Bounded debug** below; do not
    start a sweep. Ordinary sanity missing-entry plus an operator-supplied log:
-   skip Bounded debug; hand off to compact `result-analysis`.
+   skip Bounded debug; skip monitor; hand off to compact `result-analysis`.
 7. **Save artifacts** — Record result paths (relative, absolute, or `host:path`). Ensure
    a stranger can navigate: EXPERIMENTS → RESOURCES → repo → Entry → Results.
 8. **Update EXPERIMENTS** — Set Status (`running` / `completed` / `failed`);
@@ -96,7 +112,8 @@ This Skill freezes the commit before runs and writes recovered paths into
    Discovery Impact, Story Impact for `result-analysis`.
 9. **Update STATE** — Active experiment, blockers, recommended next (`result-analysis`
    when results exist).
-10. **Hand off** — When runs finish (or an operator-supplied log / pre-existing
+10. **Hand off** — Still running → Main enters `monitor-experiment` (do **not**
+    dispatch a subagent to wait). When runs finish (or an operator-supplied log / pre-existing
     result file is the artifact), continue with compact `result-analysis`. Do
     **not** default-dispatch `result-analyst`. Suggest `experiment-review` only
     when stakes warrant.
@@ -183,6 +200,7 @@ return to `experiment-design` — that is redesign, not debug.
 | Reference (when running / binding git) | `experiment-record.md`, `git-linking.md`, `state-files.md` |
 | On bounded-debug failure | `failure-diagnosis.md` |
 | Subagent | `experiment-agent.md` |
+| After async launch | `monitor-experiment` |
 
 ## Updates
 

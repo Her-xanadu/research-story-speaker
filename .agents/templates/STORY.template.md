@@ -4,7 +4,7 @@
 
 ## Problem
 
-{{我们要解决什么科学/技术问题？}}
+{{我们要解决什么科学/技术问题？研究目标句须与 PROJECT Research Goal 对齐，冻结；具体问题表述可随证据收紧，但不能换题。}}
 
 ## Key Observation
 
@@ -28,4 +28,4 @@
 
 ---
 
-_Story 小改（Evidence / Boundary / Open Gaps）可自主完成；Problem / Key Observation / Core Idea 大改建议 Review。_
+_Story 小改（Evidence / Boundary / Open Gaps）可自主完成；Key Observation / Core Idea（方法）大改建议 Review。PROJECT Research Goal 冻结。_

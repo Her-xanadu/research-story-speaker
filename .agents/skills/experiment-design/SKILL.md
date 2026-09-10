@@ -39,6 +39,11 @@ answered, **do not register** this Experiment.
 Do not register an EXP “to complete the matrix” (e.g. 3 seeds → 5 seeds)
 unless current variance still blocks a go/no-go judgment.
 
+**Default: one seed.** Ordinary sanity / exploratory / mechanism-off /
+deletion tests use **one run, one seed**. Do not launch 3/5 seeds up front.
+Multi-seed confirmation only after a **clear positive** (the hypothesis
+direction is supported and stability is now the question).
+
 When the method is growing complex, prefer a **deletion experiment**
 (`Full` vs `Full - Component A`) over `Full + B + C + D`.
 
@@ -59,8 +64,9 @@ section — verify, do not rewrite.
 | **What observation would change next action?** | Expected outcomes (design note; else Motivation) |
 | **Data / Setup / Codebase** | Data / Setup, Code — as needed |
 
-Do **not** auto-upgrade for: single sanity, basic reproduction, extra seed,
-logging check, known-question retry, small diagnostic probe.
+Do **not** auto-upgrade for: single sanity, basic reproduction, extra seed
+before a clear positive, logging check, known-question retry, small
+diagnostic probe.
 
 If this Question is already `planned` in EXPERIMENTS: skip a new EXP-ID; go to
 `experiment-execution` only if code must run, else compact `result-analysis`

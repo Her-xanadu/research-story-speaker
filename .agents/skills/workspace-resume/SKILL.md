@@ -8,7 +8,7 @@ description: >-
   continue/resume/接着做/恢复科研 and context is unknown. Do not use when PROJECT
   is ACTIVE and STATE Recommended Next Action is already an ordinary sanity
   or exploratory EXP — use compact experiment-design and compact
-  result-analysis instead.
+  result-analysis instead (monitor-experiment if that EXP is already running).
 ---
 
 # Workspace Resume
@@ -31,7 +31,9 @@ Definitions: [state-files.md](../../references/state-files.md),
 Not for file hygiene (`research-memory`) or route choice (`research-loop`) once
 the project is `ACTIVE` and the next step is already clear. Not for an `ACTIVE`
 ordinary sanity / exploratory EXP — use compact `experiment-design` /
-`result-analysis`.
+`experiment-execution` / `result-analysis`. If that EXP is already
+`running` with no terminal artifact, use `monitor-experiment` instead of
+re-framing.
 
 ## Goal
 
@@ -46,7 +48,7 @@ Recommended Next Action
 ```
 
 Two-layer Workflow: if Position is `W2 TEST` and Next names an ordinary EXP,
-continue the **inner loop** (compact design/execution/analysis) — **do not**
+continue the **inner loop** (compact design/execution/monitor/analysis) — **do not**
 load `research-loop` to re-frame. See [story-loop.md](../../references/story-loop.md).
 
 `PROJECT + STORY + STATE` should let a stranger grasp position in minutes
@@ -159,7 +161,8 @@ just to get under 40 lines. Just-initialized STORY may still say
 ### 4. Emit packet and continue
 
 Report the packet compactly, then **same turn**: if `W2 TEST` + named ordinary
-EXP → compact inner loop; else execute `STATE` next or matching Skill; route
+EXP → compact inner loop (if Status=`running` with no terminal artifact →
+`monitor-experiment`, do not think through the wait); else execute `STATE` next or matching Skill; route
 unclear → `research-loop` (FRAME/W4 only); files disagree → `research-memory` first.
 
 Never end with only “已恢复” when an actionable step exists. Do not open a

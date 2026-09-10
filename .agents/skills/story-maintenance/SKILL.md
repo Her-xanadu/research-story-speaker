@@ -40,13 +40,24 @@ performance numbers**). Reflect durable scientific belief, not experiment logs.
 Problem → Key Observation → Core Idea → Evidence → Boundary → Open Gaps
 ```
 
+**Frozen vs mutable** (see [AGENTS.md](../../../AGENTS.md) Main 三条常驻规则):
+
+| Frozen | Mutable |
+|--------|---------|
+| `PROJECT.md` Research Goal | Key Observation |
+| The program-level aim in STORY `Problem` (针对什么、完成一类什么研究) | Core Idea (which method / combination) |
+| User-authorized goal only | Evidence / Boundary / Open Gaps |
+
+Do **not** replace the research goal with a different project. Methods and
+findings may change; the Goal does not.
+
 Classify every edit (**Story Impact Level**, [story-loop.md](../../references/story-loop.md)):
 
 | Level | Sections | Agent action | Next Workflow Position |
 | --- | --- | --- | --- |
 | **0** | None — do not edit STORY | N/A (`result-analysis` only) | `W2 TEST` if Next clear |
 | **1** | Evidence, Boundary, Open Gaps, wording | Apply directly (was Small) | `W2 TEST` if Next clear |
-| **2** | Problem, Key Observation, Core Idea | Apply with caution; **suggest** Reviewer | `W1 FRAME` |
+| **2** | Key Observation / Core Idea（方法可变）；不得改 PROJECT Goal | 谨慎改；建议 Reviewer | `W1 FRAME` |
 
 ## Default flow
 
@@ -116,8 +127,11 @@ Hard boundaries (not deviations):
 - **No numbers in Story** — metrics stay in `EXPERIMENTS.md` only.
 - **No experiment dumps** — cite `EXP-xxx`; do not copy Method, Runs, or Results.
 - **No multi-Story** — one current belief state per project.
-- **Large mechanism changes** — reframing `Problem` or `Core Idea` should trigger
+- **Research Goal frozen** — do not rewrite `PROJECT.md` Research Goal or the
+  matching aim sentence in `Problem` unless the user amends the goal.
+- **Large mechanism changes** — reframing `Core Idea` / Key Observation should trigger
   or suggest Review; see [story-loop.md](../../references/story-loop.md) §停滞处理.
   Story must not grow more complex merely to rescue a method
   ([story-audit.md](../../prompts/story-audit.md);
   [idea-and-mechanism.md](../../references/research-intelligence/idea-and-mechanism.md)).
+  Changing method ≠ changing the research goal.

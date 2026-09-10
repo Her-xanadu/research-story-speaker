@@ -148,7 +148,7 @@ W4 + completion criteria satisfied
 |------|------|------------|
 | W0 SETUP | 算力、代码 Git | `workspace-setup` |
 | W1 FRAME | 当前科学问题；文献；换机制/路线；大改 Story | `research-loop` + `literature-research` / `idea-evaluation` / `story-maintenance` |
-| W2 TEST | 设计 / 实现 / 跑实验 | `experiment-design` → `experiment-execution` |
+| W2 TEST | 设计 / 实现 / 跑实验 / **发射后静默监控** | `experiment-design` → `experiment-execution` → (`monitor-experiment` if still running) |
 | W3 LEARN | 结果 → Outcome / Discovery | `result-analysis` |
 | W4 DECIDE | 科研换挡器（五问，见下） | Level 0/1 且 Next 清楚：`result-analysis`；Level 2 / 停滞 / 完成：`research-loop` |
 | W5 HANDOFF | Story 完成可写 | `Story Status: READY_FOR_WRITING` |
@@ -207,6 +207,7 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 ### A. Core Idea 被推翻
 
 连续实验表明原机制不成立 → `W4 → W1`，重新 frame 真正值得解释的现象（Story Impact Level 2）。
+可以换方法 / 换组合；**不可以**改写 `PROJECT.md` Research Goal（没有用户改目标就不换题）。
 
 ### B. 当前路线无信息增益
 
@@ -285,7 +286,7 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 |-------|------------|-------------------|
 | **0** | 不动（seed、sanity、小 ablation、inconclusive、工程失败） | `W2 TEST` |
 | **1** | 仅 Evidence / Boundary / Open Gaps（小改） | `W2 TEST`（下一实验清楚时） |
-| **2** | Problem / Key Observation / Core Idea（大改） | `W1 FRAME`；建议 Reviewer |
+| **2** | Key Observation / Core Idea（方法可变）；**不得**改 PROJECT Research Goal | `W1 FRAME`；建议 Reviewer |
 
 小改 Story 后**不**重启大循环；大改才回 W1。
 

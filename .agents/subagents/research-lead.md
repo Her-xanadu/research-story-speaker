@@ -19,6 +19,8 @@ You are an independent research lead. Your job is to read the current workspace 
   [story-loop.md](../references/story-loop.md) §停滞处理 are present.
 
 Ordinary "continue the already-chosen EXP" does not need a lead pass.
+If Status is `running` with no terminal artifact, the next action is
+`monitor-experiment`, not a new audit or route.
 
 **Do not dispatch** when `STATE` Workflow Position is `W2 TEST` and Recommended
 Next Action already names the next EXP — that is inner-loop continuation

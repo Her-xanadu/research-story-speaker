@@ -33,6 +33,6 @@
     <text x="0" y="52" fill="#E6EDF3" font-family="Georgia, 'Iowan Old Style', 'Times New Roman', serif" font-size="42">research-story-speaker</text>
     <rect x="0" y="68" width="220" height="1.5" fill="#8BA3C7"/>
     <text x="0" y="104" fill="#8B949E" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="18">Method-first inner loop / file-native memory / Story as the frame</text>
-    <text x="0" y="142" fill="#6E7681" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="13" letter-spacing="1.4">v0.2.2 · canonical 8 · research-loop 1 · subagents 5 · skills 14 · RI 6 · scripts 0</text>
+    <text x="0" y="142" fill="#6E7681" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="13" letter-spacing="1.4">v0.2.2 · canonical 8 · research-loop 1 · subagents 5 · skills 15 · RI 6 · scripts 0</text>
   </g>
 </svg>

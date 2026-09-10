@@ -43,3 +43,8 @@ codex exec "Follow AGENTS.md. Run workspace-resume: answer Current Story, Gap, E
 - `codex exec` may not load all MCP plugins.
 - `codex exec --sandbox workspace-write` cannot create `.git/index.lock`, so it cannot `git commit`. Use full-access (`--dangerously-bypass-approvals-and-sandbox`) or let an outer process commit. Observed in C2/C4.
 - Absolute paths in `RESOURCES.md` may be stale — use Preferred relative location and `git-linking.md`.
+- `monitor-experiment` / live run: Main MUST keep the **same Codex conversation**
+  and run one shell line `sleep N; <probe>` (training default `N=300`). When
+  it returns, if still running, immediately run the next `sleep N; probe`.
+  Do **not** end the turn after 1–2 minutes of narration. Do not start a new
+  Codex thread to "continue monitoring."

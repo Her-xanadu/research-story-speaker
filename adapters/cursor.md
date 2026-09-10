@@ -40,3 +40,6 @@ Or: Cursor → Open project → Agent → "workspace-resume per AGENTS.md".
 - Non-interactive `cursor-agent -p` requires `--trust` (or `-f` / `--yolo`) for workspace trust gate
 - Agent may not read all skills without explicit routing — use AGENTS.md table
 - Multitask subagents need explicit file paths to avoid STATE conflicts
+- `monitor-experiment`: one blocking wait covering `sleep_seconds` (host wait
+  / `AwaitShell` / equivalent), then one probe. Do not poll a sleeping
+  command every 30s or narrate the countdown.

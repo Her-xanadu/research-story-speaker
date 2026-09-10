@@ -13,7 +13,7 @@
   <a href="https://github.com/Her-xanadu/research-story-speaker/releases/tag/v0.2.2"><img src="https://img.shields.io/badge/release-v0.2.2-3B5B8A" alt="release v0.2.2"></a>
   <img src="https://img.shields.io/badge/visibility-private-6B7280" alt="private repository">
   <img src="https://img.shields.io/badge/canonical-8-1B2430" alt="8 canonical research files">
-  <img src="https://img.shields.io/badge/skills-14-1B2430" alt="14 skills">
+  <img src="https://img.shields.io/badge/skills-15-1B2430" alt="15 skills">
   <img src="https://img.shields.io/badge/scripts-0-1B2430" alt="0 runtime scripts">
 </p>
 
@@ -145,7 +145,7 @@ MOCK 闭环（不是当前项目）：[`examples/mock-flow-detection/`](examples
 | Canonical `.research/` 文件 | 8 |
 | `research-loop` | 1 |
 | Subagents | 5 |
-| Skills | 14 |
+| Skills | 15 |
 | Research Intelligence 参考 | 6 |
 | 框架运行时脚本 | 0 |
 
@@ -156,7 +156,7 @@ MOCK 闭环（不是当前项目）：[`examples/mock-flow-detection/`](examples
 | `workspace-resume` | 冷启动 / materialize |
 | `research-loop` | 决定下一步；内循环已清楚时跳过 |
 | `literature-research` | 文献（本地库优先） |
-| `experiment-design` / `execution` / `result-analysis` | 内循环 W2–W3 |
+| `experiment-design` / `execution` / `monitor-experiment` / `result-analysis` | 内循环 W2–W3：发射后静默监控，不要空转思考 |
 | `story-maintenance` | 维护当前 Story |
 | `idea-evaluation` | 新 Core Idea / 换路线 |
 | `evidence-verification` / `experiment-review` | 高风险证据与独立 Review |
@@ -196,7 +196,7 @@ Cold-start 证据日期 2026-09-03，见 [`docs/validation/harness-smoke/`](docs
 
 最近 tagged release 仍是 **v0.2.2**（`workspace-setup`）。静态验收：[`docs/validation/v0.2.2/workspace-setup-checklist.md`](docs/validation/v0.2.2/workspace-setup-checklist.md)。**未跑**独立 live Gate。
 
-Method-First 长周期在不新增 Skill / Workflow Stage / canonical 文件的前提下，把内循环收成 Method-First。Cases 1–9 是 regression specification（[`docs/validation/method-first-longrun/`](docs/validation/method-first-longrun/)），**尚未** live Gate。**尚未**打新 tag。
+Method-First 长周期不新增 Workflow Stage / canonical 文件。之后增加了第 15 个 Skill：`monitor-experiment`（发射后静默等待；不是新 Stage）。Brief：[`docs/validation/extensions/monitor-experiment/`](docs/validation/extensions/monitor-experiment/)。Method-First Cases 1–9 仍是 regression specification（[`docs/validation/method-first-longrun/`](docs/validation/method-first-longrun/)），**尚未** live Gate。**尚未**打新 tag。
 
 > [!CAUTION]
 > 根 `.research/` 仍为干净 **UNINITIALIZED** 模板。  

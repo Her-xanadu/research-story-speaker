@@ -49,7 +49,11 @@ Problem → Key Observation → Core Idea → Evidence → Boundary → Open Gap
 
 要求：单一当前 Story；约一页；不记录具体性能数字；是"论文摘要的科研版"。
 
-小改（Evidence / Boundary / Open Gaps / 表述）Agent 可自主完成。大改（Problem / Key Observation / Core Idea）建议针对触发实验调用 Reviewer。
+**冻结：** `PROJECT.md` Research Goal，以及 STORY `Problem` 中与之对齐的研究目标句（针对什么、完成一类什么研究）。没有用户改目标，不能换题。
+
+**可改：** Key Observation、Core Idea（方法与组合）、Evidence、Boundary、Open Gaps。
+
+小改（Evidence / Boundary / Open Gaps / 表述）Agent 可自主完成。方法大改（Key Observation / Core Idea）建议针对触发实验调用 Reviewer。换方法 ≠ 换研究目标。
 
 ### STATE.md
 
