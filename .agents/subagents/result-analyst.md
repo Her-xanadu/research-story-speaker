@@ -156,8 +156,9 @@ Default structure (**no** task prompt attached):
 ```
 
 If result-diagnosis.md is attached, use **that** prompt's headings instead
-(Integrity through Next discriminating action). Return the same sections to
-the caller.
+(Integrity through Next discriminating action). These sections stay in the
+**work file**; to the caller return only the short decision summary
+([subagent-handoff.md](../prompts/subagent-handoff.md) §Two-tier product).
 
 ## Quality bar
 

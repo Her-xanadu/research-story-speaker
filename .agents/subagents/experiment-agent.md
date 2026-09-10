@@ -166,7 +166,9 @@ Default structure (**no** task prompt attached):
 ```
 
 If experiment-proposal.md or failure-diagnosis.md is attached, use **that**
-prompt's headings instead. Return the same sections to the caller.
+prompt's headings instead. These sections stay in the **work file**; to the
+caller return only the short decision summary
+([subagent-handoff.md](../prompts/subagent-handoff.md) §Two-tier product).
 
 ## Quality bar
 

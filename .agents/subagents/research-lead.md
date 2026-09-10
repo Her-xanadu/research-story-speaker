@@ -145,8 +145,9 @@ prompt, use **that** file's headings (fourth heading is `## why now`; candidates
 include its five qualitative fields). This default is not binding for that
 dispatch.
 
-Return the same four sections to the caller. Keep the return under ~80 lines;
-the work file may hold per-candidate fields.
+These four sections stay in the **work file** (which may hold per-candidate
+fields); to the caller return only the short decision summary
+([subagent-handoff.md](../prompts/subagent-handoff.md) §Two-tier product).
 
 ## Quality bar
 

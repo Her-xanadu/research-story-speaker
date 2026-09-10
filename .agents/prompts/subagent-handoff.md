@@ -25,7 +25,7 @@ Task slug: <short-kebab-name for work file>
 Additional context: <optional — hypotheses, constraints, deadline; keep brief>
 ```
 
-`Model class` 必须与 `AGENTS.md` §模型分档一致：`reviewer` / `research-lead` / 高风险 `result-analyst` → `strongest`；`experiment-agent` / `literature-scout` → `workhorse`。Main 自选具体模型，不得把 strongest 工作交给 fast 模型。
+`Model class` 必须与 `AGENTS.md` §模型分档一致：`reviewer` / `research-lead` / 高风险（full）`result-analyst` → `strongest`；`experiment-agent` / `literature-scout` / 普通（compact）`result-analyst` → `workhorse`。Main 自选具体模型，不得把 strongest 工作交给 fast 模型。
 
 If **Decision This Task Can Change** cannot be answered, **do not dispatch**
 unless the user explicitly asked for this task.
@@ -41,14 +41,34 @@ evidence, and already-settled conclusions — not at a full history directory.
 **Additional context** may add: premises still in dispute; work this task is
 **not** responsible for.
 
-Default delivery (work file / return; not new canonical fields):
+### Two-tier product (every subagent)
+
+A subagent produces **two** things at different detail levels — this is how the
+main session stays clean while true depth lives in the sub-context:
+
+1. **Detailed report on disk** — the full work under `Required output`
+   (`.research/work/<slug>.md`, or `.research/reviews/<EXP-ID>/…` for reviewer).
+   High-output work (code survey, logs, metric parsing, per-candidate fields,
+   full diagnosis) lives **here**, in the sub-context — **not** in the return
+   to Main. Do not enforce a fixed line budget on this report.
+
+2. **Short decision summary to Main** — a few lines Main can act on without
+   re-reading the whole report:
 
 ```text
-main conclusion or recommended action
-premises that conclusion depends on
-the most critical evidence and uncertainty
-one most discriminating next experiment or analysis
+Task: <role + EXP-ID / gap in one line>
+Completion: complete | incomplete (why)
+Finding: <main conclusion or recommended action, 1–3 lines>
+Evidence pointer: <work-file path + the key artifact paths/metrics — not pasted dumps>
+Limitation: <most critical uncertainty, or "none material">
+Recommended next: <one most discriminating next experiment or analysis>
+Proposed state changes: <which canonical files Main should touch — Main writes them>
 ```
+
+Main reads the **summary**, integrates the decision, and opens the disk report
+only on demand. The **next** subagent reads the upstream report **from disk**
+(true context isolation) — Main does not paste it forward. Do not return the
+whole report body to Main.
 
 Do not make “review all history” the default prerequisite for proposing the
 next experiment. A Main-Agent summary is not independent verification.
@@ -146,5 +166,5 @@ Fill Task fields inside that prompt (EXP-ID, Story gap, Relevant files, Required
   from the whole history
 - Treating elapsed time as proof of depth, or as an anomaly
 - Claiming the consult finished when no body or work artifact returned
-- Skipping independent `result-analyst` on high-risk results. 对异常、高成本、核心 Story 相关、准备形成正式结论、或执行者有强烈既定解释的结果，优先独立 result-analyst；普通探索允许执行和初步分析由同一 Agent 完成。
+- Skipping `result-analyst` on results that already have terminal artifacts. 默认由独立 result-analyst 承接结果解读（普通 compact / 高风险 full）；异常、高成本、核心 Story 相关、准备形成正式结论、或执行者有强烈既定解释 → full 模式。只有无终态产物 / 只看到中途 epoch 时不派。
 - Treating reviewer approve/reject as sufficient without reading review files

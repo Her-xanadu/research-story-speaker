@@ -192,8 +192,11 @@ Immediately after Verdict, keep these five sections (required headings):
 <specific experiment, fix, or review — not vague "more work">
 ```
 
-Return Verdict plus the same five sections to the caller. Task prompts keep
-method/result fill-in questions but must use these headings.
+The Verdict and five sections stay in the **review file**; to the caller return
+only the short decision summary (Verdict + a one-line Finding/Limitation/
+Recommended-next, [subagent-handoff.md](../prompts/subagent-handoff.md)
+§Two-tier product). Task prompts keep method/result fill-in questions but must
+use these headings.
 
 ## Quality bar
 
