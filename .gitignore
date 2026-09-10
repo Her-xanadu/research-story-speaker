@@ -1,1 +1,28 @@
+# Generated graphs
 graphify-out/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Local session notes — never publish
+.local/
+
+# Nested experiment code checkouts (layout C / dual-use clones)
+/repos/
+/code/
+
+# Live science artifacts. Canonical eight files stay tracked as UNINITIALIZED
+# templates; do not commit an ACTIVE overlay.
+.research/work/**
+!.research/work/.gitkeep
+.research/reviews/**
+!.research/reviews/.gitkeep
+
+# Host-local Codex steward / hooks (agents/*.toml remains tracked)
+.codex/config.toml
+.codex/hooks.json
+.codex/README-steward-hook.md
+.codex/steward-newthread-test.txt

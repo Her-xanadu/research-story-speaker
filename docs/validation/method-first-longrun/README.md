@@ -15,13 +15,12 @@ copy Outcome / Status / Verdict tables into work files.
 
 ## Project-layer note (out of Method-First commit scope)
 
-The host checkout may carry uncommitted BAPTISM-APS `.research/` science
-(EXPERIMENTS enum drift such as Status `completed-with-review`, Outcome
-embedding Verdict, Outcome `NO-GO-qualification`, missing index rows,
-STATE bloat, STORY metrics). Plan §8: **do not batch-rewrite** that
-historical ledger as Method-First work. New EXP eligibility and support-task
-rules apply **going forward**. F6 STATE bloat / F7 STORY metrics are
-project-layer issues; this Goal only changed framework templates/skills.
+A dual-use host checkout may overlay uncommitted live `.research/` science
+on the UNINITIALIZED templates (enum drift, STATE bloat, STORY metrics).
+Do **not** batch-rewrite that overlay as Method-First work. New EXP
+eligibility and support-task rules apply **going forward**. STATE bloat /
+STORY metrics in a live overlay are project-layer issues; this Goal only
+changed framework templates/skills.
 
 ## Cases
 

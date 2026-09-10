@@ -213,3 +213,4 @@ Handoff：`.agents/prompts/subagent-handoff.md`（带 `Model class`）。
 - 跨 Harness 适配：`adapters/`
 - 不静默删除负结果或历史 Experiment section
 - 升级框架层（`AGENTS.md`、`CLAUDE.md`、`.agents/`、`.claude/`、`.codex/agents/`、`.cursor/`、`adapters/`）时**永不覆盖** `.research/`
+- `PROJECT.md` 若已是 `ACTIVE`：禁止把 live `.research/`、`repos/`、宿主 `.codex/config.toml` / `hooks.json` 提交或推到本框架仓库。GitHub 只保留 UNINITIALIZED 模板。见 `CONTRIBUTING.md`

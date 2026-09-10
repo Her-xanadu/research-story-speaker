@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/Her-xanadu/research-story-speaker/releases/tag/v0.3.0"><img src="https://img.shields.io/badge/release-v0.3.0-3B5B8A" alt="release v0.3.0"></a>
+  <img src="https://img.shields.io/badge/license-MIT-3B5B8A" alt="license MIT">
   <img src="https://img.shields.io/badge/visibility-private-6B7280" alt="private repository">
   <img src="https://img.shields.io/badge/canonical-8-1B2430" alt="8 canonical research files">
   <img src="https://img.shields.io/badge/skills-15-1B2430" alt="15 skills">
@@ -27,6 +28,8 @@
   <a href="#能力边界">能力边界</a>
   ·
   <a href="#跨-harness">Harness</a>
+  ·
+  <a href="#仓库边界">仓库边界</a>
   ·
   <a href="#当前状态">当前状态</a>
 </p>
@@ -194,6 +197,14 @@ MOCK 闭环（不是当前项目）：[`examples/mock-flow-detection/`](examples
 DeepSeek Harness / OpenCode 等：**DIY**，不是官方安装路径。笔记仍在 `adapters/`，不保证跟随升级。
 
 Cold-start 证据日期 2026-09-03，见 [`docs/validation/harness-smoke/`](docs/validation/harness-smoke/)。上表**不是** v0.3.0 的独立 live Gate。
+
+---
+
+## 仓库边界
+
+GitHub 上的根 `.research/` **永远是 UNINITIALIZED 模板**。本仓库不承载某个真实科研项目的实验账本、服务器路径或结果。许可证：[MIT](LICENSE)。贡献约定：[CONTRIBUTING.md](CONTRIBUTING.md)。
+
+若你在自己的 clone 里把它 materialize 成 `ACTIVE`：那是你的科研工作区，不要提交八个 canonical 文件、`.research/work/`、`.research/reviews/` 或 `repos/`。
 
 ---
 
