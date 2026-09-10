@@ -4,11 +4,13 @@ description: >-
   Quickly recover project context from durable workspace files and continue
   research without restating the project. Use when PROJECT.md Project Status
   is UNINITIALIZED (first-time materialize), or an ACTIVE session whose STATE
-  does not already name the next EXP. Use when the user says
+  does not already name the next EXP. Also use when STATE says running but
+  terminal artifacts for that EXP already exist. Use when the user says
   continue/resume/接着做/恢复科研 and context is unknown. Do not use when PROJECT
   is ACTIVE and STATE Recommended Next Action is already an ordinary sanity
-  or exploratory EXP — use compact experiment-design and compact
-  result-analysis instead (monitor-experiment if that EXP is already running).
+  or exploratory EXP whose premises still hold — use compact experiment-design
+  and compact result-analysis instead (monitor-experiment if that EXP is already
+  running and has no terminal artifact).
 ---
 
 # Workspace Resume
@@ -29,11 +31,15 @@ Definitions: [state-files.md](../../references/state-files.md),
 - Before `research-loop` when context is unknown or the project is not yet `ACTIVE`.
 
 Not for file hygiene (`research-memory`) or route choice (`research-loop`) once
-the project is `ACTIVE` and the next step is already clear. Not for an `ACTIVE`
-ordinary sanity / exploratory EXP — use compact `experiment-design` /
-`experiment-execution` / `result-analysis`. If that EXP is already
-`running` with no terminal artifact, use `monitor-experiment` instead of
-re-framing.
+the project is `ACTIVE` and the next step is already clear **and its premises
+still hold**. Not for an `ACTIVE` ordinary sanity / exploratory EXP — use
+compact `experiment-design` / `experiment-execution` / `result-analysis`. If
+that EXP is already `running` with **no** terminal artifact, use
+`monitor-experiment` instead of re-framing. If STATE says `running` but
+terminal artifacts are already complete: this Skill **does** apply — fix the
+cursor and go to `result-analysis` at `W3 LEARN`; do not re-launch; do not
+wait on a finished job. File exists ≠ terminal
+([state-files.md](../../references/state-files.md) §更新顺序).
 
 ## Goal
 
@@ -47,9 +53,15 @@ Active Experiment
 Recommended Next Action
 ```
 
-Two-layer Workflow: if Position is `W2 TEST` and Next names an ordinary EXP,
-continue the **inner loop** (compact design/execution/monitor/analysis) — **do not**
-load `research-loop` to re-frame. See [story-loop.md](../../references/story-loop.md).
+Two-layer Workflow: if Position is `W2 TEST` and Next names an ordinary EXP
+**and that Next's premises still hold**, continue the **inner loop** (compact
+design/execution/monitor/analysis) — **do not** load `research-loop` to
+re-frame. If new evidence invalidates those premises, re-routing is allowed
+([story-loop.md](../../references/story-loop.md) §方法转移的失败解释).
+If STATE Status=`running` but this run's terminal artifacts are complete:
+do **not** re-launch or monitor; hand to `result-analysis`, Position
+`W3 LEARN` until analysis exists. See
+[state-files.md](../../references/state-files.md) §更新顺序.
 
 `PROJECT + STORY + STATE` should let a stranger grasp position in minutes
 (`AGENTS.md` Research Memory; [state-files.md](../../references/state-files.md)).
@@ -134,13 +146,16 @@ PROJECT → STORY → STATE → STATE 指向的当前 EXP section
 → 当前 EXP 指向的最新 result/work artifact
 ```
 
-On demand only: targeted `DISCOVERY.md` sections, STATE-linked EXP
+On demand only: targeted `DISCOVERY.md` sections (especially **Current
+Scientific Understanding** when premises matter), STATE-linked EXP
 sections ([experiment-record.md](../../references/experiment-record.md)),
 `RESOURCES.md`. **Do not** load entire `EXPERIMENTS.md`. **Do not** scan
 `.research/work/`. **Do not** read all REVIEWS or historical DISCOVERY.
 Follow pointers, not directories. History uses EXP-ID / keyword /
 method-name lookup. Expand EXPERIMENTS / DISCOVERY / LITERATURE only on
-true `W1 FRAME` reframe.
+true `W1 FRAME` reframe. File exists ≠ terminal; confirm the pointer
+against this run's direct evidence before treating a job as finished or
+still running.
 
 ### 3. Reconstruct the packet
 
@@ -161,8 +176,10 @@ just to get under 40 lines. Just-initialized STORY may still say
 ### 4. Emit packet and continue
 
 Report the packet compactly, then **same turn**: if `W2 TEST` + named ordinary
-EXP → compact inner loop (if Status=`running` with no terminal artifact →
-`monitor-experiment`, do not think through the wait); else execute `STATE` next or matching Skill; route
+EXP whose premises still hold → compact inner loop (if Status=`running` with
+no terminal artifact → `monitor-experiment`, do not think through the wait;
+if terminal artifacts are already complete → `result-analysis` at `W3 LEARN`,
+do not re-launch); else execute `STATE` next or matching Skill; route
 unclear → `research-loop` (FRAME/W4 only); files disagree → `research-memory` first.
 
 Never end with only “已恢复” when an actionable step exists. Do not open a

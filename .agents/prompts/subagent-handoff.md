@@ -30,6 +30,36 @@ Additional context: <optional — hypotheses, constraints, deadline; keep brief>
 If **Decision This Task Can Change** cannot be answered, **do not dispatch**
 unless the user explicitly asked for this task.
 
+Each consult has **one** main decision. Reuse **Focal Scientific Question**,
+**Decision This Task Can Change**, and **Return Condition**. Do not dispatch
+several advisors for “read the whole project history and propose the final
+method.” Narrow that request to the current decision and the limited evidence
+it needs.
+
+**Relevant files** point at the current relevant *paragraphs*, the original
+evidence, and already-settled conclusions — not at a full history directory.
+**Additional context** may add: premises still in dispute; work this task is
+**not** responsible for.
+
+Default delivery (work file / return; not new canonical fields):
+
+```text
+main conclusion or recommended action
+premises that conclusion depends on
+the most critical evidence and uncertainty
+one most discriminating next experiment or analysis
+```
+
+Do not make “review all history” the default prerequisite for proposing the
+next experiment. A Main-Agent summary is not independent verification.
+Local absolute paths are not assumed readable by an external Agent.
+
+One consult defaults to **one trackable task**. Duration does not prove
+depth and is not an anomaly by itself. If the body text or required work
+artifact is missing, record the consult as **incomplete** — do not claim it
+finished, do not invent progress, do not auto-redispatch the same question,
+and do not silently downgrade a key judgment.
+
 **Critical:** List paths only. Subagents must **READ workspace files from disk** — never paste full `.research/*.md` contents into the handoff.
 
 `EXP-ID: NEW` 只用于设计提案。真正开始改代码或执行前，必须由 Main Agent 在 EXPERIMENTS.md 分配/预留具体 EXP-ID 后再 dispatch experiment-agent。
@@ -90,17 +120,31 @@ Fill Task fields inside that prompt (EXP-ID, Story gap, Relevant files, Required
 
 ## After subagent returns
 
-1. Read the work file or review file from disk.
-2. Integrate findings into the research loop (`research-loop` skill).
-3. Update canonical state via appropriate skills, following
+1. Read the work file or review file from disk. Missing body or required
+   artifact → consult **incomplete**; keep the question unknown; do not
+   invent progress.
+2. Short Main integration **before adopting** (no new Reviewer): which
+   advice is adopted; whether its key premises hold; which substitutions
+   would change the question under test. A Main summary is not independent
+   verification.
+3. Integrate findings into the research loop (`research-loop` skill).
+4. Update canonical state via appropriate skills, following
    [state-files.md](../references/state-files.md) §更新顺序.
    LITERATURE / REVIEWS are updated by Main Agent from scout/reviewer output.
-4. Do not ask the subagent to patch state files retroactively.
+5. Do not ask the subagent to patch state files retroactively.
+   Do not auto-redispatch the same question. Do not silently downgrade a
+   key judgment.
 
 ## Anti-patterns
 
 - Pasting STORY or EXPERIMENTS into chat instead of path pointers
+- Pointing Relevant files at a full history directory instead of the
+  current paragraphs / original evidence / settled conclusions
 - Multiple agents editing the same canonical file in one turn
 - Dispatching a subagent that cannot name Decision This Task Can Change
+- Dispatching several advisors because the user asked for a “final method”
+  from the whole history
+- Treating elapsed time as proof of depth, or as an anomaly
+- Claiming the consult finished when no body or work artifact returned
 - Skipping independent `result-analyst` on high-risk results. 对异常、高成本、核心 Story 相关、准备形成正式结论、或执行者有强烈既定解释的结果，优先独立 result-analyst；普通探索允许执行和初步分析由同一 Agent 完成。
 - Treating reviewer approve/reject as sufficient without reading review files

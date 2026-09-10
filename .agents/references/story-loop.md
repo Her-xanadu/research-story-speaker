@@ -323,11 +323,7 @@ STORY       = 今天最终还相信什么（约一页六段）
 
 STORY **不**写逐条 EXP 流水账。历史为何变成今天这个 Story → DISCOVERY；每一步 → EXPERIMENTS。
 
-默认记忆更新链：`state-files.md` §更新顺序。
-
-```text
-EXPERIMENTS → DISCOVERY → STORY（如需要）→ STATE
-```
+默认记忆更新链：`state-files.md` §更新顺序（含执行已完成而分析未完成时游标留 W3；不要在此复述全文）。
 
 ## Gap 优先级
 

@@ -4,7 +4,7 @@
 
 ## Current Scientific Understanding
 
-{{对问题域的当前综合理解，2–5 句}}
+{{对问题域的当前综合理解，2–5 句。重要前提与正在检验的主张写这里；旧机制被替代时更新表述，不得写成已证明。}}
 
 ## Positive Discoveries
 

@@ -53,6 +53,8 @@ Problem → Key Observation → Core Idea → Evidence → Boundary → Open Gap
 
 **可改：** Key Observation、Core Idea（方法与组合）、Evidence、Boundary、Open Gaps。
 
+Core Idea 可写成「当前正在检验的新假设」，不必等成功。更新假设 ≠ 提升 Evidence。大改仍按 Level 2 与按风险审查；不能改冻结研究目标，不能把大改藏成 Level 1。
+
 小改（Evidence / Boundary / Open Gaps / 表述）Agent 可自主完成。方法大改（Key Observation / Core Idea）建议针对触发实验调用 Reviewer。换方法 ≠ 换研究目标。
 
 ### STATE.md
@@ -82,6 +84,7 @@ Key Files：≤ 8 项
 ```
 
 超过时：Main 在本次写 STATE 时直接就地压缩。不要「STATE 41 行 → 调 research-memory → 扫整个项目 → 才能继续实验」。
+就地收束**不得**为压缩而丢失授权边界、blocker、或恢复指针（当前 EXP 状态、结果指针、Support Resume）。
 
 #### Current Focus 必须优先描述科学问题
 
@@ -161,6 +164,8 @@ Research Evolution
 
 重要 Discovery 标注 `Evidence: EXP-xxx`。普通 debug（路径错误、语法错误）不进入。
 
+**Current Scientific Understanding** 是当前重要前提与正在检验的主张的落点。冷启动或关键判断前**定向读**这一节；修正只针对当前相关条目，不要重写整份 DISCOVERY。旧机制已被替代时，更新这里的当前假设表述，**不得**写成已证明机制。
+
 ### EXPERIMENTS.md
 
 **所有实验的唯一完整总账**。单文件，每个 Experiment 永久保留自己的 section。
@@ -226,10 +231,19 @@ Reviewer 与 Experiment 一一关联的总览。完整 Review 在 `.research/rev
 重要科研进展后默认：
 
 ```text
-EXPERIMENTS → DISCOVERY → STORY（如需要）→ STATE
+EXPERIMENTS → DISCOVERY（认识变时）→ STORY（需同步时）→ STATE
 ```
 
 LITERATURE 与 REVIEWS 按任务独立更新，不插入上述链的中间替代 DISCOVERY。
+无事务管理器、锁、或运行时脚本。冷启动仍读 Scientific Working Set。
+
+下一轮**大范围检索 / 委托 / 发射前**，先保存最小可恢复事实：当前 EXP 的真实执行状态与结果指针、必要科学认识、STATE Active / Next。这不是新字段，写进现有 EXPERIMENTS / DISCOVERY / STATE 标题。
+
+分析还需较长时间：先保存「执行已完成而分析未完成」，游标留 **`W3 LEARN`**。不要把已结束任务继续写成 `running`。不要为赶状态提前赋予科学 Outcome。
+
+终态产物与 STATE 冲突：以**本次运行的直接证据**核对后修游标，不重复发射，不继续监控已结束任务。文件存在 ≠ 终态。
+
+STATUS `running` 但终态产物已完整、分析未完成 → 转 W3 分析，不重发射、不无效等待。
 
 ## 尺寸建议
 

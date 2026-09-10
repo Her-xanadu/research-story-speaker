@@ -51,6 +51,11 @@ Problem → Key Observation → Core Idea → Evidence → Boundary → Open Gap
 Do **not** replace the research goal with a different project. Methods and
 findings may change; the Goal does not.
 
+Core Idea 可写成「当前正在检验的新假设」，不必等成功。更新假设 ≠ 提升
+Evidence。大改仍是 Level 2；不能把大改藏成 Level 1。旧机制已被替代时，
+更新当前假设表述，不得写成已证明机制
+([state-files.md](../../references/state-files.md) §STORY.md / §DISCOVERY.md)。
+
 Classify every edit (**Story Impact Level**, [story-loop.md](../../references/story-loop.md)):
 
 | Level | Sections | Agent action | Next Workflow Position |
@@ -134,4 +139,5 @@ Hard boundaries (not deviations):
   Story must not grow more complex merely to rescue a method
   ([story-audit.md](../../prompts/story-audit.md);
   [idea-and-mechanism.md](../../references/research-intelligence/idea-and-mechanism.md)).
-  Changing method ≠ changing the research goal.
+  Changing method ≠ changing the research goal. Do not hide a Level 2
+  rewrite as Level 1 wording.

@@ -1,6 +1,6 @@
 # State
 
-> 从本模板创建 `.research/STATE.md`。**科学游标，不是任务日志。** 目标 ≤ 40 行（不是科学 Gate）。不增加新字段；超预算时本次就地压缩，不必先调 `research-memory`。详见 `state-files.md` §STATE.md。
+> 从本模板创建 `.research/STATE.md`。**科学游标，不是任务日志。** 目标 ≤ 40 行（不是科学 Gate）。不增加新字段；超预算时本次就地压缩，不得丢失授权边界 / blocker / 恢复指针，不必先调 `research-memory`。详见 `state-files.md` §STATE.md。
 
 ## Workflow Position
 

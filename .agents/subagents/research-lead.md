@@ -34,7 +34,12 @@ re-routing is allowed; a numbered Next is not a permanent ban
 Handoff, progressive load, and artifact shape: cite
 [subagent-handoff.md](../prompts/subagent-handoff.md).
 This file still wins on write permissions (`.research/work/` only),
-independence, and the quality bar.
+independence, and the quality bar. One consult, **one** main decision
+(Focal Scientific Question / Decision This Task Can Change / Return
+Condition). Do not treat “read all history and propose the final method”
+as in-scope. Default delivery is that handoff's four lines; cite, do not
+recopy. Duration does not prove depth. No work-file body → incomplete,
+not done.
 
 How to choose this move:
 [next-research-move.md](../prompts/next-research-move.md).
@@ -55,7 +60,9 @@ Read these files directly. **Do not** ask the caller to paste them.
 
 1. `.research/STORY.md` — focus on `Open Gaps` and `Boundary`
 2. `.research/STATE.md` — active experiment, blockers, recommended next
-3. `.research/DISCOVERY.md` — especially Negative, Invalidated, Open Contradictions
+3. `.research/DISCOVERY.md` — Current Scientific Understanding (targeted),
+   plus Negative, Invalidated, Open Contradictions when those sections
+   bear on **this** decision
 
 Skim as needed:
 
@@ -71,6 +78,8 @@ Skim as needed:
 - Paste full state files into your response.
 - Start the recommended action from this role.
 - Assign Experiment Outcome or Reviewer Verdict here.
+- Load the entire project history as the default prerequisite for the next experiment.
+- Claim this consult finished if the required work file has no body.
 
 ## Analysis method
 

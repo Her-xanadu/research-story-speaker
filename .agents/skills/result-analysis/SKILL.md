@@ -76,8 +76,12 @@ A result that matches the EXP's predeclared scientific prediction is
 Compact persist: write Main Findings, Interpretation, Outcome, **Story Impact**
 as `Level 0|1|2 — …` into EXPERIMENTS (section + Index). Ordinary compact
 analysis does **not** write DISCOVERY or promote sanity into Story Evidence.
-Update STATE **Workflow Position**: Next clear → `W2 TEST`; result unclear →
-`W3 LEARN`. Level 2 or reframe needed → hand to `research-loop` / `story-maintenance`,
+If analysis still needs time: persist **execution completed, analysis not
+completed**, keep Outcome `not-assessed`, set Position **`W3 LEARN`**. Do not
+leave a finished job as Status=`running`. Do not assign a scientific Outcome
+just to catch up STATE. Update STATE **Workflow Position**: Next clear →
+`W2 TEST`; result unclear or analysis unfinished → `W3 LEARN`. Level 2 or
+reframe needed → hand to `research-loop` / `story-maintenance`,
 Position `W1 FRAME`. See [story-loop.md](../../references/story-loop.md) §W4.
 Required reads: `.research/EXPERIMENTS.md` (target EXP section /
 index lookup only), raw artifacts or operator-supplied log /
@@ -185,6 +189,9 @@ only a metrics summary.
 ### Persist Protocol (both modes)
 
 Follow `state-files.md` §更新顺序 (open that file on full diagnosis only).
+If analysis is unfinished: write mechanical facts only, keep Outcome
+`not-assessed`, do not invent a scientific Outcome, set Position
+`W3 LEARN`, and skip DISCOVERY / STORY scientific writes.
 
 1. **Update EXPERIMENTS** — Main Findings, Interpretation, Discovery Impact,
    Story Impact (`Level 0|1|2 — …`), Next, **Outcome**; sync Index.
@@ -205,7 +212,12 @@ Follow `state-files.md` §更新顺序 (open that file on full diagnosis only).
   `experiment-review` on the triggering EXP. Ordinary compact analysis does
   **not** promote a sanity result into Story Evidence.
 4. **Update STATE** — Workflow Position per story-loop §W4, gap, active/next
-   experiment, blockers (inner-loop default: `W2 TEST`).
+   experiment, blockers (inner-loop default: `W2 TEST`). Before the next
+   large retrieval / delegation / launch, the cursor must already hold the
+   recoverable facts in [state-files.md](../../references/state-files.md)
+   §更新顺序. If STATE still says `running` but this run's terminal artifacts
+   are complete: fix the cursor to `W3 LEARN` (analysis) or the W4 exit;
+   do **not** re-launch; do **not** keep monitoring. File exists ≠ terminal.
 5. **Chain** — Clear next test → `experiment-design` or `experiment-execution`;
    contested evidence → `experiment-review`; routine compaction → `research-memory`.
 

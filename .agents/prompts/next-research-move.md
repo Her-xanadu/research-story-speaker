@@ -37,14 +37,11 @@ Role: research-lead
 Story gap (caller's current guess, may be wrong): <one sentence>
 Why a fresh read: <stuck / parallel ranking / STORY vs STATE vs DISCOVERY disagreement>
 Relevant files:
-  - .research/STORY.md
-  - .research/STATE.md
-  - .research/DISCOVERY.md
-  - .research/EXPERIMENTS.md → index (and sections only if needed to avoid duplicates)
-  - .research/PROJECT.md
-  - .research/RESOURCES.md
-  - .research/LITERATURE.md / .research/REVIEWS.md (skim if novelty or review debt is plausible)
+  - <current STORY / STATE / DISCOVERY paragraphs that bear on this decision>
+  - <original evidence + already-settled conclusions; not a full history directory>
+  - .research/EXPERIMENTS.md → index (and the one section this decision needs)
 Required output: .research/work/<task-slug>.md
+Additional context: <premises still in dispute; work this task is not responsible for>
 ```
 
 Subagent **reads from disk**. Keep the handoff to paths
@@ -62,6 +59,11 @@ Do **not** use this prompt to run an EXP, write Story, assign Outcome, or
 replace idea-evaluation / evidence-verification. Those gates have their own
 prompts. Ordinary “continue the already-chosen EXP” does not need a lead
 pass, unless new evidence invalidates that Next's premises.
+Do **not** accept “read the entire project history and propose the final
+method” as the task; narrow it to **one** current decision and the limited
+evidence it needs ([subagent-handoff.md](subagent-handoff.md)). Do not
+default-dispatch several advisors. Reviewing all history is not a
+prerequisite for proposing the next experiment.
 
 If Position is `W2` / `W3` / `W4` and the scientific question is still
 clear, recommend continuing the Method Loop — not a new route
@@ -73,11 +75,12 @@ serve it are allowed; unbounded multi-route after W2 focus is not.
 
 ## Scientific context to read
 
-Read first (research-lead.md): `STORY.md` (Open Gaps, Boundary), `STATE.md`
-(active experiment, blockers, recommended next), `DISCOVERY.md` (Negative,
-Invalidated, Open Contradictions). Skim EXPERIMENTS **index** so you do not
-recommend duplicate work — do **not** load the entire ledger; skim PROJECT
-for completion conditions and constraints.
+Read first (research-lead.md): the **current** STORY / STATE / DISCOVERY
+paragraphs named in Relevant files (Open Gaps, Boundary, Current
+Scientific Understanding when premises matter). Skim EXPERIMENTS **index**
+so you do not recommend duplicate work — do **not** load the entire
+ledger. Local absolute paths in Additional context are not assumed
+readable.
 
 Identify which **claim kind** is currently weakest
 (scientific-reasoning.md §B) — Problem, Observation, Mechanism, Performance,
