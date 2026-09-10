@@ -72,12 +72,15 @@ logged-in local host.
 Prereqs:
 - Codex: set host-local `[agents]` in `.codex/config.toml` (git-ignored):
   `enabled = true`, `max_concurrent_threads_per_session = 3`,
-  `default_subagent_model = <workhorse slug>`. Do **not** add `max_depth`
-  (not in the current schema). Bind `model` once for strongest roles
-  (adapters/codex.md §Host model binding). Verify your CLI version can load
-  custom agents (upstream #26868 / #27061).
-- Claude: `claude` logged in; `.claude/agents/*.md` discovered; strongest roles
-  resolve to Opus (or your bound strongest).
+  `default_subagent_model = <cheap-end slug>`. Do **not** add `max_depth`
+  (not in the current schema). Model selection is per-dispatch spectrum; only
+  the always-floor `reviewer` keeps a native `xhigh` pin, sometimes-floor roles
+  reach the floor via a strongest session or a host-local pin
+  (adapters/codex.md §Model selection). Verify your CLI version can load custom
+  agents (upstream #26868 / #27061).
+- Claude: `claude` logged in; `.claude/agents/*.md` discovered; `reviewer`
+  resolves to Opus (native floor default); other roles inherit and Main raises
+  floor dispatches to `opus`+`xhigh` per dispatch.
 
 Exact commands (run from repo root):
 

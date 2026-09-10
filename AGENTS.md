@@ -77,30 +77,23 @@ W1 可以换机制、换路线、改 Story 细节；**不能**把项目改成另
 
 ## 模型分档
 
-科研流程**不是**每一步都需要最强推理。**派不派、派谁默认按 `.agents/references/story-loop.md` §阶段职责调度矩阵**（见 §Autonomy / §Subagents）；Main 在选定角色后，为它选对**档**。只有两档：
+科研流程**不是**每一步都需要最强推理，也**不钉死**任何具体模型。Main **每次派发时自主选** model 家族 **与** reasoning effort，沿一条从「便宜、偏弱」到「最强、最高 effort」的**光谱**取值。原生角色文件默认 `inherit`（= 由 Main 在派发时决定；唯一例外见下）。
 
-| 档 | 含义 | 用在 |
-|----|------|------|
-| **workhorse**（干活） | 当前会话的默认 / 快模型即可 | 实现、发射、读日志、改文件、本地文献 consult、普通 sanity 的设计与看数 |
-| **strongest**（最强） | 当前 harness **能给的最强推理**；禁止降到 fast / composer / haiku / Instant | 会改变「我们相信什么 / 下一步科学判断」的步骤 |
+**选择原则**：用「能达标的最省模型」；越接近「会改变我们相信什么 / 下一步科学判断」，越往强模型 + 高 effort 走。派不派、派谁仍按 `.agents/references/story-loop.md` §阶段职责调度矩阵（见 §Autonomy / §Subagents）。
 
-**必须 strongest**
+**大胆用便宜 / 弱模型**（低 stakes，按需再升）：实现、发射、读日志、改文件、parser / 路径 / 日志 / schema Support、本地文献 consult、模板填充、状态文件对齐、普通 1-seed sanity 的设计与看数、compact 结果解读、运行监控（归执行任务持有）。
+
+**薄下限（hard floor，必须最强 + 最高 effort，禁止降到 fast / composer / haiku / Instant）——只有这三类**：
 
 - 独立 Review（`experiment-review` / `reviewer`）
-- 新 Core Idea / 换路线 / 很贵的下一步（`idea-evaluation`）
-- 结果要进 Story Evidence、或执行者已有强烈既定解释（`evidence-verification`；`result-analyst` 用 **full / strongest** 模式，普通结果则 compact / workhorse）
-- W1，或 W4 且下一科学问题 / 机制不清（`research-loop`；此时才派 `research-lead`）
-- 可能改 Core Idea / 换机制的 W4
+- 新 Core Idea / 换路线 / 很贵的下一步（`idea-evaluation`；含会真正重构机制/路线的 W1、可能改 Core Idea 的 W4）
+- 结果要进 Story Evidence 的高风险解读（`evidence-verification`；`result-analyst` 用 **full** 模式）
 
-**必须 workhorse（不要升档）**
+下限之外的一切（含 `research-lead` 的常规判别设计、`result-analyst` 的 compact 解读），Main 自主沿光谱选，按 stakes 升降。选择在**派发时**下达（见 `subagent-handoff.md` 的 `Model+effort` 字段）。
 
-- 运行监控归执行任务持有（`experiment-agent` 自己的子上下文，或 Main 自发微改时本对话 `sleep N; probe`）；不为每次检查新开 subagent
-- 普通 1-seed sanity 的实现与发射
-- parser / 路径 / 日志 / schema 等 Support
-- `literature-scout` 读已有库
-- 状态文件对齐、模板填充、把已决定的方法写成代码
+唯一保留的原生默认：`reviewer` 是**恒定下限**角色，其原生配置保留「最强」默认；其余角色 `inherit`。某个 harness 若无法在派发时覆盖模型，才在该 harness 对下限角色回退到静态 pin（见 `adapters/`）。
 
-Main 可在同一档里自选具体模型。禁止：用 workhorse 做 Review；用 strongest 去 sleep 或修 parser；把 Codex/Cursor 内置的 generic `worker` / `explorer` / `generalPurpose` / `explore` 当成五个科研角色。
+禁止：对上面三类下限用弱 / 快模型；把「便宜自由」用成「独立 Review 也用便宜模型」；用最强模型去 sleep 或修 parser；把 Codex/Cursor 内置 generic `worker` / `explorer` / `generalPurpose` / `explore` 当成五个科研角色。
 
 ## Autonomy
 
@@ -189,15 +182,15 @@ W2 设计一个判别实验（默认从很小开始）
 - Claude Code：`.claude/agents/<role>.md`
 - Cursor：`.cursor/agents/<role>.md`（Task `subagent_type=<role>`）
 
-| 角色 | 默认档 | 默认承接（哪段是它的默认） | 例外（Main 自己做 / 不派） |
+| 角色 | 默认 model+effort（派发时选，见 §模型分档） | 默认承接（哪段是它的默认） | 例外（Main 自己做 / 不派） |
 |------|--------|----------------------------|----------------------------|
-| `experiment-agent` | workhorse | **W2 执行默认**：实现→发射→**持有运行**→有界失败→交付终态/checkpoint | 本对话几行就能发射的微改（Main 自己发，仍归本任务持有） |
-| `result-analyst` | compact→workhorse / high-stakes→strongest | **W3 结果默认承接**：compact 解读普通结果，full 解读高风险 | 无终态产物；只看到中途 epoch |
-| `research-lead` | strongest | **W1 / 设计**：科学问题与判别设计；W4 下一步不清 | 内循环已点名下一 EXP 且前提仍成立 |
-| `literature-scout` | workhorse | Gap 文献并行 consult 本地库 | 每个内循环 EXP；要上网搜（返回 `NEEDS_REFRESH`） |
-| `reviewer` | strongest | 高 **scientific stakes** 独立批判（**gated**，非每个 patch） | reviewer 空闲；改 selector；普通工程 |
+| `experiment-agent` | 沿光谱选，默认偏省 | **W2 执行默认**：实现→发射→**持有运行**→有界失败→交付终态/checkpoint | 本对话几行就能发射的微改（Main 自己发，仍归本任务持有） |
+| `result-analyst` | compact 沿光谱选；**进 Story Evidence 的 full 解读走下限（最强+最高 effort）** | **W3 结果默认承接**：compact 解读普通结果，full 解读高风险 | 无终态产物；只看到中途 epoch |
+| `research-lead` | 沿光谱选；**重构机制 / 换路线 / 很贵下一步走下限** | **W1 / 设计**：科学问题与判别设计；W4 下一步不清 | 内循环已点名下一 EXP 且前提仍成立 |
+| `literature-scout` | 沿光谱选，默认偏省 | Gap 文献并行 consult 本地库 | 每个内循环 EXP；要上网搜（返回 `NEEDS_REFRESH`） |
+| `reviewer` | **恒定下限（最强+最高 effort）；原生默认保留** | 高 **scientific stakes** 独立批判（**gated**，非每个 patch） | reviewer 空闲；改 selector；普通工程 |
 
-Handoff：`.agents/prompts/subagent-handoff.md`（带 `Model class`）。
+Handoff：`.agents/prompts/subagent-handoff.md`（带 `Model+effort`，Main 按 stakes 沿光谱选，下限三类强制最强）。
 
 **写权限：** Subagent 只写 `.research/work/` 或 `.research/reviews/<EXP-ID>/`；`experiment-agent` 额外可写 `RESOURCES.md` / `git-linking.md` 授权的**代码仓与结果路径**（保留 EXP-ID 下的 source / branch / commit / run / raw result）。八个 canonical 状态文件只由 Main Agent 更新；Subagent 不写 canonical，也不写别的角色的 `.research/reviews/`。
 

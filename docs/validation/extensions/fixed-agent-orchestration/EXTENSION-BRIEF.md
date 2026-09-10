@@ -259,10 +259,11 @@ Codex/Claude runtime-unverified pending an authenticated host smoke test.
 Applied after the reviewer accepted the core design:
 1. **Codex `max_depth` removed** — not in the current Codex `[agents]` schema;
    one-level dispatch is now enforced by instruction only.
-2. **"Fix the concrete model" → one-time host model binding** — adapters now
-   state honestly that Codex/Cursor strongest roles ship `inherit` and give a
-   one-time per-install `model` binding step (Codex `model=` / Cursor
-   `model: <slug>[effort=high]`); Claude ships concrete `model: opus`.
+2. **"Fix the concrete model" → one-time host model binding** —
+   ***SUPERSEDED by the model-selection strategy change below.*** The interim
+   fix bound a concrete strongest `model` once per install for the strongest
+   roles; the project owner then chose per-dispatch spectrum selection instead
+   (see next section).
 3. **Parallel code-writing `experiment-agent` isolation** — two code-writing
    `experiment-agent`s may run in parallel only in separate
    worktree/clone/working directories (own branch); otherwise serialize.
@@ -273,3 +274,30 @@ blocked by missing credentials (no Codex CLI/creds; Claude CLI installs but not
 logged in). Exact one-command reproductions and a canonical `mock-flow-prompt.txt`
 are provided in `VALIDATION.md` §C for an authenticated host. Both remain
 `RUNTIME-UNVERIFIED`; the Cursor pass is not extrapolated to the other two.
+
+## Model-selection strategy change (supersedes pre-merge fix #2)
+
+The project owner decided **not** to pin concrete models. Model selection is now
+a **spectrum** (cheap/weak → strongest/highest reasoning effort) chosen **per
+dispatch** by Main via the handoff `Model+effort` field, defaulting to the
+cheapest model that clears the task.
+
+- **Thin floor (hard, 3 categories)** must use strongest + highest effort:
+  independent Review (`reviewer`); new Core Idea / route change / expensive next
+  step (`idea-evaluation`, incl. mechanism-reframing W1, possible-Core-Idea
+  change W4); result heading into Story Evidence (`result-analyst` full).
+- **Native defaults**: only `reviewer` (the single always-floor role) keeps its
+  native strongest default (Claude `opus`+`xhigh`, Codex `model_reasoning_effort
+  = "xhigh"`). All other roles ship `model: inherit`; `research-lead` changed
+  from a pinned strongest to `inherit`.
+- **Per-harness**: Claude and Cursor resolve model/effort per dispatched
+  subagent, so Main sets it at dispatch. Codex `.toml` is static config with no
+  per-dispatch override, so sometimes-floor roles ship no pin (routine stays
+  cheap) and reach the floor via a strongest session or a host-local pin; the
+  always-floor `reviewer` keeps its `xhigh` pin. A static per-harness pin is the
+  documented fallback only when a harness cannot override per dispatch.
+
+Changed files: `AGENTS.md` §模型分档 + §Subagents table; `story-loop.md`
+§阶段职责; `subagent-handoff.md` (`Model class` → `Model+effort`); role wrappers
+for `research-lead` (opus/xhigh → inherit) and role bodies; the three adapters
+(`adapters/{codex,claude-code,cursor}.md`) and `adapters/README.md`.

@@ -177,7 +177,7 @@ MOCK 闭环（不是当前项目）：[`examples/mock-flow-detection/`](examples
 | `framework-maintenance` | 审计、回归、发版 |
 | `framework-extension` | 扩展设计与接入 |
 
-**Subagents（5）**：`research-lead` · `literature-scout` · `experiment-agent` · `result-analyst` · `reviewer`。只写 `.research/work/` 或 reviews；八个 canonical 文件由 Main Agent 更新。Main 自行决定派不派；模型分 **workhorse**（干活）与 **strongest**（改变信念/下一步判断）两档，见 `AGENTS.md`。
+**Subagents（5）**：`research-lead` · `literature-scout` · `experiment-agent` · `result-analyst` · `reviewer`。只写 `.research/work/` 或 reviews；八个 canonical 文件由 Main Agent 更新。Main 自行决定派不派；模型**每次派发时沿光谱选**（便宜偏弱 → 最强最高 effort），只有**薄下限三类**（独立 Review / 换核心方法 / 进 Story Evidence）保底用最强，见 `AGENTS.md` §模型分档。
 
 目录三分：框架层（`AGENTS.md` / `CLAUDE.md` / `.agents/` / `.claude/` / `.codex/agents/` / `.cursor/` / `adapters/`）· 项目层（`.research/`）· 示例与验证（`examples/` · `docs/validation/`）。
 
@@ -187,12 +187,12 @@ MOCK 闭环（不是当前项目）：[`examples/mock-flow-detection/`](examples
 
 薄适配在 [`adapters/`](adapters/README.md)。科学逻辑只住在 `AGENTS.md` 与 `.agents/`。同一 clone 已带上三家会读的文件。
 
-| Harness | 入口 | Skills 发现 | Subagent 谁被调用 | 模型档 |
+| Harness | 入口 | Skills 发现 | Subagent 谁被调用 | 模型选择 |
 |---------|------|-------------|-------------------|--------|
-| **Codex**（官方） | `AGENTS.md` | `.agents/skills/` | `.codex/agents/<role>.toml` 的 `name` + `description` | workhorse inherit；`reviewer` / `research-lead` / `result-analyst` 为 `xhigh` |
-| **Claude Code**（官方） | `CLAUDE.md` → `AGENTS.md` | `.claude/skills/<name>` symlink | `.claude/agents/<role>.md` | workhorse `inherit`；上述三角色 `opus` |
-| **Cursor**（官方） | `AGENTS.md` | `.agents/skills/` 与 `.cursor/skills/<name>` symlink | Task `subagent_type=<role>` ← `.cursor/agents/<role>.md` | inherit；strongest 角色禁止降到 fast Composer。内置 explore/generalPurpose **不是** 五个科研角色 |
-| 其它 | 自己把入口指到 `AGENTS.md` | 指到 `.agents/skills/` | 指到 `.agents/subagents/` 或等价配置 | 遵守 `AGENTS.md` 两档，不要每步都开最强 |
+| **Codex**（官方） | `AGENTS.md` | `.agents/skills/` | `.codex/agents/<role>.toml` 的 `name` + `description` | 派发时沿光谱选；`reviewer` 保留原生 `xhigh` 下限，其余 inherit（静态配置，下限见 `adapters/codex.md`） |
+| **Claude Code**（官方） | `CLAUDE.md` → `AGENTS.md` | `.claude/skills/<name>` symlink | `.claude/agents/<role>.md` | 派发时沿光谱选；`reviewer` 保留原生 `opus`+`xhigh`，其余 inherit，下限派发升到 `opus`+`xhigh` |
+| **Cursor**（官方） | `AGENTS.md` | `.agents/skills/` 与 `.cursor/skills/<name>` symlink | Task `subagent_type=<role>` ← `.cursor/agents/<role>.md` | 全部 inherit，派发时选；下限三类禁止降到 fast Composer。内置 explore/generalPurpose **不是** 五个科研角色 |
+| 其它 | 自己把入口指到 `AGENTS.md` | 指到 `.agents/skills/` | 指到 `.agents/subagents/` 或等价配置 | 遵守 `AGENTS.md` §模型分档（光谱 + 薄下限），不要每步都开最强 |
 
 DeepSeek Harness / OpenCode 等：**DIY**，不是官方安装路径。笔记仍在 `adapters/`，不保证跟随升级。
 

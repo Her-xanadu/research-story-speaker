@@ -6,7 +6,7 @@ Main Agent: use this template when dispatching any subagent. Point the subagent 
 
 ```text
 Role: <research-lead | literature-scout | experiment-agent | result-analyst | reviewer>
-Model class: <workhorse | strongest>
+Model+effort: <model family + reasoning effort — Main picks along the spectrum by stakes; floor 3 categories force strongest+highest>
 EXP-ID: <e.g. EXP-031, or N/A for research-lead / literature-scout>
 Story gap: <one sentence — STORY Open Gap or Boundary item>
 Focal Scientific Question:
@@ -25,7 +25,7 @@ Task slug: <short-kebab-name for work file>
 Additional context: <optional — hypotheses, constraints, deadline; keep brief>
 ```
 
-`Model class` 必须与 `AGENTS.md` §模型分档一致：`reviewer` / `research-lead` / 高风险（full）`result-analyst` → `strongest`；`experiment-agent` / `literature-scout` / 普通（compact）`result-analyst` → `workhorse`。Main 自选具体模型，不得把 strongest 工作交给 fast 模型。
+`Model+effort` 必须与 `AGENTS.md` §模型分档一致：Main **每次派发时**沿「便宜偏弱 → 最强最高 effort」光谱自选 model 家族与 reasoning effort，按 stakes 升降；默认偏省。**薄下限三类强制最强 + 最高 effort**（禁止 fast / composer / haiku / Instant）：独立 Review（`reviewer`）、新 Core Idea / 换路线 / 很贵下一步（`idea-evaluation`，含重构机制的 W1、可能改 Core Idea 的 W4）、结果进 Story Evidence 的高风险解读（`result-analyst` full）。下限之外（含 `research-lead` 常规判别设计、`result-analyst` compact）自主沿光谱选。`reviewer` 原生默认已是下限，其余角色原生 `inherit`（Main 在此字段下达具体选择）。
 
 If **Decision This Task Can Change** cannot be answered, **do not dispatch**
 unless the user explicitly asked for this task.

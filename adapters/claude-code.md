@@ -22,26 +22,31 @@ Who gets spawned is decided by:
 
 YAML `name` + `description` are the routing trigger. Body tells the subagent to read `.agents/subagents/<role>.md` — do not fork the scientific contract.
 
-| Role | `model` / `effort` in wrapper | Default class | Default承接阶段 |
-|------|-------------------------------|---------------|-----------------|
-| `experiment-agent` | `inherit` | workhorse | W2 执行（持有整段运行） |
-| `literature-scout` | `inherit` | workhorse | W1 Gap 文献（并行） |
-| `result-analyst` | `inherit` (compact); full raised to `opus` + `effort: xhigh` | dual | W3 结果解读（默认承接） |
-| `research-lead` | `opus` + `effort: xhigh` | strongest | W1 / 判别设计（默认承接） |
-| `reviewer` | `opus` + `effort: xhigh` | strongest | 高 stakes 独立批判（gated） |
+Model selection is **per dispatch** along a spectrum (cheap/weak → strongest/highest effort); native wrappers ship `inherit` except the one floor role. See `AGENTS.md` §模型分档.
+
+| Role | Native `model` / `effort` in wrapper | Per-dispatch model+effort | Default承接阶段 |
+|------|-------------------------------|---------------------------|-----------------|
+| `experiment-agent` | `inherit` | Main picks along the spectrum, default cheaper | W2 执行（持有整段运行） |
+| `literature-scout` | `inherit` | Main picks along the spectrum, default cheaper | W1 Gap 文献（并行） |
+| `result-analyst` | `inherit` | compact: cheaper; **full into Story Evidence = floor → `opus` + `effort: xhigh`** | W3 结果解读（默认承接） |
+| `research-lead` | `inherit` | by stakes; **reframe / new Core Idea / expensive next = floor → `opus` + `effort: xhigh`** | W1 / 判别设计（默认承接） |
+| `reviewer` | **`opus` + `effort: xhigh`** (native floor default, retained) | always floor | 高 stakes 独立批判（gated） |
 
 Frontmatter fields available per official docs: `description`, `model`,
 `effort` (`low|medium|high|xhigh|max`), `tools`, `disallowedTools`,
 `permissionMode`, `skills`, `isolation: worktree`, `background`. Delegation is
-`description`-driven. `result-analyst` is dual-tier: default `inherit` for
-compact ordinary results, and Main dispatches it with `opus` + `effort: xhigh`
-for full/high-stakes.
+`description`-driven. Because Claude Code resolves `model`/`effort` per
+dispatched subagent, Main sets the concrete model + effort at dispatch time for
+every role except `reviewer`.
 
-Claude wrappers ship a **concrete** `model: opus` for the strongest roles, which
-Claude resolves to the account's Opus — this is the one-time host binding for
-this harness. If the account cannot spawn Opus, bind your strongest available
-model once in those wrappers; **do not** silently fall back to Haiku. Main still
-follows `AGENTS.md` §模型分档.
+Only `reviewer` ships a **concrete** `model: opus` (+`xhigh`) in its wrapper —
+it is the single always-floor role, so its native default is pinned to the
+strongest. Every other role ships `inherit` and Main raises it to `opus` +
+`effort: xhigh` **at dispatch time** whenever a floor category applies
+(independent Review, new Core Idea / route change / expensive next step,
+result heading into Story Evidence); otherwise Main picks the cheapest model
+that clears the task. If the account cannot spawn Opus, pin/raise to your
+strongest available model instead; **do not** silently fall back to Haiku.
 
 Default dispatch is the story-loop §阶段职责 matrix; Main decides only whether an **exception** applies. `context: fork` / `context: agent` are **skill** fields (run a skill inside a subagent), not agent frontmatter — do not present them as a cross-harness agent setting.
 

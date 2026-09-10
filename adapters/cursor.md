@@ -25,43 +25,46 @@ Task tool: `subagent_type` = the YAML `name` (`research-lead`, `literature-scout
 
 Cursor built-ins (`explore`, `generalPurpose`, `bash`, `browser`, …) are **not** the five research roles. Do not substitute them.
 
-| Role | Wrapper `model` | Default class | Default承接阶段 |
-|------|-----------------|---------------|-----------------|
-| `experiment-agent` | `inherit` | workhorse | W2 执行（持有整段运行） |
-| `literature-scout` | `inherit` | workhorse | W1 Gap 文献（并行） |
-| `result-analyst` | `inherit`; full must not pick fast Composer | dual | W3 结果解读（默认承接） |
-| `research-lead` | `inherit` (must not pick fast Composer) | strongest | W1 / 判别设计（默认承接） |
-| `reviewer` | `inherit` (must not pick fast Composer) | strongest | 高 stakes 独立批判（gated） |
+Model selection is **per dispatch** along a spectrum (cheap/weak → strongest/highest effort). All five Cursor role files ship `model: inherit`; Main sets the concrete slug + effort at dispatch time. See `AGENTS.md` §模型分档.
+
+| Role | Native wrapper `model` | Per-dispatch model+effort | Default承接阶段 |
+|------|-----------------|---------------------------|-----------------|
+| `experiment-agent` | `inherit` | Main picks along the spectrum, default cheaper | W2 执行（持有整段运行） |
+| `literature-scout` | `inherit` | Main picks along the spectrum, default cheaper | W1 Gap 文献（并行） |
+| `result-analyst` | `inherit` | compact: cheaper; **full into Story Evidence = floor → strong slug `[effort=high]`** | W3 结果解读（默认承接） |
+| `research-lead` | `inherit` | by stakes; **reframe / new Core Idea / expensive next = floor → strong slug `[effort=high]`** | W1 / 判别设计（默认承接） |
+| `reviewer` | `inherit` (body pins floor) | always floor: strong slug `[effort=high]` | 高 stakes 独立批判（gated） |
 
 Frontmatter fields per official docs: `name`, `description`, `model`
 (+`[effort=high]` params), `readonly`, `is_background`; a **non-empty body is
 required** to register the agent. `/name` explicitly invokes a role; `Task
 subagent_type = <name>` dispatches it.
 
-`result-analyst` is dual-tier: `inherit` for compact ordinary results; full/high-stakes must run on a strong slug, never a fast Composer model.
+### Per-dispatch model selection (spectrum + thin floor)
 
-**`inherit` cannot guarantee "strongest."** As committed, all five Cursor role
-files ship `model: inherit`, so a strongest role inherits the parent's model —
-which may be a fast Composer. The model **class** is fixed by role; the
-**concrete slug is host-specific** and is bound **once** per install.
+**`inherit` cannot guarantee "strongest."** All five Cursor role files ship
+`model: inherit`, so a role inherits the parent's model — which may be a fast
+Composer. Cursor resolves the model per Task dispatch, so **Main passes the
+concrete slug + effort at dispatch time**, not once per install:
 
-### Host model binding (one-time, per install)
-
-For the three strongest roles (`research-lead`, `reviewer`, and `result-analyst`
-in full mode), do the one-time binding in the wrapper frontmatter:
+- Non-floor work (implement, launch, monitor, compact result read, literature
+  consult, routine discriminating design): Main picks the cheapest slug along
+  the spectrum that clears the task.
+- **Floor categories** — independent Review (`reviewer`), new Core Idea / route
+  change / expensive next step (`research-lead`), result heading into Story
+  Evidence (`result-analyst` full): Main dispatches with the **strongest**
+  available slug + `[effort=high]`, e.g.
 
 ```yaml
 model: <your-strongest-Cursor-slug>[effort=high]
 ```
 
-Until you bind it, treat these roles as `inherit` and invoke them only from a
-strong parent (the role body already guards "do not run this role from a
-fast/Composer parent"). `result-analyst` stays dual — bind the strong slug for
-full/high-stakes; compact ordinary inherits. Do **not** set `readonly: true` on
-any of these roles — they must write `.research/work/` or `.research/reviews/`,
-and `readonly` blocks file edits and state-changing shell.
-
-Main chooses the concrete Cursor model slug; the class is mandatory.
+`reviewer` is the one always-floor role: its body pins strongest and Main must
+never dispatch it on a fast/Composer slug. Until a strong slug is passed, invoke
+floor roles only from a strong parent (the role bodies already guard "do not run
+this role from a fast/Composer parent"). Do **not** set `readonly: true` on any
+role — they must write `.research/work/` or `.research/reviews/`, and `readonly`
+blocks file edits and state-changing shell.
 
 Default dispatch is the story-loop §阶段职责 matrix; Main decides only whether an **exception** applies. Cursor built-ins (`explore`, `generalPurpose`, `bash`, `browser`, …) are **not** the five research roles.
 
