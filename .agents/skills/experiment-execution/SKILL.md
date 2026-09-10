@@ -100,11 +100,14 @@ This Skill freezes the commit before runs and writes recovered paths into
    Log seeds, retries, host, and commit per run in the Runs field — no global Run ID.
    Record the probe recipe in Runs (host, job/pid/screen, log, results path).
    If the job is **still running** after launch: Status=`running`,
-   Outcome=`not-assessed`. Main immediately runs one shell line
+   Outcome=`not-assessed`. **The executing party holds the run** and enters
+   [monitor-experiment](../monitor-experiment/SKILL.md) in its own context: the
+   `experiment-agent` task monitors its **own** run to terminal/checkpoint; if
+   **Main** launched a micro-run itself, Main runs one shell line
    `sleep 300; <one probe>` (or `sleep 60` only for short smoke) in **this**
-   conversation — [AGENTS.md](../../../AGENTS.md) §Main 三条常驻规则 and
-   [monitor-experiment](../monitor-experiment/SKILL.md). Do not dispatch a
-   subagent to wait. Do not end the turn after 1–2 minutes of narration.
+   conversation — [AGENTS.md](../../../AGENTS.md) §Main 三条常驻规则. Do not spawn
+   a **separate monitor-only** subagent. Do not end the turn after 1–2 minutes
+   of narration.
    If the run **finished in this turn** (sync smoke) or an operator-supplied
    log / pre-existing result file is the artifact: skip monitor; compact
    `result-analysis`.
@@ -120,11 +123,14 @@ This Skill freezes the commit before runs and writes recovered paths into
    Discovery Impact, Story Impact for `result-analysis`.
 9. **Update STATE** — Active experiment, blockers, recommended next (`result-analysis`
    when results exist).
-10. **Hand off** — Still running → Main enters `monitor-experiment` (do **not**
-    dispatch a subagent to wait). When runs finish (or an operator-supplied log / pre-existing
-    result file is the artifact), continue with compact `result-analysis`. Do
-    **not** default-dispatch `result-analyst`. Suggest `experiment-review` only
-    when stakes warrant.
+10. **Hand off** — Still running → the executing party holds the run via
+    `monitor-experiment` (the `experiment-agent` task itself, or Main for a
+    micro-run); do **not** spawn a separate monitor-only subagent. When runs
+    finish (or an operator-supplied log / pre-existing result file is the
+    artifact), the result goes to **`result-analyst` by default** (compact for
+    ordinary, full for high-stakes;
+    [story-loop.md](../../references/story-loop.md) §阶段职责). Suggest
+    `experiment-review` only when stakes warrant.
 
 ## Compact support failure (ordinary engineering)
 
@@ -227,8 +233,9 @@ Outcome here — keep `not-assessed` until `result-analysis`.
 - Exploratory scratch without scientific claim — note absence of formal commit in Runs.
 - Non-§15 layout when repo forbids it — document actual Entry/Results paths.
 - Remote compute — record host and path in Results; runs may stay `running` until synced.
-- Delegate implementation to `experiment-agent`; Main Agent (this skill) still owns
-  EXPERIMENTS/STATE updates after the subagent returns.
+- Delegate the run segment to `experiment-agent`; that task **holds the run to
+  terminal/checkpoint** and returns a decision summary + pointers. Main Agent
+  (this skill) still owns EXPERIMENTS/STATE updates after it returns.
 - Abort invalid setup — Status=`failed`, Outcome=`not-assessed`; never delete the section.
 - Retry after bugfix under same EXP-ID — add commit notes in Git field, not a new EXP.
 - Ordinary support failure: compact path above; resume the blocked science EXP.
