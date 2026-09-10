@@ -259,6 +259,29 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 
 优先 deletion experiment：`Full` vs `Full - Component A`，而不是 `Full + B + C + D`。
 
+### 方法转移的失败解释
+
+不是新的 Workflow Stage，也不是 STATE 字段。换机制、换条件、或选 successor 时，先写一条短决策桥梁（可记入 DISCOVERY / EXPERIMENTS Interpretation，不另建文件）：
+
+```text
+上一结果排除或削弱了什么？
+最值得保留的解释是什么？
+新实验为何针对它——或为何是独立探索？
+新实验回答不了哪些旧问题？
+```
+
+三种合理行动（说明方式，不是枚举、不写入 STATE）：继续判别；改变方法以回应已点名的缺口；暂停旧路线，开启**标注为独立探索**的新假设。
+
+「已有代码 / 空闲资源 / 不是 sweep / 需要推进」不能单独当科学理由。仍遵守上文 Method Complexity Rule。
+
+新机制不必由上一失败**唯一**推出。文献或理论可以提出 successor，须说明依据，不得伪装成旧实验的必然结论。
+
+跨对象矛盾后，可在熟悉条件做低成本筛查；**Open Contradiction 保留**。熟悉条件上的成功不关闭原迁移缺口。
+
+条件 A 正向、条件 B 失败、新改动只在 A 上可立即运行时：可选它做开发筛查，必须保留 B 的未决问题；不得声称已修复跨条件有效性。
+
+点修路由：`W2 TEST` 且 Next 已点名普通 EXP 时，**通常**继续内循环，不重 frame、不派 `research-lead`。若**新证据使该 Next 的前提失效**，允许重新路由——不能把「Next 有编号」当成永远禁止重判。
+
 ### Method Check（每 3–5 个有意义科学 EXP）
 
 不是 Reviewer，不是新 Workflow，不要求单独 artifact。Main 在 W4 简单问：
@@ -308,7 +331,7 @@ EXPERIMENTS → DISCOVERY → STORY（如需要）→ STATE
 
 ## Gap 优先级
 
-在 **W1 FRAME** 或 `research-loop` 需要重新 frame 时使用。`STATE` 已是 `W2 TEST` 且 Recommended Next Action 已点名普通 EXP 时，**不要**重跑「最大 gap」。
+在 **W1 FRAME** 或 `research-loop` 需要重新 frame 时使用。`STATE` 已是 `W2 TEST` 且 Recommended Next Action 已点名普通 EXP 时，**不要**重跑「最大 gap」——除非新证据使该 Next 的前提失效（见 §方法转移的失败解释）。
 
 每轮先读 `STORY.md` 六段，重点 **Open Gaps** 与 **Boundary**：
 
@@ -407,7 +430,7 @@ W 名、Level、scout/focus/confirm **不是** Outcome 或 Verdict。
 
 `workspace-resume` 应回答：Workflow Position、Current Gap、Active Experiment、Recommended Next Action，然后**继续执行**。
 
-- Position `W2 TEST` 且 Next 已点名普通 EXP → compact 内循环，**不要** `research-loop` 重 frame。
+- Position `W2 TEST` 且 Next 已点名普通 EXP → compact 内循环，**通常不要** `research-loop` 重 frame。若新证据使该 Next 的前提失效，允许重新路由（见 §方法转移的失败解释）。
 - Position `W1 FRAME` 或 Next 不清 → `research-loop` 或 resume 后进入 FRAME。
 
 ## 相关 reference

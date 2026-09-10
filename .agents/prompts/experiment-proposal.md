@@ -15,7 +15,8 @@ Judgment operators:
 - [experiment-thinking.md](../references/research-intelligence/experiment-thinking.md)
 - [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md)
 
-Objects and rivals: scientific-reasoning.md. Units, controls, matrix, must /
+Objects, rivals, and quantity vs proxy: scientific-reasoning.md
+(§A Quantity vs proxy). Units, controls, matrix, must /
 nice / cut, cost: experiment-thinking.md. Mechanism identity and the smallest
 Idea-level test, if this proposal follows an Idea-gate:
 [idea-and-mechanism.md](../references/research-intelligence/idea-and-mechanism.md)
@@ -78,9 +79,11 @@ Task fields already mark the EXP explicitly exploratory
 (scientific-reasoning.md §F). Exploratory vs confirmatory is a reasoning
 distinction, not a new Status.
 
-Keep scientific objects distinct (scientific-reasoning.md §A). If the model
-line cannot be derived from Scientific Question, split it into a second
-proposal.
+Keep scientific objects distinct (scientific-reasoning.md §A). New,
+replaced, or re-purposed quantities: source / object / direction / use,
+or cite an existing definition (scientific-reasoning.md §A Quantity vs
+proxy). If the model line cannot be derived from Scientific Question,
+split it into a second proposal.
 
 Pick the **best rival** for this Question (scientific-reasoning.md §C), then
 choose the **smallest control set** that would make that rival less tenable
@@ -128,6 +131,12 @@ A testable claim about how the world behaves, stated so a result could go
 the other way. A method slogan with no predicted pattern is not enough for
 this heading.
 
+If this heading introduces, replaces, or changes the use of a measured
+quantity, say source, object, direction, and intended use here, or cite a
+definition whose inputs have not changed (scientific-reasoning.md §A
+Quantity vs proxy). A proxy needs its own hypothesis and a stated
+bridge; it does not inherit the original quantity.
+
 ### Rival Hypothesis
 
 The best alternative account of the **same** future observation — simpler
@@ -172,14 +181,24 @@ experiment-thinking.md §D, driven by the named rival — cite §D; do not
 recopy that taxonomy as a second owner. Do not treat an oracle cell as
 deployable Story Evidence.
 
+On first mechanism execution, a material implementation change, or a
+change in control meaning: name the minimal on / off / sham check, or
+record that it will be inspected on the first valid artifacts
+(experiment-thinking.md §D Manipulation check). Cite; do not recopy.
+Same algorithm or same config is not automatically the same
+intervention.
+
 ### Confounders
 
 Design-time knobs that could move the metric without the claimed mechanism
 (experiment-thinking.md §C). Pick from §C; do not recopy that list. Equalize
 the knobs that are the **best rival**. Competing *explanations of a finished
-result* stay in scientific-reasoning.md §C; do not paste that list here. If
-the design only varies seeds while budget or split stay unequal, this
-proposal is not yet a mechanism test.
+result* stay in scientific-reasoning.md §C; do not paste that list here. Do
+not silently replace a core measured quantity so the run can start
+(scientific-reasoning.md §A Quantity vs proxy). Training / simulation /
+measurement / inference information is not post-hoc verification
+information. If the design only varies seeds while budget or split stay
+unequal, this proposal is not yet a mechanism test.
 
 ### Expected Interpretation Matrix
 

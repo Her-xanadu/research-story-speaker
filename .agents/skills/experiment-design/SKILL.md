@@ -156,7 +156,7 @@ Only after a full-design trigger matches. Load
    | Design field | Maps to EXPERIMENTS section | Content |
    | --- | --- | --- |
    | **Question** | Question | Precise scientific question |
-   | **Hypothesis** | Question / Motivation | Testable claim in existing prose — not a new column |
+   | **Hypothesis** | Question / Motivation | Testable claim in existing prose — not a new column. New / replaced / re-purposed quantity: source, object, direction, use (or cite existing definition; scientific-reasoning.md §A Quantity vs proxy) |
    | **Rival** | Motivation / Comparisons | Best alternative of the same future observation |
    | **Prediction** | Expected outcomes (design note; else Motivation) | Pre-run pattern; not an Outcome value |
    | **Why** | Motivation | Link to Story gap; why this changes judgment |

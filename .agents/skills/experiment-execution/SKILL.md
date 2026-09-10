@@ -82,6 +82,14 @@ This Skill freezes the commit before runs and writes recovered paths into
 4. **Implement** — Prefer shared `src/`; experiment entry `experiments/EXP-xxx/`;
    results `results/EXP-xxx/`. Do not duplicate entire repos per EXP-ID
    (`git-linking.md` §推荐代码布局（§15） — open when implementing).
+   **Manipulation check (trigger only):** first execution of a new
+   mechanism, a material implementation change, or a change in control
+   meaning. **Action:** do the minimal on / off / sham check
+   (`experiment-thinking.md` §D Manipulation check), *or* record in Run
+   notes that it will be inspected on the first valid artifacts; then
+   continue execution. Ordinary sanity compact does not take this path
+   and is not forced through a full control pre-check. Not a Status or
+   Outcome; do not assign a scientific Outcome here.
 5. **Freeze commit** — Before formal runs, commit or record recoverable SHA. Bind
    the run in `EXPERIMENTS.md` using the fields in `git-linking.md`
    §每个正式 Experiment 的最小绑定 (open that file when freezing).
@@ -198,6 +206,7 @@ return to `experiment-design` — that is redesign, not debug.
 | Do not open (ordinary sanity) | See **Compact / ordinary sanity (default)** |
 | Often | `.research/STORY.md` (gap context), `.research/STATE.md`, external code repo |
 | Reference (when running / binding git) | `experiment-record.md`, `git-linking.md`, `state-files.md` |
+| On first mechanism execution / material impl change / control-meaning change | `experiment-thinking.md` §D Manipulation check (cite; do not copy) |
 | On bounded-debug failure | `failure-diagnosis.md` |
 | Subagent | `experiment-agent.md` |
 | After async launch | `monitor-experiment` |

@@ -1,6 +1,6 @@
 ---
 name: research-lead
-description: Strongest reasoning. Independent next-step judgment when W1, stuck, or the next scientific question is unclear. Do not use when STATE already names the next ordinary EXP in W2 TEST. Do not downgrade to a fast Composer model.
+description: Strongest reasoning. Independent next-step judgment when W1, stuck, or the next scientific question is unclear. Do not use when STATE already names the next ordinary EXP in W2 TEST, unless new evidence invalidates that Next's premises. Do not downgrade to a fast Composer model.
 model: inherit
 ---
 

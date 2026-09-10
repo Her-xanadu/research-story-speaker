@@ -4,7 +4,8 @@ description: >-
   Top-level Story-driven research orchestrator. Use when continuing autonomous
   research, deciding the next scientific move, routing Literature vs Experiment
   vs Review, W1 FRAME reframing, or W4 DECIDE when next step is unclear. Skip
-  when STATE is W2 TEST with a named ordinary EXP (inner loop). Triggers include
+  when STATE is W2 TEST with a named ordinary EXP (inner loop), unless new
+  evidence invalidates that Next's premises. Triggers include
   下一步研究什么, 继续科研循环, run research loop, what should we do next.
 ---
 
@@ -33,8 +34,10 @@ Selective gates: `idea-evaluation`, `evidence-verification`.
 
 Not for cold start (`workspace-resume`), compaction (`research-memory`), or
 **inner loop** when STATE is `W2 TEST` and Recommended Next Action already
-names an ordinary sanity/exploratory EXP — use compact
-`experiment-design` / `experiment-execution` /
+names an ordinary sanity/exploratory EXP — unless new evidence invalidates
+that Next's premises
+([story-loop.md](../../references/story-loop.md) §方法转移的失败解释) — use
+compact `experiment-design` / `experiment-execution` /
 `monitor-experiment` (if still running) / `result-analysis` instead.
 
 ## Goal
@@ -89,13 +92,17 @@ If **Workflow Position is `W2 TEST`** and **Recommended Next Action** already
 names a concrete ordinary sanity/exploratory EXP (or continues the current
 mechanism-isolation line):
 
-- **Stop this Skill.** Do not re-run「最大 gap」or full W1 FRAME.
+- **Usually stop this Skill.** Do not re-run「最大 gap」or full W1 FRAME.
 - Route compact `experiment-design` → `experiment-execution` →
   (`monitor-experiment` while Status=`running`) →
   `result-analysis` per [AGENTS.md](../../../AGENTS.md).
   Do not keep `research-loop` thinking during a live run.
 - After `result-analysis`, let compact W4 set next Position (usually stay
   `W2 TEST`).
+- **Exception:** if new evidence invalidates that Next's premises, this
+  Skill may stay and may dispatch `research-lead`. A numbered Next is not a
+  permanent ban
+  ([story-loop.md](../../references/story-loop.md) §方法转移的失败解释).
 
 If Position is **`W3 LEARN`** → delegate `result-analysis` only, then stop.
 
@@ -152,8 +159,10 @@ parallelism after W2 focus. Support may parallel but must not become the main ax
   strongest). Parallel/heavy: named Subagent per `AGENTS.md` — not generic
   worker/explore.
 - Independent next-step judgment: dispatch `research-lead` (**strongest**)
-  only when Position is not `W2 TEST` with a named next EXP. Optional:
-  [next-research-move.md](../../prompts/next-research-move.md).
+  when Position is not `W2 TEST` with a named next EXP, **or** when new
+  evidence invalidates that Next's premises
+  ([story-loop.md](../../references/story-loop.md) §方法转移的失败解释).
+  Optional: [next-research-move.md](../../prompts/next-research-move.md).
 - After evidence, follow [state-files.md](../../references/state-files.md) §更新顺序.
 
 ### 8. W4 DECIDE + next Position

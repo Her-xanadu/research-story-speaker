@@ -11,9 +11,13 @@ Judgment operators:
 - [scientific-reasoning.md](../references/research-intelligence/scientific-reasoning.md)
 - [story-loop.md](../references/story-loop.md)
 
-Gap priority, anti-duplication, two-layer Workflow, stagnation: story-loop.md.
-**If STATE Workflow Position is `W2 TEST` and Next already names an EXP, do not
-dispatch research-lead** — continue the inner loop instead.
+Gap priority, anti-duplication, two-layer Workflow, stagnation, and
+failure-to-transfer: story-loop.md.
+If STATE Workflow Position is `W2 TEST` and Next already names an EXP,
+**usually do not dispatch research-lead** — continue the inner loop. If
+**new evidence invalidates that Next's premises**, re-routing is allowed;
+a numbered Next is not a permanent ban on re-judgment
+([story-loop.md](../references/story-loop.md) §方法转移的失败解释).
 
 Claim kinds, rivals, falsifiability, qualitative evidence strength, exploratory vs confirmatory:
 scientific-reasoning.md. Do **not** invent numeric scores, stars, or
@@ -50,14 +54,14 @@ Subagent **reads from disk**. Keep the handoff to paths
 
 - Main needs isolated judgment on priorities or bottleneck diagnosis
 - The project feels stuck; STORY vs STATE vs DISCOVERY disagree
-- Parallel work is possible and the orchestrator needs a ranked action list
+- Parallel work is possible and the orchestrator needs a ranked choice among real alternatives
 - `research-loop` left the next action open, or stagnation signals in
   story-loop.md §停滞处理 are present
 
 Do **not** use this prompt to run an EXP, write Story, assign Outcome, or
 replace idea-evaluation / evidence-verification. Those gates have their own
 prompts. Ordinary “continue the already-chosen EXP” does not need a lead
-pass.
+pass, unless new evidence invalidates that Next's premises.
 
 If Position is `W2` / `W3` / `W4` and the scientific question is still
 clear, recommend continuing the Method Loop — not a new route
@@ -101,16 +105,22 @@ bottleneck is conceptual, not compute.
 
 ### Candidate actions
 
-List 3–5 concrete next actions. Prefer a discriminating experiment that
-can change a method decision. Literature / review / cleanup only when they
-unblock that decision. Each must map to a specific Story gap, Boundary
-item, or DISCOVERY contradiction, and must name **Decision This Task Can
-Change**. Do not recommend redoing Invalidated / Negative routes without a
-new mechanism (story-loop.md §反重复; research-lead.md quality bar). Do
-not rank “schema audit / review rN / GPU identity / dataset qualification”
+If the next discriminating move is already clear, give **one** recommended
+action — do not invent a 3–5 list. List a **small number of real
+alternatives** only when there is genuine disagreement (rival mechanisms,
+STORY vs STATE vs DISCOVERY conflict, or two similarly discriminating
+successors). Prefer a discriminating experiment that can change a method
+decision. Literature / review / cleanup only when they unblock that
+decision. Each action must map to a specific Story gap, Boundary item, or
+DISCOVERY contradiction, and must name **Decision This Task Can Change**.
+Do not recommend redoing Invalidated / Negative routes without a new
+mechanism (story-loop.md §反重复; research-lead.md quality bar). Do not
+rank “schema audit / review rN / GPU identity / dataset qualification”
 above a live method question.
 
-For **each** candidate, write all five qualitative fields below. No fake
+When genuine alternatives exist, write all five qualitative fields below
+for **each**. When the next move is already clear, do not invent fillers;
+put the qualitative case under recommended action / why now. No fake
 numeric scores. Compare in prose: higher / lower information, cheaper /
 dearer, riskier / safer — relative to the other candidates, not 0–10.
 
@@ -158,13 +168,17 @@ If the action would not resolve any named uncertainty, drop it.
 Pick **one** recommended action using story-loop.md §Gap 优先级: gaps that
 could change core judgment first, then blockers to Story completion, then
 quick high-information work. Cite that section; do not invent a parallel
-priority table.
+priority table. A mechanism / condition / successor switch must rest on
+story-loop.md §方法转移的失败解释 — not leftover code, idle resources, or
+“need to push.”
 
 “Why now” must beat the alternatives *at this moment*: sequencing (a review
 before a Story rewrite; literature when closest-work is the bottleneck;
 minimum decisive test before a grid), RESOURCES, and what STATE already
-marks running. If evidence is insufficient to choose, say so and recommend
-the cheapest discriminating step (research-lead.md).
+marks running. If there were no real alternatives, say why the next step
+is already clear rather than inventing rivals. If evidence is insufficient
+to choose, say so and recommend the cheapest discriminating step
+(research-lead.md).
 
 Stagnation (story-loop.md §停滞处理): consecutive EXPs that did not move
 Problem / Core Idea / main gap, hyperparameter loops, a STATE that points
@@ -196,6 +210,9 @@ recommend “one more similar config.”
 - Ranking “write more modules” above a named falsifier
 - Ignoring Invalidated findings
 - Firing every intelligence gate on a sanity rerun (protection case)
+- Treating leftover code / idle resources / “not a sweep” / “need to push”
+  as a scientific reason to switch methods
+  (story-loop.md §方法转移的失败解释)
 
 ## Evidence requirements
 
@@ -207,8 +224,11 @@ close).
 ## Decision logic
 
 1. Read STORY / STATE / DISCOVERY; name one bottleneck.
-2. List 3–5 candidates, each with information gain, cost, risk, Story
-   impact, and the uncertainty it resolves — qualitative only.
+2. If the next discriminating move is already clear, name that **one**
+   action. Only if there is genuine disagreement, list a few real
+   alternatives, each with information gain, cost, risk, Story impact,
+   and the uncertainty it resolves — qualitative only. Do not pad a
+   3–5 list.
 3. Drop duplicates of on-disk work and Invalidated-without-new-mechanism.
 4. Rank with story-loop.md §Gap 优先级, not with scores.
 5. Recommend one action, with role/skill if applicable, and why it wins
@@ -234,6 +254,8 @@ file; the role file's default fourth heading is `## reasoning summary`:
 <one paragraph; name the claim kind and the live uncertainty>
 
 ## candidate next actions
+<If the next move is clear: `none — see recommended action`. Do not invent a 3–5 list.>
+<If genuine disagreement: a few real alternatives, each with:>
 1. <action> — targets <gap/blocker>
    - Information gain: <qualitative>
    - Cost: <qualitative, vs RESOURCES>
@@ -249,9 +271,10 @@ file; the role file's default fourth heading is `## reasoning summary`:
 <2–4 sentences; cite EXP-IDs or DISCOVERY themes, not pasted prose>
 ```
 
-Return to caller: bottleneck, candidates, recommended action, and why now.
-Keep the return concise; the work file holds the per-candidate fields. Do
-not polish the work file after writing it.
+Return to caller: bottleneck, recommended action, and why now; include
+alternatives only when disagreement was real. Keep the return concise;
+the work file holds the per-candidate fields when they exist. Do not
+polish the work file after writing it.
 
 ## Handoff / state impact
 

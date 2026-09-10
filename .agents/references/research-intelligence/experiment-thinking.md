@@ -184,6 +184,41 @@ not after. That is a design judgment. It is not a Reviewer Verdict.
 
 Oracle numbers are bounds, not Story Evidence for the deployable method.
 
+### Manipulation check
+
+When a new mechanism is **first executed**, its implementation
+**materially changes**, or a control's **meaning changes**, do a
+minimal check before costly attribution:
+
+```text
+off   — closing the component restores the promised baseline
+on    — opening it produces the intended operation
+sham  — the look-alike interrupts the intended relation
+```
+
+The check may be a formula, an existing artifact, a few samples, or one
+update step. Record reuse in the design or in Run notes. If no cheap
+pre-check exists, constrain the claim and inspect the first valid
+artifacts. This is not a Protocol gate and not a new table.
+
+Whole-method comparison ≠ mechanism attribution. Same algorithm or same
+config does not automatically mean same exposure or same intervention.
+
+If the mechanism did not activate, or the sham did not interrupt the
+relation: first delimit **which questions are still validly tested**.
+That failure does not negate the target mechanism. Do not stamp the
+whole round uniformly invalid, and do not stamp it uniformly null.
+
+```text
+Before costly mechanism attribution, check that the intended intervention occurred and the chosen control changes the intended relation. Execution success does not establish a valid manipulation. Reuse unchanged checks; test only the contrast relevant to the claim.
+```
+
+If turning a component off still changes the base budget, or within-group
+scores are constant so shuffle-before and shuffle-after are identical:
+the comparison is not established. Name that and give the smallest fix.
+Do not expand into extra repeats. Do not claim the target mechanism has
+been negated.
+
 ---
 
 ## E. Prediction matrix
@@ -230,6 +265,10 @@ hypothesis and the best rival is decorative.
 
 The matrix is design reasoning, not a second Outcome vocabulary. How a
 *completed* Experiment is recorded remains `experiment-record.md`.
+
+Cells are readable only if the intended intervention occurred and the
+chosen control changed the intended relation (§D Manipulation check).
+A completed run does not by itself fill a cell.
 
 ---
 

@@ -63,6 +63,44 @@ These objects are thinking tools. They do not become extra canonical
 fields. Canonical Story structure remains the six segments owned by
 `state-files.md`.
 
+### Quantity vs proxy
+
+Use rules for how Observation, Evidence, and Claim *talk about a
+quantity* — not a tenth scientific object, not extra canonical fields,
+not a review gate.
+
+When first introducing, replacing, or changing the use of a measured
+quantity, state in existing design prose: **source**, **object**,
+**direction**, and **intended use**. If the quantity is already defined
+and the inputs have not changed, cite that definition. Do not invent a
+new EXP field for these four words.
+
+Distinguish information used for training, simulation, measurement, or
+inference from information used only for *post-hoc verification*. A
+quantity that arrives after the decision is not the input that produced
+the decision.
+
+When only a **proxy** is obtainable, a proxy hypothesis is allowed.
+State how the proxy differs from the original quantity and what bridging
+still has to be tested. Do not confer the original quantity's validity
+on the proxy. Do not silently replace a core input so the pipeline can
+run.
+
+```text
+Keep the measured quantity, its intended meaning, and its use consistent across proposal, implementation, and interpretation. A proxy may support a new exploratory hypothesis; it does not automatically inherit the original quantity's calibration, causal meaning, or evidence.
+```
+
+Heuristic scores need not be probability-calibrated before exploration.
+A semantic note is not a new review gate. Narrow the Question, or rewrite
+it as a proxy hypothesis, only when missing premises make the original
+question unanswerable.
+
+If a score measures degree of anomaly but the proposal treats it as a
+probability of treatment benefit: name the inconsistency; rewrite the
+hypothesis or state the bridge still to verify. Do not design operations
+that depend on that benefit probability. Do not start a project-wide
+qualification audit of every score.
+
 ---
 
 ## B. Claim decomposition
