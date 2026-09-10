@@ -52,17 +52,44 @@ example clean; re-running the flow regenerates them.
 
 The dispatch mechanism is `description`-driven on all three vendors, so the
 Cursor behavioral pass is strong evidence but each host should be smoke-tested
-by the user. Mark these `runtime-unverified` until run.
+on an **authenticated** host. Mark these `runtime-unverified` until run.
+
+### Attempt in the cloud-agent environment (could not complete — no credentials)
+
+Both smokes were attempted here and are blocked by the environment, not the code:
+
+- **Codex:** no `codex` CLI on PATH and no OpenAI/Codex credentials; the
+  codex-companion runtime returned "Codex CLI isn't available in this
+  environment," so no Codex thread could start.
+- **Claude Code:** `npx @anthropic-ai/claude-code@latest` installs (v2.1.268)
+  but `claude -p` returns "Not logged in · Please run /login"; no
+  `ANTHROPIC_API_KEY` is present, and `/login` is interactive.
+
+To run them in a Cloud Agent, add the relevant credentials in the Secrets panel
+(e.g. `ANTHROPIC_API_KEY`, and Codex/OpenAI auth), or run the commands below on a
+logged-in local host.
 
 Prereqs:
 - Codex: set host-local `[agents]` in `.codex/config.toml` (git-ignored):
-  `enabled = true`, `max_concurrent_threads_per_session = 3`, `max_depth = 1`,
-  `default_subagent_model = <workhorse slug>`. Verify your CLI version can load
+  `enabled = true`, `max_concurrent_threads_per_session = 3`,
+  `default_subagent_model = <workhorse slug>`. Do **not** add `max_depth`
+  (not in the current schema). Bind `model` once for strongest roles
+  (adapters/codex.md §Host model binding). Verify your CLI version can load
   custom agents (upstream #26868 / #27061).
-- Claude: ensure `.claude/agents/*.md` are discovered; strongest roles resolve
-  to Opus.
+- Claude: `claude` logged in; `.claude/agents/*.md` discovered; strongest roles
+  resolve to Opus (or your bound strongest).
 
-Mock-flow prompt (same as Cursor Test A; adapt the spawn syntax per host):
+Exact commands (run from repo root):
+
+```bash
+# Claude Code
+claude -p "$(cat docs/validation/extensions/fixed-agent-orchestration/mock-flow-prompt.txt)"
+
+# Codex
+codex exec "$(cat docs/validation/extensions/fixed-agent-orchestration/mock-flow-prompt.txt)"
+```
+
+Mock-flow prompt (canonical text in `mock-flow-prompt.txt`, same as Cursor Test A):
 
 1. Spawn `experiment-agent` (EXP-MOCK-01): run the 2-Gaussian 1-feature
    threshold on `examples/mock-flow-detection/`; write

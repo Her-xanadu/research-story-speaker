@@ -252,4 +252,24 @@ then run `framework-maintenance` and open the PR.
   not auto-spawn a reviewer. Evidence: `VALIDATION.md` §A.
 
 **Release class:** `core candidate` — behaviorally verified on Cursor;
-Codex/Claude runtime-unverified pending the user's host smoke test.
+Codex/Claude runtime-unverified pending an authenticated host smoke test.
+
+## Pre-merge review fixes (post-acceptance)
+
+Applied after the reviewer accepted the core design:
+1. **Codex `max_depth` removed** — not in the current Codex `[agents]` schema;
+   one-level dispatch is now enforced by instruction only.
+2. **"Fix the concrete model" → one-time host model binding** — adapters now
+   state honestly that Codex/Cursor strongest roles ship `inherit` and give a
+   one-time per-install `model` binding step (Codex `model=` / Cursor
+   `model: <slug>[effort=high]`); Claude ships concrete `model: opus`.
+3. **Parallel code-writing `experiment-agent` isolation** — two code-writing
+   `experiment-agent`s may run in parallel only in separate
+   worktree/clone/working directories (own branch); otherwise serialize.
+   Documented in AGENTS.md, story-loop.md, and all three adapters.
+
+**Codex/Claude native smoke:** attempted in the cloud-agent environment and
+blocked by missing credentials (no Codex CLI/creds; Claude CLI installs but not
+logged in). Exact one-command reproductions and a canonical `mock-flow-prompt.txt`
+are provided in `VALIDATION.md` §C for an authenticated host. Both remain
+`RUNTIME-UNVERIFIED`; the Cursor pass is not extrapolated to the other two.
