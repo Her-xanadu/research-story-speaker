@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Her-xanadu/research-story-speaker/releases/tag/v0.2.2"><img src="https://img.shields.io/badge/release-v0.2.2-3B5B8A" alt="release v0.2.2"></a>
+  <a href="https://github.com/Her-xanadu/research-story-speaker/releases/tag/v0.3.0"><img src="https://img.shields.io/badge/release-v0.3.0-3B5B8A" alt="release v0.3.0"></a>
   <img src="https://img.shields.io/badge/visibility-private-6B7280" alt="private repository">
   <img src="https://img.shields.io/badge/canonical-8-1B2430" alt="8 canonical research files">
   <img src="https://img.shields.io/badge/skills-15-1B2430" alt="15 skills">
@@ -193,15 +193,15 @@ MOCK 闭环（不是当前项目）：[`examples/mock-flow-detection/`](examples
 
 DeepSeek Harness / OpenCode 等：**DIY**，不是官方安装路径。笔记仍在 `adapters/`，不保证跟随升级。
 
-Cold-start 证据日期 2026-09-03，见 [`docs/validation/harness-smoke/`](docs/validation/harness-smoke/)。上表**不是** v0.2.2 的独立 live Gate。
+Cold-start 证据日期 2026-09-03，见 [`docs/validation/harness-smoke/`](docs/validation/harness-smoke/)。上表**不是** v0.3.0 的独立 live Gate。
 
 ---
 
 ## 当前状态
 
-最近 tagged release 仍是 **v0.2.2**（`workspace-setup`）。静态验收：[`docs/validation/v0.2.2/workspace-setup-checklist.md`](docs/validation/v0.2.2/workspace-setup-checklist.md)。**未跑**独立 live Gate。
+最近 tagged release 是 **v0.3.0**（Method-First 内循环 + 科研判断连续性）。冻结计数：canonical 8 · research-loop 1 · subagents 5 · Skills 15 · RI 6 · scripts 0。发版审计：[`docs/validation/v0.3.0/`](docs/validation/v0.3.0/)。七组通用场景：[`docs/validation/scientific-continuity.md`](docs/validation/scientific-continuity.md)。**未跑**独立 live Gate。
 
-Method-First 长周期不新增 Workflow Stage / canonical 文件。之后增加了第 15 个 Skill：`monitor-experiment`（发射后静默等待；不是新 Stage）。Brief：[`docs/validation/extensions/monitor-experiment/`](docs/validation/extensions/monitor-experiment/)。Method-First Cases 1–9 仍是 regression specification（[`docs/validation/method-first-longrun/`](docs/validation/method-first-longrun/)），**尚未** live Gate。**尚未**打新 tag。
+Method-First 长周期不新增 Workflow Stage / canonical 文件。`monitor-experiment` 是发射后静默等待（不是新 Stage）。Brief：[`docs/validation/extensions/monitor-experiment/`](docs/validation/extensions/monitor-experiment/)。Method-First Cases 1–9 仍是 regression specification（[`docs/validation/method-first-longrun/`](docs/validation/method-first-longrun/)），**尚未** live Gate。
 
 > [!CAUTION]
 > 根 `.research/` 仍为干净 **UNINITIALIZED** 模板。  
@@ -209,6 +209,7 @@ Method-First 长周期不新增 Workflow Stage / canonical 文件。之后增加
 
 较早发布（对象与 tag 不移动）：
 
+- **v0.2.2** — `workspace-setup`。静态验收：[`docs/validation/v0.2.2/workspace-setup-checklist.md`](docs/validation/v0.2.2/workspace-setup-checklist.md)。
 - **v0.2.1** — Gate A **APPROVE**；Gate B **APPROVE_V0_2_1**。live Wave G：G2/G4 **PASS**，G3 **ADVANCE PASS**，G5 **reject**。证据：[`docs/validation/v0.2.1/`](docs/validation/v0.2.1/)。
 - **v0.2** — Research Intelligence Layer。FROZEN CORE 相对 v0.1.1 byte-identical。
 - **v0.1 / v0.1.1** — 基线闭环与对象冻结。

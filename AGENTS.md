@@ -1,6 +1,6 @@
 # research-story-speaker
 
-Framework base: v0.2.2
+Framework base: v0.3.0
 
 这是一个 **Story 驱动、文件即记忆** 的自主科研工作区。科研事实保存在 `.research/`，工作流在 `.agents/skills/`。
 
