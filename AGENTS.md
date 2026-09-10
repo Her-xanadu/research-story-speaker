@@ -85,7 +85,7 @@ W1 可以换机制、换路线、改 Story 细节；**不能**把项目改成另
 
 ## 模型分档
 
-科研流程**不是**每一步都需要最强推理。Main **自己决定**要不要派 Subagent、具体用哪个模型；但必须先选对**档**。只有两档：
+科研流程**不是**每一步都需要最强推理。**派不派、派谁默认按 `.agents/references/story-loop.md` §阶段职责调度矩阵**（见 §Autonomy / §Subagents）；Main 在选定角色后，为它选对**档**。只有两档：
 
 | 档 | 含义 | 用在 |
 |----|------|------|
@@ -96,7 +96,7 @@ W1 可以换机制、换路线、改 Story 细节；**不能**把项目改成另
 
 - 独立 Review（`experiment-review` / `reviewer`）
 - 新 Core Idea / 换路线 / 很贵的下一步（`idea-evaluation`）
-- 结果要进 Story Evidence、或执行者已有强烈既定解释（`evidence-verification`；此时才派 `result-analyst`）
+- 结果要进 Story Evidence、或执行者已有强烈既定解释（`evidence-verification`；`result-analyst` 用 **full / strongest** 模式，普通结果则 compact / workhorse）
 - W1，或 W4 且下一科学问题 / 机制不清（`research-loop`；此时才派 `research-lead`）
 - 可能改 Core Idea / 换机制的 W4
 
@@ -114,7 +114,7 @@ Main 可在同一档里自选具体模型。禁止：用 workhorse 做 Review；
 
 你拥有较大科研自主权：选择并组合 `.agents/skills/`、调用 `.agents/subagents/`、调整任务顺序、提出或放弃实验路线、使用当前 Harness 的 MCP / Web / Shell / Git、更新 Story 与科研状态（小改自主，大改建议 Review）。
 
-**不要求每步询问用户。** Skills 是 strong guidance，不是强制状态机。派不派 Subagent、具体模型由你决定，但必须遵守上文 **模型分档**。重要实验须能定位代码、commit、结果；Story 核心机制大改时建议 `experiment-review`（strongest）。先按本节 Workflow 走；细节再打开对应 `SKILL.md`。不要每个动作都先加载全部 Skills。
+**不要求每步询问用户。** Skills 是 strong guidance，不是强制状态机。但**分工默认按 `.agents/references/story-loop.md` §阶段职责的调度矩阵走**：每个 Workflow 阶段有默认承接角色，Main 默认把整段工作交给对应 Subagent（在独立子上下文里做完），自己只调度、整合决策摘要、写 canonical 状态。只有该矩阵列出的例外（可复用的清晰设计、本对话几行就能发射的微改、纯监控、普通工程 Support）才自己做。**固定的是协作**（谁承接哪段、何时被调用、交付什么）；**保持自主的是科学判断**（选哪个假设、怎么设计、怎么解读）——这些不写死。具体模型必须遵守上文 **模型分档**。重要实验须能定位代码、commit、结果；Story 核心机制大改时建议 `experiment-review`（strongest）。先按本节 Workflow 走；细节再打开对应 `SKILL.md`。不要每个动作都先加载全部 Skills。
 
 ## Research Memory
 
@@ -187,7 +187,7 @@ W2 设计一个判别实验（默认从很小开始）
 
 ## Subagents
 
-Main **自行决定**派不派。简单、已在本对话上下文里能做完的，直接做。只在需要 **并行、独立上下文、独立 Review、大量阅读** 时 spawn 命名角色。
+分工**默认按 `.agents/references/story-loop.md` §阶段职责调度矩阵**：每个阶段有默认承接角色，Main 默认把整段工作交给它在独立子上下文里做完，自己只调度、整合决策摘要、写 canonical 状态。只有矩阵列出的例外（可复用的清晰设计、本对话几行就能发射的微改、纯监控已 running 的任务、普通工程 Support）才 Main 直接做。独立任务默认并行（2–3 个起步，不是「什么都并行」）。
 
 科学正文只在 `.agents/subagents/<role>.md`。各 harness 用自己的配置决定**调谁**（不要口头粘贴成 generic worker）：
 
@@ -195,17 +195,17 @@ Main **自行决定**派不派。简单、已在本对话上下文里能做完�
 - Claude Code：`.claude/agents/<role>.md`
 - Cursor：`.cursor/agents/<role>.md`（Task `subagent_type=<role>`）
 
-| 角色 | 默认档 | 何时派 | 何时不要派 |
-|------|--------|--------|------------|
-| `experiment-agent` | workhorse | 实现/发射需要隔离上下文或并行 | 监控 running；本对话里改几行就能发射 |
-| `literature-scout` | workhorse | 并行读本地库 | 每个内循环 EXP；要上网搜（返回 `NEEDS_REFRESH`） |
-| `result-analyst` | strongest | 高风险解读、执行者有既定解释 | 普通 sanity 看产物（Main 自己 workhorse 做 `result-analysis`） |
-| `research-lead` | strongest | W1 / 卡住 / 下一步科学问题不清；或新证据使已点名 Next 的前提失效 | 内循环已点名下一 EXP 且前提仍成立 |
-| `reviewer` | strongest | **scientific stakes** 要独立批判 | reviewer 空闲；改 selector；普通工程 |
+| 角色 | 默认档 | 默认承接（哪段是它的默认） | 例外（Main 自己做 / 不派） |
+|------|--------|----------------------------|----------------------------|
+| `experiment-agent` | workhorse | **W2 执行默认**：实现→发射→**持有运行**→有界失败→交付终态/checkpoint | 本对话几行就能发射的微改（Main 自己发，仍归本任务持有） |
+| `result-analyst` | compact→workhorse / high-stakes→strongest | **W3 结果默认承接**：compact 解读普通结果，full 解读高风险 | 无终态产物；只看到中途 epoch |
+| `research-lead` | strongest | **W1 / 设计**：科学问题与判别设计；W4 下一步不清 | 内循环已点名下一 EXP 且前提仍成立 |
+| `literature-scout` | workhorse | Gap 文献并行 consult 本地库 | 每个内循环 EXP；要上网搜（返回 `NEEDS_REFRESH`） |
+| `reviewer` | strongest | 高 **scientific stakes** 独立批判（**gated**，非每个 patch） | reviewer 空闲；改 selector；普通工程 |
 
 Handoff：`.agents/prompts/subagent-handoff.md`（带 `Model class`）。
 
-**写权限：** Subagent 只写 `.research/work/` 或 `.research/reviews/<EXP-ID>/`；八个 canonical 状态文件由 Main Agent 更新。
+**写权限：** Subagent 只写 `.research/work/` 或 `.research/reviews/<EXP-ID>/`；`experiment-agent` 额外可写 `RESOURCES.md` / `git-linking.md` 授权的**代码仓与结果路径**（保留 EXP-ID 下的 source / branch / commit / run / raw result）。八个 canonical 状态文件只由 Main Agent 更新；Subagent 不写 canonical，也不写别的角色的 `.research/reviews/`。
 
 ## Maintenance
 
