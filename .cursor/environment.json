@@ -1,0 +1,5 @@
+{
+  "name": "research-story-speaker",
+  "user": "ubuntu",
+  "install": "set -e; broken=$(find -L .cursor/skills .claude/skills -maxdepth 1 -type l); if [ -n \"$broken\" ]; then echo 'Broken skill symlinks:'; echo \"$broken\"; exit 1; fi; n=$(find .agents/skills -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' '); echo \"research-story-speaker ready: ${n} skills, harness skill symlinks resolve (instruction-only workspace; no build, no runtime deps)\""
+}
