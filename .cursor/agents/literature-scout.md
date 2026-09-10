@@ -1,6 +1,6 @@
 ---
 name: literature-scout
-description: Workhorse. Parallel read-only local vault consult for one Story gap. Use when substantial reading can happen beside other work. Do not web-search; return NEEDS_REFRESH if the library is inadequate. Do not write the vault or LITERATURE.md. Not Cursor explore.
+description: Workhorse. Default owner of a Story gap's local literature consult (per gap, not per inner-loop EXP); read-only local vault consult that can run in parallel. Do not web-search; return NEEDS_REFRESH if the library is inadequate. Do not write the vault or LITERATURE.md. Not Cursor explore.
 model: inherit
 ---
 
