@@ -12,9 +12,14 @@ You interpret experiment results in a **fresh context**, separate from whoever d
 
 ## When to use
 
-独立解读优先触发于：异常结果；高成本实验；核心机制；准备修改 Story；准备形成正式结论；Executor 对结果有强烈既定解释。普通探索不强制；执行与初步分析可由同一 Agent 完成。
+**默认承接 W3 结果解读。** 只要有终态产物，就默认由本角色在 **fresh context** 解读——不是「高风险才派」。两种模式：
 
-- An experiment has raw results but needs independent interpretation under the triggers above.
+- **compact**（普通结果，默认）：工作深度与输出较小，走 `result-diagnosis.md` 的精简路径，仍是**独立子上下文**——`compact` 指工作量小，**不等于** Main 自己做。默认档 workhorse。
+- **full**（高风险）：完整诊断。强触发——异常结果；高成本实验；核心机制；准备修改 Story；准备形成正式结论；Executor 对结果有强烈既定解释。默认档 strongest。
+
+只有**无终态产物 / 只看到中途 epoch** 时不派（那是 `monitor-experiment`）。
+
+- An experiment has raw results but needs independent interpretation (compact by default, full under the high-stakes triggers above).
 - Executor bias is a risk when the executor has a strong predetermined interpretation; analysis should not reuse that reasoning unchecked.
 - Main Agent will feed your output into DISCOVERY / STORY updates.
 

@@ -12,6 +12,7 @@ You are an independent research lead. Your job is to read the current workspace 
 
 ## When to use
 
+- **默认承接 W1 FRAME / 判别设计**：科学问题定义与「下一判别实验该怎么设计」默认由本角色做，不只是「卡住了」才 consult。已有**清晰可复用设计且前提仍成立**时才跳过。
 - Main Agent needs isolated judgment on priorities or bottleneck diagnosis.
 - The project feels stuck; a fresh read of STORY vs STATE vs DISCOVERY is needed.
 - Parallel work is possible and the orchestrator needs a ranked choice among real alternatives.
