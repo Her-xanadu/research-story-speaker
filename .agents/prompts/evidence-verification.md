@@ -85,7 +85,13 @@ stand in for the file.
 Apply claim-kind discipline (scientific-reasoning.md §B) to the Claim under
 test: Satisfaction on one kind does not license a sentence of another kind.
 Apply scope (evidence-and-claim.md §G) in the work file: report what was
-actually tested; do not inflate the sentence.
+actually tested; do not inflate the sentence. If the Claim under test is
+effect / generality / replication / independent confirmation, name the
+evidence role (development screening / same-condition randomness recheck /
+independent confirmation) — evidence-and-claim.md §G Development,
+randomness, confirmation; scientific-reasoning.md §F. A seed change on an
+already-used evaluation set is a randomness recheck, not new independent
+generality confirmation.
 
 ## Per-criterion operators
 
@@ -163,6 +169,9 @@ Also refuse:
 - Treating `Evidence found? = yes` as `Satisfaction` supports
 - Treating a matched local metric as Story Evidence
 - Treating one seed as a generality claim
+- Treating a seed change on an already-used evaluation set as independent
+  generality confirmation (evidence-and-claim.md §G Development,
+  randomness, confirmation)
 - Copying the Outcome table or Verdict list into the report
 - Promoting §F labels into Protocol
 - Creating `RUBRIC.md` or freezing criteria across EXPs

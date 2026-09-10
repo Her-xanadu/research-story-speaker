@@ -85,6 +85,12 @@ or cite an existing definition (scientific-reasoning.md §A Quantity vs
 proxy). If the model line cannot be derived from Scientific Question,
 split it into a second proposal.
 
+If this proposal would later support a claim of effect, generality,
+replication, or independent confirmation, name the intended evidence
+role in existing headings (development screening / same-condition
+randomness recheck / independent confirmation) —
+scientific-reasoning.md §F; evidence-and-claim.md §G. Not a new field.
+
 Pick the **best rival** for this Question (scientific-reasoning.md §C), then
 choose the **smallest control set** that would make that rival less tenable
 (experiment-thinking.md §D). Do not chant every control kind. When the claim

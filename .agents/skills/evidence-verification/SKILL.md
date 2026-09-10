@@ -65,7 +65,9 @@ Existence ≠ validity ≠ criterion satisfied ≠ claim supported
    §B). Do **not** create `RUBRIC.md` or freeze criteria across EXPs.
 4. **Per criterion** — Integrity first (§D); then whether the artifact answers
    *this* criterion (§E); then Satisfaction using §F **report labels** (not
-   Outcome). Keep scope as tested (§G).
+   Outcome). Keep scope as tested (§G). Cite §G Development, randomness,
+   confirmation when the claim is effect / generality / replication /
+   independent confirmation — do not recopy.
 5. **Write one block per criterion** with exactly:
 
 ```text

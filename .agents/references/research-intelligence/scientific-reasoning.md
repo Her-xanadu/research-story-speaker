@@ -233,6 +233,37 @@ of support is.
 Do not average labels. The claim is as strong as its weakest necessary
 rung.
 
+### Resource vs scientific conclusion
+
+Keep starting cheap. Where random repeats apply to this exploration:
+default **one paired trial or one seed**. Do not force every field to
+use seeds. Do not open with a repeat matrix. One seed may contain
+several paired control arms.
+
+```text
+Start small. Replicate when unresolved uncertainty could change an important scientific or resource decision, regardless of the sign of the initial result. Do not repeat merely to reach a conventional run count.
+```
+
+A tiny one-shot negative difference may be deprioritized. It does not
+automatically prove the mechanism invalid. A large, clear failure also
+need not be followed by mechanical extra repeats.
+
+`null`, “not significant,” “missed a threshold,” “not validly tested,”
+and `contradicts` are **not interchangeable**. Outcome tokens stay in
+`experiment-record.md` §Outcome 值; this subsection only forbids swapping
+those meanings.
+
+Stopping investment may be written: current evidence is not enough to
+keep prioritizing this line; that sentence does not rule the mechanism
+out under other reasonable conditions.
+
+A bounded deferral after a tiny one-shot negative is allowed; do not
+declare the mechanism invalid. A negative that conflicts with stable
+prior evidence and could change an important decision may get a
+**targeted** recheck. Do not forbid recheck because the sign was
+negative. Do not expand into a large matrix merely because evidence is
+thin.
+
 ---
 
 ## F. Exploratory vs confirmatory
@@ -257,6 +288,36 @@ support for a mechanism named afterwards. Speak with §G (`suggestive` or
 
 Exploratory work stays light. It does not automatically trigger
 idea-evaluation, evidence-verification, or an independent Reviewer.
+
+When the design would support a claim of **effect**, **generality**,
+**replication**, or **independent confirmation**, say in existing prose
+what this round's evidence is for: development screening; a randomness
+recheck under the same conditions; or independent confirmation that did
+not take part in selecting the candidate. Natural language. Not a new
+field. Not a second evaluation ledger
+(`evidence-and-claim.md` §G Development, randomness, confirmation).
+
+Ask whether the samples, objects, evaluation conditions, **or their
+results**, already influenced the current method, threshold, metric,
+candidate choice, or stopping rule — not only what the training code
+read. Reusing development objects is allowed. A new EXP-ID, a new seed,
+a different Agent, or “evaluate only after each training round” does
+**not** reset that use history.
+
+Independent confirmation: freeze the method, comparison, and judgment
+criteria first, then use a validation opportunity that matches the
+claimed generalization scope and did not take part in selection. Do not
+require a new dataset every round.
+
+If no unused validation opportunity remains: keep developing, state the
+evidence boundary, and leave independent confirmation as an Open Gap.
+Do not pretend independence. Do not start a data marathon. Do not
+batch-void existing results.
+
+Same evaluation set already used across several method-selection rounds,
+now only the random seed changes: that is a **randomness recheck**, not
+new independent generality confirmation. The experiment may continue;
+do not enlarge the evidence claim.
 
 ---
 
@@ -284,6 +345,14 @@ be exploited. If an EXP needs an Outcome, look up `experiment-record.md`
 §Outcome 值 and write *that* enum. If a review needs a Verdict, look up
 `reviewer.md` §Verdict. This table never maps one-to-one onto either list,
 and it is not a hidden Status machine.
+
+After a result, write **two** sentences into existing Interpretation /
+Next — not new canonical fields (§E Resource vs scientific conclusion):
+
+```text
+scientific understanding — what is supported or opposed, at what scope, with what uncertainty
+resource decision        — continue, defer, or stop investment, and why
+```
 
 ---
 

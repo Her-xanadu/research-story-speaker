@@ -90,6 +90,11 @@ Execution success / finite output only establishes artifact usability.
 `supports` only when the EXP's predeclared scientific prediction is
 satisfied.
 
+`null`、未达门槛、「不显著」、未有效测试、与 `contradicts` **不是**同一个
+Outcome。何时从小规模起步、何时因未决不确定性而重复：
+`scientific-reasoning.md` §E Resource vs scientific conclusion。不要为凑
+run 数而新开 EXP-ID。
+
 ## ID 规则
 
 ```text
@@ -207,6 +212,6 @@ REVIEWS.md → EXP-031 摘要
 ## 写作原则
 
 - **不要把运行成功等同于科学成功** — Status 记工作生命周期，Outcome 记科学判断（§Outcome 值）。Execution success / finite output only establishes artifact usability. `Outcome=supports` only when the EXP's predeclared scientific prediction is satisfied.
-- **负结果与 null 结果保留** — 有效完成的科学结论写入 Main Findings；技术失败保持 `not-assessed`，不当作负向科学发现。
+- **负结果与 null 结果保留** — 有效完成的科学结论写入 Main Findings；技术失败保持 `not-assessed`，不当作负向科学发现。`null` 不是 `contradicts`，也不是「未有效测试」。
 - **数字留在 EXPERIMENTS** — STORY 不抄性能数字。
 - **紧凑但不删历史** — 老实验可缩短正文，不删除 section 或索引行。

@@ -48,12 +48,27 @@ In-session:
   result → full diagnosis, then the Protocol Outcome that path would
   use (do not invent a token).
 - **What we learned** — Interpretation; do not inflate into Story Evidence.
-  If this is a method comparison (not mere smoke), name **Mechanism
-  Diagnosis**, **Method Consequence** (`keep` / `simplify` / `delete
-  component` / `change mechanism` / `abandon`), and the **Next
-  Discriminating Experiment**.
+  Write the **scientific understanding** sentence (what is supported or
+  opposed, scope, uncertainty) here. If this is a method comparison
+  (not mere smoke), name **Mechanism Diagnosis**, **Method Consequence**
+  (`keep` / `simplify` / `delete component` / `change mechanism` /
+  `abandon`), and the **Next Discriminating Experiment**. A tiny one-shot
+  negative may be a bounded deferral; it does not declare the mechanism
+  invalid. Do not treat `null` / “not significant” / missed threshold /
+  not-validly-tested / `contradicts` as interchangeable. If the round
+  would support effect / generality / replication / independent
+  confirmation, name the evidence role in this prose: development
+  screening, same-condition randomness recheck, or independent
+  confirmation. Compact does not open Layer 2; owners are
+  `scientific-reasoning.md` §E–G and `evidence-and-claim.md` §G.
 - **Next** — smallest next discriminating action (stop, retry same Question,
-  or a new EXP). Default W4 exit is `W2 TEST`, not more seeds.
+  or a new EXP), including the **resource decision** (continue / defer /
+  stop investment, and why). Map that decision onto existing Next; do not
+  add a field. Default W4 exit is `W2 TEST`, not extra repeats merely to
+  reach a conventional run count. A negative that conflicts with stable
+  prior evidence and could change an important decision may get a
+  targeted recheck; do not forbid recheck because of the sign, and do not
+  expand into a large matrix because evidence is thin.
 
 A result that matches the EXP's predeclared scientific prediction is
 **not** an unexpected-result full-diagnosis trigger.
@@ -111,7 +126,9 @@ order (full diagnosis; compact may fold later steps):
 Do not stop at “指标上涨/下降 → 继续扩大实验.” A negative or null result
 must become method information (which hypothesis died; which component
 lost its reason; which method space can be deleted) and go to DISCOVERY.
-Analysis is **strong guidance**, not a hard gate — but major Story
+Write scientific understanding and the resource decision into existing
+Interpretation / Next (`scientific-reasoning.md` §E / §G) — no new
+fields. Analysis is **strong guidance**, not a hard gate — but major Story
 changes should trigger or suggest `experiment-review`.
 
 Run success ≠ scientific success; `completed` Status does not mean hypothesis

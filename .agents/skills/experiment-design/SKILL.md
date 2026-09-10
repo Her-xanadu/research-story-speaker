@@ -37,12 +37,18 @@ current science EXP (`experiment-record.md` §Support-task rule).
 answered, **do not register** this Experiment.
 
 Do not register an EXP “to complete the matrix” (e.g. 3 seeds → 5 seeds)
-unless current variance still blocks a go/no-go judgment.
+unless unresolved uncertainty could change an important scientific or
+resource decision
+([scientific-reasoning.md](../../references/research-intelligence/scientific-reasoning.md)
+§E Resource vs scientific conclusion).
 
-**Default: one seed.** Ordinary sanity / exploratory / mechanism-off /
-deletion tests use **one run, one seed**. Do not launch 3/5 seeds up front.
-Multi-seed confirmation only after a **clear positive** (the hypothesis
-direction is supported and stability is now the question).
+**Start small.** Ordinary sanity / exploratory / mechanism-off /
+deletion tests: **one paired trial or one seed** where random repeats
+apply. Do not force every field to use seeds. Do not launch a repeat
+matrix up front. One seed may contain several paired control arms.
+Replicate when unresolved uncertainty could change an important decision,
+**regardless of the sign** of the first result — not merely to reach a
+conventional run count.
 
 When the method is growing complex, prefer a **deletion experiment**
 (`Full` vs `Full - Component A`) over `Full + B + C + D`.
@@ -64,9 +70,9 @@ section — verify, do not rewrite.
 | **What observation would change next action?** | Expected outcomes (design note; else Motivation) |
 | **Data / Setup / Codebase** | Data / Setup, Code — as needed |
 
-Do **not** auto-upgrade for: single sanity, basic reproduction, extra seed
-before a clear positive, logging check, known-question retry, small
-diagnostic probe.
+Do **not** auto-upgrade for: single sanity, basic reproduction, extra
+repeats merely to reach a conventional run count, logging check,
+known-question retry, small diagnostic probe.
 
 If this Question is already `planned` in EXPERIMENTS: skip a new EXP-ID; go to
 `experiment-execution` only if code must run, else compact `result-analysis`

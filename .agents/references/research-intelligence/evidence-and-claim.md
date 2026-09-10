@@ -269,6 +269,33 @@ here. Follow `experiment-record.md` for the Experiment record and
 Negative Discoveries. Story must drop the Evidence line that rested on the
 artifact.
 
+### Development, randomness, confirmation
+
+Claim-boundary operators; not a new ledger and not extra report labels.
+What *kind* of support a round can earn is
+`scientific-reasoning.md` §F; this subsection only stops scope inflation.
+
+Name, in existing verification or analysis prose, whether the artifacts
+are **development screening**, a **same-condition randomness recheck**,
+or **independent confirmation** that did not take part in selecting the
+candidate.
+
+A new EXP-ID, a new seed, a different Agent, or evaluating only after
+each training round does not reset a used evaluation history. Independent
+confirmation needs a frozen method / comparison / criterion, then a
+validation opportunity that matches the claimed scope and did not take
+part in selection. Reusing development objects is allowed. A new dataset
+every round is not required.
+
+If no unused validation opportunity remains, keep developing, state the
+boundary, and leave independent confirmation as an Open Gap. Do not
+pretend independence. Do not batch-void existing results.
+
+Same evaluation set used across several method-selection rounds, now
+only the random seed changes: **randomness recheck**, not new independent
+generality confirmation. The experiment may continue; do not enlarge the
+claim.
+
 ---
 
 ## Using this file
@@ -303,5 +330,7 @@ or Outcome edits.
 - Copy Outcome or Verdict tables into this file
 - Promote verification labels into Protocol
 - Inflate dataset A + seed B + condition C into a law
+- Treat a seed change on an already-used evaluation set as independent
+  generality confirmation (§G Development, randomness, confirmation)
 - Write Negative Discovery for invalid previous evidence
   (`result-analysis` / `experiment-record.md`)
