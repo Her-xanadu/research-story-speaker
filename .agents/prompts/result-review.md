@@ -86,7 +86,9 @@ in [reviewer.md](../subagents/reviewer.md), filled from the **result** perspecti
 
 ## Return to caller
 
-After writing the file, return Verdict plus the same five sections to Main Agent.
+The Verdict and five sections stay in the **review file**. To Main, return only
+the short decision summary (Verdict + one-line Finding / Limitation /
+Recommended-next; [subagent-handoff.md](subagent-handoff.md) §Two-tier product).
 
 ## Coordination
 

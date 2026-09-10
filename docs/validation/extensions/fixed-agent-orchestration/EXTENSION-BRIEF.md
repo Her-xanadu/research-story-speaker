@@ -115,8 +115,11 @@ No data migration (no state schema change).
 
 **Files added:**
 - `docs/validation/extensions/fixed-agent-orchestration/EXTENSION-BRIEF.md`
-- `docs/validation/extensions/fixed-agent-orchestration/dispatch-matrix.md` (reference copy of the acceptance/dispatch cases + harness config spec)
-- `docs/validation/extensions/fixed-agent-orchestration/validation.md` (behavioral evidence + Codex/Claude runnable checklist)
+- `docs/validation/extensions/fixed-agent-orchestration/VALIDATION.md` (behavioral evidence + static cross-check + Codex/Claude runnable checklist)
+
+> A separate `dispatch-matrix.md` reference copy was **intentionally not created**:
+> it would be a second stage→owner table and fail the framework-maintenance
+> no-duplication check. The dispatch matrix lives only in `story-loop.md` §阶段职责.
 
 **Files modified:**
 - `AGENTS.md` (§Autonomy, §Subagents, §模型分档, §Main三条常驻规则 rule 1, §Workflow pointer)
@@ -139,7 +142,7 @@ Verdict vocabulary stays in `reviewer.md`; Outcome stays in `experiment-record.m
 
 ## Complexity Budget
 
-**Permanent files added:** 3 (all under `docs/validation/`, no core additions).
+**Permanent files added:** 2 (both under `docs/validation/`, no core additions).
 
 **Core files touched:** AGENTS.md, story-loop.md, 5 role files, 2 skills, handoff,
 12 harness configs, 3 adapters.
@@ -218,3 +221,35 @@ git-ignored (global `[agents]` documented in adapter only).
 **Next action:** implement the six modification groups on
 `cursor/fixed-agent-orchestration-82c1`, validate on Cursor + static cross-check,
 then run `framework-maintenance` and open the PR.
+
+## framework-maintenance outcome (standard + regression-eval)
+
+**Standard audit findings & resolution:**
+- No-duplication (#1/#2): PASS — the stage→owner dispatch matrix has a single
+  owner (`story-loop.md` §阶段职责); `AGENTS.md` §Workflow keeps a pointer only,
+  and no `dispatch-matrix.md` copy was created.
+- Adapter drift: PASS — all three adapters document their vendor's real
+  model/effort/permission fields, shared-checkout/opt-in isolation (Cursor),
+  host-local git-ignored `[agents]` (Codex), and one-level dispatch.
+- Skill inventory: PASS — still **15** SKILL.md, mirrored in `.claude/skills/`
+  and `.cursor/skills/`.
+- Wrapper↔canonical consistency: FIXED — removed the "Write only `.research/work/`"
+  contradiction in all three `experiment-agent` wrappers.
+- Return-contract consistency: FIXED — `method-review.md`, `result-review.md`,
+  and `next-research-move.md` prompts now defer to the Two-tier product instead
+  of "return the same N sections."
+- Canonical `.research/` untouched: PASS — repo-root `.research/` stays
+  `UNINITIALIZED`; no live science committed.
+
+**regression-eval (dispatch behavior before → after):**
+- Before: default path was Main-designs / Main-runs / Main-reads / Main-updates;
+  `result-analyst` only on high-stakes; execution agent stopped at launch and
+  Main ran the wait.
+- After (verified on the mock flow): W2 → `experiment-agent` holds the full run
+  segment; W3 result → `result-analyst` by default (compact); high-output work
+  stays in sub-contexts and Main receives only the Two-tier decision summary;
+  independent tasks overlap; no subagent wrote canonical state; ordinary EXP did
+  not auto-spawn a reviewer. Evidence: `VALIDATION.md` §A.
+
+**Release class:** `core candidate` — behaviorally verified on Cursor;
+Codex/Claude runtime-unverified pending the user's host smoke test.

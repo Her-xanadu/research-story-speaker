@@ -274,10 +274,11 @@ file; the role file's default fourth heading is `## reasoning summary`:
 <2–4 sentences; cite EXP-IDs or DISCOVERY themes, not pasted prose>
 ```
 
-Return to caller: bottleneck, recommended action, and why now; include
-alternatives only when disagreement was real. Keep the return concise;
-the work file holds the per-candidate fields when they exist. Do not
-polish the work file after writing it.
+To Main, return only the short decision summary (bottleneck, recommended
+action, and why now; alternatives only when disagreement was real) —
+[subagent-handoff.md](subagent-handoff.md) §Two-tier product. The work file
+holds the per-candidate fields when they exist. Do not polish the work file
+after writing it.
 
 ## Handoff / state impact
 
