@@ -36,31 +36,23 @@ Framework base: v0.3.0
 
 这三条写在本文件里，不依赖是否加载了某个 Skill。**Main 自己执行。**
 
-### 1. 已发射仍在跑 → 本对话里 `sleep`，不要短轮次
+### 1. 运行归执行任务持有 → 谁发射谁看到终态
 
-禁止：思考 1–2 分钟、报一次进度、结束本轮、等用户再开下一轮。那会浪费 token，也不是监控。
+一次实验运行（实现 → 发射 → 监控 → 有界失败 → 终态/checkpoint → 交付）是**一整段工作**，默认由 **W2 的执行任务（`experiment-agent`）在自己的子上下文里持有**，直到终态产物齐全或一个显式的 running checkpoint。Main 只跟踪**任务级状态**（谁在跑、真实作业 ID、结果路径），不把主会话变成 per-check 轮询循环。
 
-**立刻**在本对话发**一条**阻塞 shell（`sleep` 与探测写在同一条命令里），等它跑完：
+硬规则：
 
-```bash
-sleep 300; <一条最小探测>
-```
-
-探测只做一件事，例如：
+- **不要**每次检查就新开一个监控 subagent；同一个执行任务复用自己的监控能力（`monitor-experiment`），最小探测即可。
+- `exit 0 ≠ 科学成功`：终态产物齐了才交给 `result-analysis`；崩了做同一 EXP 的有界 support，不新开 EXP。
+- **若是 Main 自己发的微改小任务**（本对话几行就能发射、仍归本任务持有）：在**同一对话**发一条阻塞 shell（`sleep` 与探测同一条），等它跑完——
 
 ```bash
-sleep 300; tail -n 50 <log>
-# 或远程：
-sleep 300; ssh <RESOURCES 里的 alias> 'tail -n 50 <log>'
+sleep 300; <一条最小探测>   # 例：tail -n 50 <log>；远程 ssh <alias> 'tail -n 50 <log>'
 ```
 
-规则：
+  真实训练 / >10 分钟：`300` 起，无变化 `600 → 900`（封顶 15 分钟）；很短的 smoke / 刚崩溃可从 `60` 起。`sleep` 返回**只**做这一次探测，仍在跑就**同一对话**再发下一条。禁止：思考 1–2 分钟、报一次进度、结束本轮等用户。
 
-- 真实训练 / 远程 GPU / 预计 >10 分钟：第一次 `sleep 300`（5 分钟），无变化则 `600` → `900`（封顶 15 分钟）。
-- 很短的 smoke / 刚崩溃：可用 `sleep 60`，然后 `120` → `180` → `300` → `600` → `900`。
-- `sleep` 返回后：**只**做这一次探测。仍在跑 → **同一对话**再发下一条 `sleep N; probe`。不要停下来等用户。
-- 终态产物齐了 → `result-analysis`。崩了 → 同一 EXP 的 support，不新开 EXP。
-- 不要为监控开 subagent。不要倒计时解说。细节见 `monitor-experiment`。
+- **会话活不过长训练时**（如单会话 harness）：执行任务落盘持久化握手 `{任务归属, 真实作业 ID, 代码/输入版本, 结果路径, 如何检查与恢复}`，之后**恢复的是作业**，不是聊天线程。有原生后台/完成通知就用（Claude background；Codex `wait_agent`）。不要倒计时解说。细节见 `monitor-experiment`。
 
 ### 2. 普通实验从很小开始
 
@@ -102,7 +94,7 @@ W1 可以换机制、换路线、改 Story 细节；**不能**把项目改成另
 
 **必须 workhorse（不要升档）**
 
-- 已发射仍在跑：`sleep N; probe`（**只 Main**，不开 Subagent）
+- 运行监控归执行任务持有（`experiment-agent` 自己的子上下文，或 Main 自发微改时本对话 `sleep N; probe`）；不为每次检查新开 subagent
 - 普通 1-seed sanity 的实现与发射
 - parser / 路径 / 日志 / schema 等 Support
 - `literature-scout` 读已有库
@@ -140,12 +132,14 @@ W0 SETUP → W1 FRAME → ╔ W2 TEST → W3 LEARN → W4 DECIDE ╗
 ```text
 W2 设计一个判别实验（默认从很小开始）
  → W2 发射
- → 仍在跑：本对话 sleep N; probe（不要结束 turn）
+ → 仍在跑：执行任务持有运行（Main 自发微改则本对话 sleep N; probe，不结束 turn）
  → W3 机制诊断（exit 0 ≠ 科学成功）
  → W4 问：对方法意味着什么？默认回 W2
 ```
 
 外循环（低频）：只有 Core Idea / 路线要重构，或下一科学问题不清，才 `W4 → W1`。**不能**借 W1 换掉 PROJECT Research Goal。
+
+**每个阶段默认派谁承接**（阶段 → 默认角色 → Main 动作 → 交付 → 下一步）见 `.agents/references/story-loop.md` §阶段职责调度矩阵——那是唯一事实来源，下表只给 Skill 路由。
 
 | Position / 情况 | 这一步干什么 | 调用 | 不要调用 |
 |-----------------|--------------|------|----------|
@@ -155,7 +149,7 @@ W2 设计一个判别实验（默认从很小开始）
 | `W1 FRAME` | 问当前科学问题；文献/换机制 | `research-loop`；按需 `literature-research` / `idea-evaluation` / `story-maintenance` | 每个 EXP 都回 W1；换课题 |
 | `W2` 还没有可跑的 EXP | 写最小判别实验 | `experiment-design` | `idea-evaluation`；一上来铺重复矩阵 |
 | `W2` 有 EXP 要跑代码 | 实现并发射 | `experiment-execution` | 边跑边解读；未发射就 `sleep` |
-| `W2` Status=`running` | 同一对话阻塞等待 | **Main** `sleep N; probe`（`monitor-experiment`） | 结束 turn；开 subagent；`research-loop`；空转思考 |
+| `W2` Status=`running` | 运行归执行任务持有 | 执行任务（`experiment-agent`）自己 `monitor-experiment`；Main 自发微改则本对话 `sleep N; probe` | 每次检查新开 subagent；结束 turn 等用户；`research-loop`；空转思考 |
 | `W3` 终态产物已在 | 机制诊断 + Outcome | `result-analysis` | `experiment-execution`；`exit 0`→`supports` |
 | `W4` 方法后果清楚、下一实验清楚 | 写 Next，Position=`W2` | `result-analysis`（可顺手 Level 1 Story） | `research-loop`；因负号禁止复核；证据不足就铺大矩阵 |
 | `W4` Next 不清 / Level 2 换方法 | 换挡，不换 Goal | `research-loop` | 把 Goal 改成另一个课题 |

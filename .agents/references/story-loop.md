@@ -142,16 +142,22 @@ W4 + completion criteria satisfied
                      W5 HANDOFF
 ```
 
-### 阶段职责
+### 阶段职责（默认调度矩阵 · 唯一事实来源）
 
-| 阶段 | 职责 | 典型 owner |
-|------|------|------------|
-| W0 SETUP | 算力、代码 Git | `workspace-setup` |
-| W1 FRAME | 当前科学问题；文献；换机制/路线；大改 Story | `research-loop` + `literature-research` / `idea-evaluation` / `story-maintenance` |
-| W2 TEST | 设计 / 实现 / 跑实验 / **发射后静默监控** | `experiment-design` → `experiment-execution` → (`monitor-experiment` if still running) |
-| W3 LEARN | 结果 → Outcome / Discovery | `result-analysis` |
-| W4 DECIDE | 科研换挡器（五问，见下） | Level 0/1 且 Next 清楚：`result-analysis`；Level 2 / 停滞 / 完成：`research-loop` |
-| W5 HANDOFF | Story 完成可写 | `Story Status: READY_FOR_WRITING` |
+这张表是「Workflow 阶段 → 默认承接角色 → Main 动作 → 交付 → 下一步」的**唯一定义处**。`AGENTS.md` 只放指针指向这里；不要在别处复制第二张调度表。
+
+默认规则：**每个阶段有一个默认承接角色，Main 默认把整段工作交给它在独立子上下文里做完**，自己只调度、整合它返回的决策摘要、写 canonical 状态。只有「例外」列成立时 Main 才自己做。独立任务默认并行（2–3 个起步，不是「什么都并行」）。角色科学正文见 `.agents/subagents/<role>.md`；handoff 模板见 `.agents/prompts/subagent-handoff.md`。
+
+| 阶段 | 默认承接角色 | 触发 Skill | Main 动作 | 交付/返回 | 默认下一步 | 例外（Main 自己做） |
+|------|--------------|-----------|-----------|-----------|-----------|---------------------|
+| W0 SETUP | —（Main） | `workspace-setup` → `workspace-resume` | 写 RESOURCES / materialize | canonical 就绪 | W1 | 一直是 Main |
+| W1 FRAME | `research-lead`（strongest）；文献并行 `literature-scout` | `research-loop`（+`literature-research`/`idea-evaluation`/`story-maintenance`） | 派 lead 定问题与判别设计；整合摘要 | 决策摘要 + `.research/work/` 报告指针 | W2 | 已有清晰可复用设计且前提仍成立 |
+| W2 TEST | `experiment-agent`（workhorse，**持有整段运行**） | `experiment-design` → `experiment-execution` → `monitor-experiment` | 派 EA 承接 实现→发射→**持有运行到终态/checkpoint**→有界失败；Main 只跟踪任务级状态 | launch facts + 运行指针 + 终态/checkpoint | W3 | 本对话几行就能发射的微改（Main 自己发，仍归本任务持有并 `sleep N; probe` 到终态） |
+| W3 LEARN | `result-analyst`（compact→workhorse / high-stakes→strongest） | `result-analysis` | 派 RA 承接结果解读（compact 普通 / full 高风险）；整合摘要 | 决策摘要（Outcome/Discovery 建议 + 报告指针） | W4 | 无终态产物；只看到中途 epoch |
+| W4 DECIDE | Level 0/1 且 Next 清楚：`result-analyst`（顺手）；Level 2 / 停滞 / Next 不清：`research-lead` | `result-analysis` / `research-loop` | 换挡五问；写 STATE Position 与 Next | 下一 EXP 或路线 | W2（默认）/ W1 | Level 0/1 且 Next 清楚时 Main 直接写 STATE |
+| W5 HANDOFF | —（Main） | — | 判完成条件 | `Story Status: READY_FOR_WRITING` | 写作 | 一直是 Main |
+
+高 **scientific stakes** 才额外插入 `reviewer`（strongest，**gated**，非每个 patch，见 §停滞处理 与 Story Impact Level 2）。
 
 文献**不是**独立 W 阶段：属于 W1，或 W4 判定知识缺口后回 W1。
 
