@@ -155,10 +155,12 @@ parallelism after W2 focus. Support may parallel but must not become the main ax
 
 ### 7. Invoke and integrate
 
-- Simple: run Skill in context (workhorse unless `AGENTS.md` §模型分档 says
-  strongest). Parallel/heavy: named Subagent per `AGENTS.md` — not generic
-  worker/explore.
-- Independent next-step judgment: dispatch `research-lead` (**strongest**)
+- Simple: run Skill in context (model+effort per `AGENTS.md` §模型分档 —
+  cheaper along the spectrum unless a floor category applies). Parallel/heavy:
+  named Subagent per `AGENTS.md` — not generic worker/explore.
+- Independent next-step judgment: dispatch `research-lead` (Main picks
+  model+effort by stakes; mechanism reframe / route change / expensive next
+  step hit the strongest+highest-effort floor)
   when Position is not `W2 TEST` with a named next EXP, **or** when new
   evidence invalidates that Next's premises
   ([story-loop.md](../../references/story-loop.md) §方法转移的失败解释).

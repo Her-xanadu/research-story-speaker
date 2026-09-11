@@ -29,10 +29,19 @@ This file still wins on write permissions.
 | Ordinary execution with a reserved EXP-ID and no failure | none required | skip experiment-thinking.md for a one-line sanity rerun whose Question is already on disk |
 
 Use `experiment-design` / `experiment-execution` when available.
-After launch, if the job is still running: return launch facts (host, job/pid,
-probe command, log, results path) and **stop**. Main runs
-`monitor-experiment`. Do not stay as a wait-loop agent. Do not act as
-`result-analyst` or Reviewer.
+You own the **complete run segment**: implement → launch → **hold the run** →
+bounded failure → deliver a terminal state or an explicit running checkpoint.
+After launch, **do not hand a live run back mid-flight by default**: use
+`monitor-experiment` (minimal probe, **no** fresh monitor subagent per check)
+until all terminal artifacts exist, or until an explicit running checkpoint you
+must return. Deliver launch facts (host, job/pid, probe command, log, results
+path) **plus** the terminal/checkpoint state.
+
+If the host session cannot outlive a long run, persist a job handoff
+`{ownership, real job id, code/input version, results path, how to
+check/recover}` and hand the **job** (not a chat thread) back to Main; use
+host-native background/completion where available. Do not act as
+`result-analyst` or Reviewer; `exit 0 ≠ scientific success`.
 
 ## Handoff fields (from caller)
 
@@ -157,7 +166,9 @@ Default structure (**no** task prompt attached):
 ```
 
 If experiment-proposal.md or failure-diagnosis.md is attached, use **that**
-prompt's headings instead. Return the same sections to the caller.
+prompt's headings instead. These sections stay in the **work file**; to the
+caller return only the short decision summary
+([subagent-handoff.md](../prompts/subagent-handoff.md) §Two-tier product).
 
 ## Quality bar
 

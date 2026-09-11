@@ -21,6 +21,6 @@ Do not duplicate scientific logic here — all workflows live in Skills and refe
 
 Subagent 科学正文只在 `.agents/subagents/<role>.md`。不要在本文件或 `.claude/agents/` 里复制协议。
 
-Main 自行决定派不派。模型分两档（详见 `AGENTS.md`）：干活用 inherit；Review / lead / 高风险解读用当前账号最强推理（`.claude/agents/` 里 `reviewer`、`research-lead`、`result-analyst` 默认 `opus`）。
+Main 自行决定派不派。模型**每次派发时沿光谱选**（便宜偏弱 → 最强最高 effort；详见 `AGENTS.md` §模型分档）：默认偏省，只有薄下限三类（独立 Review / 换核心方法 / 进 Story Evidence）保底用最强。原生默认只有 `reviewer` 保留最强（`.claude/agents/reviewer.md` 为 `opus`+`xhigh`），其余角色 `inherit`，Main 在下限派发时升到 `opus`+`xhigh`。
 
 See `adapters/claude-code.md` for harness-specific notes.

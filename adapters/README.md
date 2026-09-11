@@ -10,8 +10,11 @@ Cold-start read order: `AGENTS.md` Start Here. **UNINITIALIZED** projects run
 `workspace-setup` first (compute + code Git layout → `.research/RESOURCES.md`),
 then `workspace-resume`. Adapters do not answer research questions.
 
-Model class (`workhorse` vs `strongest`) is defined in `AGENTS.md`. Main decides
-whether to spawn; the host config decides **which named role** is spawned.
+Model selection is a **spectrum** (cheap/weak → strongest/highest effort) chosen
+**per dispatch** by Main; only the thin floor (independent Review, new Core Idea
+/ route change / expensive next, result into Story Evidence) forces the
+strongest. Policy is defined in `AGENTS.md` §模型分档. Main decides whether to
+spawn; the host config decides **which named role** is spawned.
 
 ## Official (same clone)
 
@@ -39,7 +42,7 @@ Do **not** spawn Codex/Cursor built-in generic `worker` / `explorer` / `explore`
 - **Framework**: instruction-only; no Python/Shell services in workspace.
 - **Git**: if `~/.gitignore` contains `/*`, child repos under home may need `git -c core.excludesfile=/dev/null` for first commit.
 - **Codex sandbox**: `codex exec --sandbox workspace-write` cannot create `.git/index.lock`, so it cannot `git commit`. Workspace commits need `--dangerously-bypass-approvals-and-sandbox` (or equivalent full-access) or an outer process. Observed in C2/C4 (`docs/validation/handoff-tests/`).
-- **Claude `opus` on strongest roles**: if the account cannot spawn Opus, inherit the parent but do **not** pick Haiku / fast. Policy still lives in `AGENTS.md`.
+- **Floor roles / dispatches**: the thin floor must run on the strongest model + highest effort. `reviewer` keeps a native strongest default; other roles are `inherit` and Main raises them at dispatch. If the account cannot spawn the strongest model, use the strongest available but do **not** pick Haiku / fast. Policy still lives in `AGENTS.md` §模型分档.
 
 CLI commands, host paths, versions, stderr, and smoke checklists live in [`docs/validation/harness-smoke/README.md`](../docs/validation/harness-smoke/README.md).
 
