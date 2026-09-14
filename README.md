@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://github.com/Her-xanadu/research-story-speaker/releases/tag/v0.3.0"><img src="https://img.shields.io/badge/release-v0.3.0-3B5B8A" alt="release v0.3.0"></a>
   <img src="https://img.shields.io/badge/license-MIT-3B5B8A" alt="license MIT">
-  <img src="https://img.shields.io/badge/visibility-private-6B7280" alt="private repository">
+  <img src="https://img.shields.io/badge/visibility-public-3B5B8A" alt="public repository">
   <img src="https://img.shields.io/badge/canonical-8-1B2430" alt="8 canonical research files">
   <img src="https://img.shields.io/badge/skills-15-1B2430" alt="15 skills">
   <img src="https://img.shields.io/badge/scripts-0-1B2430" alt="0 runtime scripts">
