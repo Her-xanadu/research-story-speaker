@@ -66,12 +66,13 @@ In-session:
   stop investment, and why). Map that decision onto existing Next; do not
   add a field. Default W4 exit is `W2 TEST`; the inner loop may continue.
   If this method comparison shows the method is not working, Next must
-  **test the applied method consequence** (simplify / delete / change) —
-  still `W2 TEST`, not “one more similar config” and not an automatic W1
-  stop. A valid `contradicts` / `null` that changes the method is yield.
-  “Metric did not go up” is not a reason to `keep`. Engineering retries
-  are not scientific rounds. Go `W1 FRAME` only if no method change can
-  be named. A tiny one-shot negative may still be a bounded deferral. A
+  **not** be `keep` plus the same contrast. A tiny one-shot negative is a
+  bounded deferral of Core Idea (do not ABANDON from one shot) **and**
+  the next EXP is a new isolation or a method change — still `W2 TEST`.
+  After an isolating miss still fails, Next must test simplify / delete /
+  change. “Metric did not go up” is not a reason to `keep` the same
+  contrast. Engineering retries are not scientific rounds. Go `W1 FRAME`
+  only if no method change **and** no new isolation can be named. A
   negative that conflicts with stable prior evidence and could change an
   important decision may get a targeted recheck; do not forbid recheck
   because of the sign, and do not expand into a large matrix because

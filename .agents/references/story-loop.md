@@ -14,6 +14,8 @@ Workflow Position 的唯一定义处：`state-files.md` §STATE.md。编排器�
 
 一轮有成果，当且仅当：科学问题被有效回答（usable Outcome，不是工程失败 / invalid / not-assessed）；并且若答案是当前方法不行，方法后果已执行，**下一 EXP 测的是改过的方法**。无效实验、retry、凑 seed **不算**试过。
 
+第一次有效负结果：不要 ABANDON Core Idea（bounded deferral），但下一轮必须是**新隔离**（mechanism-off / 新条件）或一次方法改动，禁止同一对照再 `keep` 一轮。隔离之后仍不行：必须 simplify / delete / change，然后继续 W2。
+
 ```text
 实验 → 结果 → 调整方法 → 再实验 → Story 小改 → 再实验
 → 方法失败 → 换机制 → Story 大改 → 再实验
