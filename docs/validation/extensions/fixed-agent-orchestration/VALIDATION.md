@@ -31,6 +31,24 @@ Flow: Main → (`experiment-agent` ∥ `literature-scout`, one parallel batch) �
 The mock scratch work files were removed after capture to keep the curated
 example clean; re-running the flow regenerates them.
 
+### Re-run 2026-09-14 (after leftover-routing alignment)
+
+Same mock-flow prompt; native `Task subagent_type=<role>` again. Reports
+archived under [`rerun-2026-09-14/`](rerun-2026-09-14/).
+
+| Assertion | Result | Evidence |
+|-----------|--------|----------|
+| Native role/thread actually spawned | PASS | 3 distinct ids: `bc-088b7874…` (experiment-agent), `bc-0d281982…` (literature-scout), `bc-7aed227e…` (result-analyst) |
+| Independent pair truly overlaps | PASS | EA + scout dispatched in one batch, returned independently |
+| High-output work stays in sub-context | PASS | Full bodies in work files; each returned only the 7-field summary |
+| `experiment-agent` owns the run segment | PASS | held the instant run; Finding `acc 0.980000` (196/200) |
+| `result-analyst` reads upstream **from disk** | PASS | analysis file: "opened `EXP-MOCK-01-run.md` **from disk** (not pasted by Main)"; independently named tautological/circular design; Outcome candidate `invalid` for a discovered-midpoint claim |
+| scout: no web search, `NEEDS_REFRESH` | PASS | `consult_status=unavailable` + `NEEDS_REFRESH` |
+| No canonical writes | PASS | `git status` showed only the three work files; root `.research/` still `UNINITIALIZED`; mock canonical eight un-diffed |
+| Ordinary EXP does not auto-spawn reviewer | PASS | no `reviewer` dispatched |
+
+Example work tree cleaned back to `.gitkeep` after archive.
+
 ## B. Static cross-check — all three harnesses (VERIFIED here)
 
 - Codex `.codex/agents/*.toml` parse (Python `tomllib`); required
