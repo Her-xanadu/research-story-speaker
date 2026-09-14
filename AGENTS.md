@@ -25,10 +25,12 @@ Framework base: v0.3.0
 
 随后按指针按需读取：`DISCOVERY`、`LITERATURE`、`REVIEWS`、`RESOURCES`。不要扫描 `.research/work/`。W1 FRAME 才扩大历史检索。
 
-`ACTIVE` 且 STATE 已指明普通 sanity / exploratory EXP 时：直接走 compact
-`experiment-design` / `result-analysis`，不经 `workspace-resume` /
-`research-loop`。发射后任务仍在跑：走下面的 **sleep 监控**，不要空转思考。
-各 Skill 自己声明 compact 不读什么。
+`ACTIVE` 且 STATE 已指明普通 sanity / exploratory EXP 时：不经
+`workspace-resume` / `research-loop`。按
+[story-loop.md](.agents/references/story-loop.md) §阶段职责**默认派发**：
+W2 执行 → `experiment-agent`（持有运行）；W3 终态 → compact `result-analyst`。
+机械 smoke（没有新科学问题）可不派 analyst。发射后任务仍在跑：执行任务持有
+`monitor-experiment`，不要空转思考。各 Skill 自己声明 compact 不读什么。
 
 代码仓库由 `RESOURCES.md` 定位，可为 workspace 内 / 并列 / 远程。Git 追溯与状态规范在 `.agents/references/`。
 
@@ -158,8 +160,8 @@ W2 设计一个判别实验（默认从很小开始）
 | `workspace-resume` | 陌生会话且 Next 不清；UNINITIALIZED materialize | Next 已点名普通 EXP 且前提仍成立；只是实验还在跑 | 读 5 件 working set，立刻开干 |
 | `research-loop` | W1；W4 且下一科学问题不清；新证据使已点名 Next 失效 | 内循环已清楚且前提仍成立（W2 有 EXP / running / W3 有产物） | **只调度**，自己不跑实验、不解读 |
 | `experiment-design` | 需要新的判别问题 | 只是修 parser；只是为凑次数再跑 seed | 登记 EXP；默认从小开始；答不出「改变什么判断」就不要登记 |
-| `experiment-execution` | 设计已在、要跑代码 | 已经 running；只解读结果 | 发射；记下 probe；仍在跑立刻 `sleep` |
-| `monitor-experiment` | 已发射、无终态 | 同步 smoke 已结束；用户只要解读 | Main：`sleep N; probe`，同一对话循环 |
+| `experiment-execution` | 设计已在、要跑代码 | 已经 running；只解读结果 | 发射；记下 probe；仍在跑 → 执行任务持有 `monitor-experiment` |
+| `monitor-experiment` | 已发射、无终态 | 同步 smoke 已结束；用户只要解读 | 运行归属者（默认 `experiment-agent`；Main 仅自发微改）`sleep N; probe`，同一对话循环 |
 | `result-analysis` | 终态产物在 | 还在训练；只看到 epoch | 机制诊断 → 方法后果 → 下一判别实验 |
 | `story-maintenance` | Evidence/Gaps 真变了；或 Core Idea 要改方法 | 每个 EXP 后改 Story；改 Goal | 小改 Gaps；方法可变；Goal 冻结 |
 | `idea-evaluation` | 新 Core Idea / 换路线 / 很贵的下一步 | 普通 sanity；再加一个 seed | 决定这条方法值不值得做 |

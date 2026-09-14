@@ -105,3 +105,18 @@ Mock-flow prompt (canonical text in `mock-flow-prompt.txt`, same as Cursor Test 
    return, parallel overlap, no canonical writes, no auto-reviewer.
 
 Pass criteria are identical to §A. Record host + CLI version when run.
+
+## D. Leftover-routing alignment (this completion)
+
+Static grep after aligning Skills with the dispatch matrix:
+
+| Check | Result |
+|-------|--------|
+| Live instruction "Main 自行决定派不派" | **PASS** — remains only as historical problem statement in this Brief |
+| `result-analysis` compact "do not default-dispatch result-analyst" | **PASS** — inverted: compact RA is default W3; mechanical smoke may skip |
+| `research-loop` "without result-analyst by default" | **PASS** — ordinary EXP now dispatches compact RA; still without idea-eval / evidence / reviewer |
+| `monitor-experiment` frontmatter "Main MUST sleep" | **PASS** — owner = whoever launched |
+| Frozen counts 8 / 1 / 5 / 15 / 6 / 0 | **PASS** |
+| Root `.research/` UNINITIALIZED | **PASS** |
+
+Does **not** claim a new live token Gate or a Codex/Claude CLI Gate.

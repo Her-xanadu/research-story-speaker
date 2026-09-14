@@ -4,10 +4,11 @@ description: >-
   After a run is launched, wait silently and probe progress with a minimum
   status check.   Use when EXP-xxx Status is running, the agent just launched a
   job, or the user asks 监控 / 还在跑吗 / 进度 / is it done / check results while
-  the process is still alive. Main MUST run `sleep N; <probe>` in this
-  conversation (training default N=300). Do not interpret science, do not
-  keep thinking during the wait, do not end the turn after 1–2 minutes, and
-  do not dispatch a subagent just to monitor.
+  the process is still alive. The run's owner MUST run `sleep N; <probe>` in
+  this conversation (training default N=300): the `experiment-agent` task for
+  its own run; Main only for a micro-run it launched. Do not interpret
+  science, do not keep thinking during the wait, do not end the turn after
+  1–2 minutes, and do not dispatch a fresh subagent just to monitor.
 ---
 
 # Monitor Experiment
@@ -94,8 +95,9 @@ Do **not** update `DISCOVERY.md` or `STORY.md`.
    emit **at most one** progress line when something useful changed, then run
    **one** shell line `sleep ${sleep_seconds}; <probe>` and wait for it.
    Repeat in this conversation until terminal. Do not end the turn.
-4. If `terminal_unprocessed`: stop waiting. Continue with compact
-   `result-analysis` (Main; same turn). Do not interpret here.
+4. If `terminal_unprocessed`: stop waiting. Hand off to compact
+   `result-analysis` via default `result-analyst` (mechanical smoke with no
+   new scientific question may stay in-session). Do not interpret here.
 5. If `failed_or_suspect`: stop waiting. Return to `experiment-execution`
    compact support or bounded debug on the **same** EXP. No new EXP-ID.
 
@@ -231,7 +233,7 @@ Review packets, canonical Outcome.
 | Class | Next |
 |-------|------|
 | still running | this Skill on the **run owner** (same context: the `experiment-agent` task, or Main for a micro-run) |
-| terminal bundle complete | compact `result-analysis` |
+| terminal bundle complete | compact `result-analysis` via default `result-analyst` (mechanical smoke may stay Main) |
 | engineering crash / hang / unusable metrics | `experiment-execution` support / bounded debug, **same EXP** |
 | scientific-contract would change to "fix" it | `experiment-design` (not Reviewer by default) |
 

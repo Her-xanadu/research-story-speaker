@@ -301,3 +301,27 @@ Changed files: `AGENTS.md` §模型分档 + §Subagents table; `story-loop.md`
 §阶段职责; `subagent-handoff.md` (`Model class` → `Model+effort`); role wrappers
 for `research-lead` (opus/xhigh → inherit) and role bodies; the three adapters
 (`adapters/{codex,claude-code,cursor}.md`) and `adapters/README.md`.
+
+## Leftover Main-heavy routing (session completion)
+
+After the spectrum change, several inner-loop Skills still told agents **not**
+to dispatch `result-analyst` on ordinary exploratory, and Start Here / Skill
+table / `CLAUDE.md` / README still said "Main 自行决定派不派" or "Main MUST
+sleep". That would have restored the old Main-heavy default on the hottest
+path.
+
+Aligned:
+
+- `AGENTS.md` Start Here + Skill table: default dispatch (EA holds run; compact
+  RA interprets); mechanical smoke may skip analyst.
+- `research-loop`: inner-loop bypass and ordinary EXP route use the dispatch
+  matrix; protection kept (no idea-eval / evidence-verification / reviewer).
+- `result-analysis` compact + `result-analyst.md`: compact RA is the default W3
+  owner; compact ≠ Main; compact does **not** open `result-diagnosis.md`.
+- `monitor-experiment` / `experiment-execution`: run owner holds `sleep N;
+  probe`; terminal → default RA.
+- `CLAUDE.md` / README: drop "Main 自行决定派不派".
+
+Protection unchanged: ordinary exploratory does not fire idea-evaluation,
+evidence-verification, or reviewer. Mechanical smoke still need not force RA.
+

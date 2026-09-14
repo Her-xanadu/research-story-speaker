@@ -177,7 +177,7 @@ MOCK 闭环（不是当前项目）：[`examples/mock-flow-detection/`](examples
 | `framework-maintenance` | 审计、回归、发版 |
 | `framework-extension` | 扩展设计与接入 |
 
-**Subagents（5）**：`research-lead` · `literature-scout` · `experiment-agent` · `result-analyst` · `reviewer`。只写 `.research/work/` 或 reviews；八个 canonical 文件由 Main Agent 更新。Main 自行决定派不派；模型**每次派发时沿光谱选**（便宜偏弱 → 最强最高 effort），只有**薄下限三类**（独立 Review / 换核心方法 / 进 Story Evidence）保底用最强，见 `AGENTS.md` §模型分档。
+**Subagents（5）**：`research-lead` · `literature-scout` · `experiment-agent` · `result-analyst` · `reviewer`。只写 `.research/work/` 或 reviews；八个 canonical 文件由 Main Agent 更新。分工默认按 `story-loop.md` §阶段职责调度矩阵（W2 → `experiment-agent` 持有运行；W3 → compact `result-analyst`）；只有矩阵列出的例外 Main 才自己做。模型**每次派发时沿光谱选**（便宜偏弱 → 最强最高 effort），只有**薄下限三类**（独立 Review / 换核心方法 / 进 Story Evidence）保底用最强，见 `AGENTS.md` §模型分档。
 
 目录三分：框架层（`AGENTS.md` / `CLAUDE.md` / `.agents/` / `.claude/` / `.codex/agents/` / `.cursor/` / `adapters/`）· 项目层（`.research/`）· 示例与验证（`examples/` · `docs/validation/`）。
 

@@ -25,10 +25,12 @@ Do **not** open `failure-diagnosis.md`, `experiment-record.md`, or
 If the designed entry is missing and an operator-supplied log or
 pre-existing result file answers the smoke Question: record that mechanical
 fact (do **not** fake a re-run). That is **not** bounded debug. Hand off to
-compact `result-analysis`.
+compact `result-analysis` via default `result-analyst` (mechanical smoke
+with no new scientific question may stay in-session).
 
 If compact execute leaves a **live job still running**: do not sit in this
-Skill thinking. Enter [monitor-experiment](../monitor-experiment/SKILL.md).
+Skill thinking. Enter [monitor-experiment](../monitor-experiment/SKILL.md)
+(the executing party holds the run).
 
 Compact persist: fill Runs / Results / mechanical Main Findings from the
 operator-supplied log / pre-existing result file. Record provenance in Runs /

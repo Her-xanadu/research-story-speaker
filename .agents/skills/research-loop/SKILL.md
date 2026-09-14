@@ -36,9 +36,10 @@ Not for cold start (`workspace-resume`), compaction (`research-memory`), or
 **inner loop** when STATE is `W2 TEST` and Recommended Next Action already
 names an ordinary sanity/exploratory EXP — unless new evidence invalidates
 that Next's premises
-([story-loop.md](../../references/story-loop.md) §方法转移的失败解释) — use
-compact `experiment-design` / `experiment-execution` /
-`monitor-experiment` (if still running) / `result-analysis` instead.
+([story-loop.md](../../references/story-loop.md) §方法转移的失败解释) — dispatch
+per [story-loop.md](../../references/story-loop.md) §阶段职责:
+`experiment-agent` holds the run; compact `result-analyst` interprets.
+Mechanical smoke with no new scientific question may stay in-session.
 
 ## Goal
 
@@ -93,10 +94,11 @@ names a concrete ordinary sanity/exploratory EXP (or continues the current
 mechanism-isolation line):
 
 - **Usually stop this Skill.** Do not re-run「最大 gap」or full W1 FRAME.
-- Route compact `experiment-design` → `experiment-execution` →
-  (`monitor-experiment` while Status=`running`) →
-  `result-analysis` per [AGENTS.md](../../../AGENTS.md).
-  Do not keep `research-loop` thinking during a live run.
+- Route per [story-loop.md](../../references/story-loop.md) §阶段职责:
+  `experiment-agent` holds implement→launch→run; compact `result-analyst`
+  interprets terminal artifacts. Do not keep `research-loop` thinking
+  during a live run. Mechanical smoke with no new scientific question may
+  stay in-session.
 - After `result-analysis`, let compact W4 set next Position (usually stay
   `W2 TEST`).
 - **Exception:** if new evidence invalidates that Next's premises, this
@@ -104,7 +106,8 @@ mechanism-isolation line):
   permanent ban
   ([story-loop.md](../../references/story-loop.md) §方法转移的失败解释).
 
-If Position is **`W3 LEARN`** → delegate `result-analysis` only, then stop.
+If Position is **`W3 LEARN`** → dispatch compact `result-analyst` (full
+when high-stakes), then stop. Mechanical smoke may stay in-session.
 
 ### 3. Anti-duplication check
 
@@ -143,10 +146,11 @@ Selective — **not** a default chain. Ordinary exploratory EXP stays light.
 | High-stakes method, anomaly, big Story change | Review | `experiment-review` / reviewer |
 | Wording only | Story | `story-maintenance` |
 
-Ordinary exploratory EXP: `experiment-design` → `experiment-execution` →
-(`monitor-experiment` if still running) →
-`result-analysis` **without** `idea-evaluation`, `evidence-verification`,
-`experiment-review` / reviewer, or `result-analyst` by default.
+Ordinary exploratory EXP: dispatch per story-loop §阶段职责
+(`experiment-agent` holds the run; compact `result-analyst` interprets)
+**without** `idea-evaluation`, `evidence-verification`, or
+`experiment-review` / reviewer. Mechanical smoke with no new scientific
+question does **not** force `result-analyst` or reviewer.
 
 Parallel Experiment work: use `experiment-agent` / `result-analyst`; handoff via
 [subagent-handoff.md](../../prompts/subagent-handoff.md). One **focal scientific
@@ -155,9 +159,10 @@ parallelism after W2 focus. Support may parallel but must not become the main ax
 
 ### 7. Invoke and integrate
 
-- Simple: run Skill in context (model+effort per `AGENTS.md` §模型分档 —
-  cheaper along the spectrum unless a floor category applies). Parallel/heavy:
-  named Subagent per `AGENTS.md` — not generic worker/explore.
+- Default: named Subagent per `story-loop.md` §阶段职责 (model+effort per
+  `AGENTS.md` §模型分档 — cheaper along the spectrum unless a floor
+  category applies). Matrix exceptions (micro-run, mechanical smoke,
+  ordinary support): run Skill in context. Not generic worker/explore.
 - Independent next-step judgment: dispatch `research-lead` (Main picks
   model+effort by stakes; mechanism reframe / route change / expensive next
   step hit the strongest+highest-effort floor)
