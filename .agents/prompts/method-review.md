@@ -33,7 +33,8 @@ rest of `research-intelligence/` for this review.
 - [idea-and-mechanism.md](../references/research-intelligence/idea-and-mechanism.md)
   — mechanism identity, deletion test, complexity budget, minimum decisive test
 - [experiment-thinking.md](../references/research-intelligence/experiment-thinking.md)
-  — question-first, unit of analysis, confounders, controls, must/nice/cut
+  — question-first, unit of analysis, confounders, controls, must/nice/cut,
+    pre-run method consequence, claim-matched comparison
 
 ## Instructions for reviewer
 
@@ -74,6 +75,7 @@ row. Cite artifacts (commit, config, split, comparison), not adjectives.
 - **Confounders** — Split, seed, init, budget, capacity, augmentation, optimizer, preprocessing, extra information, tuning opportunity — equalize the best rival, not the whole list. (`experiment-thinking.md` §C)
 - **Replication structure** — Can another agent rerun from commit + config? Is one notebook being sold as a confirmatory design?
 - **Minimum decisive design** — Is this the smallest comparison that could change judgment on the gap, or a decorative grid? (`idea-and-mechanism.md` §H; `experiment-thinking.md` §F–H)
+- **Pre-run method consequence / claim match** — Are keep / simplify / delete / change / abandon readings named before the run (`experiment-thinking.md` §I)? Does must-run actually move the claim kind in play (`§J`), or is it a decorative bake-off?
 - **Unnecessary complexity** — Components that do not serve the Question; extras that would survive a deletion test. (`idea-and-mechanism.md` §F)
 - **Alternative explanation** — If the method “succeeds,” could it still be measuring the rival (shared scaffold, extra info, extra compute, leakage)?
 - **Reproducibility / cost** — Can another agent rerun? Is cost proportionate to information gained?
