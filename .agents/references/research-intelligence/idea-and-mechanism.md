@@ -32,6 +32,8 @@ This architecture is popular.
 We have unused compute.
 The name sounds more novel.
 The ablation table would look fuller.
+Guess a new module after an isolating miss, with no LITERATURE successor
+for this failure condition.
 ```
 
 Acceptable anchors point at a **named failure of current belief**: a Story
@@ -152,7 +154,8 @@ publication-facing claim, literature conflict), escalate to
 If the closest work already implements the same claimed §C axis, the Idea
 is a **novelty threat** even if the diagram looks new. REVISE the identity
 or PARK until a distinguishing axis is named. A different dataset with the
-same mechanism is usually not a new mechanism.
+same mechanism is usually not a new mechanism. After an isolating miss, do
+not mint a cosmetic-difference EXP against that closest work.
 
 Closest-work is an axis comparison, not a survey deliverable. Do not turn
 this section into a mandatory deep literature pass.
@@ -218,6 +221,18 @@ If that test cannot be run, the Idea is not ready for expensive
 confirmation. Exploratory pilots may generate signal; they do not replace
 this step. A 50-seed leaderboard that cannot split rivals is not
 “more decisive.”
+
+A long same-route campaign that keeps failing is not a reason to stack
+components, and not a reason to stop the inner loop. Apply deletion /
+simplification and **keep testing**. A successor may come from LITERATURE
+Suggests / closest-work for **this failure condition** — pick one, then
+design the minimum test. Do not invent a new module to rescue a failed
+isolation. If no such grounding exists, that is a knowledge gap
+(`story-loop.md` §停滞处理): light literature at `W1 FRAME`, not a guessed
+Core Idea. If closest-work already implements the same §C axis, REVISE or
+PARK (§E). PARK or ABANDON this mechanism only when no honest successor or
+simplification remains. Skip this reading for a single cheap exploratory
+miss — that stays on experiment-design / result-analysis.
 
 Recommended action after the audit (work artifact only):
 

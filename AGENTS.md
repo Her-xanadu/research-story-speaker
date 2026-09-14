@@ -71,6 +71,8 @@ sleep 300; ssh <RESOURCES 里的 alias> 'tail -n 50 <log>'
 
 「补成常见 seed 数」「把矩阵填满」本身不能成为新 EXP。
 
+方法试下来不太行：必须改方法（simplify / delete / change）再测。内循环可以一直下去。禁止：原方法再跑一轮同类 EXP。隔离失败后不要猜新模块；对这次失败条件没有文献依据 → 回 W1 查库，再用一条 successor 回 W2。不要因为轮次多就停循环。Support、retry、凑 seed 不算「已经试过」。指标没涨但方法改了并进入下一判别，算有成果。
+
 ### 3. 研究目标冻结，方法可以改
 
 `PROJECT.md` 的 **Research Goal**（针对什么、要完成一类什么研究 / 提出一类方法）**冻结**。没有用户明确改目标，不准换成另一个课题。
@@ -142,23 +144,25 @@ W2 设计一个判别实验（默认从很小开始）
  → W2 发射
  → 仍在跑：本对话 sleep N; probe（不要结束 turn）
  → W3 机制诊断（exit 0 ≠ 科学成功）
- → W4 问：对方法意味着什么？默认回 W2
+ → W4 问：对方法意味着什么？能点名删除/隔离就改方法，回 W2 再测；要发明新模块却无文献依据 → 回 W1 查库
 ```
 
-外循环（低频）：只有 Core Idea / 路线要重构，或下一科学问题不清，才 `W4 → W1`。**不能**借 W1 换掉 PROJECT Research Goal。
+外循环（低频）：Core Idea / 路线要重构、下一科学问题不清、方法不行却点不出删除/隔离、或隔离失败后要发明无依据新模块（知识缺口查库），才 `W4 → W1`。**不能**借 W1 换掉 PROJECT Research Goal。知识缺口的 W1 只查这次失败条件，不是换题。内循环本身可以一直下去。
 
 | Position / 情况 | 这一步干什么 | 调用 | 不要调用 |
 |-----------------|--------------|------|----------|
 | `UNINITIALIZED` / `W0` | 先算力+代码 Git，再 materialize | `workspace-setup` → `workspace-resume` | `research-loop`、任何实验 Skill |
-| 新会话且 Next 已点名普通 EXP | 直接继续内循环 | 下表 W2–W3 | `workspace-resume`、`research-loop` |
+| 新会话且 Next 已点名普通 EXP | 直接继续内循环 | 下表 W2–W3 | `workspace-resume`、`research-loop`（**除非** Next 是失败方法的同类再跑：先改方法再 W2；或隔离失败后发明模块：W1 查库） |
 | 新会话且 Next 不清 | 读 working set，再路由 | `workspace-resume` | 不要扫整本 `EXPERIMENTS.md` |
-| `W1 FRAME` | 问当前科学问题；文献/换机制 | `research-loop`；按需 `literature-research` / `idea-evaluation` / `story-maintenance` | 每个 EXP 都回 W1；换课题 |
+| `W1 FRAME` | 问当前科学问题；文献/换机制 | `research-loop`；按需 `literature-research` / `idea-evaluation` / `story-maintenance` | 每个 EXP 都回 W1；换课题；知识缺口时重跑「最大 gap」 |
 | `W2` 还没有可跑的 EXP | 写最小判别实验 | `experiment-design` | `idea-evaluation`；一上来铺重复矩阵 |
 | `W2` 有 EXP 要跑代码 | 实现并发射 | `experiment-execution` | 边跑边解读；未发射就 `sleep` |
-| `W2` Status=`running` | 同一对话阻塞等待 | **Main** `sleep N; probe`（`monitor-experiment`） | 结束 turn；开 subagent；`research-loop`；空转思考 |
+| `W2` Status=`running` | 同一对话阻塞等待 | **Main** `sleep N; probe`（`monitor-experiment`） | 结束 turn；开 subagent；`research-loop`；`literature-research`；空转思考 |
 | `W3` 终态产物已在 | 机制诊断 + Outcome | `result-analysis` | `experiment-execution`；`exit 0`→`supports` |
-| `W4` 方法后果清楚、下一实验清楚 | 写 Next，Position=`W2` | `result-analysis`（可顺手 Level 1 Story） | `research-loop`；因负号禁止复核；证据不足就铺大矩阵 |
-| `W4` Next 不清 / Level 2 换方法 | 换挡，不换 Goal | `research-loop` | 把 Goal 改成另一个课题 |
+| `W4` 方法后果清楚、下一实验清楚（含测改过的方法） | 写 Next，Position=`W2` | `result-analysis`（可顺手 Level 1 Story） | `research-loop`；因负号禁止复核；证据不足就铺大矩阵 |
+| `W4` 方法不行却 `keep` 同类对照 | 改方法，仍 W2 测新方法 | `result-analysis` / `experiment-design` | 再开一个同配置 EXP；无改动就停循环 |
+| `W4` 隔离失败且下一改动是无依据新模块 | 知识缺口：查这次失败条件 | `research-loop` → light `literature-research` | 在 W2 猜新 loss/gate；每个 EXP 查库；等待 running 时查库 |
+| `W4` 点不出删除/隔离也写不出该查什么 / Next 不清 / Level 2 | 换挡，不换 Goal | `research-loop` | 把 Goal 改成另一个课题 |
 | `W5` 完成条件满足 | 可写 | STATE `READY_FOR_WRITING` | 继续堆工程 EXP |
 
 ## Skill 何时用 / 何时不用
@@ -169,14 +173,14 @@ W2 设计一个判别实验（默认从很小开始）
 |-------|--------|------------|--------------|
 | `workspace-setup` | 未初始化；换服务器/代码路径 | 每个 EXP；已经 ACTIVE 且算力没变 | 只写 `RESOURCES.md` |
 | `workspace-resume` | 陌生会话且 Next 不清；UNINITIALIZED materialize | Next 已点名普通 EXP 且前提仍成立；只是实验还在跑 | 读 5 件 working set，立刻开干 |
-| `research-loop` | W1；W4 且下一科学问题不清；新证据使已点名 Next 失效 | 内循环已清楚且前提仍成立（W2 有 EXP / running / W3 有产物） | **只调度**，自己不跑实验、不解读 |
-| `experiment-design` | 需要新的判别问题 | 只是修 parser；只是为凑次数再跑 seed | 登记 EXP；默认从小开始；答不出「改变什么判断」就不要登记 |
+| `research-loop` | W1；W4 且下一科学问题不清；新证据使已点名 Next 失效；方法不行却点不出改什么；隔离失败后要发明无依据新模块 | 内循环已清楚且前提仍成立（W2 有 EXP / running / W3 有产物；失败后已点名删除/隔离再测） | **只调度**，自己不跑实验、不解读 |
+| `experiment-design` | 需要新的判别问题；测刚改过的方法 | 只是修 parser；只是为凑次数再跑 seed；失败方法的同类再跑；隔离失败后现场发明模块 | 登记 EXP；默认从小开始；方法不行就登记测新方法的 EXP，不要停循环 |
 | `experiment-execution` | 设计已在、要跑代码 | 已经 running；只解读结果 | 发射；记下 probe；仍在跑立刻 `sleep` |
 | `monitor-experiment` | 已发射、无终态 | 同步 smoke 已结束；用户只要解读 | Main：`sleep N; probe`，同一对话循环 |
 | `result-analysis` | 终态产物在 | 还在训练；只看到 epoch | 机制诊断 → 方法后果 → 下一判别实验 |
 | `story-maintenance` | Evidence/Gaps 真变了；或 Core Idea 要改方法 | 每个 EXP 后改 Story；改 Goal | 小改 Gaps；方法可变；Goal 冻结 |
 | `idea-evaluation` | 新 Core Idea / 换路线 / 很贵的下一步 | 普通 sanity；再加一个 seed | 决定这条方法值不值得做 |
-| `literature-research` | W1、新颖性、新机制、用户要 freshness | 每个内循环 EXP | 本地库优先；scout 只 consult |
+| `literature-research` | W1、新颖性、新机制、用户要 freshness、隔离失败后的知识缺口 | 每个内循环 EXP；第一次负结果；工程失败；等待 running；库里已有 unused Suggests | 本地库优先；scout 只 consult；知识缺口只交一条 successor |
 | `evidence-verification` | 结果要进 Story Evidence；高风险声称 | 普通 sanity 数字 | 核范围，不替代 Review |
 | `experiment-review` | **scientific stakes** 需要独立批判 | reviewer 空闲；改 selector；普通工程 | 独立 Review；delta/reuse |
 | `research-memory` | STORY/EXP/STATE **冲突**、找不到真相 | STATE 只是略超 40 行（就地压缩） | 对齐文件，不改科学结论 |
@@ -200,7 +204,7 @@ Main **自行决定**派不派。简单、已在本对话上下文里能做完�
 | `experiment-agent` | workhorse | 实现/发射需要隔离上下文或并行 | 监控 running；本对话里改几行就能发射 |
 | `literature-scout` | workhorse | 并行读本地库 | 每个内循环 EXP；要上网搜（返回 `NEEDS_REFRESH`） |
 | `result-analyst` | strongest | 高风险解读、执行者有既定解释 | 普通 sanity 看产物（Main 自己 workhorse 做 `result-analysis`） |
-| `research-lead` | strongest | W1 / 卡住 / 下一步科学问题不清；或新证据使已点名 Next 的前提失效 | 内循环已点名下一 EXP 且前提仍成立 |
+| `research-lead` | strongest | W1 / 卡住 / 下一步科学问题不清；或新证据使已点名 Next 的前提失效；知识缺口要选 successor | 内循环已点名下一 EXP 且前提仍成立；第一次负结果 |
 | `reviewer` | strongest | **scientific stakes** 要独立批判 | reviewer 空闲；改 selector；普通工程 |
 
 Handoff：`.agents/prompts/subagent-handoff.md`（带 `Model class`）。

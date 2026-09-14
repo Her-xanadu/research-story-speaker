@@ -25,8 +25,8 @@ EXPERIMENTS, Status, or Outcome.
 
 Ordinary exploratory / sanity. Do **not** open `result-diagnosis.md`,
 `failure-diagnosis.md`, `evidence-and-claim.md`, `scientific-reasoning.md`,
-`state-files.md`, or `experiment-record.md`. Do **not** default-dispatch
-`result-analyst`.
+`state-files.md`, `experiment-record.md`, or `LITERATURE.md`. Do **not**
+default-dispatch `result-analyst`.
 
 In-session:
 
@@ -64,11 +64,23 @@ In-session:
 - **Next** — smallest next discriminating action (stop, retry same Question,
   or a new EXP), including the **resource decision** (continue / defer /
   stop investment, and why). Map that decision onto existing Next; do not
-  add a field. Default W4 exit is `W2 TEST`, not extra repeats merely to
-  reach a conventional run count. A negative that conflicts with stable
-  prior evidence and could change an important decision may get a
-  targeted recheck; do not forbid recheck because of the sign, and do not
-  expand into a large matrix because evidence is thin.
+  add a field. Default W4 exit is `W2 TEST`; the inner loop may continue.
+  If this method comparison shows the method is not working, Next must
+  **not** be `keep` plus the same contrast. A tiny one-shot negative is a
+  bounded deferral of Core Idea (do not ABANDON from one shot) **and**
+  the next EXP is a new isolation or a method change — still `W2 TEST`.
+  After an isolating miss still fails, Next must test simplify / delete /
+  change of a **named existing** piece, or a new isolation — still
+  `W2 TEST`. Do **not** invent a new module / mechanism / loss in compact.
+  That is a knowledge gap: Position `W1 FRAME`, hand to `research-loop`
+  (light literature for this failure condition). Compact does **not**
+  open `LITERATURE.md`. “Metric did not go up” is not a reason to `keep`
+  the same contrast. Engineering retries are not scientific rounds. Go
+  `W1 FRAME` also if no method change **and** no new isolation can be
+  named. A negative that conflicts with stable prior evidence and could change an
+  important decision may get a targeted recheck; do not forbid recheck
+  because of the sign, and do not expand into a large matrix because
+  evidence is thin.
 
 A result that matches the EXP's predeclared scientific prediction is
 **not** an unexpected-result full-diagnosis trigger.
@@ -79,10 +91,13 @@ analysis does **not** write DISCOVERY or promote sanity into Story Evidence.
 If analysis still needs time: persist **execution completed, analysis not
 completed**, keep Outcome `not-assessed`, set Position **`W3 LEARN`**. Do not
 leave a finished job as Status=`running`. Do not assign a scientific Outcome
-just to catch up STATE. Update STATE **Workflow Position**: Next clear →
-`W2 TEST`; result unclear or analysis unfinished → `W3 LEARN`. Level 2 or
-reframe needed → hand to `research-loop` / `story-maintenance`,
-Position `W1 FRAME`. See [story-loop.md](../../references/story-loop.md) §W4.
+just to catch up STATE. Update STATE **Workflow Position**: Next clear (including: test the
+changed method) → `W2 TEST`; failing method + `keep` same contrast →
+rewrite Next, stay `W2 TEST`; isolating miss + would invent a module →
+`W1 FRAME` (hand to `research-loop`; do not consult in compact);
+cannot name a deletion / isolation, or Level 2 →
+`W1 FRAME` (hand to `research-loop`); result unclear or analysis
+unfinished → `W3 LEARN`. See [story-loop.md](../../references/story-loop.md) §W4.
 Required reads: `.research/EXPERIMENTS.md` (target EXP section /
 index lookup only), raw artifacts or operator-supplied log /
 pre-existing result file.

@@ -17,7 +17,8 @@ Judgment operators:
 
 Objects, rivals, and quantity vs proxy: scientific-reasoning.md
 (§A Quantity vs proxy). Units, controls, matrix, must /
-nice / cut, cost: experiment-thinking.md. Mechanism identity and the smallest
+nice / cut, cost, pre-run method consequence, claim-matched comparison:
+experiment-thinking.md. Mechanism identity and the smallest
 Idea-level test, if this proposal follows an Idea-gate:
 [idea-and-mechanism.md](../references/research-intelligence/idea-and-mechanism.md)
 §H (cite; do not recopy the four-line glossary).
@@ -48,8 +49,10 @@ or run anything. A concrete EXP-ID is assigned later by Main in EXPERIMENTS.md
 
 Skip this prompt when the Task is a one-line sanity rerun and EXPERIMENTS
 already has the Question. Ordinary exploratory probes may use a short
-Question + honest baseline; say so. Do not fire idea-evaluation or
-evidence-verification because this file exists.
+Question + honest baseline + the three pre-run readings in Expected
+outcomes; say so. Do not fire idea-evaluation or
+evidence-verification because this file exists. Do not open a
+baseline-selector essay on sanity.
 
 ## When this applies
 
@@ -65,7 +68,7 @@ Read listed paths from disk. Check EXPERIMENTS index and DISCOVERY
 Invalidated / Negative so this proposal does not redo a negated route without
 a new mechanism ([story-loop.md](../references/story-loop.md) §反重复).
 
-Walk experiment-thinking.md A → H when this design must isolate a mechanism
+Walk experiment-thinking.md A → J when this design must isolate a mechanism
 or will spend serious compute. Persist mapping of design prose into existing
 EXP section fields is experiment-thinking.md §A — Main/experiment-design
 owns that write. Do not add index-table columns.
@@ -117,6 +120,10 @@ propose** this Experiment ([experiment-record.md](../references/experiment-recor
 `What method decision will this experiment change?` must be answerable.
 A seed-count matrix is not a reason. Prefer deletion (`Full` vs
 `Full - Component A`) when the method is growing complex.
+
+Question 4 is the pre-run method consequence
+([experiment-thinking.md](../references/research-intelligence/experiment-thinking.md)
+§I). Write it before Compute. Cite; do not recopy. Not Idea-gate tokens.
 
 ## Required design fields
 
@@ -178,7 +185,10 @@ Story claims generality over a grouping, that unit belongs in the **split**.
 The discriminating comparison: target vs the best rival, on the failure
 condition, at the experimental unit. This is must-run. Extra datasets and
 seed sweeps are not the primary comparison unless the Question is about
-those.
+those. The must-run **protocol** must be able to move the claim kind in
+play (experiment-thinking.md §J; scientific-reasoning.md §B). Extra
+baselines are Nice-to-have, not a second proposal. Do not chant a
+four-slot baseline taxonomy.
 
 ### Controls
 
@@ -247,14 +257,20 @@ or leaked comparison does not count as evidence.
 
 Write a stop line in this work file: when Must-run has enough to move the
 target claim, remaining cells are Nice-to-have or Cut
-([story-loop.md](../references/story-loop.md) gap priority).
+([story-loop.md](../references/story-loop.md) gap priority). Include the
+three pre-run readings from experiment-thinking.md §I in this heading or
+under Expected Interpretation Matrix: what keeps the method, what changes
+it, what ends this EXP. Same verbs as Method-First question 4. Not a new
+field.
 
 ## Critical questions
 
-- Which claim kind is this EXP actually testing (scientific-reasoning.md §B)?
+- Which claim kind is this EXP actually testing (scientific-reasoning.md §B;
+  experiment-thinking.md §J)?
   Do not prop a mechanism claim with a performance number a weaker baseline
   could also produce.
 - What result would *lower* belief?
+- Are the three pre-run method-consequence readings named (experiment-thinking.md §I)?
 - Are sample unit and grouping unit being confused?
 - If Full wins, which control would still leave the rival standing?
 - What is Cut, named explicitly?
@@ -264,6 +280,7 @@ target claim, remaining cells are Nice-to-have or Cut
 - Model / seed / compute chosen before Question and rival
 - Confirmatory language on an EXP that never stated a prediction
 - All eight controls on a sanity probe (process failure, not rigor)
+- Four-slot baseline taxonomy on a sanity probe (process failure, not rigor)
 - Parameter sweep sold as ablation (experiment-thinking.md §G: if you cannot
   say what the test tests *and* what should happen if the component matters,
   you have a knob)

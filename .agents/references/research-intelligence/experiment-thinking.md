@@ -113,6 +113,12 @@ Fix the unit **in the design**. Do not “correct” it after the number looks
 good. A split that leaks the grouping unit cannot be repaired by a larger
 model.
 
+A predicted or first-result **large gain** is a unit / split / metric
+question first. Name the grouping, leakage, or measurement check that would
+make that gain untrustworthy **before** giving the method credit. Do not
+treat a surprisingly clean number as compact support. This is the same
+integrity rule as a leaked split; it is not a new Outcome.
+
 ---
 
 ## C. Confounders
@@ -370,12 +376,87 @@ in §D on a sanity EXP is a process failure, not rigor.
 
 ---
 
+## I. Pre-run method consequence
+
+Write how the **main predicted patterns** would change the method **before**
+the run. Persist in Expected outcomes (or Motivation if that field is
+missing). Not a new column. Not Status. Not Outcome. Not Idea-gate tokens
+(`idea-and-mechanism.md` §H).
+
+Use the existing method-consequence verbs:
+
+```text
+keep
+simplify
+delete component
+change mechanism
+abandon
+```
+
+The Expected-outcomes note must make three readings recoverable:
+
+```text
+what keeps the method
+what changes the method (Question may stay)
+what ends this EXP (or parks the Idea)
+```
+
+If you cannot name the third reading, you are hoping. Compact design writes
+all three into the existing “what observation would change next action”
+line — still one note, still five in-session items.
+
+A bar may be a control pattern (`Full ≈ mechanism-off`), a minimum effect
+the Story would still care about, or a resource stop (`must-run unreadable
+→ park`). Do not import a p-value recipe or a conventional seed count to
+make the bar look quantitative.
+
+Method-First question 4 in `experiment-proposal.md` is this same family.
+Do not invent a second vocabulary in EXPERIMENTS.
+
+---
+
+## J. Claim-matched comparison
+
+Must-run is the smallest protocol that can move the **claim kind in play**
+(`scientific-reasoning.md` §B). Cite that section; do not recopy the table.
+
+Match the protocol to the kind, not to a decorative bake-off:
+
+```text
+Problem / Observation — a measurement may be enough; not a model contest
+Mechanism             — isolating control (typically mechanism-off or
+                        information-matched)
+Performance           — honest incumbent, same budget and protocol
+Efficiency            — quality and cost together; accuracy alone is not
+                        the test
+Generality            — a different draw / site / capture, not another seed
+Boundary              — the design can show the claimed non-scope
+```
+
+Do not prop a mechanism claim with a performance number a weaker baseline
+could also produce (`scientific-reasoning.md` §B). Extra baselines, extra
+datasets, and a closest published method (when the Story gap is not
+“beat X”) are **Nice-to-have**, not a second EXP and not a reason to
+upgrade compact design.
+
+A comparison earns a Must-run slot only if **losing it would change the
+claim**. Do not chant a four-slot baseline taxonomy on every EXP. An
+ordinary exploratory probe still needs an honest contrast for *this*
+Question; it does not need a publication comparison plan.
+
+If several claim kinds are smuggled into one EXP, split the Question
+(`scientific-reasoning.md` §A) rather than stacking Nice-to-have until
+the design looks thorough.
+
+---
+
 ## Using this file
 
-Walk A → H when the EXP must isolate a mechanism or spend serious compute.
-For an ordinary exploratory probe, A plus an honest baseline may be enough;
-say so. Do not fire idea-evaluation, evidence-verification, or independent
-review because this file exists.
+Walk A → J when the EXP must isolate a mechanism or spend serious compute.
+For an ordinary exploratory probe, A plus an honest claim-matched contrast
+(§J) and the three pre-run readings (§I) may be enough; say so.
+Do not fire idea-evaluation / evidence-verification / independent review
+because this file exists. Do not open a baseline-selector essay on sanity.
 
 This file does not:
 

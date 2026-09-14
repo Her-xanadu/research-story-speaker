@@ -6,8 +6,9 @@ description: >-
   freshness), paper-find only when inadequate or freshness required, bounded
   NEW ingest via paper-library, enrich Gap-relevant subset, optional
   paper-nutrients, Main writes LITERATURE.md. Light default; deep optional.
-  Use for 查文献, prior work, novelty checks. No independent web/arXiv/S2
-  search in this Skill. Do not update STORY directly.
+  Use for 查文献, prior work, novelty checks, W1 knowledge-gap after an
+  isolating miss. No independent web/arXiv/S2 search in this Skill. Do
+  not update STORY directly.
 ---
 
 # Literature Research
@@ -24,7 +25,7 @@ Thin Skill：把文献证据写入 `.research/LITERATURE.md`。格式见 [state-
 
 `light` | `deep`. **Default is light.**
 
-- **Light** — 3–10 highly relevant sources **after** local consult + optional find pass. If they already name a discriminating test, stop and hand off to `experiment-design`.
+- **Light** — 3–10 highly relevant sources **after** local consult + optional find pass. If they already name a discriminating test, stop and hand off to `experiment-design`. After a W1 knowledge-gap consult, persist Suggests / Novelty for **this failure condition** and hand **one** successor or closest contrast — not a survey, not a second EXP from the same consult.
 - **Deep** — novelty unclear, new core mechanism, Story-changing conflict, or evaluation convention bottleneck. Operators: [deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md) §G：**Pass 1 / Pass 2 = 是否再开 `paper-find` bounded 队列**，不是本 Skill 内自建 arXiv/S2/web 步骤。Main 仍写 `LITERATURE.md`；scout 只写 `.research/work/`。
 
 ## Four-dimension adequacy (all must hold to skip find)
@@ -46,8 +47,17 @@ Not a score — four booleans:
 - Method conflict needs literature grounding.
 - `research-loop` routed to Literature.
 - `experiment-design` needs baseline papers.
+- W1 knowledge gap: an isolating miss still failed, and the next change
+  would be an invented module / mechanism / loss. Consult for **this
+  failure condition**. Local vault (`paper-consult`) first.
 
-Do **not** use for: `experiment-execution`, `result-analysis`, `story-maintenance`, `research-memory`.
+Do **not** use for: `experiment-execution`, `result-analysis` (compact
+does not open this Skill), `story-maintenance`, `research-memory`, a first
+valid negative (isolation first), engineering / invalid / not-assessed,
+every inner-loop EXP, `monitor-experiment` wait, or when unused Suggests /
+closest-work for this failure already sit in `LITERATURE.md` (use **one**
+of them; **0** find). Deep remains optional expensive
+([deep-literature-mode.md](../../references/research-intelligence/deep-literature-mode.md)).
 
 ## Five lenses (synthesis)
 
@@ -73,7 +83,7 @@ Persist only **valuable** entries in `LITERATURE.md` — not search logs.
 8. **Optional paper-nutrients** — `--trigger-kind literature_research`; catch non-zero exits; do not treat generator crash as empty.
 9. **Write LITERATURE.md** — per [LITERATURE.template.md](../../templates/LITERATURE.template.md); include **paper_id**, **vault path**, Identifier, Access when local object exists.
 10. **STATE** — brief next step if routing changed.
-11. **Hand off** — `experiment-design` | `story-maintenance` | `research-loop`.
+11. **Hand off** — `experiment-design` | `story-maintenance` | `research-loop`. After a knowledge-gap consult: one successor or closest contrast → `experiment-design` (back to `W2 TEST`). If closest-work already implements the same mechanism axis, do **not** hand a cosmetic-difference EXP; say novelty threat so Main can REVISE / PARK (`idea-and-mechanism.md` §E).
 
 ### Degraded mode (no Obsidian vault)
 
@@ -127,6 +137,7 @@ Do **not** update `EXPERIMENTS.md`, `DISCOVERY.md`, or `STORY.md` here.
 - Skip low-relevance papers — note scope in STATE.
 - Verify methods before treating abstract claims as findings.
 - When LITERATURE already covers gap and vault adequate+fresh → update Relation only; **0** find.
+- Knowledge-gap consult stays **light** unless a deep trigger actually fires.
 
 Boundaries:
 

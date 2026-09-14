@@ -5,7 +5,8 @@ description: >-
   research, deciding the next scientific move, routing Literature vs Experiment
   vs Review, W1 FRAME reframing, or W4 DECIDE when next step is unclear. Skip
   when STATE is W2 TEST with a named ordinary EXP (inner loop), unless new
-  evidence invalidates that Next's premises. Triggers include
+  evidence invalidates that Next's premises, or Next invents a module after
+  an isolating miss (knowledge gap → W1 literature). Triggers include
   下一步研究什么, 继续科研循环, run research loop, what should we do next.
 ---
 
@@ -30,15 +31,20 @@ Selective gates: `idea-evaluation`, `evidence-verification`.
 - User asks next step, gap closure, or to keep going; new evidence arrived.
 - **W1 FRAME** or **W4 DECIDE** when next step, Story route, or Level 2 change
   is unclear.
+- Isolating miss still fails and the next change would invent a module
+  without literature grounding (narrow knowledge-gap FRAME).
 - Parallel Literature + Experiment + Review fits one gap.
 
 Not for cold start (`workspace-resume`), compaction (`research-memory`), or
 **inner loop** when STATE is `W2 TEST` and Recommended Next Action already
 names an ordinary sanity/exploratory EXP — unless new evidence invalidates
 that Next's premises
-([story-loop.md](../../references/story-loop.md) §方法转移的失败解释) — use
-compact `experiment-design` / `experiment-execution` /
-`monitor-experiment` (if still running) / `result-analysis` instead.
+([story-loop.md](../../references/story-loop.md) §方法转移的失败解释), or
+that Next invents a new module / mechanism / loss after an isolating miss
+(knowledge gap: stay here, route light literature; do not skip to compact
+design) — otherwise use compact `experiment-design` /
+`experiment-execution` / `monitor-experiment` (if still running) /
+`result-analysis` instead.
 
 ## Goal
 
@@ -69,17 +75,38 @@ If **Workflow Position is `W2 TEST` / `W3 LEARN` / `W4 DECIDE`**, ask first:
 
 If yes: **do not** hunt a new route. Continue the current Method Loop
 ([story-loop.md](../../references/story-loop.md) §Method-First Inner Loop).
-Only return to `W1 FRAME` when the mechanism or problem itself needs
-reconstruction.
+Return to `W1 FRAME` when the mechanism or problem itself needs
+reconstruction, **or** when the next change would invent a module
+without literature grounding for this failure condition (narrow
+knowledge-gap consult, then back to W2).
 
-W4 default exit is **`W2 TEST`** when Story has no Level 2 change, the
-scientific question still holds, and a discriminating next experiment is
-clear. Answer `What does this result imply for the method?` before picking
-the next Position.
+W4 default exit is **`W2 TEST`**. The inner loop may continue for many
+rounds. If the method did not work, apply method consequence (simplify /
+delete / change of a **named existing** piece) and stay on **`W2 TEST`**
+to test the changed method. Do **not** `keep` the failing method and mint
+the same Question / same rival again. Do **not** treat “guess a new
+module” as that method consequence.
 
-Same-mechanism `W2 → W3 → W4 → W2` does **not** redo literature. New
-literature only on W1 reframe, novelty threat, a new mechanism, a required
-new baseline, or explicit user freshness.
+Go **`W1 FRAME`** when you cannot name a deletion / isolation, the
+problem/route itself needs reconstruction, **or** the next change would
+be an invented module / mechanism / loss without unused Suggests /
+closest-work in `LITERATURE.md` for **this failure condition**
+([story-loop.md](../../references/story-loop.md) §停滞处理). That last
+case is a **narrow** knowledge-gap FRAME: light `literature-research`
+(local vault first), pick **one** successor or closest contrast, return
+to `W2 TEST`. Do not re-run「最大 gap」and do not change the project
+goal. If unused Suggests already name a successor, use them (**0** find).
+If closest-work already implements the same mechanism axis, REVISE / PARK
+— do not mint a cosmetic-difference EXP.
+
+Answer `What does this result imply for the method?` before picking the
+next Position.
+
+Same-mechanism `W2 → W3 → W4 → W2` does **not** redo literature, and
+`monitor-experiment` wait does **not** consult the vault. New literature
+on W1 reframe, knowledge-gap after isolating miss, novelty threat, a
+required new baseline, or explicit user freshness. Deep literature stays
+optional expensive.
 
 ### 1. Read Position + Story
 
@@ -99,10 +126,17 @@ mechanism-isolation line):
   Do not keep `research-loop` thinking during a live run.
 - After `result-analysis`, let compact W4 set next Position (usually stay
   `W2 TEST`).
-- **Exception:** if new evidence invalidates that Next's premises, this
-  Skill may stay and may dispatch `research-lead`. A numbered Next is not a
-  permanent ban
-  ([story-loop.md](../../references/story-loop.md) §方法转移的失败解释).
+- **Exception:** if new evidence invalidates that Next's premises, **or**
+  this Next is `keep` plus the same failing contrast, this Skill may stay
+  long enough to rewrite Next as an EXP that tests the **changed** method
+  (still `W2 TEST`). If this Next invents a new module / mechanism / loss
+  after an isolating miss, do **not** execute it: escalate to **`W1 FRAME`**
+  for a narrow literature consult (or pick one unused Suggests successor
+  already on disk). Escalate to a full reframe only if no deletion /
+  isolation can be named **and** no failure condition can be written for
+  consult. A numbered Next is not a permanent ban
+  ([story-loop.md](../../references/story-loop.md) §方法转移的失败解释,
+  §停滞处理).
 
 If Position is **`W3 LEARN`** → delegate `result-analysis` only, then stop.
 
@@ -113,9 +147,14 @@ only routes.
 
 ### 4. FRAME: largest Story gap (W1)
 
-When Position is `W1 FRAME`, `W4 DECIDE` with unclear next step, or stagnation
-→ W1 per story-loop. Judge per §Gap 优先级. One focal gap per iteration unless
-parallel subagents warranted. **Do not** rewrite `PROJECT.md` Research Goal.
+When Position is `W1 FRAME`, `W4 DECIDE` with unclear next step **and no
+named deletion / isolation**, knowledge-gap (invented module after
+isolating miss), or A/B/C reframe → W1 per story-loop. A no-yield round
+that already has a named deletion / isolation stays `W2 TEST`. A
+knowledge-gap W1 is **not** 「最大 gap」: consult for **this failure
+condition** only, then return to W2. Judge per §Gap 优先级 only on true
+reframe. One focal gap per iteration unless parallel subagents warranted.
+**Do not** rewrite `PROJECT.md` Research Goal.
 
 ### 5. Internal route stage
 
@@ -136,7 +175,7 @@ Selective — **not** a default chain. Ordinary exploratory EXP stays light.
 
 | Gap nature | Route | Delegate |
 | --- | --- | --- |
-| Prior work, novelty, lit conflict | Literature | `literature-research` / scout — **not** every few EXP; only W1 / novelty / new mechanism / new baseline / user freshness |
+| Prior work, novelty, lit conflict, or isolating-miss knowledge gap | Literature | `literature-research` / scout — **not** every EXP; W1 / novelty / required new baseline / user freshness / isolating miss + ungrounded new module. Light default. Unused Suggests on disk → pick **one**, **0** find |
 | Untested mechanism, empirical answer | Experiment | `experiment-design` → `experiment-execution` → (`monitor-experiment` if still running) → `result-analysis` |
 | Major new idea (Core Idea, route competition, mechanism replacement, expensive successor) | Idea-gate | `idea-evaluation` ([prompt](../../prompts/idea-evaluation.md)); then `experiment-design` only if the gate says continue |
 | High-stakes evidence (Story Evidence candidate, surprising strong result, Story-core change) | Evidence then Review | `evidence-verification` ([prompt](../../prompts/evidence-verification.md)) after `result-analysis` → `experiment-review` |
@@ -183,9 +222,11 @@ Write **one** next Workflow Position in STATE:
 
 | Judgment | Position |
 | --- | --- |
-| Story stable, next EXP clear | `W2 TEST` |
+| Story stable, next EXP clear (including: method changed, now test it) | `W2 TEST` |
 | Result unclear | `W3 LEARN` |
-| Core Idea / gap / route needs reframe (A/B/C) | `W1 FRAME` |
+| Failing method + `keep` same contrast | do not mint; rewrite Next, stay `W2 TEST` |
+| Isolating miss + next change is an ungrounded new module | `W1 FRAME` (narrow light literature → one successor → `W2 TEST`) |
+| Core Idea / gap / route needs reframe (A/B/C); cannot name a deletion / isolation or a failure condition to consult | `W1 FRAME` |
 | Story complete per PROJECT | `W5 HANDOFF` |
 
 Do **not** force `W1→W2→W3→W4→W1` every Experiment.
@@ -198,9 +239,15 @@ without loading this Skill.
 Stop on user blocker, Story completion (`W5 HANDOFF`), or Reviewer
 `ATTENTION_REQUIRED` ([reviewer.md](../../subagents/reviewer.md)).
 
-Stagnation (no information gain, hyperparameter-only runs, **or consecutive
-EXPs that change numbers but not any mechanism judgment**) → `W1 FRAME` per
-[story-loop.md](../../references/story-loop.md) §停滞处理 / §何时回到 W1 B.
+Stagnation is **many rounds with no yield** (method still failing and
+still `keep`), not “too many rounds.” Apply Method Complexity Rule and
+**continue `W2 TEST`** on a named deletion / isolation / simpler
+explanation ([story-loop.md](../../references/story-loop.md) §停滞处理).
+Do **not** register the same failing contrast again. Do **not** invent a
+new module in lieu of consult. Knowledge gap after isolating miss →
+narrow `W1 FRAME` + light literature, then back to W2. Full `W1 FRAME`
+reframe only if no deletion / isolation can be named and no failure
+condition can be written for consult.
 
 ## Reads
 
@@ -220,7 +267,9 @@ Ensure executors updated per [state-files.md](../../references/state-files.md)
 
 - User-specified Skill → re-enter at integrate.
 - Parallel scout + experiment + reviewer for one gap.
-- Defer Literature when cheap decisive experiment exists.
+- Defer Literature when a cheap named deletion / isolation still exists.
+  Do **not** defer after an isolating miss when the next change would be
+  an invented module. Do **not** consult during `monitor-experiment` wait.
 - Skip iteration after Level 0 with no Story change.
 - Pause for `research-memory` when routing blocked.
 - Skip Idea-gate / Evidence-gate / Reviewer for ordinary exploratory EXP.

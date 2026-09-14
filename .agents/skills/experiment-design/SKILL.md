@@ -4,7 +4,7 @@ description: >-
   Design a new EXP-xxx or refine a planned experiment from the current Story gap.
   Prioritize high-impact experiments that maximally change scientific judgment,
   not parameter sweeps. Ordinary exploratory / sanity stays compact in-session
-  (no default experiment-proposal.md or experiment-thinking A→H). Full design
+  (no default experiment-proposal.md or experiment-thinking A→J). Full design
   only for mechanism claim, new Core Idea, high compute, important ablation,
   isolating control, publication-facing comparison, or high-risk split.
   Document in EXPERIMENTS.md without running code. Use before
@@ -36,6 +36,22 @@ current science EXP (`experiment-record.md` §Support-task rule).
 **What method decision will this experiment change?** If that cannot be
 answered, **do not register** this Experiment.
 
+If the last **scientific** EXP showed the method is not working and this
+task would `keep` the same Question / same rival / same contrast,
+**do not register**. That is a no-yield round
+([story-loop.md](../../references/story-loop.md) §停滞处理), not a new
+Experiment. Write the method change (simplify / delete / change of a
+**named existing** piece), then register the EXP that **tests the changed
+method** — still `W2 TEST`. The inner loop may continue.
+
+If the last isolating miss still failed and this task **adds** a new
+module / mechanism / loss, **do not register** in compact and do **not**
+open `LITERATURE.md` to invent one. Hand to `research-loop` at `W1 FRAME`
+for a narrow knowledge-gap consult. A one-shot exploratory miss that is
+already followed by a new isolation, a named `Full - A` deletion, an
+engineering retry, or a true new contrast may proceed. Support / parser /
+seed-fill still does **not** get a new ID.
+
 Do not register an EXP “to complete the matrix” (e.g. 3 seeds → 5 seeds)
 unless unresolved uncertainty could change an important scientific or
 resource decision
@@ -56,8 +72,10 @@ When the method is growing complex, prefer a **deletion experiment**
 ## Compact (default)
 
 Ordinary exploratory / sanity. Do **not** open `experiment-proposal.md`,
-`experiment-thinking.md` (A→H), `scientific-reasoning.md`, `git-linking.md`,
-`story-loop.md`, or `experiment-record.md`.
+`experiment-thinking.md` (A→J), `scientific-reasoning.md`, `git-linking.md`,
+`story-loop.md`, `experiment-record.md`, or `LITERATURE.md`. Do **not** fire
+`idea-evaluation`, `evidence-verification`, or independent review from
+compact design.
 
 Already-planned sanity: the five in-session items are already in the EXP
 section — verify, do not rewrite.
@@ -70,9 +88,25 @@ section — verify, do not rewrite.
 | **What observation would change next action?** | Expected outcomes (design note; else Motivation) |
 | **Data / Setup / Codebase** | Data / Setup, Code — as needed |
 
+The five items stay five. Fill them with these in-session operators; do
+**not** open Layer 2 to do so:
+
+- **Comparisons** — match the contrast to the claim actually under test.
+  A mechanism claim needs an isolating contrast, not only a weak baseline.
+  A generality claim needs a different draw, not another seed. An efficiency
+  claim needs a cost axis with the quality number. Extra baselines are
+  optional, not a second EXP and not a full-design trigger.
+- **Expected outcomes** — pre-run method consequences in that same note
+  (`keep` / `simplify` / `delete component` / `change mechanism` /
+  `abandon`): what keeps the method, what changes it, what ends this EXP.
+  Not a new field. Not Idea-gate tokens.
+- **Data / Setup** — if a large gain would be surprising, name the split /
+  grouping / metric check that would make that gain untrustworthy.
+
 Do **not** auto-upgrade for: single sanity, basic reproduction, extra
 repeats merely to reach a conventional run count, logging check,
-known-question retry, small diagnostic probe.
+known-question retry, small diagnostic probe, or a missing publication
+baseline taxonomy.
 
 If this Question is already `planned` in EXPERIMENTS: skip a new EXP-ID; go to
 `experiment-execution` only if code must run, else compact `result-analysis`
@@ -117,12 +151,12 @@ Record in `EXPERIMENTS.md` with index row, Status `planned`, Outcome `not-assess
 ## Compact vs full (Skill-internal)
 
 Choose **before** loading `experiment-proposal.md` or experiment-thinking
-A→H. Default is **compact**. Compact operators are above the stop line.
+A→J. Default is **compact**. Compact operators are above the stop line.
 This remainder is **full design**.
 
 ### Full design — load if any
 
-Load `experiment-proposal.md` and walk experiment-thinking A→H if **any**:
+Load `experiment-proposal.md` and walk experiment-thinking A→J if **any**:
 
 - mechanism claim
 - new Core Idea
@@ -144,7 +178,7 @@ See **Compact (default)** above the stop line.
 ### Full design flow
 
 Only after a full-design trigger matches. Load
-`experiment-proposal.md` and `experiment-thinking.md` A→H.
+`experiment-proposal.md` and `experiment-thinking.md` A→J.
 
 1. **Anchor gap** — Read `.research/STORY.md` (Open Gaps, Boundary),
    `.research/STATE.md`, relevant `DISCOVERY.md` (especially Invalidated /
@@ -169,10 +203,11 @@ Only after a full-design trigger matches. Load
    | **Unit of analysis** | Data / Setup | Units per experiment-thinking.md §B |
    | **Confounders** | Data / Setup | Design-time knobs to equalize (§C) |
    | **Controls** | Comparisons | Smallest set that isolates the named rival (§D) |
-   | **Comparison** | Comparisons | Baselines, ablations, controls |
+   | **Comparison** | Comparisons | Claim-matched must-run contrast (experiment-thinking.md §J); extra baselines are Nice-to-have |
    | **Interpretation matrix** | Expected outcomes (design note) | Pattern → reading; not Outcome (§E) |
    | **Must / Nice / Cut** | Comparisons / Method | Must-run owns budget; Cut is success (§F) |
    | **Expected outcomes** | (design note) | What result would support / refute / narrow Story |
+   | **Pre-run method consequence** | Expected outcomes (design note; else Motivation) | keep / simplify / delete component / change mechanism / abandon for the main patterns, before the run (experiment-thinking.md §I) |
    | **Codebase** | Code | Codebase ID from `RESOURCES.md` |
    | **Compute** | Data / Setup | Dataset, seeds, metrics, estimated cost / runtime |
 
