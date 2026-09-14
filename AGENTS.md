@@ -71,6 +71,8 @@ sleep 300; ssh <RESOURCES 里的 alias> 'tail -n 50 <log>'
 
 「补成常见 seed 数」「把矩阵填满」本身不能成为新 EXP。
 
+一长串**科学** EXP 若方法后果（keep / simplify / delete / change / abandon）相对上一轮没有变，而下一动作仍是同一问题、同一对照：不要再开新 EXP，回 W1（停 / PARK / 换问题）。Support、retry、为凑 seed 的重复不算科学轮次。指标没涨但方法判断变了，算进展。
+
 ### 3. 研究目标冻结，方法可以改
 
 `PROJECT.md` 的 **Research Goal**（针对什么、要完成一类什么研究 / 提出一类方法）**冻结**。没有用户明确改目标，不准换成另一个课题。
@@ -142,23 +144,23 @@ W2 设计一个判别实验（默认从很小开始）
  → W2 发射
  → 仍在跑：本对话 sleep N; probe（不要结束 turn）
  → W3 机制诊断（exit 0 ≠ 科学成功）
- → W4 问：对方法意味着什么？默认回 W2
+ → W4 问：对方法意味着什么？能改判断才回 W2；同路线无新判断则 W1
 ```
 
-外循环（低频）：只有 Core Idea / 路线要重构，或下一科学问题不清，才 `W4 → W1`。**不能**借 W1 换掉 PROJECT Research Goal。
+外循环（低频）：只有 Core Idea / 路线要重构、下一科学问题不清，或同路线连续科学 EXP 未改方法判断，才 `W4 → W1`。**不能**借 W1 换掉 PROJECT Research Goal。
 
 | Position / 情况 | 这一步干什么 | 调用 | 不要调用 |
 |-----------------|--------------|------|----------|
 | `UNINITIALIZED` / `W0` | 先算力+代码 Git，再 materialize | `workspace-setup` → `workspace-resume` | `research-loop`、任何实验 Skill |
-| 新会话且 Next 已点名普通 EXP | 直接继续内循环 | 下表 W2–W3 | `workspace-resume`、`research-loop` |
+| 新会话且 Next 已点名普通 EXP | 直接继续内循环 | 下表 W2–W3 | `workspace-resume`、`research-loop`（**除非**同路线无新判断：则 `research-loop` W1） |
 | 新会话且 Next 不清 | 读 working set，再路由 | `workspace-resume` | 不要扫整本 `EXPERIMENTS.md` |
 | `W1 FRAME` | 问当前科学问题；文献/换机制 | `research-loop`；按需 `literature-research` / `idea-evaluation` / `story-maintenance` | 每个 EXP 都回 W1；换课题 |
 | `W2` 还没有可跑的 EXP | 写最小判别实验 | `experiment-design` | `idea-evaluation`；一上来铺重复矩阵 |
 | `W2` 有 EXP 要跑代码 | 实现并发射 | `experiment-execution` | 边跑边解读；未发射就 `sleep` |
 | `W2` Status=`running` | 同一对话阻塞等待 | **Main** `sleep N; probe`（`monitor-experiment`） | 结束 turn；开 subagent；`research-loop`；空转思考 |
 | `W3` 终态产物已在 | 机制诊断 + Outcome | `result-analysis` | `experiment-execution`；`exit 0`→`supports` |
-| `W4` 方法后果清楚、下一实验清楚 | 写 Next，Position=`W2` | `result-analysis`（可顺手 Level 1 Story） | `research-loop`；因负号禁止复核；证据不足就铺大矩阵 |
-| `W4` Next 不清 / Level 2 换方法 | 换挡，不换 Goal | `research-loop` | 把 Goal 改成另一个课题 |
+| `W4` 方法后果清楚、下一实验清楚且能改判断 | 写 Next，Position=`W2` | `result-analysis`（可顺手 Level 1 Story） | `research-loop`；因负号禁止复核；证据不足就铺大矩阵 |
+| `W4` 方法后果相对上轮没变且下一实验同类 / Next 不清 / Level 2 | 换挡，不换 Goal | `research-loop` | 把 Goal 改成另一个课题；再开一个同配置 EXP |
 | `W5` 完成条件满足 | 可写 | STATE `READY_FOR_WRITING` | 继续堆工程 EXP |
 
 ## Skill 何时用 / 何时不用
@@ -169,8 +171,8 @@ W2 设计一个判别实验（默认从很小开始）
 |-------|--------|------------|--------------|
 | `workspace-setup` | 未初始化；换服务器/代码路径 | 每个 EXP；已经 ACTIVE 且算力没变 | 只写 `RESOURCES.md` |
 | `workspace-resume` | 陌生会话且 Next 不清；UNINITIALIZED materialize | Next 已点名普通 EXP 且前提仍成立；只是实验还在跑 | 读 5 件 working set，立刻开干 |
-| `research-loop` | W1；W4 且下一科学问题不清；新证据使已点名 Next 失效 | 内循环已清楚且前提仍成立（W2 有 EXP / running / W3 有产物） | **只调度**，自己不跑实验、不解读 |
-| `experiment-design` | 需要新的判别问题 | 只是修 parser；只是为凑次数再跑 seed | 登记 EXP；默认从小开始；答不出「改变什么判断」就不要登记 |
+| `research-loop` | W1；W4 且下一科学问题不清；新证据使已点名 Next 失效；同路线连续科学 EXP 未改方法判断 | 内循环已清楚且前提仍成立（W2 有 EXP / running / W3 有产物） | **只调度**，自己不跑实验、不解读 |
+| `experiment-design` | 需要新的判别问题 | 只是修 parser；只是为凑次数再跑 seed；同路线无新 rival 的再来一轮 | 登记 EXP；默认从小开始；答不出「改变什么判断」就不要登记 |
 | `experiment-execution` | 设计已在、要跑代码 | 已经 running；只解读结果 | 发射；记下 probe；仍在跑立刻 `sleep` |
 | `monitor-experiment` | 已发射、无终态 | 同步 smoke 已结束；用户只要解读 | Main：`sleep N; probe`，同一对话循环 |
 | `result-analysis` | 终态产物在 | 还在训练；只看到 epoch | 机制诊断 → 方法后果 → 下一判别实验 |

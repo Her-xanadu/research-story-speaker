@@ -56,8 +56,12 @@ Recommended Next Action
 Two-layer Workflow: if Position is `W2 TEST` and Next names an ordinary EXP
 **and that Next's premises still hold**, continue the **inner loop** (compact
 design/execution/monitor/analysis) — **do not** load `research-loop` to
-re-frame. If new evidence invalidates those premises, re-routing is allowed
-([story-loop.md](../../references/story-loop.md) §方法转移的失败解释).
+re-frame. Premises include: this Next can still change a method judgment.
+If new evidence invalidates those premises, or the last scientific EXP left
+method consequence unchanged and this Next is the same Question / same rival,
+re-routing is allowed
+([story-loop.md](../../references/story-loop.md) §方法转移的失败解释,
+§停滞处理).
 If STATE Status=`running` but this run's terminal artifacts are complete:
 do **not** re-launch or monitor; hand to `result-analysis`, Position
 `W3 LEARN` until analysis exists. See
@@ -176,10 +180,12 @@ just to get under 40 lines. Just-initialized STORY may still say
 ### 4. Emit packet and continue
 
 Report the packet compactly, then **same turn**: if `W2 TEST` + named ordinary
-EXP whose premises still hold → compact inner loop (if Status=`running` with
+EXP whose premises still hold **and** that Next can still change a method
+judgment → compact inner loop (if Status=`running` with
 no terminal artifact → `monitor-experiment`, do not think through the wait;
 if terminal artifacts are already complete → `result-analysis` at `W3 LEARN`,
-do not re-launch); else execute `STATE` next or matching Skill; route
+do not re-launch); if the named Next is the same-route clone after unchanged
+method consequence → `research-loop` at `W1 FRAME`; else execute `STATE` next or matching Skill; route
 unclear → `research-loop` (FRAME/W4 only); files disagree → `research-memory` first.
 
 Never end with only “已恢复” when an actionable step exists. Do not open a

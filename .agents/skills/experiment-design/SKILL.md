@@ -36,6 +36,16 @@ current science EXP (`experiment-record.md` §Support-task rule).
 **What method decision will this experiment change?** If that cannot be
 answered, **do not register** this Experiment.
 
+If the last **scientific** EXP on this Question left method consequence
+unchanged (`keep` / `simplify` / `delete component` / `change mechanism` /
+`abandon`) and this task does not name a **new rival or isolating
+contrast**, **do not register**. That is stagnation
+([story-loop.md](../../references/story-loop.md) §停滞处理), not a new
+Experiment. Hand to `research-loop` at `W1 FRAME`. A one-shot exploratory
+miss, an engineering retry, or a true new isolation (mechanism-off, new
+condition, new rival) may still proceed. Support / parser / seed-fill
+still does **not** get a new ID.
+
 Do not register an EXP “to complete the matrix” (e.g. 3 seeds → 5 seeds)
 unless unresolved uncertainty could change an important scientific or
 resource decision

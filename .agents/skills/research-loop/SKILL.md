@@ -73,9 +73,12 @@ Only return to `W1 FRAME` when the mechanism or problem itself needs
 reconstruction.
 
 W4 default exit is **`W2 TEST`** when Story has no Level 2 change, the
-scientific question still holds, and a discriminating next experiment is
-clear. Answer `What does this result imply for the method?` before picking
-the next Position.
+scientific question still holds, **and** the next contrast can still change
+a method judgment. If the last scientific EXP left method consequence
+unchanged and Next is the same Question / same rival, go **`W1 FRAME`**
+([story-loop.md](../../references/story-loop.md) §停滞处理) — do not mint
+another similar EXP. Answer `What does this result imply for the method?`
+before picking the next Position.
 
 Same-mechanism `W2 → W3 → W4 → W2` does **not** redo literature. New
 literature only on W1 reframe, novelty threat, a new mechanism, a required
@@ -99,10 +102,12 @@ mechanism-isolation line):
   Do not keep `research-loop` thinking during a live run.
 - After `result-analysis`, let compact W4 set next Position (usually stay
   `W2 TEST`).
-- **Exception:** if new evidence invalidates that Next's premises, this
-  Skill may stay and may dispatch `research-lead`. A numbered Next is not a
-  permanent ban
-  ([story-loop.md](../../references/story-loop.md) §方法转移的失败解释).
+- **Exception:** if new evidence invalidates that Next's premises, **or**
+  the last scientific EXP did not change method consequence and this Next
+  is the same Question / same rival, this Skill may stay and may dispatch
+  `research-lead`. A numbered Next is not a permanent ban
+  ([story-loop.md](../../references/story-loop.md) §方法转移的失败解释,
+  §停滞处理).
 
 If Position is **`W3 LEARN`** → delegate `result-analysis` only, then stop.
 
@@ -183,9 +188,10 @@ Write **one** next Workflow Position in STATE:
 
 | Judgment | Position |
 | --- | --- |
-| Story stable, next EXP clear | `W2 TEST` |
+| Story stable, next EXP clear **and** it can change a method judgment | `W2 TEST` |
 | Result unclear | `W3 LEARN` |
 | Core Idea / gap / route needs reframe (A/B/C) | `W1 FRAME` |
+| Consecutive scientific EXPs did not change method consequence | `W1 FRAME` |
 | Story complete per PROJECT | `W5 HANDOFF` |
 
 Do **not** force `W1→W2→W3→W4→W1` every Experiment.
@@ -199,8 +205,11 @@ Stop on user blocker, Story completion (`W5 HANDOFF`), or Reviewer
 `ATTENTION_REQUIRED` ([reviewer.md](../../subagents/reviewer.md)).
 
 Stagnation (no information gain, hyperparameter-only runs, **or consecutive
-EXPs that change numbers but not any mechanism judgment**) → `W1 FRAME` per
+scientific EXPs that change numbers but not any mechanism judgment**) →
+`W1 FRAME` per
 [story-loop.md](../../references/story-loop.md) §停滞处理 / §何时回到 W1 B.
+Do **not** register another same-route EXP. PARK / ABANDON of the current
+mechanism is progress.
 
 ## Reads
 
