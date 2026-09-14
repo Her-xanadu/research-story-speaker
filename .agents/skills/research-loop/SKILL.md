@@ -72,13 +72,15 @@ If yes: **do not** hunt a new route. Continue the current Method Loop
 Only return to `W1 FRAME` when the mechanism or problem itself needs
 reconstruction.
 
-W4 default exit is **`W2 TEST`** when Story has no Level 2 change, the
-scientific question still holds, **and** the next contrast can still change
-a method judgment. If the last scientific EXP left method consequence
-unchanged and Next is the same Question / same rival, go **`W1 FRAME`**
-([story-loop.md](../../references/story-loop.md) §停滞处理) — do not mint
-another similar EXP. Answer `What does this result imply for the method?`
-before picking the next Position.
+W4 default exit is **`W2 TEST`**. The inner loop may continue for many
+rounds. If the method did not work, apply method consequence (simplify /
+delete / change) and stay on **`W2 TEST`** to test the changed method.
+Do **not** `keep` the failing method and mint the same Question / same
+rival again. Go **`W1 FRAME`** only when you cannot name that method
+change, or the problem/route itself needs reconstruction
+([story-loop.md](../../references/story-loop.md) §停滞处理).
+Answer `What does this result imply for the method?` before picking the
+next Position.
 
 Same-mechanism `W2 → W3 → W4 → W2` does **not** redo literature. New
 literature only on W1 reframe, novelty threat, a new mechanism, a required
@@ -103,9 +105,10 @@ mechanism-isolation line):
 - After `result-analysis`, let compact W4 set next Position (usually stay
   `W2 TEST`).
 - **Exception:** if new evidence invalidates that Next's premises, **or**
-  the last scientific EXP did not change method consequence and this Next
-  is the same Question / same rival, this Skill may stay and may dispatch
-  `research-lead`. A numbered Next is not a permanent ban
+  this Next is `keep` plus the same failing contrast, this Skill may stay
+  long enough to rewrite Next as an EXP that tests the **changed** method
+  (still `W2 TEST`). Escalate to `W1 FRAME` only if no method change can
+  be named. A numbered Next is not a permanent ban
   ([story-loop.md](../../references/story-loop.md) §方法转移的失败解释,
   §停滞处理).
 
@@ -118,9 +121,11 @@ only routes.
 
 ### 4. FRAME: largest Story gap (W1)
 
-When Position is `W1 FRAME`, `W4 DECIDE` with unclear next step, or stagnation
-→ W1 per story-loop. Judge per §Gap 优先级. One focal gap per iteration unless
-parallel subagents warranted. **Do not** rewrite `PROJECT.md` Research Goal.
+When Position is `W1 FRAME`, `W4 DECIDE` with unclear next step **and no
+named method change**, or A/B/C reframe → W1 per story-loop. A no-yield
+round that already has a method change stays `W2 TEST`. Judge per §Gap
+优先级. One focal gap per iteration unless parallel subagents warranted.
+**Do not** rewrite `PROJECT.md` Research Goal.
 
 ### 5. Internal route stage
 
@@ -188,10 +193,10 @@ Write **one** next Workflow Position in STATE:
 
 | Judgment | Position |
 | --- | --- |
-| Story stable, next EXP clear **and** it can change a method judgment | `W2 TEST` |
+| Story stable, next EXP clear (including: method changed, now test it) | `W2 TEST` |
 | Result unclear | `W3 LEARN` |
-| Core Idea / gap / route needs reframe (A/B/C) | `W1 FRAME` |
-| Consecutive scientific EXPs did not change method consequence | `W1 FRAME` |
+| Failing method + `keep` same contrast | do not mint; rewrite Next, stay `W2 TEST` |
+| Core Idea / gap / route needs reframe (A/B/C); cannot name a method change | `W1 FRAME` |
 | Story complete per PROJECT | `W5 HANDOFF` |
 
 Do **not** force `W1→W2→W3→W4→W1` every Experiment.
@@ -204,12 +209,12 @@ without loading this Skill.
 Stop on user blocker, Story completion (`W5 HANDOFF`), or Reviewer
 `ATTENTION_REQUIRED` ([reviewer.md](../../subagents/reviewer.md)).
 
-Stagnation (no information gain, hyperparameter-only runs, **or consecutive
-scientific EXPs that change numbers but not any mechanism judgment**) →
-`W1 FRAME` per
-[story-loop.md](../../references/story-loop.md) §停滞处理 / §何时回到 W1 B.
-Do **not** register another same-route EXP. PARK / ABANDON of the current
-mechanism is progress.
+Stagnation is **many rounds with no yield** (method still failing and
+still `keep`), not “too many rounds.” Apply Method Complexity Rule and
+**continue `W2 TEST`** on the changed method
+([story-loop.md](../../references/story-loop.md) §停滞处理).
+Do **not** register the same failing contrast again.
+`W1 FRAME` only if no method change can be named.
 
 ## Reads
 

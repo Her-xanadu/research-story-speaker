@@ -219,9 +219,12 @@ confirmation. Exploratory pilots may generate signal; they do not replace
 this step. A 50-seed leaderboard that cannot split rivals is not
 “more decisive.”
 
-A long same-route campaign whose scientific EXPs did not change method
-consequence is PARK or ABANDON of *this* mechanism, not a reason to stack
-components. Stopping is progress. Skip this reading for a single cheap exploratory miss — that stays on experiment-design / result-analysis.
+A long same-route campaign that keeps failing is not a reason to stack
+components, and not a reason to stop the inner loop. Apply deletion /
+simplification and **keep testing**. PARK or ABANDON this mechanism only
+when no honest successor or simplification remains. Skip this reading for
+a single cheap exploratory miss — that stays on experiment-design /
+result-analysis.
 
 Recommended action after the audit (work artifact only):
 

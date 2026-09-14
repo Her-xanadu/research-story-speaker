@@ -15,10 +15,10 @@ Gap priority, anti-duplication, two-layer Workflow, stagnation, and
 failure-to-transfer: story-loop.md.
 If STATE Workflow Position is `W2 TEST` and Next already names an EXP,
 **usually do not dispatch research-lead** — continue the inner loop. If
-**new evidence invalidates that Next's premises**, or the last scientific
-EXP left method consequence unchanged and this Next is the same Question /
-same rival, re-routing is allowed; a numbered Next is not a permanent ban
-on re-judgment
+**new evidence invalidates that Next's premises**, or this Next is `keep`
+plus the same failing contrast, rewrite Next as a test of the **changed**
+method (still W2). Escalate to W1 only if no method change can be named.
+A numbered Next is not a permanent ban on re-judgment
 ([story-loop.md](../references/story-loop.md) §方法转移的失败解释,
 §停滞处理).
 
@@ -69,11 +69,11 @@ default-dispatch several advisors. Reviewing all history is not a
 prerequisite for proposing the next experiment.
 
 If Position is `W2` / `W3` / `W4` and the scientific question is still
-clear **and the next contrast can still change a method judgment**,
-recommend continuing the Method Loop — not a new route
+clear, recommend continuing the Method Loop — not a new route
 ([story-loop.md](../references/story-loop.md) §Method-First Inner Loop).
-If consecutive scientific EXPs did not change method consequence, do **not**
-recommend another similar EXP — recommend W1 park / abandon / reframe.
+If the method is not working, recommend the next inner-loop EXP that
+**tests the changed method**. Do **not** recommend another similar config
+with `keep`. Recommend W1 only if no method change can be named.
 Literature is **not** a default every few EXP: only W1 reframe, novelty
 threat, a new mechanism, a required new baseline, or explicit user
 freshness. Rank **one focal scientific question**; parallel EXPs that
@@ -189,15 +189,14 @@ is already clear rather than inventing rivals. If evidence is insufficient
 to choose, say so and recommend the cheapest discriminating step
 (research-lead.md).
 
-Stagnation (story-loop.md §停滞处理): consecutive **scientific** EXPs that
-did not move Problem / Core Idea / main gap / method consequence,
-hyperparameter loops, a STATE that points at the same running EXP with no
-Discovery, or Open Contradictions growing without a test aimed at the
-contradiction — change strategy; **do not** recommend “one more similar
-config.” A long unsuccessful campaign whose metrics never rose is often a
-success-definition error: if method judgment did not move, PARK / ABANDON
-or reframe the Question. Valid `contradicts` / `null` that changed the
-method is progress. Do not fire idea-evaluation on a single sanity miss.
+Stagnation (story-loop.md §停滞处理) is many rounds **with no yield**,
+not too many rounds. Consecutive scientific EXPs that still `keep` a
+failing method, hyperparameter loops, or Open Contradictions growing
+without a test — change the **method**, then recommend the next inner-loop
+EXP that tests it. Do **not** recommend “one more similar config.”
+Valid `contradicts` / `null` that changed the method is yield. Recommend
+PARK / W1 only if no method change can be named. Do not fire
+idea-evaluation on a single sanity miss.
 
 ## Critical questions
 

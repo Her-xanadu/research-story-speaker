@@ -115,7 +115,7 @@ New EXP-ID is for a scientific question that can change a scientific decision.
 2. **至少存在两个可能结果，并会导致不同科研判断** — 例如 `Full > matched sham` → source mechanism remains plausible；`Full ≈ matched sham` → source mechanism lacks independent value。若可能结果只是 `tests pass / tests fail` 或 `file exists / file missing`，通常不是独立科学 Experiment。
 3. **结果能够改变至少一个东西：** method design、mechanism belief、Story Boundary、Open Gap、route choice、scientific comparison。
 
-若上一**科学** EXP 已经回答同一 Question，方法后果未变，且本任务没有新 rival / 新隔离对照，则不要新 EXP-ID。这是停滞（`story-loop.md` §停滞处理），不是新 Experiment。Support / retry / 为凑 seed 的重复仍走 §Support-task rule。一次 exploratory 负结果或一次工程失败，不单独构成这条。
+若上一**科学** EXP 表明当前方法不行，而本任务仍是同一 Question、同一方法、同一对照，则不要新 EXP-ID。先改方法，再登记**测改过的方法**的 EXP（仍内循环）。点不出改什么才是停滞（`story-loop.md` §停滞处理）。Support / retry / 为凑 seed 的重复仍走 §Support-task rule。一次 exploratory 负结果若下一轮已是删除或新隔离，可以登记。
 
 判断标准不是名字（admission / qualification / audit），而是：**结果是否改变我们对研究对象或方法有效性的科学判断？** 必要的数据有效性、共线、held-out、provenance、control 泄漏问题可以成为科学 Experiment。
 

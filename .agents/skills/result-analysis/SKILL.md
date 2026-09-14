@@ -64,18 +64,18 @@ In-session:
 - **Next** — smallest next discriminating action (stop, retry same Question,
   or a new EXP), including the **resource decision** (continue / defer /
   stop investment, and why). Map that decision onto existing Next; do not
-  add a field. Default W4 exit is `W2 TEST` **only if** that next contrast
-  can still change a method judgment. If this method comparison left
-  method consequence unchanged vs the last scientific EXP, and the obvious
-  next step is the same Question / same rival, Next is **stop / W1**, not
-  another similar EXP. A valid `contradicts` / `null` that *did* change
-  method consequence is campaign progress — do not treat “metric did not
-  go up” as a reason to keep minting. Engineering retries are not
-  scientific rounds. A tiny one-shot negative may still be a bounded
-  deferral. A negative that conflicts with stable prior evidence and
-  could change an important decision may get a targeted recheck; do not
-  forbid recheck because of the sign, and do not expand into a large
-  matrix because evidence is thin.
+  add a field. Default W4 exit is `W2 TEST`; the inner loop may continue.
+  If this method comparison shows the method is not working, Next must
+  **test the applied method consequence** (simplify / delete / change) —
+  still `W2 TEST`, not “one more similar config” and not an automatic W1
+  stop. A valid `contradicts` / `null` that changes the method is yield.
+  “Metric did not go up” is not a reason to `keep`. Engineering retries
+  are not scientific rounds. Go `W1 FRAME` only if no method change can
+  be named. A tiny one-shot negative may still be a bounded deferral. A
+  negative that conflicts with stable prior evidence and could change an
+  important decision may get a targeted recheck; do not forbid recheck
+  because of the sign, and do not expand into a large matrix because
+  evidence is thin.
 
 A result that matches the EXP's predeclared scientific prediction is
 **not** an unexpected-result full-diagnosis trigger.
@@ -86,11 +86,11 @@ analysis does **not** write DISCOVERY or promote sanity into Story Evidence.
 If analysis still needs time: persist **execution completed, analysis not
 completed**, keep Outcome `not-assessed`, set Position **`W3 LEARN`**. Do not
 leave a finished job as Status=`running`. Do not assign a scientific Outcome
-just to catch up STATE. Update STATE **Workflow Position**: Next clear **and can change a method
-judgment** → `W2 TEST`; same-route next after unchanged method consequence
-→ `W1 FRAME` (hand to `research-loop`); result unclear or analysis
-unfinished → `W3 LEARN`. Level 2 or reframe needed → hand to
-`research-loop` / `story-maintenance`, Position `W1 FRAME`. See [story-loop.md](../../references/story-loop.md) §W4.
+just to catch up STATE. Update STATE **Workflow Position**: Next clear (including: test the
+changed method) → `W2 TEST`; failing method + `keep` same contrast →
+rewrite Next, stay `W2 TEST`; cannot name a method change, or Level 2 →
+`W1 FRAME` (hand to `research-loop`); result unclear or analysis
+unfinished → `W3 LEARN`. See [story-loop.md](../../references/story-loop.md) §W4.
 Required reads: `.research/EXPERIMENTS.md` (target EXP section /
 index lookup only), raw artifacts or operator-supplied log /
 pre-existing result file.

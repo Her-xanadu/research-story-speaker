@@ -10,7 +10,9 @@ Workflow Position 的唯一定义处：`state-files.md` §STATE.md。编排器�
 
 对几十轮实验优化，把 **W2–W3–W4 组成快速内循环**，只有当 Story、机制或研究方向真的发生变化时才回到 W1。
 
-内循环的成功标准是 **方法判断变了**，不是「又跑了一轮」或「指标变好」。连续有意义的科学 EXP 若方法后果不变，再开同路线新 EXP 是停滞，不是勤奋。
+内循环可以一直 `W2 → W3 → W4 → W2`，包括几十、几百轮。不允许的是轮次很多却**没有成果**：方法一直不太行，却仍 `keep` 原方法再跑同类实验。
+
+一轮有成果，当且仅当：科学问题被有效回答（usable Outcome，不是工程失败 / invalid / not-assessed）；并且若答案是当前方法不行，方法后果已执行，**下一 EXP 测的是改过的方法**。无效实验、retry、凑 seed **不算**试过。
 
 ```text
 实验 → 结果 → 调整方法 → 再实验 → Story 小改 → 再实验
@@ -33,9 +35,10 @@ Skills 是 strong guidance，不是 mandatory state machine。
 
 然后设计能够改变这个判断的最小实验。
 
-若最近若干**有意义的科学 EXP**没有改变这个判断，
-下一动作不是再做一个同类实验，而是停开新 EXP：
-回 W1 换问题、PARK/ABANDON 当前机制，或做真正新的隔离对照。
+若当前方法试下来不太行：执行方法后果（simplify / delete / change mechanism），
+**然后继续内循环**去测改过的方法。不要停循环。
+禁止：方法不行却 `keep`，再开同一 Question、同一对照的新 EXP。
+只有点不出「方法改什么、下一轮测什么」时，才 `W1 FRAME`。
 
 工程、数据、环境、资格和审查任务
 只在直接阻塞当前科学实验时执行，
@@ -181,7 +184,7 @@ W 阶段口诀（同上，不另建状态机）：
 ```text
 W2 → 当前路线还没测完，继续
 W3 → 结果出来了，先诊断机制，别先想新 Idea
-W4 → 结果对方法意味着什么？Story 要不要变？能改判断才回 W2
+W4 → 结果对方法意味着什么？方法不行就改方法，然后回 W2 再测
 W1 → 只有真正需要换问题时才重新 frame
 ```
 
@@ -237,18 +240,19 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 5. 下一阶段是什么？
 ```
 
-长周期默认出口是 **W2 TEST**，当且仅当下一实验仍能改变方法判断。
-若 Story 没有 Level 2 改变、当前科学问题仍成立、**且**下一对照与上一科学 EXP 不是同一 Question / 同一 rival 的再来一轮 → `W4 → W2`。
-方法后果相对上一科学 EXP 未变、下一提案仍是同类配置 → `W4 → W1`（§停滞处理），不是默认再实验。
+长周期默认出口是 **W2 TEST**：内循环可以一直下去。
+方法试下来不太行时，先执行方法后果（simplify / delete / change），下一 EXP 测改过的方法，**仍回 W2**。
+禁止：方法不行却 `keep`，再跑同一 Question / 同一 rival 的同类配置。
+只有点不出下一方法改动、或属于 A/B/C 要重构问题，才 `W4 → W1`。
 
 下一动作优先是判别实验（mechanism-off、simpler replacement、rival hypothesis、remove component、matched sham）。低优先：more seeds / epochs / thresholds / 次要参数，除非 variance 本身就是当前科学问题。
 
 | W4 判断 | 下一 Workflow Position |
 |---------|-------------------------|
-| Story 稳定，下一实验清楚 **且能改方法判断** | `W2 TEST`（默认） |
+| Story 稳定，下一实验清楚（含：方法已改，去测新方法） | `W2 TEST`（默认；循环可一直下去） |
 | 结果还没解释清 | `W3 LEARN` |
-| Core Idea / Gap / route 需重构（A/B/C） | `W1 FRAME` |
-| 连续科学 EXP 未改方法判断 / Method Check 失败 | `W1 FRAME` |
+| 方法不行却仍要 `keep` 原对照 | 不许登记该 EXP；写出方法改动后再 `W2 TEST` |
+| Core Idea / Gap / route 需重构（A/B/C）；或点不出方法改什么 | `W1 FRAME` |
 | Story 完成 | `W5 HANDOFF` |
 
 谁执行 W4：Level 0 且 Next 清楚 → `result-analysis` 直接写 STATE `W2`；Level 1 → `story-maintenance` 后 `W2`；Level 2 / A/B/C / Next 不清 → `research-loop`。
@@ -289,7 +293,7 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 
 条件 A 正向、条件 B 失败、新改动只在 A 上可立即运行时：可选它做开发筛查，必须保留 B 的未决问题；不得声称已修复跨条件有效性。
 
-点修路由：`W2 TEST` 且 Next 已点名普通 EXP 时，**通常**继续内循环，不重 frame、不派 `research-lead`。若**新证据使该 Next 的前提失效**，或该 Next 只是同一 Question / 同一 rival 的再来一轮而上一科学 EXP 的方法后果未变，允许重新路由——不能把「Next 有编号」当成永远禁止重判。
+点修路由：`W2 TEST` 且 Next 已点名普通 EXP 时，**通常**继续内循环，不重 frame、不派 `research-lead`。若**新证据使该 Next 的前提失效**，或该 Next 只是「方法不行却 `keep` 的同类再跑」，不要执行那个 Next：先写出方法改动，再登记测新方法的 EXP（仍 W2）。不能把「Next 有编号」当成永远禁止重判。只有点不出方法改什么，才升到 W1。
 
 ### Method Check（每 3–5 个有意义科学 EXP）
 
@@ -302,11 +306,11 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 当前 focal gap 还是最重要的吗？
 ```
 
-有新理解、且下一对照仍能改变方法判断 → 继续 W2。
-方法越来越复杂但无新理解 → **必须** `W1 FRAME`，不是可选项。
-连续有意义科学 EXP 的方法后果（keep / simplify / delete / change / abandon）未变，而下一提案仍是同一 Question、同一 rival → **必须** `W1 FRAME`。
+有新理解、或方法已按后果改过、下一 EXP 测改过的方法 → 继续 W2（循环可一直下去）。
+方法越来越复杂但无新理解 → **必须**先删除失据组件再测（仍 W2）；删无可删、又点不出换什么机制 → `W1 FRAME`。
+结果一直不太行，方法后果却停留在 `keep` → **必须** simplify / delete / change，然后 W2 测新方法。禁止再 keep 一轮同类 EXP。
 
-Support / parser / retry / 为凑 seed 的重复 **不算** 有意义科学 EXP，也不把它们加进这 3–5 的计数。
+Support / parser / retry / 为凑 seed 的重复 **不算** 有意义科学 EXP，也不把它们加进这 3–5 的计数，更不算「已经试过」。
 
 ### 方法内循环与 Story
 
@@ -375,38 +379,40 @@ EXPERIMENTS 索引 + 相关 section · DISCOVERY（Negative / Invalidated）
 
 ## 停滞处理
 
-不建立严格状态机，也不设 `Research Round` 计数（禁止写入 STATE）。停滞信号 → `W4 → W1`（B 类：无信息增益）。
+不建立严格状态机，也不设 `Research Round` 计数（禁止写入 STATE）。
+停滞不是「跑了太多次」，而是 **很多次都没有成果**：方法不行却不改方法，或轮次无效。
+内循环本身可以一直下去。
 
-### 成功标准
+### 成果
 
-战役的成功是 **方法判断变了**（包括 delete / abandon / 换问题）。
-有效的 `contradicts` / `null` 只要改变了方法后果，就是进展。
-「指标没涨 / 没有成功成果」本身不是继续实验的理由。
-几百轮同类 EXP 而 Core Idea、DISCOVERY 机制理解、方法后果都没动：失败在循环，不在运气。
+```text
+有效回答了科学问题
++ 若方法不行：已执行 simplify / delete / change，下一轮测改过的方法
+```
 
-### 识别停滞
+有效的 `contradicts` / `null` 只要带动了方法改动，就是成果。
+「指标没涨」本身既不是停循环的理由，也不是 `keep` 再跑一轮的理由。
+工程失败 / invalid / not-assessed **不是**「试了」。
 
-- 连续多轮**有意义科学 EXP**未改变 Problem / Core Idea / 主要 Open Gap / 方法后果。
+### 识别无成果轮
+
+- 连续有意义科学 EXP 方法仍 `keep`，结果一直不太行。
 - 反复相似超参，Interpretation 无新信息。
-- STATE 长期 `running` 无 Discovery。
+- 方法比 5 个 EXP 前更复杂，理解没有增加。
 - Open Contradictions 增加但无针对实验。
-- **方法没有学到东西：** 连续实验只改变数字（lr / threshold / seed / weight / epochs），但不改变任何机制判断（Interpretation / Discovery / Core Idea 都不变）→ 就是停滞 → `W4 → W1`。
-- 上一科学 EXP 方法后果是 `keep`，下一提案仍是同一 Question、同一 rival、同一对照协议 → 不是新判别，是停滞。
 
-一次 exploratory 负结果、一次工程失败、或下一对照是**新的**隔离（mechanism-off / 新 rival / 新条件）→ **不是**这条停滞。不要把一次未涨指标当成 W1。
+一次 exploratory 负结果之后若下一轮是 **删组件 / 换更简单解释 / 新隔离**，这是有成果的内循环，不是停滞。
 
-### 识别之后必须离开同路线新 EXP
+### 无成果之后：改方法，继续测
 
-不得再登记同一 Question、无新 rival 的新 EXP-ID。W4 出口是 `W1 FRAME`。然后：
+默认仍是 `W2 TEST`：
 
-1. **重新评估 gap** — 是否仍为最大 gap？
-2. **放弃低价值路线** — EXP `abandoned`，DISCOVERY 记原因；当前机制可 PARK / ABANDON（`idea-and-mechanism.md` §H）。停止是进展。
-3. **文献补课** — 知识缺口 → `literature-research`（W1）。
-4. **独立视角** — `research-lead`；关键 EXP review。
-5. **Story 大改前 Review** — Level 2 前建议 Reviewer。
-6. **维护整理** — `research-memory`。
+1. 执行 Method Complexity Rule（先删失据组件，再考虑换机制）。
+2. 登记 **测改过的方法** 的下一 EXP（新隔离或新 rival 才叫新问题；同一科学目标下改方法仍是内循环）。
+3. 只有点不出「改什么、下一轮测什么」，或属于 A/B/C 要重构问题 → `W1 FRAME`（可 PARK/ABANDON 当前机制，或文献补课）。
 
-不要用 idea-evaluation 去救一次普通 sanity 负结果。长周期同路线无进展才进 W1。
+禁止：再登记同一 Question、同一方法、同一对照的 EXP。
+不要用 idea-evaluation 去救一次普通 sanity 负结果。不要因为轮次多就停循环。
 
 ### 自主性底线
 
@@ -453,7 +459,7 @@ W 名、Level、scout/focus/confirm **不是** Outcome 或 Verdict。
 
 `workspace-resume` 应回答：Workflow Position、Current Gap、Active Experiment、Recommended Next Action，然后**继续执行**。
 
-- Position `W2 TEST` 且 Next 已点名普通 EXP → compact 内循环，**通常不要** `research-loop` 重 frame。若新证据使该 Next 的前提失效，或该 Next 只是同路线再来一轮而方法判断未变，允许重新路由（见 §方法转移的失败解释、§停滞处理）。
+- Position `W2 TEST` 且 Next 已点名普通 EXP → compact 内循环，**通常不要** `research-loop` 重 frame。若新证据使该 Next 的前提失效，或该 Next 是「方法不行却 `keep` 的同类再跑」，不要执行那个 Next：改方法后继续 W2（见 §方法转移的失败解释、§停滞处理）。只有点不出方法改什么，才 W1。
 - Position `W1 FRAME` 或 Next 不清 → `research-loop` 或 resume 后进入 FRAME。
 
 ## 相关 reference
