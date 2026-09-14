@@ -21,7 +21,7 @@ Root `.research/` remains **UNINITIALIZED** on the framework template.
 
 1. Method-First inner loop (W2 TEST → W3 LEARN → W4 DECIDE) without new Stages.
 2. `monitor-experiment` (Main-owned silent wait after launch).
-3. One-clone harness wrappers and workhorse vs strongest dispatch.
+3. One-clone harness wrappers and per-dispatch spectrum + thin-floor model selection.
 4. Seven scientific-continuity rules (quantity vs proxy, manipulation check, failure-explained method switch, screening vs falsification, development vs confirmation, one-decision consults, recoverable scientific state).
 
 ## Validation recorded

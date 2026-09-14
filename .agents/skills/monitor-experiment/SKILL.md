@@ -4,17 +4,20 @@ description: >-
   After a run is launched, wait silently and probe progress with a minimum
   status check.   Use when EXP-xxx Status is running, the agent just launched a
   job, or the user asks 监控 / 还在跑吗 / 进度 / is it done / check results while
-  the process is still alive. Main MUST run `sleep N; <probe>` in this
-  conversation (training default N=300). Do not interpret science, do not
-  keep thinking during the wait, do not end the turn after 1–2 minutes, and
-  do not dispatch a subagent just to monitor.
+  the process is still alive. The run's owner MUST run `sleep N; <probe>` in
+  this conversation (training default N=300): the `experiment-agent` task for
+  its own run; Main only for a micro-run it launched. Do not interpret
+  science, do not keep thinking during the wait, do not end the turn after
+  1–2 minutes, and do not dispatch a fresh subagent just to monitor.
 ---
 
 # Monitor Experiment
 
-Thin Skill for **token-cheap waiting** after `experiment-execution` has
-launched a job. **Default owner: Main Agent.** Not a reason to open a
-subagent. Not scientific interpretation. Not a new Workflow Stage:
+Thin Skill for **token-cheap waiting** after a job is launched. **Owner =
+whoever launched the run.** The `experiment-agent` task holds its **own** run
+and monitors itself here until terminal/checkpoint; if Main launched a
+micro-run, Main holds it in-conversation. Never spawn a **fresh monitor-only**
+subagent per check. Not scientific interpretation. Not a new Workflow Stage:
 Position stays `W2 TEST`.
 
 Localized from ARIS `monitor-experiment` (wait/probe operator only). No ARIS
@@ -23,7 +26,8 @@ ledger, orchestrator, claim gate, Feishu, or `.aris/` control plane.
 ## When to use
 
 - `experiment-execution` just launched a run that is still alive, queued, or
-  remote — **Main continues into this Skill**.
+  remote — **the run owner continues into this Skill** (the `experiment-agent`
+  task in its own context, or Main for a micro-run it launched itself).
 - `EXPERIMENTS.md` Status is `running` and there is **no** terminal evidence
   yet.
 - User asks whether a launched EXP is done, or to monitor progress.
@@ -91,8 +95,9 @@ Do **not** update `DISCOVERY.md` or `STORY.md`.
    emit **at most one** progress line when something useful changed, then run
    **one** shell line `sleep ${sleep_seconds}; <probe>` and wait for it.
    Repeat in this conversation until terminal. Do not end the turn.
-4. If `terminal_unprocessed`: stop waiting. Continue with compact
-   `result-analysis` (Main; same turn). Do not interpret here.
+4. If `terminal_unprocessed`: stop waiting. Hand off to compact
+   `result-analysis` via default `result-analyst` (mechanical smoke with no
+   new scientific question may stay in-session). Do not interpret here.
 5. If `failed_or_suspect`: stop waiting. Return to `experiment-execution`
    compact support or bounded debug on the **same** EXP. No new EXP-ID.
 
@@ -137,7 +142,7 @@ not 1–2 minutes.
 
 ## Token-saving wait contract (the point of this Skill)
 
-**Required Main command** (this conversation, one shell line):
+**Required owner command** (the run owner's context, one shell line):
 
 ```bash
 sleep ${sleep_seconds}; <one minimum probe>
@@ -227,8 +232,8 @@ Review packets, canonical Outcome.
 
 | Class | Next |
 |-------|------|
-| still running | this Skill on **Main** (same conversation) |
-| terminal bundle complete | compact `result-analysis` |
+| still running | this Skill on the **run owner** (same context: the `experiment-agent` task, or Main for a micro-run) |
+| terminal bundle complete | compact `result-analysis` via default `result-analyst` (mechanical smoke may stay Main) |
 | engineering crash / hang / unusable metrics | `experiment-execution` support / bounded debug, **same EXP** |
 | scientific-contract would change to "fix" it | `experiment-design` (not Reviewer by default) |
 
@@ -248,9 +253,12 @@ See [story-loop.md](../../references/story-loop.md).
 - Do not copy upstream Feishu / W&B / Vast / Modal control planes. If
   `RESOURCES.md` already names an extra progress source, it may be a probe
   signal only.
-- **Main Agent runs this Skill.** Do not open `experiment-agent`, a Task, or
-  any monitor-only subagent. If a subagent launched the job, it returns
-  launch facts (job id, probe, log path); Main waits.
+- **The run's owner runs this Skill in its own context.** If `experiment-agent`
+  launched the job, **that task** holds and monitors it (reusing this
+  capability) until terminal/checkpoint — it does **not** hand a live run back
+  to Main just to wait, and Main does **not** spawn a separate monitor-only
+  subagent. If Main launched a micro-run itself, Main waits in-conversation.
+  Never open a **fresh** monitor-only subagent per check.
 
 ## Deviation allowed
 

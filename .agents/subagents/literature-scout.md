@@ -25,6 +25,7 @@ Main runs `paper-find` → `paper-library` and later merges into `LITERATURE.md`
 
 ## When to use
 
+- **默认承接一个 Story gap 的文献 consult**（可与其它任务并行），**按 gap 派、不按每个内循环 EXP 派**。
 - Substantial literature reading in parallel with other tasks.
 - Main dispatches with handoff block (`.agents/prompts/subagent-handoff.md`).
 

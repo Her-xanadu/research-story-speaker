@@ -25,8 +25,11 @@ EXPERIMENTS, Status, or Outcome.
 
 Ordinary exploratory / sanity. Do **not** open `result-diagnosis.md`,
 `failure-diagnosis.md`, `evidence-and-claim.md`, `scientific-reasoning.md`,
-`state-files.md`, or `experiment-record.md`. Do **not** default-dispatch
-`result-analyst`.
+`state-files.md`, or `experiment-record.md`. Default owner is compact
+`result-analyst` (independent sub-context; compact = small work, not
+"Main does it"). Mechanical smoke with **no new scientific question** may
+stay in-session. Do **not** fire `idea-evaluation` / `evidence-verification`
+/ `reviewer`.
 
 In-session:
 
@@ -103,8 +106,9 @@ evidence invalidated, high-cost EXP, or formal `result-analyst`.
 - You need interpretation separate from whoever ran the code (fresh judgment).
 - Experiment failed, was null, or contradicted expectations — still analyze.
 - `research-loop` integrated an experiment and needs DISCOVERY / Story updates.
-- `result-analyst` subagent dispatched for supported interpretation and Story impact
-  (full diagnosis; not the ordinary-exploratory default).
+- `result-analyst` is the **default W3 receiver** when terminal artifacts
+  exist (compact ordinary / full high-stakes). Mechanical smoke with no new
+  scientific question may stay in-session.
 
 Do **not** use for: implementing or re-running (`experiment-execution`), waiting
 on a live job (`monitor-experiment`), adversarial
@@ -231,7 +235,7 @@ If analysis is unfinished: write mechanical facts only, keep Outcome
 | Reference (full diagnosis only) | `experiment-record.md`, `state-files.md`, `story-loop.md` |
 | Layer 2 (full diagnosis only) | `scientific-reasoning.md`, `evidence-and-claim.md` |
 | Prompts (full diagnosis only) | `result-diagnosis.md`, `failure-diagnosis.md` when failure class is unclear |
-| Subagent (not ordinary-exploratory default) | `result-analyst.md` |
+| Subagent (default W3) | `result-analyst.md` — compact ordinary; full on high-stakes. Mechanical smoke may skip. |
 
 ## Updates
 
@@ -257,4 +261,7 @@ Do **not** write Reviewer files here — use `experiment-review`.
   valuable `contradicts` or `null` results.
 - Core Idea overturned: that is full diagnosis — record discovery, suggest Reviewer,
   revise Story, propose new loop.
-- Do **not** default-dispatch `result-analyst` on ordinary exploratory.
+- Ordinary scientific results: default-dispatch compact `result-analyst`;
+  do **not** force reviewer / idea-evaluation / evidence-verification.
+- Mechanical smoke (no new scientific question): in-session compact; do not
+  force `result-analyst` or reviewer.
