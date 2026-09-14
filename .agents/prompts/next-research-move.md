@@ -17,7 +17,10 @@ If STATE Workflow Position is `W2 TEST` and Next already names an EXP,
 **usually do not dispatch research-lead** — continue the inner loop. If
 **new evidence invalidates that Next's premises**, or this Next is `keep`
 plus the same failing contrast, rewrite Next as a test of the **changed**
-method (still W2). Escalate to W1 only if no method change can be named.
+method (still W2). If this Next invents a module after an isolating miss,
+recommend narrow W1 literature for this failure condition (or one unused
+Suggests successor). Escalate to a full W1 reframe only if no deletion /
+isolation can be named and no failure condition can be written.
 A numbered Next is not a permanent ban on re-judgment
 ([story-loop.md](../references/story-loop.md) §方法转移的失败解释,
 §停滞处理).
@@ -73,10 +76,13 @@ clear, recommend continuing the Method Loop — not a new route
 ([story-loop.md](../references/story-loop.md) §Method-First Inner Loop).
 If the method is not working, recommend the next inner-loop EXP that
 **tests the changed method**. Do **not** recommend another similar config
-with `keep`. Recommend W1 only if no method change can be named.
-Literature is **not** a default every few EXP: only W1 reframe, novelty
-threat, a new mechanism, a required new baseline, or explicit user
-freshness. Rank **one focal scientific question**; parallel EXPs that
+with `keep`. Do **not** recommend a guessed new module after an isolating
+miss. Recommend light literature at W1 for this failure condition unless
+unused Suggests already name one successor. Recommend a full W1 reframe
+only if no deletion / isolation can be named and no failure condition can
+be written. Literature is **not** a default every EXP: W1 reframe,
+knowledge-gap after isolating miss, novelty threat, a required new
+baseline, or explicit user freshness. Rank **one focal scientific question**; parallel EXPs that
 serve it are allowed; unbounded multi-route after W2 focus is not.
 
 ## Scientific context to read
@@ -193,9 +199,14 @@ Stagnation (story-loop.md §停滞处理) is many rounds **with no yield**,
 not too many rounds. Consecutive scientific EXPs that still `keep` a
 failing method, hyperparameter loops, or Open Contradictions growing
 without a test — change the **method**, then recommend the next inner-loop
-EXP that tests it. Do **not** recommend “one more similar config.”
-Valid `contradicts` / `null` that changed the method is yield. Recommend
-PARK / W1 only if no method change can be named. Do not fire
+EXP that tests it. Do **not** recommend “one more similar config.” Do
+**not** recommend a guessed new module after an isolating miss. If the
+next change would invent a module / mechanism / loss, recommend light
+literature at W1 for **this failure condition**, unless unused Suggests
+already name one successor (use that; do not re-search). Valid
+`contradicts` / `null` that changed the method is yield. Recommend PARK /
+full W1 reframe only if no deletion / isolation can be named and no
+failure condition can be written for consult. Do not fire
 idea-evaluation on a single sanity miss.
 
 ## Critical questions

@@ -175,7 +175,7 @@ W4 + completion criteria satisfied
 每个新 EXP 都要改变一个科学判断。
 结果出来先诊断机制，再决定下一实验。
 同一方法还能被有效检验，就留在 W2–W3–W4。
-核心机制需要重构，才回 W1。
+核心机制需要重构，或要发明新模块却无文献依据，才回 W1。
 工程问题只做最小修复，修完立刻回实验。
 历史按需查，STATE 只保留现在。
 Story 随证据演化，不随任务日志膨胀。
@@ -186,8 +186,8 @@ W 阶段口诀（同上，不另建状态机）：
 ```text
 W2 → 当前路线还没测完，继续
 W3 → 结果出来了，先诊断机制，别先想新 Idea
-W4 → 结果对方法意味着什么？方法不行就改方法，然后回 W2 再测
-W1 → 只有真正需要换问题时才重新 frame
+W4 → 结果对方法意味着什么？能点名删除/隔离就改方法回 W2；要发明新模块却无文献依据 → 回 W1 查库
+W1 → 换问题、或知识缺口要查库时才重新 frame
 ```
 
 ## 工作示例（几十轮内循环）
@@ -245,7 +245,8 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 长周期默认出口是 **W2 TEST**：内循环可以一直下去。
 方法试下来不太行时，先执行方法后果（simplify / delete / change），下一 EXP 测改过的方法，**仍回 W2**。
 禁止：方法不行却 `keep`，再跑同一 Question / 同一 rival 的同类配置。
-只有点不出下一方法改动、或属于 A/B/C 要重构问题，才 `W4 → W1`。
+隔离已经失败、下一改动却是**发明**新模块 / 新机制 / 新 loss，且对这次失败条件没有文献依据 → 这是知识缺口：`W4 → W1`，light 查库，**不要**在 W2 里猜模块。
+只有点不出删除/隔离、也写不出该查什么失败条件、或属于 A/B/C 要重构问题，才把 W1 当成换问题。
 
 下一动作优先是判别实验（mechanism-off、simpler replacement、rival hypothesis、remove component、matched sham）。低优先：more seeds / epochs / thresholds / 次要参数，除非 variance 本身就是当前科学问题。
 
@@ -254,10 +255,11 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 | Story 稳定，下一实验清楚（含：方法已改，去测新方法） | `W2 TEST`（默认；循环可一直下去） |
 | 结果还没解释清 | `W3 LEARN` |
 | 方法不行却仍要 `keep` 原对照 | 不许登记该 EXP；写出方法改动后再 `W2 TEST` |
-| Core Idea / Gap / route 需重构（A/B/C）；或点不出方法改什么 | `W1 FRAME` |
+| 隔离失败且下一改动是无文献依据的新模块 | `W1 FRAME`（narrow：这次失败条件；light 文献 → 一条 successor → 回 W2） |
+| Core Idea / Gap / route 需重构（A/B/C）；或点不出删除/隔离、也写不出该查什么 | `W1 FRAME` |
 | Story 完成 | `W5 HANDOFF` |
 
-谁执行 W4：Level 0 且 Next 清楚 → `result-analysis` 直接写 STATE `W2`；Level 1 → `story-maintenance` 后 `W2`；Level 2 / A/B/C / Next 不清 → `research-loop`。
+谁执行 W4：Level 0 且 Next 清楚 → `result-analysis` 直接写 STATE `W2`；Level 1 → `story-maintenance` 后 `W2`；Level 2 / A/B/C / 知识缺口 / Next 不清 → `research-loop`。
 
 ### Method Complexity Rule
 
@@ -267,10 +269,12 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 1. identify failed prediction
 2. remove unsupported component
 3. test simpler explanation
-4. only then consider adding a mechanism
+4. only then consider adding a mechanism — from literature, not from invention
 ```
 
 禁止默认「结果差 → 加组件 / 加 loss / 加 gate / 加 expert」。每次新增组件必须回答：`Which failed prediction requires this component?` 若答案只是 `might improve performance`，默认不加。
+
+步骤 4 不得把「猜一个新模块」当方法后果。`LITERATURE.md` 对**这次失败条件**已有 unused Suggests / closest-work → 用其中**一条**，不要再搜。没有 → `W1 FRAME` + light `literature-research`（本地 vault 先 consult），再回 W2。已点名的删除 `Full - A`、更简单解释、新隔离仍走 W2，不查库。
 
 优先 deletion experiment：`Full` vs `Full - Component A`，而不是 `Full + B + C + D`。
 
@@ -295,7 +299,7 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 
 条件 A 正向、条件 B 失败、新改动只在 A 上可立即运行时：可选它做开发筛查，必须保留 B 的未决问题；不得声称已修复跨条件有效性。
 
-点修路由：`W2 TEST` 且 Next 已点名普通 EXP 时，**通常**继续内循环，不重 frame、不派 `research-lead`。若**新证据使该 Next 的前提失效**，或该 Next 只是「方法不行却 `keep` 的同类再跑」，不要执行那个 Next：先写出方法改动，再登记测新方法的 EXP（仍 W2）。不能把「Next 有编号」当成永远禁止重判。只有点不出方法改什么，才升到 W1。
+点修路由：`W2 TEST` 且 Next 已点名普通 EXP 时，**通常**继续内循环，不重 frame、不派 `research-lead`。若**新证据使该 Next 的前提失效**，或该 Next 只是「方法不行却 `keep` 的同类再跑」，不要执行那个 Next：先写出方法改动，再登记测新方法的 EXP（仍 W2）。若该 Next 是隔离失败之后**发明**的新模块 / 新机制 / 新 loss，也不要执行：升到 W1 查这次失败条件（已有 unused Suggests 则直接用）。不能把「Next 有编号」当成永远禁止重判。只有点不出删除/隔离、也写不出该查什么，才把 W1 当成换问题。
 
 ### Method Check（每 3–5 个有意义科学 EXP）
 
@@ -309,7 +313,7 @@ Level 1 小改且下一实验清楚 → **仍回 W2，不是 W1。**
 ```
 
 有新理解、或方法已按后果改过、下一 EXP 测改过的方法 → 继续 W2（循环可一直下去）。
-方法越来越复杂但无新理解 → **必须**先删除失据组件再测（仍 W2）；删无可删、又点不出换什么机制 → `W1 FRAME`。
+方法越来越复杂但无新理解 → **必须**先删除失据组件再测（仍 W2）；删无可删、下一改动却是无文献依据的新模块 → `W1 FRAME` 查这次失败条件；也写不出该查什么 → 换问题式 `W1 FRAME`。
 结果一直不太行，方法后果却停留在 `keep` → **必须** simplify / delete / change，然后 W2 测新方法。禁止再 keep 一轮同类 EXP。
 
 Support / parser / retry / 为凑 seed 的重复 **不算** 有意义科学 EXP，也不把它们加进这 3–5 的计数，更不算「已经试过」。
@@ -318,7 +322,7 @@ Support / parser / retry / 为凑 seed 的重复 **不算** 有意义科学 EXP�
 
 很多正常 Experiment 只需更新 `EXPERIMENTS` + `DISCOVERY` + `STATE`。Story 可以连续 3 / 5 / 10 个 EXP 不修改——这不是遗漏，是正确分层。长周期方法演化写在 DISCOVERY（机制为什么变化），等证据成熟后再改 Story Core Idea。
 
-文献不在同一机制的 `W2 → W3 → W4 → W2` 里重做。只有 W1 reframe、novelty threat、新机制、新 baseline 必须加入、或用户明确要求 freshness 时才做新 literature work。
+同一机制的 `W2 → W3 → W4 → W2` **不**重做文献，也**不**在 `Status=running` 等待时查库。第一次有效负结果先隔离；工程 / invalid / not-assessed 不查库。隔离仍失败、下一改动却是无文献依据的新模块 → W4 判定知识缺口，**回 W1** 做 light 文献（已有 unused Suggests 则直接用，不重搜）。deep 仍按 `deep-literature-mode.md` 昂贵可选。W1 reframe、novelty threat、新 baseline 必须加入、或用户明确要求 freshness 时，也做新 literature work。
 
 ## Story Impact Level
 
@@ -409,12 +413,13 @@ EXPERIMENTS 索引 + 相关 section · DISCOVERY（Negative / Invalidated）
 
 默认仍是 `W2 TEST`：
 
-1. 执行 Method Complexity Rule（先删失据组件，再考虑换机制）。
+1. 执行 Method Complexity Rule（先删失据组件，再考虑换机制）。已点名的 `Full - A` / 更简单解释 / 新隔离 → 仍 W2，不查库。
 2. 登记 **测改过的方法** 的下一 EXP（新隔离或新 rival 才叫新问题；同一科学目标下改方法仍是内循环）。
-3. 只有点不出「改什么、下一轮测什么」，或属于 A/B/C 要重构问题 → `W1 FRAME`（可 PARK/ABANDON 当前机制，或文献补课）。
+3. 下一改动若是**发明**新模块 / 新机制 / 新 loss，且 `LITERATURE.md` 对**这次失败条件**没有 unused Suggests / closest-work → 知识缺口：`W1 FRAME` + light `literature-research`（本地 vault 先 consult）。只查这次失败条件，**不要**重跑「最大 gap」、不要换课题。用库里的 **一条** successor 或 closest contrast，再回 W2。禁止把「猜一个新模块」当方法后果。库里已有 unused Suggests → 直接用，不重搜。closest-work 已实现同一机制轴 → REVISE / PARK，不要开化妆差异 EXP。
+4. 只有点不出删除/隔离、也写不出该查什么失败条件，或属于 A/B/C 要重构问题 → `W1 FRAME`（可 PARK/ABANDON）。
 
 禁止：再登记同一 Question、同一方法、同一对照的 EXP。
-不要用 idea-evaluation 去救一次普通 sanity 负结果。不要因为轮次多就停循环。
+不要用 idea-evaluation 去救一次普通 sanity 负结果。不要因为轮次多就停循环。不要每个 EXP 查库。
 
 ### 自主性底线
 
@@ -461,8 +466,8 @@ W 名、Level、scout/focus/confirm **不是** Outcome 或 Verdict。
 
 `workspace-resume` 应回答：Workflow Position、Current Gap、Active Experiment、Recommended Next Action，然后**继续执行**。
 
-- Position `W2 TEST` 且 Next 已点名普通 EXP → compact 内循环，**通常不要** `research-loop` 重 frame。若新证据使该 Next 的前提失效，或该 Next 是「方法不行却 `keep` 的同类再跑」，不要执行那个 Next：改方法后继续 W2（见 §方法转移的失败解释、§停滞处理）。只有点不出方法改什么，才 W1。
-- Position `W1 FRAME` 或 Next 不清 → `research-loop` 或 resume 后进入 FRAME。
+- Position `W2 TEST` 且 Next 已点名普通 EXP → compact 内循环，**通常不要** `research-loop` 重 frame。若新证据使该 Next 的前提失效，或该 Next 是「方法不行却 `keep` 的同类再跑」，不要执行那个 Next：改方法后继续 W2（见 §方法转移的失败解释、§停滞处理）。若 Next 是隔离失败后发明的新模块，不要执行：W1 查这次失败条件。只有点不出删除/隔离、也写不出该查什么，才把 W1 当成换问题。
+- Position `W1 FRAME` 或 Next 不清 → `research-loop` 或 resume 后进入 FRAME。知识缺口的 W1 是 narrow consult，不是换题。
 
 ## 相关 reference
 

@@ -61,7 +61,11 @@ If new evidence invalidates those premises, or Next is the same failing
 method again, rewrite Next as a test of the **changed** method and stay
 `W2 TEST`
 ([story-loop.md](../../references/story-loop.md) §方法转移的失败解释,
-§停滞处理). Escalate to `W1 FRAME` only if no method change can be named.
+§停滞处理). If Next invents a new module / mechanism / loss after an
+isolating miss, escalate to `W1 FRAME` for a narrow literature consult
+(or pick one unused Suggests successor already on disk). Escalate to a
+full reframe only if no deletion / isolation can be named and no failure
+condition can be written for consult.
 If STATE Status=`running` but this run's terminal artifacts are complete:
 do **not** re-launch or monitor; hand to `result-analysis`, Position
 `W3 LEARN` until analysis exists. See
@@ -185,7 +189,10 @@ no terminal artifact → `monitor-experiment`, do not think through the wait;
 if terminal artifacts are already complete → `result-analysis` at `W3 LEARN`,
 do not re-launch); if the named Next is `keep` plus the same failing contrast
 → `experiment-design` of the **changed** method at `W2 TEST` (not an automatic
-W1 stop); if no method change can be named → `research-loop` at `W1 FRAME`;
+W1 stop); if the named Next invents a module after an isolating miss →
+`research-loop` at `W1 FRAME` (narrow literature, not a topic change); if no
+deletion / isolation can be named and no failure condition can be written →
+`research-loop` at `W1 FRAME`;
 else execute `STATE` next or matching Skill; route
 unclear → `research-loop` (FRAME/W4 only); files disagree → `research-memory` first.
 

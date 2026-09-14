@@ -40,13 +40,17 @@ If the last **scientific** EXP showed the method is not working and this
 task would `keep` the same Question / same rival / same contrast,
 **do not register**. That is a no-yield round
 ([story-loop.md](../../references/story-loop.md) §停滞处理), not a new
-Experiment. Write the method change (simplify / delete / change), then
-register the EXP that **tests the changed method** — still `W2 TEST`.
-The inner loop may continue. Hand to `research-loop` at `W1 FRAME` only
-if no method change can be named. A one-shot exploratory miss that is
-already followed by a new isolation, an engineering retry, or a true new
-contrast may proceed. Support / parser / seed-fill still does **not**
-get a new ID.
+Experiment. Write the method change (simplify / delete / change of a
+**named existing** piece), then register the EXP that **tests the changed
+method** — still `W2 TEST`. The inner loop may continue.
+
+If the last isolating miss still failed and this task **adds** a new
+module / mechanism / loss, **do not register** in compact and do **not**
+open `LITERATURE.md` to invent one. Hand to `research-loop` at `W1 FRAME`
+for a narrow knowledge-gap consult. A one-shot exploratory miss that is
+already followed by a new isolation, a named `Full - A` deletion, an
+engineering retry, or a true new contrast may proceed. Support / parser /
+seed-fill still does **not** get a new ID.
 
 Do not register an EXP “to complete the matrix” (e.g. 3 seeds → 5 seeds)
 unless unresolved uncertainty could change an important scientific or
@@ -69,7 +73,7 @@ When the method is growing complex, prefer a **deletion experiment**
 
 Ordinary exploratory / sanity. Do **not** open `experiment-proposal.md`,
 `experiment-thinking.md` (A→J), `scientific-reasoning.md`, `git-linking.md`,
-`story-loop.md`, or `experiment-record.md`. Do **not** fire
+`story-loop.md`, `experiment-record.md`, or `LITERATURE.md`. Do **not** fire
 `idea-evaluation`, `evidence-verification`, or independent review from
 compact design.
 
